@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import AutoPlay from "../pages/AutoPlay";
 import Slider from "react-slick";
-import CourseDetails from "../components/CoursesDetails";
+
 import banner from "../assets/banner.jpeg";
 import review1 from "../assets/review5.jpeg";
 import review2 from "../assets/review2.jpeg";
@@ -31,7 +31,7 @@ import Logo12 from "../assets/adobenewlogo2.png";
 import Logo13 from "../assets/autodesklogo.png";
 import Logo14 from "../assets/microsoftlogo-courses.png";
 import { FaStar } from "react-icons/fa";
-import AddToCartButton from "../components/AddToCartButton";
+
 
 const Courses = () => {
   const navigate = useNavigate();
@@ -101,7 +101,6 @@ const Courses = () => {
       </Helmet>
 
 
-      <AddToCartButton />
 
       <div className="bg-gray-50">
         {/* Banner Section */}
@@ -157,10 +156,7 @@ const Courses = () => {
           </Slider>
         </div>
 
-        {/* Course Details Section */}
-        <div className="flex flex-wrap justify-center gap-8 px-4">
-          <CourseDetails onAddToCart={handleAddToCart} />
-        </div>
+       
 
         {/* Learner Outcomes Section */}
         <div className="flex flex-col md:flex-row bg-gray-50 my-36 p-2 md:pl-4">

@@ -69,29 +69,20 @@ const images = [img1, img2, img3, img4]
 
 const Home = () => {
   const courseData = [
-    { image: AWS, title: "AWS", description: "AWS is a top cloud platform...", price: "$450", url: "/aws" },
-    {
-      image: Cisco,
-      title: "CISCO",
-      description: "Master the art of cloud-based tech...",
-      price: "$400",
-      url: "/Cisco",
-    },
     {
       image: comptia,
       title: "COMPTIA",
-      description: "A comprehensive course on networking...",
+      description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia",
     },
-    {
-      image: mircro,
-      title: "Microsoft",
-      description: "Learn to secure systems like a pro...",
-      price: "$350",
-      url: "/microsoft",
+    { 
+      image: PECB, 
+      title: "PECB", 
+      description: "Excel in compliance and IT security with internationally recognized certifications", 
+      price: "$400", 
+      url: "/PECB" 
     },
-    { image: PECB, title: "PECB", description: "Excel in compliance and IT security...", price: "$400", url: "/PECB" },
   ]
 
   // State declarations
@@ -240,9 +231,9 @@ const Home = () => {
             {[
               { logo: comptia, name: "CompTIA", url: "https://www.comptia.org/" },
               { logo: pecb, name: "PECB", url: "https://pecb.com/" },
-              { logo: certiport, name: "Certiport", url: "https://certiport.pearsonvue.com/" },
-              { logo: pearson, name: "Pearson", url: "https://www.pearson.com/" },
-              { logo: etraind, name: "etrainIndia", url: "https://www.etrainindia.com/" },
+              // { logo: certiport, name: "Certiport", url: "https://certiport.pearsonvue.com/" },
+              // { logo: pearson, name: "Pearson", url: "https://www.pearson.com/" },
+              // { logo: etraind, name: "etrainIndia", url: "https://www.etrainindia.com/" },
             ].map((vendor, index, arr) => (
               <motion.div
                 key={index}

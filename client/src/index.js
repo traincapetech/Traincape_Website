@@ -6,7 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import store from "./store/store";
 import { Provider } from "react-redux";
-import { CartProvider } from "./components/CartContext";
+
 import { HelmetProvider } from 'react-helmet-async';
 import axios from 'axios';
 import { setUserFromLocalStorage } from "./slices/userSlice";
@@ -26,9 +26,9 @@ const renderApp = () => {
     <Provider store={store}>
       <BrowserRouter>
         <HelmetProvider>
-          <CartProvider>
+         
             <App />
-          </CartProvider>
+          
         </HelmetProvider>
       </BrowserRouter>
     </Provider>

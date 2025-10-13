@@ -6,7 +6,7 @@ import Sidebar from "./AdminSidebar";
 import CertificateForm from "./ClientProfiles/CertificateForm";
 import VoucherManagement from "./VoucherManagement/VoucherManagement";
 import Dashboard from "./Dashboard";
-import PECBBrochures from "../../components/PECBBrochures";
+// import PECBBrochures from "../../components/PECBBrochures";
 
 import {
   Shield,
@@ -95,8 +95,8 @@ const AdminPanel = () => {
         return <CertificateForm />;
       case "voucherManagement":
         return <VoucherManagement />;
-      case "pecbBrochures":
-        return <PECBBrochures />;
+      // case "pecbBrochures":
+      //   return <PECBBrochures />;
       case "results":
         return <Results />;
       case "dashboard":
