@@ -10,22 +10,14 @@ import { Helmet } from "react-helmet";
 import { Button } from "@mui/material";
 
 import cloud from "../assets/Cloud-services.svg";
-import UI from "../assets/UI-development.svg";
 import Digital from "../assets/Digital marketing.svg";
 import Web from "../assets/Web development.svg";
 import Software from "../assets/software-services.svg";
-import softwareDevelopment from "../assets/Software-development-Learnings.svg";
 
 import CloudImg from "../assets/cloud.jpg";
-import UiUx from "../assets/uiux.jpg";
 import DigitalImg from "../assets/digital.jpg";
-import Saas from "../assets/saas.jpg";
-import SoftwareImg from "../assets/software.jpeg";
 import webImg from "../assets/web.png";
-
-
-// import cloudService from "./CloudServices"; // unused - service route loads CloudServices lazily
-
+import Saas from "../assets/saas.jpg";
 
 /* ---------------------- DATA ---------------------- */
 const servicesData = [
@@ -36,7 +28,6 @@ const servicesData = [
     image: cloud,
     banner: CloudImg,
   },
-
   {
     title: "Digital Marketing",
     description:
@@ -58,16 +49,6 @@ const servicesData = [
     image: Software,
     banner: Saas,
   },
-  {
-  title: "Software Services and Development",
-  slug: "software-services", // <-- this must match your ServiceDetail route
-  description:
-    "Software services include custom software development, web development, mobile app development, cloud computing, quality assurance, software maintenance, and consulting.",
-  image: Software,
-  banner: Saas,
-}
-
- 
 ];
 
 /* ---------------------- COMPONENT ---------------------- */
@@ -76,97 +57,42 @@ const Services = () => {
   const containerRef = useRef(null);
   const firstCardRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lgUp, setLgUp] = useState(window.innerWidth >= 1024);
+
+  // Handle window resize for responsiveness
+  useEffect(() => {
+    const handleResize = () => setLgUp(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // -------------------- INDIVIDUAL HOOKS --------------------
-  // Call useTransform for each card separately (fixed order)
-  const y0 = useTransform(
-    scrollYProgress,
-    [0 * 0.125, 0 * 0.125 + 0.175],
-    [200, -150]
-  );
-  const opacity0 = useTransform(
-    scrollYProgress,
-    [0, 0.02, 0.08, 0.175],
-    [1, 1, 1, 0.1]
-  );
-  const scale0 = useTransform(
-    scrollYProgress,
-    [0, 0.03, 0.175],
-    [0.92, 1, 0.9]
-  );
+  // -------------------- INDIVIDUAL CARD TRANSFORMS --------------------
+  const y0 = useTransform(scrollYProgress, [0 * 0.125, 0 * 0.125 + 0.175], [200, -150]);
+  const opacity0 = useTransform(scrollYProgress, [0, 0.02, 0.08, 0.175], [1, 1, 1, 0.1]);
+  const scale0 = useTransform(scrollYProgress, [0, 0.03, 0.175], [0.92, 1, 0.9]);
 
   const y1 = useTransform(scrollYProgress, [0.125, 0.125 + 0.175], [200, -150]);
-  const opacity1 = useTransform(
-    scrollYProgress,
-    [0.125, 0.145, 0.205, 0.3],
-    [0, 1, 1, 0.1]
-  );
-  const scale1 = useTransform(
-    scrollYProgress,
-    [0.125, 0.155, 0.3],
-    [0.92, 1, 0.9]
-  );
+  const opacity1 = useTransform(scrollYProgress, [0.125, 0.145, 0.205, 0.3], [0, 1, 1, 0.1]);
+  const scale1 = useTransform(scrollYProgress, [0.125, 0.155, 0.3], [0.92, 1, 0.9]);
 
   const y2 = useTransform(scrollYProgress, [0.25, 0.25 + 0.175], [200, -150]);
-  const opacity2 = useTransform(
-    scrollYProgress,
-    [0.25, 0.27, 0.33, 0.425],
-    [0, 1, 1, 0.1]
-  );
-  const scale2 = useTransform(
-    scrollYProgress,
-    [0.25, 0.28, 0.425],
-    [0.92, 1, 0.9]
-  );
+  const opacity2 = useTransform(scrollYProgress, [0.25, 0.27, 0.33, 0.425], [0, 1, 1, 0.1]);
+  const scale2 = useTransform(scrollYProgress, [0.25, 0.28, 0.425], [0.92, 1, 0.9]);
 
   const y3 = useTransform(scrollYProgress, [0.375, 0.375 + 0.175], [200, -150]);
-  const opacity3 = useTransform(
-    scrollYProgress,
-    [0.375, 0.395, 0.455, 0.55],
-    [0, 1, 1, 0.1]
-  );
-  const scale3 = useTransform(
-    scrollYProgress,
-    [0.375, 0.405, 0.55],
-    [0.92, 1, 0.9]
-  );
-
-  const y4 = useTransform(scrollYProgress, [0.5, 0.5 + 0.175], [200, -150]);
-  const opacity4 = useTransform(
-    scrollYProgress,
-    [0.5, 0.52, 0.58, 0.675],
-    [0, 1, 1, 0.1]
-  );
-  const scale4 = useTransform(
-    scrollYProgress,
-    [0.5, 0.53, 0.675],
-    [0.92, 1, 0.9]
-  );
-
-  const y5 = useTransform(scrollYProgress, [0.625, 0.625 + 0.175], [200, -150]);
-  const opacity5 = useTransform(
-    scrollYProgress,
-    [0.625, 0.645, 0.705, 0.8],
-    [0, 1, 1, 0.1]
-  );
-  const scale5 = useTransform(
-    scrollYProgress,
-    [0.625, 0.655, 0.8],
-    [0.92, 1, 0.9]
-  );
+  const opacity3 = useTransform(scrollYProgress, [0.375, 0.395, 0.455, 0.55], [0, 1, 1, 0.1]);
+  const scale3 = useTransform(scrollYProgress, [0.375, 0.405, 0.55], [0.92, 1, 0.9]);
 
   const cardTransforms = [
     { y: y0, opacity: opacity0, scale: scale0 },
     { y: y1, opacity: opacity1, scale: scale1 },
     { y: y2, opacity: opacity2, scale: scale2 },
     { y: y3, opacity: opacity3, scale: scale3 },
-    { y: y4, opacity: opacity4, scale: scale4 },
-    { y: y5, opacity: opacity5, scale: scale5 },
   ];
 
   // -------------------- ACTIVE CARD TRACKING --------------------
@@ -180,12 +106,10 @@ const Services = () => {
     window.scrollTo(0, 0);
   }, []);
 
-const handleClick = (service) => {
-  const slug = service.title.toLowerCase().replace(/\s+/g, "-");
-  navigate(`/service-detail/${slug}`); // ✅ must be ${slug}
-};
-
-
+  const handleClick = (service) => {
+    const slug = service.title.toLowerCase().replace(/\s+/g, "-");
+    navigate(`/service-detail/${slug}`);
+  };
 
   const handleExploreClick = () => {
     firstCardRef.current?.scrollIntoView({
@@ -216,7 +140,7 @@ const handleClick = (service) => {
             loop
             muted
             playsInline
-          ></video>
+          />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
               Our IT Services
@@ -245,33 +169,15 @@ const handleClick = (service) => {
               >
                 Explore
               </Button>
-              {/* <Button
-                variant="outlined"
-                sx={{
-                  backgroundColor: "white",
-                  color: "black",
-                  borderColor: "white",
-                  fontSize: "1.1rem",
-                  padding: "7px 20px",
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  "&:hover": {
-                    backgroundColor: "#f1f1f1",
-                    borderColor: "#f1f1f1",
-                  },
-                }}
-              >
-                Learn More
-              </Button> */}
             </div>
           </div>
         </div>
 
-        {/* CARDS */}
-        <div ref={containerRef} className="min-h-[800vh] py-16 bg-gray-50">
-          <div className="sticky top-0 h-screen flex flex-col lg:flex-row justify-between px-6 md:px-20">
-            {/* LEFT */}
-            <div className="lg:w-1/2 flex flex-col justify-center">
+        {/* CARDS SECTION */}
+        <div ref={containerRef} className="py-16 bg-gray-50">
+          <div className="flex flex-col lg:flex-row justify-between px-6 md:px-20">
+            {/* LEFT TEXT */}
+            <div className="lg:w-1/2 flex flex-col justify-center mb-12 lg:mb-0">
               <h2 className="text-4xl md:text-5xl font-bold text-[#152B54] mb-6">
                 End-to-End Digital Services to Design, Build, & Support Business
               </h2>
@@ -286,25 +192,27 @@ const handleClick = (service) => {
               </p>
             </div>
 
-            {/* RIGHT */}
-            <div className="lg:w-1/2 relative flex items-center justify-center mt-20 lg:mt-0">
+            {/* RIGHT CARDS */}
+            <div className="lg:w-1/2 flex flex-col items-center relative">
               {servicesData.map((service, index) => {
                 const isActive = activeIndex === index;
-                const { y, opacity, scale } = cardTransforms[index];
+                const { y, opacity, scale } = cardTransforms[index] || {};
 
                 return (
                   <motion.div
                     key={index}
                     ref={index === 0 ? firstCardRef : null}
-                    style={{ y, opacity, scale }}
+                    style={{
+                      y: lgUp && y ? y : 0,
+                      opacity: lgUp && opacity ? opacity : 1,
+                      scale: lgUp && scale ? scale : 1,
+                    }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className={`absolute w-[85%] min-h-[420px] rounded-3xl p-8 md:p-12 shadow-xl transition-all duration-500 ${
-                      isActive
-                        ? "bg-[#040f25] text-white scale-105 shadow-2xl"
-                        : "bg-white text-gray-700 border border-gray-200"
-                    } ${
-                      isActive ? "pointer-events-auto" : "pointer-events-none"
-                    }`}
+                    className={`
+                      w-full lg:w-[85%] min-h-[420px] rounded-3xl p-6 md:p-12 shadow-xl mb-6
+                      ${isActive && lgUp ? "bg-[#040f25] text-white scale-105 shadow-2xl" : "bg-white text-gray-700 border border-gray-200"}
+                      ${lgUp && !isActive ? "pointer-events-none" : "pointer-events-auto"}
+                    `}
                   >
                     <div className="flex items-center gap-4 mb-5">
                       <img
@@ -312,24 +220,16 @@ const handleClick = (service) => {
                         alt={service.title}
                         className="w-12 h-12 object-contain"
                       />
-                      <h3
-                        className={`text-2xl font-bold ${
-                          isActive ? "text-white" : "text-[#152B54]"
-                        }`}
-                      >
+                      <h3 className={`text-2xl font-bold ${isActive && lgUp ? "text-white" : "text-[#152B54]"}`}>
                         {service.title}
                       </h3>
                     </div>
-                    <p
-                      className={`mb-8 leading-relaxed ${
-                        isActive ? "text-gray-200" : "text-gray-600"
-                      }`}
-                    >
+                    <p className={`mb-6 leading-relaxed ${isActive && lgUp ? "text-gray-200" : "text-gray-600"}`}>
                       {service.description.slice(0, 220)}...
                     </p>
                     <button
                       className={`px-6 py-3 rounded-lg font-semibold transition duration-300 ${
-                        isActive
+                        isActive && lgUp
                           ? "bg-white text-[#152B54] hover:bg-gray-100"
                           : "bg-[#152B54] text-white hover:bg-blue-900"
                       }`}

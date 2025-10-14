@@ -368,54 +368,60 @@ const Home = () => {
 
       {/* About Us Section */}
       <section className="py-16 mt-20 bg-gradient-to-b from-[#E0F2FE] to-[#E0E7FF]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-[#152B54] text-sm font-medium mb-3">
-              ABOUT US
-            </span>
-            <h2 className="text-3xl font-bold text-[#1E293B] sm:text-4xl mb-4">
-            Empowering Your Business with Expert IT Certificate Programs
-            </h2>
-            <div className="h-1 w-20 bg-[#152B54] mx-auto"></div>
-          </div>
-          <div className="flex flex-col md:flex-row gap-12 items-center pl-20">
-            <div className="md:w-1/2 relative">
-              <div className="absolute inset-0 bg-[#152B54] rounded-xl opacity-20 transform rotate-3 blur-sm"></div>
-              <img
-                src={team || "/placeholder.svg"}  
-                // alt for SEO 
-                alt="Team of Traincape Technology providing IT Training and Certifications"
-                className="relative z-10 rounded-xl shadow-2xl w-full object-cover h-[400px]"
-              />
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12">
+      <span className="inline-block px-3 py-1 rounded-full bg-blue-100 text-[#152B54] text-sm font-medium mb-3">
+        ABOUT US
+      </span>
+      <h2 className="text-3xl font-bold text-[#1E293B] sm:text-4xl mb-4">
+        Empowering Your Business with Expert IT Certificate Programs
+      </h2>
+      <div className="h-1 w-20 bg-[#152B54] mx-auto"></div>
+    </div>
+
+    <div className="flex flex-col md:flex-row gap-12 items-center md:pl-0">
+      {/* Image */}
+      <div className="md:w-1/2 w-full relative">
+        <div className="absolute inset-0 bg-[#152B54] rounded-xl opacity-20 transform rotate-3 blur-sm"></div>
+        <img
+          src={team || "/placeholder.svg"}
+          alt="Team of Traincape Technology providing IT Training and Certifications"
+          className="relative z-10 rounded-xl shadow-2xl w-full h-auto max-h-[400px] object-cover"
+        />
+      </div>
+
+      {/* Text */}
+      <div className="md:w-1/2 w-full">
+        <h3 className="text-2xl font-bold text-[#1E3A8A] mb-6">Our Mission</h3>
+        <p className="text-[#334155] mb-6 leading-relaxed">
+          We empower businesses with cutting-edge technology solutions and comprehensive training programs.
+        </p>
+
+        <div className="space-y-3 mb-8">
+          {[
+            "End-to-End IT Technical Management",
+            "Strategic Technology Partnership",
+            "Responsive & Supportive Team",
+            "Tailored Digital Growth Solutions",
+          ].map((item, index) => (
+            <div key={index} className="flex items-start">
+              <BsCheck2Circle className="text-blue-600 text-xl mt-1 mr-2" />
+              <p className="text-[#334155]">{item}</p>
             </div>
-            <div className="md:w-1/2">
-              <h3 className="text-2xl font-bold text-[#1E3A8A] mb-6">Our Mission</h3>
-              <p className="text-[#334155] mb-6 leading-relaxed">
-                We empower businesses with cutting-edge technology solutions and comprehensive training programs.
-              </p>
-              <div className="space-y-3 mb-8">
-                {[
-                  "End-to-End IT Technical Management",
-                  "Strategic Technology Partnership",
-                  "Responsive & Supportive Team",
-                  "Tailored Digital Growth Solutions",
-                ].map((item, index) => (
-                  <div key={index} className="flex items-start">
-                    <BsCheck2Circle className="text-blue-600 text-xl mt-1 mr-2" />
-                    <p className="text-[#334155]">{item}</p>
-                  </div>
-                ))}
-              </div>
-              <NavLink to="/about-us">
-                <button className="bg-[#152B54] text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center group">
-                  <span>Learn More About Us</span>
-                  <FaArrowRight className="ml-2 group-hover:ml-4 transition-all" />
-                </button>
-              </NavLink>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
+
+        <NavLink to="/about-us">
+          <button className="bg-[#152B54] text-white py-3 px-8 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center group">
+            <span>Learn More About Us</span>
+            <FaArrowRight className="ml-2 group-hover:ml-4 transition-all" />
+          </button>
+        </NavLink>
+      </div>
+    </div>
+  </div>
+</section>
+
 
       {/* Services Section with Professional Styling */}
       <section className="py-16">
