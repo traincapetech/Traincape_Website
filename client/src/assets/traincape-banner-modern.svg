@@ -1,0 +1,194 @@
+<svg width="1400" height="700" viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Modern Gradients -->
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#152B54;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e3a76;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="cardGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.05" />
+    </linearGradient>
+    
+    <linearGradient id="buttonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Geometric Pattern -->
+    <pattern id="hexPattern" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,2 50,15 50,37 30,50 10,37 10,15" fill="none" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+    
+    <!-- Glow Effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="700" fill="url(#heroGradient)"/>
+  <rect width="1400" height="700" fill="url(#hexPattern)"/>
+  
+  <!-- Floating Elements -->
+  <circle cx="1200" cy="150" r="100" fill="#3B82F6" opacity="0.1"/>
+  <circle cx="200" cy="600" r="80" fill="#10B981" opacity="0.1"/>
+  <rect x="1100" y="500" width="150" height="150" rx="20" fill="#8B5CF6" opacity="0.05" transform="rotate(15 1175 575)"/>
+  
+  <!-- Main Container -->
+  <rect x="50" y="50" width="1300" height="600" rx="24" fill="url(#cardGlow)" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
+  
+  <!-- Header Section -->
+  <g id="header">
+    <!-- Logo Section -->
+    <circle cx="120" cy="140" r="50" fill="#ffffff" opacity="0.95"/>
+    <circle cx="120" cy="140" r="35" fill="#152B54"/>
+    <text x="120" y="150" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="28" font-weight="bold">T</text>
+    
+    <!-- Company Branding -->
+    <text x="200" y="120" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="bold" filter="url(#glow)">TRAINCAPE</text>
+    <text x="200" y="170" fill="#ffffff" font-family="Arial, sans-serif" font-size="48" font-weight="bold" filter="url(#glow)">TECHNOLOGY</text>
+    <text x="200" y="200" fill="#94a3b8" font-family="Arial, sans-serif" font-size="18" font-weight="300">Elevating Your Career with Expert IT Training</text>
+    
+    <!-- Authorized Partner Badge -->
+    <rect x="1000" y="100" width="320" height="100" rx="16" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+    <circle cx="1040" cy="130" r="20" fill="#10B981"/>
+    <text x="1040" y="138" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">✓</text>
+    <text x="1080" y="125" fill="#152B54" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Authorized Partner</text>
+    <text x="1080" y="150" fill="#64748b" font-family="Arial, sans-serif" font-size="14">CompTIA • PECB • CertiPort</text>
+    <text x="1080" y="170" fill="#64748b" font-family="Arial, sans-serif" font-size="14">Pearson VUE • E-Train</text>
+  </g>
+  
+  <!-- Services Grid -->
+  <g id="services-section">
+    <text x="100" y="280" fill="#ffffff" font-family="Arial, sans-serif" font-size="32" font-weight="bold">Our Expertise</text>
+    <rect x="100" y="290" width="80" height="4" rx="2" fill="#10B981"/>
+    
+    <!-- Service Cards Grid -->
+    <g id="service-grid">
+      <!-- Row 1 -->
+      <!-- Training -->
+      <rect x="100" y="320" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="140" cy="360" r="16" fill="#3B82F6"/>
+      <text x="140" y="368" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🎓</text>
+      <text x="170" y="355" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Training</text>
+      <text x="170" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Professional IT Certification</text>
+      <text x="170" y="390" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Courses &amp; Bootcamps</text>
+      <text x="170" y="415" fill="#3B82F6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">500+ Courses Available</text>
+      
+      <!-- Vouchers -->
+      <rect x="320" y="320" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="360" cy="360" r="16" fill="#10B981"/>
+      <text x="360" y="368" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🎫</text>
+      <text x="390" y="355" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Vouchers</text>
+      <text x="390" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Exam Vouchers &amp;</text>
+      <text x="390" y="390" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Certification Support</text>
+      <text x="390" y="415" fill="#10B981" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Instant Delivery</text>
+      
+      <!-- Internship -->
+      <rect x="540" y="320" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="580" cy="360" r="16" fill="#F59E0B"/>
+      <text x="580" y="368" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">💼</text>
+      <text x="610" y="355" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Internship</text>
+      <text x="610" y="375" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Real-world Project</text>
+      <text x="610" y="390" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Experience</text>
+      <text x="610" y="415" fill="#F59E0B" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Industry Mentorship</text>
+      
+      <!-- Row 2 -->
+      <!-- Cyber Security -->
+      <rect x="100" y="460" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="140" cy="500" r="16" fill="#EF4444"/>
+      <text x="140" y="508" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">🔒</text>
+      <text x="170" y="495" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Cyber Security</text>
+      <text x="170" y="515" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Advanced Security Training</text>
+      <text x="170" y="530" fill="#64748b" font-family="Arial, sans-serif" font-size="12">&amp; Certification</text>
+      <text x="170" y="555" fill="#EF4444" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Hands-on Labs</text>
+      
+      <!-- App Development -->
+      <rect x="320" y="460" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="360" cy="500" r="16" fill="#8B5CF6"/>
+      <text x="360" y="508" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">📱</text>
+      <text x="390" y="495" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">App Development</text>
+      <text x="390" y="515" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Mobile &amp; Web Applications</text>
+      <text x="390" y="530" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Full-Stack Solutions</text>
+      <text x="390" y="555" fill="#8B5CF6" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Modern Frameworks</text>
+      
+      <!-- Software Development -->
+      <rect x="540" y="460" width="200" height="120" rx="12" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+      <circle cx="580" cy="500" r="16" fill="#06B6D4"/>
+      <text x="580" y="508" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">⚙️</text>
+      <text x="610" y="495" fill="#152B54" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Software Dev</text>
+      <text x="610" y="515" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Enterprise Software</text>
+      <text x="610" y="530" fill="#64748b" font-family="Arial, sans-serif" font-size="12">Solutions</text>
+      <text x="610" y="555" fill="#06B6D4" font-family="Arial, sans-serif" font-size="11" font-weight="bold">Custom Development</text>
+    </g>
+  </g>
+  
+  <!-- Partner Showcase -->
+  <g id="partners-showcase">
+    <rect x="800" y="320" width="520" height="260" rx="16" fill="#ffffff" opacity="0.95" filter="url(#glow)"/>
+    <text x="830" y="355" fill="#152B54" font-family="Arial, sans-serif" font-size="24" font-weight="bold">Trusted Partners</text>
+    <text x="830" y="380" fill="#64748b" font-family="Arial, sans-serif" font-size="14">Industry-leading certifications and partnerships</text>
+    
+    <!-- Partner Grid -->
+    <g id="partner-grid">
+      <!-- Top Row -->
+      <rect x="830" y="400" width="100" height="50" rx="8" fill="#152B54"/>
+      <text x="880" y="430" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">CompTIA</text>
+      
+      <rect x="950" y="400" width="100" height="50" rx="8" fill="#10B981"/>
+      <text x="1000" y="430" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">PECB</text>
+      
+      <rect x="1070" y="400" width="100" height="50" rx="8" fill="#3B82F6"/>
+      <text x="1120" y="430" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">CertiPort</text>
+      
+      <rect x="1190" y="400" width="100" height="50" rx="8" fill="#F59E0B"/>
+      <text x="1240" y="430" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Pearson</text>
+      
+      <!-- Bottom Row -->
+      <rect x="890" y="470" width="100" height="50" rx="8" fill="#EF4444"/>
+      <text x="940" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">E-Train</text>
+      
+      <rect x="1010" y="470" width="120" height="50" rx="8" fill="#8B5CF6"/>
+      <text x="1070" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Authorized</text>
+      
+      <rect x="1150" y="470" width="100" height="50" rx="8" fill="#06B6D4"/>
+      <text x="1200" y="500" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">Training</text>
+    </g>
+    
+    <!-- Stats -->
+    <text x="830" y="555" fill="#152B54" font-family="Arial, sans-serif" font-size="14" font-weight="bold">8K+ Students • 500+ Courses • 30K+ Hours</text>
+  </g>
+  
+  <!-- Call to Action Section -->
+  <g id="cta-section">
+    <rect x="100" y="600" width="600" height="80" rx="12" fill="#152B54" opacity="0.95" filter="url(#glow)"/>
+    <text x="130" y="630" fill="#ffffff" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Ready to Transform Your Career?</text>
+    <text x="130" y="655" fill="#94a3b8" font-family="Arial, sans-serif" font-size="14">📧 sales@traincapetech.info • 📞 +91 6280281505 • 🌐 www.traincapetech.in</text>
+    
+    <!-- CTA Buttons -->
+    <rect x="750" y="610" width="140" height="60" rx="30" fill="url(#buttonGradient)" filter="url(#glow)"/>
+    <text x="820" y="645" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Enroll Now</text>
+    
+    <rect x="920" y="610" width="140" height="60" rx="30" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <text x="990" y="645" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="16" font-weight="bold">Learn More</text>
+  </g>
+  
+  <!-- Decorative Tech Elements -->
+  <g opacity="0.1">
+    <circle cx="1250" cy="250" r="4" fill="#ffffff"/>
+    <circle cx="1280" cy="270" r="3" fill="#ffffff"/>
+    <circle cx="1310" cy="240" r="3" fill="#ffffff"/>
+    <line x1="1250" y1="250" x2="1280" y2="270" stroke="#ffffff" stroke-width="1"/>
+    <line x1="1280" y1="270" x2="1310" y2="240" stroke="#ffffff" stroke-width="1"/>
+    
+    <rect x="80" y="300" width="8" height="8" rx="2" fill="#10B981" opacity="0.3"/>
+    <rect x="95" y="315" width="6" height="6" rx="1" fill="#3B82F6" opacity="0.3"/>
+  </g>
+</svg> 

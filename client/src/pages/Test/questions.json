@@ -1,0 +1,1661 @@
+{
+    "Beginner": [
+        {
+            "id": "B1",
+            "question": "What is cloud computing?",
+            "options": [
+                "A) The delivery of computing services over the internet",
+                "B) A service used for data backup",
+                "C) The delivery of internet services only",
+                "D) The use of physical servers in an organization"
+            ],
+            "answer": "A) The delivery of computing services over the internet"
+        },
+        {
+            "id": "B2",
+            "question": "Which of the following is an example of a cloud infrastructure service?",
+            "options": [
+                "A) Microsoft Azure",
+                "B) AWS EC2",
+                "C) Google Docs",
+                "D) Dropbox"
+            ],
+            "answer": "B) AWS EC2"
+        },
+        {
+            "id": "B3",
+            "question": "Which of the following is NOT an example of a public cloud service?",
+            "options": [
+                "A) AWS",
+                "B) Google Cloud Platform",
+                "C) Microsoft Azure",
+                "D) Private enterprise servers"
+            ],
+            "answer": "D) Private enterprise servers"
+        },
+        {
+            "id": "B4",
+            "question": "Which of the following is an example of IaaS (Infrastructure as a Service)?",
+            "options": [
+                "A) AWS EC2",
+                "B) Google Cloud Storage",
+                "C) Microsoft Office 365",
+                "D) Google App Engine"
+            ],
+            "answer": "A) AWS EC2"
+        },
+        {
+            "id": "B5",
+            "question": "Which of the following is an example of SaaS (Software as a Service)?",
+            "options": [
+                "A) Microsoft Azure",
+                "B) AWS S3",
+                "C) Google Workspace",
+                "D) Google Kubernetes Engine"
+            ],
+            "answer": "C) Google Workspace"
+        },
+        {
+            "id": "B6",
+            "question": "What is a key difference between IaaS and PaaS?",
+            "options": [
+                "A) PaaS provides infrastructure; IaaS does not",
+                "B) PaaS provides an application layer for end users, while IaaS provides physical infrastructure",
+                "C) IaaS provides physical hardware, and PaaS provides virtualized environments",
+                "D) PaaS provides software applications; IaaS provides networking"
+            ],
+            "answer": "B) PaaS provides an application layer for end users, while IaaS provides physical infrastructure"
+        },
+        {
+            "id": "B7",
+            "question": "Which of the following services is an example of FaaS (Function as a Service)?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS S3",
+                "C) Google Cloud Engine",
+                "D) Microsoft Azure Blob Storage"
+            ],
+            "answer": "A) AWS Lambda"
+        },
+        {
+            "id": "B8",
+            "question": "What is the primary function of AWS Elastic Beanstalk?",
+            "options": [
+                "A) To provide cloud-based storage",
+                "B) To automate scaling and management of applications",
+                "C) To offer serverless computing",
+                "D) To provide a virtual machine for running operating systems"
+            ],
+            "answer": "B) To automate scaling and management of applications"
+        },
+        {
+            "id": "B9",
+            "question": "Which Google Cloud service is primarily used for big data analytics?",
+            "options": [
+                "A) BigQuery",
+                "B) Compute Engine",
+                "C) Firebase",
+                "D) Cloud Storage"
+            ],
+            "answer": "A) BigQuery"
+        },
+        {
+            "id": "B10",
+            "question": "What is multi-factor authentication (MFA)?",
+            "options": [
+                "A) A method to manage cloud resources",
+                "B) A backup strategy for cloud data",
+                "C) A security process that requires multiple forms of verification",
+                "D) A type of cloud deployment model"
+            ],
+            "answer": "C) A security process that requires multiple forms of verification"
+        },
+        {
+            "id": "B11",
+            "question": "What is the primary goal of data sovereignty in cloud computing?",
+            "options": [
+                "A) Ensuring compliance with local data protection laws",
+                "B) Making data available across multiple regions",
+                "C) Allowing unrestricted access to global data",
+                "D) Storing data in the most cost-effective location"
+            ],
+            "answer": "A) Ensuring compliance with local data protection laws"
+        },
+        {
+            "id": "B12",
+            "question": "What is edge computing?",
+            "options": [
+                "A) A computing model where data is processed closer to the source of data generation",
+                "B) A method of storing large amounts of data in a central data center",
+                "C) A process used for backup and disaster recovery",
+                "D) A type of cloud deployment model"
+            ],
+            "answer": "A) A computing model where data is processed closer to the source of data generation"
+        },
+        {
+            "id": "B13",
+            "question": "What is serverless computing?",
+            "options": [
+                "A) Computing without the need for dedicated servers",
+                "B) A cloud-based model that requires customers to manage servers",
+                "C) A hybrid computing model combining physical and virtual servers",
+                "D) Computing that takes place in dedicated on-premises servers"
+            ],
+            "answer": "A) Computing without the need for dedicated servers"
+        },
+        {
+            "id": "B14",
+            "question": "Which AWS service is used for object storage?",
+            "options": [
+                "A) AWS S3",
+                "B) AWS Lambda",
+                "C) AWS RDS",
+                "D) AWS EC2"
+            ],
+            "answer": "A) AWS S3"
+        },
+        {
+            "id": "B15",
+            "question": "Which AWS service is used for managed relational databases?",
+            "options": [
+                "A) AWS RDS",
+                "B) AWS S3",
+                "C) AWS Lambda",
+                "D) AWS EBS"
+            ],
+            "answer": "A) AWS RDS"
+        },
+        {
+            "id": "B16",
+            "question": "What is the primary purpose of AWS Lambda?",
+            "options": [
+                "A) To run containers on demand",
+                "B) To provision virtual machines",
+                "C) To run code without managing servers",
+                "D) To provide relational database services"
+            ],
+            "answer": "C) To run code without managing servers"
+        },
+        {
+            "id": "B17",
+            "question": "What is the primary function of Amazon S3?",
+            "options": [
+                "A) Hosting applications",
+                "B) Cloud-based computing",
+                "C) Object storage for files and data",
+                "D) Managed relational databases"
+            ],
+            "answer": "C) Object storage for files and data"
+        },
+        {
+            "id": "B18",
+            "question": "Which of the following is used for provisioning a private network in AWS?",
+            "options": [
+                "A) AWS VPC (Virtual Private Cloud)",
+                "B) AWS Direct Connect",
+                "C) AWS CloudFormation",
+                "D) AWS Elastic Load Balancer"
+            ],
+            "answer": "A) AWS VPC (Virtual Private Cloud)"
+        },
+        {
+            "id": "B19",
+            "question": "Which AWS service is primarily used for infrastructure as code?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS CloudFormation",
+                "C) AWS EC2",
+                "D) AWS S3"
+            ],
+            "answer": "B) AWS CloudFormation"
+        },
+        {
+            "id": "B20",
+            "question": "What is the primary purpose of AWS Shield?",
+            "options": [
+                "A) Protecting against DDoS attacks",
+                "B) Providing data encryption",
+                "C) Monitoring network traffic",
+                "D) Managing access control"
+            ],
+            "answer": "A) Protecting against DDoS attacks"
+        },
+        {
+            "id": "B21",
+            "question": "Which service is used for federated identity management in AWS?",
+            "options": [
+                "A) AWS SSO",
+                "B) AWS IAM",
+                "C) AWS Cognito",
+                "D) AWS CloudTrail"
+            ],
+            "answer": "C) AWS Cognito"
+        },
+        {
+            "id": "B22",
+            "question": "What is the AWS service used to manage and audit access to AWS services and resources?",
+            "options": [
+                "A) AWS IAM",
+                "B) AWS CloudTrail",
+                "C) AWS Cognito",
+                "D) AWS Key Management Service (KMS)"
+            ],
+            "answer": "B) AWS CloudTrail"
+        },
+        {
+            "id": "B23",
+            "question": "Which service is used for identity federation and single sign-on (SSO) within AWS?",
+            "options": [
+                "A) AWS IAM",
+                "B) AWS SSO (Single Sign-On)",
+                "C) AWS Cognito",
+                "D) AWS WAF"
+            ],
+            "answer": "B) AWS SSO (Single Sign-On)"
+        },
+        {
+            "id": "B24",
+            "question": "Which AWS service is used for data encryption and key management?",
+            "options": [
+                "A) AWS Secrets Manager",
+                "B) AWS Key Management Service (KMS)",
+                "C) AWS CloudTrail",
+                "D) AWS GuardDuty"
+            ],
+            "answer": "B) AWS Key Management Service (KMS)"
+        },
+        {
+            "id": "B25",
+            "question": "What is the AWS Free Tier?",
+            "options": [
+                "A) A limited-time offer to try AWS for free",
+                "B) A permanent free usage tier for all AWS services",
+                "C) A special pricing model for large enterprises",
+                "D) A service to manage AWS billing and usage"
+            ],
+            "answer": "A) A limited-time offer to try AWS for free"
+        },
+        {
+            "id": "B26",
+            "question": "Which service is used for estimating costs for AWS architecture and workloads?",
+            "options": [
+                "A) AWS Trusted Advisor",
+                "B) AWS Pricing Calculator",
+                "C) AWS Cost Explorer",
+                "D) AWS Cost and Usage Report"
+            ],
+            "answer": "B) AWS Pricing Calculator"
+        },
+        {
+            "id": "B27",
+            "question": "What is AWS Spot Instances?",
+            "options": [
+                "A) A discount pricing option for unused EC2 capacity",
+                "B) A pay-as-you-go pricing model for EC2 instances",
+                "C) A service for monitoring resource usage",
+                "D) A reserved instance for EC2"
+            ],
+            "answer": "A) A discount pricing option for unused EC2 capacity"
+        },
+        {
+            "id": "B28",
+            "question": "What is the best practice for designing highly available systems in AWS?",
+            "options": [
+                "A) Use a single Availability Zone",
+                "B) Use multiple Availability Zones",
+                "C) Use single-region, single-instance architecture",
+                "D) Avoid load balancing"
+            ],
+            "answer": "B) Use multiple Availability Zones"
+        },
+        {
+            "id": "B29",
+            "question": "Which service is used for creating a virtual private network (VPN) in AWS?",
+            "options": [
+                "A) AWS VPC",
+                "B) AWS Direct Connect",
+                "C) AWS Route 53",
+                "D) AWS Elastic Load Balancer"
+            ],
+            "answer": "A) AWS VPC"
+        },
+        {
+            "id": "B30",
+            "question": "What is the primary function of Google Compute Engine (GCE)?",
+            "options": [
+                "A) Object storage service",
+                "B) Managed relational database",
+                "C) Virtual machines for running applications",
+                "D) Content delivery network"
+            ],
+            "answer": "C) Virtual machines for running applications"
+        },
+        {
+            "id": "B31",
+            "question": "Which Google Cloud service is used for managing containerized applications?",
+            "options": [
+                "A) Google Kubernetes Engine (GKE)",
+                "B) Google Compute Engine (GCE)",
+                "C) Google App Engine",
+                "D) Google Cloud Functions"
+            ],
+            "answer": "A) Google Kubernetes Engine (GKE)"
+        },
+        {
+            "id": "B32",
+            "question": "What is Google App Engine primarily used for?",
+            "options": [
+                "A) Virtual machines",
+                "B) Managed Kubernetes clusters",
+                "C) PaaS for building and hosting web apps",
+                "D) Content delivery network"
+            ],
+            "answer": "C) PaaS for building and hosting web apps"
+        },
+        {
+            "id": "B33",
+            "question": "What is the primary use of Google Cloud Functions?",
+            "options": [
+                "A) To manage virtual machines",
+                "B) To run containerized applications",
+                "C) To run serverless functions in response to events",
+                "D) To provide data storage solutions"
+            ],
+            "answer": "C) To run serverless functions in response to events"
+        },
+        {
+            "id": "B34",
+            "question": "Which Google Cloud service is used for running machine learning models?",
+            "options": [
+                "A) Google Cloud AI Platform",
+                "B) Google Compute Engine",
+                "C) Google Cloud Spanner",
+                "D) Google Cloud Pub/Sub"
+            ],
+            "answer": "A) Google Cloud AI Platform"
+        },
+        {
+            "id": "B35",
+            "question": "Which of the following GCP services is used for networking and routing traffic between services?",
+            "options": [
+                "A) Google Cloud Load Balancing",
+                "B) Google Cloud CDN",
+                "C) Google Cloud VPC",
+                "D) Google Cloud Interconnect"
+            ],
+            "answer": "A) Google Cloud Load Balancing"
+        },
+        {
+            "id": "B36",
+            "question": "What is the function of Google Cloud Security Command Center?",
+            "options": [
+                "A) To provide encryption for all data in GCP",
+                "B) To provide centralized visibility into security and risk across GCP resources",
+                "C) To manage virtual machine security patches",
+                "D) To manage serverless compute workloads"
+            ],
+            "answer": "B) To provide centralized visibility into security and risk across GCP resources"
+        },
+        {
+            "id": "B37",
+            "question": "What is the purpose of Google Cloud Key Management Service (KMS)?",
+            "options": [
+                "A) To provide encryption keys for data at rest and in transit",
+                "B) To manage API credentials",
+                "C) To handle serverless execution",
+                "D) To deploy machine learning models"
+            ],
+            "answer": "A) To provide encryption keys for data at rest and in transit"
+        },
+        {
+            "id": "B38",
+            "question": "What is the Google Cloud Identity Platform used for?",
+            "options": [
+                "A) To manage network traffic",
+                "B) To secure serverless applications",
+                "C) To manage user authentication and authorization",
+                "D) To manage virtual machine instances"
+            ],
+            "answer": "C) To manage user authentication and authorization"
+        },
+        {
+            "id": "B39",
+            "question": "Which Google Cloud service is used for protecting resources from DDoS attacks?",
+            "options": [
+                "A) Google Cloud Load Balancing",
+                "B) Google Cloud Armor",
+                "C) Google Cloud CDN",
+                "D) Google Cloud Firewall"
+            ],
+            "answer": "B) Google Cloud Armor"
+        },
+        {
+            "id": "B40",
+            "question": "What is a Preemptible VM in GCP?",
+            "options": [
+                "A) A low-cost VM that can be terminated by Google at any time",
+                "B) A VM that always runs without interruptions",
+                "C) A special type of VM with higher computing power",
+                "D) A virtual machine optimized for storage"
+            ],
+            "answer": "A) A low-cost VM that can be terminated by Google at any time"
+        },
+        {
+            "id": "B41",
+            "question": "Which GCP service is used for interconnecting on-premises data centers with GCP resources?",
+            "options": [
+                "A) Google Cloud Interconnect",
+                "B) Google Cloud VPN",
+                "C) Google Cloud CDN",
+                "D) Google Cloud Load Balancing"
+            ],
+            "answer": "A) Google Cloud Interconnect"
+        },
+        {
+            "id": "B42",
+            "question": "What is the purpose of Google Cloud Load Balancing?",
+            "options": [
+                "A) To route traffic to virtual machine instances based on load",
+                "B) To manage API requests",
+                "C) To store large datasets",
+                "D) To provide firewall security for resources"
+            ],
+            "answer": "A) To route traffic to virtual machine instances based on load"
+        },
+        {
+            "id": "B43",
+            "question": "What is the role of Google Cloud VPN?",
+            "options": [
+                "A) To manage inter-project networking",
+                "B) To securely connect on-premises networks to GCP",
+                "C) To monitor network performance",
+                "D) To store network configuration data"
+            ],
+            "answer": "B) To securely connect on-premises networks to GCP"
+        },
+        {
+            "id": "B44",
+            "question": "What is the primary benefit of using Google Clouds multi-regional services?",
+            "options": [
+                "A) Increased scalability and low-latency access for users worldwide",
+                "B) Lower cost of storage",
+                "C) Ability to run workloads on any hardware",
+                "D) Easier compliance with local regulations"
+            ],
+            "answer": "A) Increased scalability and low-latency access for users worldwide"
+        },
+        {
+            "id": "B45",
+            "question": "What is the purpose of Google Clouds Serverless platform?",
+            "options": [
+                "A) To allow users to run applications without managing infrastructure",
+                "B) To run virtual machines in a fully managed environment",
+                "C) To deploy machine learning models at scale",
+                "D) To provide server monitoring and logging tools"
+            ],
+            "answer": "A) To allow users to run applications without managing infrastructure"
+        },
+        {
+            "id": "B46",
+            "question": "Which GCP service can be used for cloud-based backup and disaster recovery?",
+            "options": [
+                "A) Google Cloud Backup and DR",
+                "B) Google Cloud Storage",
+                "C) Google Cloud Compute Engine",
+                "D) Google Cloud Snapshot Manager"
+            ],
+            "answer": "A) Google Cloud Backup and DR"
+        },
+        {
+            "id": "B47",
+            "question": "Which of the following services can be used for setting up a CI/CD pipeline in GCP?",
+            "options": [
+                "A) Google Cloud Build",
+                "B) Google Cloud Functions",
+                "C) Google Cloud Pub/Sub",
+                "D) Google Compute Engine"
+            ],
+            "answer": "A) Google Cloud Build"
+        },
+        {
+            "id": "B48",
+            "question": "Which AWS service provides managed relational databases?",
+            "options": [
+                "A) Amazon DynamoDB",
+                "B) Amazon RDS",
+                "C) Amazon S3",
+                "D) Amazon EC2"
+            ],
+            "answer": "B) Amazon RDS"
+        },
+        {
+            "id": "B49",
+            "question": "What is the primary function of AWS Elastic Load Balancing?",
+            "options": [
+                "A) To store large amounts of data",
+                "B) To balance incoming traffic across multiple servers",
+                "C) To encrypt data at rest",
+                "D) To create virtual machines"
+            ],
+            "answer": "B) To balance incoming traffic across multiple servers"
+        },
+        {
+            "id": "B50",
+            "question": "Which of the following services is used to monitor and log AWS resources?",
+            "options": [
+                "A) AWS CloudTrail",
+                "B) AWS CloudWatch",
+                "C) AWS IAM",
+                "D) AWS Lambda"
+            ],
+            "answer": "B) AWS CloudWatch"
+        }
+        
+    ],
+    "Intermediate": [
+        {
+            "id": "I1",
+            "question": "Which AWS service is used for object storage?",
+            "options": [
+                "A) Amazon EC2",
+                "B) Amazon S3",
+                "C) Amazon RDS",
+                "D) Amazon VPC"
+            ],
+            "answer": "B) Amazon S3"
+        },
+        {
+            "id": "I2",
+            "question": "What is the primary purpose of Amazon EC2?",
+            "options": [
+                "A) Data warehousing",
+                "B) Object storage",
+                "C) Virtual server hosting",
+                "D) Content delivery"
+            ],
+            "answer": "C) Virtual server hosting"
+        },
+        {
+            "id": "I3",
+            "question": "Which service is a fully managed NoSQL database provided by AWS?",
+            "options": [
+                "A) Amazon RDS",
+                "B) Amazon DynamoDB",
+                "C) Amazon S3",
+                "D) Amazon Redshift"
+            ],
+            "answer": "B) Amazon DynamoDB"
+        },
+        {
+            "id": "I4",
+            "question": "What does AWS Lambda allow you to do?",
+            "options": [
+                "A) Run code without provisioning servers",
+                "B) Store objects in a scalable way",
+                "C) Host relational databases",
+                "D) Deploy virtual networks"
+            ],
+            "answer": "A) Run code without provisioning servers"
+        },
+        {
+            "id": "I5",
+            "question": "Which service is best for hosting a static website?",
+            "options": [
+                "A) Amazon EC2",
+                "B) Amazon S3",
+                "C) AWS Lambda",
+                "D) Amazon RDS"
+            ],
+            "answer": "B) Amazon S3"
+        },
+        {
+            "id": "I6",
+            "question": "What is the main purpose of Amazon CloudFront?",
+            "options": [
+                "A) Monitoring AWS resources",
+                "B) Content delivery",
+                "C) Managing access to AWS resources",
+                "D) Hosting relational databases"
+            ],
+            "answer": "B) Content delivery"
+        },
+        {
+            "id": "I7",
+            "question": "Which AWS service is used to monitor applications and resources in AWS?",
+            "options": [
+                "A) Amazon CloudFront",
+                "B) Amazon CloudWatch",
+                "C) AWS Config",
+                "D) Amazon SNS"
+            ],
+            "answer": "B) Amazon CloudWatch"
+        },
+        {
+            "id": "I8",
+            "question": "What type of storage is Amazon EBS?",
+            "options": [
+                "A) Object storage",
+                "B) Block storage",
+                "C) File storage",
+                "D) Archival storage"
+            ],
+            "answer": "B) Block storage"
+        },
+        {
+            "id": "I9",
+            "question": "Which AWS service allows you to run managed Kubernetes clusters?",
+            "options": [
+                "A) Amazon ECS",
+                "B) Amazon EKS",
+                "C) AWS Fargate",
+                "D) AWS Lambda"
+            ],
+            "answer": "B) Amazon EKS"
+        },
+        {
+            "id": "I10",
+            "question": "Which AWS service is used to migrate databases to AWS?",
+            "options": [
+                "A) AWS Database Migration Service",
+                "B) Amazon RDS",
+                "C) Amazon DynamoDB",
+                "D) AWS Glue"
+            ],
+            "answer": "A) AWS Database Migration Service"
+        },
+        {
+            "id": "I11",
+            "question": "Which service allows secure and scalable access to AWS resources?",
+            "options": [
+                "A) Amazon VPC",
+                "B) AWS IAM",
+                "C) AWS CloudTrail",
+                "D) Amazon Route 53"
+            ],
+            "answer": "B) AWS IAM"
+        },
+        {
+            "id": "I12",
+            "question": "What is the main function of AWS Elastic Load Balancer?",
+            "options": [
+                "A) To store data in blocks",
+                "B) To distribute incoming traffic",
+                "C) To monitor resources",
+                "D) To manage databases"
+            ],
+            "answer": "B) To distribute incoming traffic"
+        },
+        {
+            "id": "I13",
+            "question": "Which AWS service is primarily used for data warehousing?",
+            "options": [
+                "A) Amazon Redshift",
+                "B) Amazon RDS",
+                "C) Amazon DynamoDB",
+                "D) AWS Glue"
+            ],
+            "answer": "A) Amazon Redshift"
+        },
+        {
+            "id": "I14",
+            "question": "Which AWS service provides DNS and domain name management?",
+            "options": [
+                "A) Amazon Route 53",
+                "B) AWS Config",
+                "C) Amazon CloudFront",
+                "D) AWS Direct Connect"
+            ],
+            "answer": "A) Amazon Route 53"
+        },
+        {
+            "id": "I15",
+            "question": "What is the purpose of AWS CloudFormation?",
+            "options": [
+                "A) To create and manage infrastructure as code",
+                "B) To automate deployments",
+                "C) To monitor resource usage",
+                "D) To provide security insights"
+            ],
+            "answer": "A) To create and manage infrastructure as code"
+        },
+        {
+            "id": "I16",
+            "question": "Which AWS service is ideal for streaming real-time data?",
+            "options": [
+                "A) Amazon Kinesis",
+                "B) Amazon S3",
+                "C) Amazon RDS",
+                "D) Amazon Redshift"
+            ],
+            "answer": "A) Amazon Kinesis"
+        },
+        {
+            "id": "I17",
+            "question": "What does AWS Trusted Advisor provide?",
+            "options": [
+                "A) Security monitoring",
+                "B) Cost optimization recommendations",
+                "C) Infrastructure as code",
+                "D) Real-time analytics"
+            ],
+            "answer": "B) Cost optimization recommendations"
+        },
+        {
+            "id": "I18",
+            "question": "Which service enables automated patching and maintenance for databases?",
+            "options": [
+                "A) Amazon RDS",
+                "B) Amazon DynamoDB",
+                "C) AWS Lambda",
+                "D) Amazon Aurora"
+            ],
+            "answer": "A) Amazon RDS"
+        },
+        {
+            "id": "I19",
+            "question": "Which AWS service provides a virtual private network within the cloud?",
+            "options": [
+                "A) Amazon VPC",
+                "B) AWS Direct Connect",
+                "C) AWS IAM",
+                "D) Amazon Route 53"
+            ],
+            "answer": "A) Amazon VPC"
+        },
+        {
+            "id": "I20",
+            "question": "What is the purpose of AWS Snowball?",
+            "options": [
+                "A) To manage relational databases",
+                "B) To transfer large amounts of data",
+                "C) To host static websites",
+                "D) To create virtual machines"
+            ],
+            "answer": "B) To transfer large amounts of data"
+        },
+        {
+            "id": "I21",
+            "question": "Which AWS service is designed for event-driven architectures?",
+            "options": [
+                "A) AWS Lambda",
+                "B) Amazon SNS",
+                "C) Amazon SQS",
+                "D) Amazon Kinesis"
+            ],
+            "answer": "A) AWS Lambda"
+        },
+        {
+            "id": "I22",
+            "question": "What are the primary benefits of using cloud computing?",
+            "options": [
+                "A) Scalability and Flexibility",
+                "B) Increased capital expenditure",
+                "C) Enhanced security risks",
+                "D) Data locality limitations"
+            ],
+            "answer": "A) Scalability and Flexibility"
+        },
+        {
+            "id": "I23",
+            "question": "What are the key challenges associated with cloud adoption, especially in large organizations?",
+            "options": [
+                "A) High cost of initial investment",
+                "B) Data security and privacy concerns",
+                "C) Lack of skilled personnel",
+                "D) All of the above"
+            ],
+            "answer": "D) All of the above"
+        },
+        {
+            "id": "I24",
+            "question": "Describe three emerging technologies in cloud computing.",
+            "options": [
+                "A) Quantum computing, Edge computing, Serverless architectures",
+                "B) Blockchain, AI/ML, Serverless architectures",
+                "C) IoT, Hybrid clouds, Data lakes",
+                "D) None of the above"
+            ],
+            "answer": "A) Quantum computing, Edge computing, Serverless architectures"
+        },
+        {
+            "id": "I25",
+            "question": "Which of the following is a key characteristic of cloud computing?",
+            "options": [
+                "A) Limited access",
+                "B) Resource pooling",
+                "C) Data residency",
+                "D) High cost"
+            ],
+            "answer": "B) Resource pooling"
+        },        
+        {
+            "id": "I26",
+            "question": "Which is NOT a cloud service model?",
+            "options": [
+                "A) IaaS",
+                "B) PaaS",
+                "C) SaaS",
+                "D) XaaS"
+            ],
+            "answer": "D) XaaS"
+        },
+        {
+            "id": "I27",
+            "question": "Which of the following refers to the ability of a cloud to quickly adapt to changing demand?",
+            "options": [
+                "A) Elasticity",
+                "B) Scalability",
+                "C) Virtualization",
+                "D) Autonomic computing"
+            ],
+            "answer": "A) Elasticity"
+        },
+        {
+            "id": "I28",
+            "question": "Which deployment model is a combination of both private and public clouds?",
+            "options": [
+                "A) Hybrid cloud",
+                "B) Private cloud",
+                "C) Public cloud",
+                "D) Community cloud"
+            ],
+            "answer": "A) Hybrid cloud"
+        },
+        {
+            "id": "I29",
+            "question": "Which of the following cloud models is typically used by businesses with specific regulatory or security needs?",
+            "options": [
+                "A) Public cloud",
+                "B) Private cloud",
+                "C) Hybrid cloud",
+                "D) Community cloud"
+            ],
+            "answer": "B) Private cloud"
+        },
+        {
+            "id": "I30",
+            "question": "Which of the following is a benefit of cloud computing?",
+            "options": [
+                "A) Lower initial capital investment",
+                "B) Limited accessibility",
+                "C) Increased complexity",
+                "D) Longer deployment times"
+            ],
+            "answer": "A) Lower initial capital investment"
+        },
+        {
+            "id": "I31",
+            "question": "What does the \"on-demand\" feature in cloud computing imply?",
+            "options": [
+                "A) Resources are available 24/7",
+                "B) Resources are available only during business hours",
+                "C) Users can access and provision resources as needed",
+                "D) Resources can only be provisioned by administrators"
+            ],
+            "answer": "C) Users can access and provision resources as needed"
+        },
+        {
+            "id": "I32",
+            "question": "Which cloud model provides the hardware and software tools for application development but not the operating system?",
+            "options": [
+                "A) IaaS",
+                "B) PaaS",
+                "C) SaaS",
+                "D) FaaS"
+            ],
+            "answer": "B) PaaS"
+        },
+        {
+            "id": "I33",
+            "question": "Which of the following would be a typical use case for PaaS?",
+            "options": [
+                "A) Hosting a website",
+                "B) Building and deploying a custom application",
+                "C) Running a virtual machine",
+                "D) Storing large files"
+            ],
+            "answer": "B) Building and deploying a custom application"
+        },
+        {
+            "id": "I34",
+            "question": "Which cloud model is best suited for applications where developers need to quickly build, test, and deploy applications without worrying about infrastructure?",
+            "options": [
+                "A) IaaS",
+                "B) PaaS",
+                "C) SaaS",
+                "D) XaaS"
+            ],
+            "answer": "B) PaaS"
+        },
+        {
+            "id": "I35",
+            "question": "Which of the following is a feature of SaaS applications?",
+            "options": [
+                "A) Users can configure the hardware settings",
+                "B) The software is managed by the provider and users access it via the internet",
+                "C) Users manage the entire software stack",
+                "D) It requires local installation of software on user devices"
+            ],
+            "answer": "B) The software is managed by the provider and users access it via the internet"
+        },
+        {
+            "id": "I36",
+            "question": "Which cloud service model provides users with a platform that includes both infrastructure and software to develop and deploy applications?",
+            "options": [
+                "A) IaaS",
+                "B) PaaS",
+                "C) SaaS",
+                "D) DaaS"
+            ],
+            "answer": "B) PaaS"
+        },
+        {
+            "id": "I37",
+            "question": "Which of the following is an advantage of using SaaS?",
+            "options": [
+                "A) Full control over the application's code",
+                "B) Requires managing physical infrastructure",
+                "C) Minimal upfront investment and no need for software installation",
+                "D) Ability to customize software at a deep level"
+            ],
+            "answer": "C) Minimal upfront investment and no need for software installation"
+        },
+        {
+            "id": "I38",
+            "question": "Which of the following is the largest cloud provider by market share as of 2024?",
+            "options": [
+                "A) Microsoft Azure",
+                "B) Google Cloud Platform",
+                "C) Amazon Web Services (AWS)",
+                "D) IBM Cloud"
+            ],
+            "answer": "C) Amazon Web Services (AWS)"
+        },
+        {
+            "id": "I39",
+            "question": "Which cloud provider is known for its strong integration with Microsoft products like Windows Server and Active Directory?",
+            "options": [
+                "A) Google Cloud Platform",
+                "B) Microsoft Azure",
+                "C) Amazon Web Services",
+                "D) Alibaba Cloud"
+            ],
+            "answer": "B) Microsoft Azure"
+        },
+        {
+            "id": "I40",
+            "question": "Which of the following services is used by AWS for object storage?",
+            "options": [
+                "A) EC2",
+                "B) S3",
+                "C) Lambda",
+                "D) RDS"
+            ],
+            "answer": "B) S3"
+        },
+        {
+            "id": "I41",
+            "question": "Which service does Google Cloud use for container orchestration?",
+            "options": [
+                "A) Azure Kubernetes Service (AKS)",
+                "B) Google Kubernetes Engine (GKE)",
+                "C) AWS ECS",
+                "D) IBM Cloud Kubernetes Service"
+            ],
+            "answer": "B) Google Kubernetes Engine (GKE)"
+        },
+        {
+            "id": "I42",
+            "question": "What service does AWS offer for managing relational databases?",
+            "options": [
+                "A) DynamoDB",
+                "B) RDS (Relational Database Service)",
+                "C) S3",
+                "D) Elastic File System (EFS)"
+            ],
+            "answer": "B) RDS (Relational Database Service)"
+        },
+        {
+            "id": "I43",
+            "question": "Which of the following is a managed service offered by Azure for running containerized applications?",
+            "options": [
+                "A) Google Cloud Functions",
+                "B) Azure Kubernetes Service (AKS)",
+                "C) AWS Lambda",
+                "D) Google Cloud Engine"
+            ],
+            "answer": "B) Azure Kubernetes Service (AKS)"
+        },
+        {
+            "id": "I44",
+            "question": "Which of the following AWS services allows users to run code without provisioning or managing servers?",
+            "options": [
+                "A) AWS EC2",
+                "B) AWS Lambda",
+                "C) AWS S3",
+                "D) AWS RDS"
+            ],
+            "answer": "B) AWS Lambda"
+        },
+        {
+            "id": "I45",
+            "question": "Which cloud platform is considered the best choice for enterprises that rely heavily on Windows-based infrastructure?",
+            "options": [
+                "A) Google Cloud Platform",
+                "B) Amazon Web Services",
+                "C) Microsoft Azure",
+                "D) IBM Cloud"
+            ],
+            "answer": "C) Microsoft Azure"
+        },
+        {
+            "id": "I46",
+            "question": "What does the \"shared responsibility model\" refer to in cloud security?",
+            "options": [
+                "A) The cloud provider manages all security concerns",
+                "B) The customer is responsible for everything except physical security",
+                "C) Both the provider and the customer share security responsibilities",
+                "D) The customer manages the cloud security but not the network security"
+            ],
+            "answer": "C) Both the provider and the customer share security responsibilities"
+        },
+        {
+            "id": "I47",
+            "question": "Which of the following security measures is crucial for protecting data in cloud environments?",
+            "options": [
+                "A) Using antivirus software on each cloud server",
+                "B) Encryption of data at rest and in transit",
+                "C) Restricting access to the cloud from internal networks only",
+                "D) Only using the cloud provider's default settings"
+            ],
+            "answer": "B) Encryption of data at rest and in transit"
+        },
+        {
+            "id": "I48",
+            "question": "Which of the following is the purpose of a cloud access security broker (CASB)?",
+            "options": [
+                "A) To monitor and control access to cloud resources",
+                "B) To provide cloud-based identity management services",
+                "C) To encrypt data in transit",
+                "D) To provide audit trails for cloud resources"
+            ],
+            "answer": "A) To monitor and control access to cloud resources"
+        },
+        {
+            "id": "I49",
+            "question": "Which cloud service allows developers to run code without managing the underlying infrastructure?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS EC2",
+                "C) Google Kubernetes Engine",
+                "D) Microsoft Azure App Services"
+            ],
+            "answer": "A) AWS Lambda"
+        },
+        {
+            "id": "I50",
+            "question": "Which of the following cloud technologies is often used in IoT applications?",
+            "options": [
+                "A) Edge computing",
+                "B) Serverless computing",
+                "C) SaaS",
+                "D) PaaS"
+            ],
+            "answer": "A) Edge computing"
+        }
+    ],
+    "Advanced": [
+       
+        {
+            "id": "A1",
+            "question": "How do cloud providers ensure data encryption in transit and at rest?",
+            "options": [
+                "A) By using SSL/TLS for transit and AES for at rest",
+                "B) By using SSL only",
+                "C) By using AES encryption for both transit and at rest",
+                "D) By using RSA encryption for both transit and at rest"
+            ],
+            "answer": "A) By using SSL/TLS for transit and AES for at rest"
+        },
+        {
+            "id": "A2",
+            "question": "Which AWS service helps you design and manage your AWS architecture based on best practices?",
+            "options": [
+                "A) AWS CloudFormation",
+                "B) AWS Well-Architected Tool",
+                "C) AWS Elastic Beanstalk",
+                "D) AWS Lambda"
+            ],
+            "answer": "B) AWS Well-Architected Tool"
+        },
+        {
+            "id": "A3",
+            "question": "Which AWS service is used to optimize the performance of applications with global users?",
+            "options": [
+                "A) AWS CloudFront",
+                "B) AWS Route 53",
+                "C) AWS Direct Connect",
+                "D) AWS Elastic Load Balancer"
+            ],
+            "answer": "A) AWS CloudFront"
+        },
+        {
+            "id": "A4",
+            "question": "Which tool can help you manage and optimize your cloud resources and costs?",
+            "options": [
+                "A) Google Cloud Cost Management",
+                "B) Google Cloud Monitoring",
+                "C) Google Cloud Billing Reports",
+                "D) Google Cloud Cost Calculator"
+            ],
+            "answer": "A) Google Cloud Cost Management"
+        },
+        {
+            "id": "A5",
+            "question": "Which AWS service provides a managed relational database?",
+            "options": [
+                "A) Amazon RDS",
+                "B) Amazon DynamoDB",
+                "C) Amazon Aurora",
+                "D) Both A and C"
+            ],
+            "answer": "D) Both A and C"
+        },
+        {
+            "id": "A6",
+            "question": "What is the AWS service that enables serverless computing for backend services?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS Fargate",
+                "C) AWS EC2",
+                "D) AWS AppRunner"
+            ],
+            "answer": "A) AWS Lambda"
+        },
+        {
+            "id": "A7",
+            "question": "Which AWS service can be used for Infrastructure as Code (IaC)?",
+            "options": [
+                "A) AWS CloudFormation",
+                "B) AWS EC2",
+                "C) AWS Lambda",
+                "D) AWS IAM"
+            ],
+            "answer": "A) AWS CloudFormation"
+        },
+        {
+            "id": "A8",
+            "question": "Which AWS service offers a content delivery network (CDN)?",
+            "options": [
+                "A) Amazon S3",
+                "B) Amazon CloudFront",
+                "C) Amazon Route 53",
+                "D) Amazon EC2"
+            ],
+            "answer": "B) Amazon CloudFront"
+        },
+        {
+            "id": "A9",
+            "question": "What is the AWS service that enables monitoring and logging of AWS resources and applications?",
+            "options": [
+                "A) AWS CloudTrail",
+                "B) AWS CloudWatch",
+                "C) AWS Config",
+                "D) AWS Inspector"
+            ],
+            "answer": "B) AWS CloudWatch"
+        },
+        {
+            "id": "A10",
+            "question": "Which AWS service is used to manage and control access to AWS resources securely?",
+            "options": [
+                "A) AWS IAM",
+                "B) AWS KMS",
+                "C) AWS Cognito",
+                "D) AWS Shield"
+            ],
+            "answer": "A) AWS IAM"
+        },
+        {
+            "id": "A11",
+            "question": "Which AWS service is used to deploy and manage applications without managing the underlying infrastructure?",
+            "options": [
+                "A) AWS Elastic Beanstalk",
+                "B) AWS EC2",
+                "C) AWS Lambda",
+                "D) AWS Fargate"
+            ],
+            "answer": "A) AWS Elastic Beanstalk"
+        },
+        {
+            "id": "A12",
+            "question": "What is the purpose of AWS Direct Connect?",
+            "options": [
+                "A) To connect on-premises data centers to AWS using private, dedicated connections",
+                "B) To manage cloud applications",
+                "C) To store data in the cloud",
+                "D) To distribute content globally"
+            ],
+            "answer": "A) To connect on-premises data centers to AWS using private, dedicated connections"
+        },
+        {
+            "id": "A13",
+            "question": "Which AWS service allows you to manage and scale containerized applications?",
+            "options": [
+                "A) AWS ECS",
+                "B) AWS Lambda",
+                "C) AWS Beanstalk",
+                "D) AWS Fargate"
+            ],
+            "answer": "A) AWS ECS"
+        },
+        {
+            "id": "A14",
+            "question": "What is the AWS service used for data warehousing and business intelligence?",
+            "options": [
+                "A) Amazon RDS",
+                "B) Amazon Redshift",
+                "C) Amazon DynamoDB",
+                "D) Amazon S3"
+            ],
+            "answer": "B) Amazon Redshift"
+        },
+        {
+            "id": "A15",
+            "question": "Which AWS service is designed for creating and managing machine learning models?",
+            "options": [
+                "A) AWS SageMaker",
+                "B) AWS Lambda",
+                "C) AWS CloudWatch",
+                "D) AWS EC2"
+            ],
+            "answer": "A) AWS SageMaker"
+        },
+        {
+            "id": "A16",
+            "question": "Which service in AWS helps to protect against DDoS attacks?",
+            "options": [
+                "A) AWS Shield",
+                "B) AWS WAF",
+                "C) AWS Inspector",
+                "D) Both A and B"
+            ],
+            "answer": "D) Both A and B"
+        },
+        {
+            "id": "A17",
+            "question": "Which AWS service provides a distributed file system for use with EC2 instances?",
+            "options": [
+                "A) Amazon EBS",
+                "B) Amazon EFS",
+                "C) Amazon S3",
+                "D) AWS Storage Gateway"
+            ],
+            "answer": "B) Amazon EFS"
+        },
+        {
+            "id": "A18",
+            "question": "Which AWS service is primarily used for real-time data streaming?",
+            "options": [
+                "A) AWS Kinesis",
+                "B) Amazon SQS",
+                "C) Amazon SNS",
+                "D) Amazon S3"
+            ],
+            "answer": "A) AWS Kinesis"
+        },
+        {
+            "id": "A19",
+            "question": "Which AWS service is used to manage large-scale data pipelines for analytics?",
+            "options": [
+                "A) AWS Data Pipeline",
+                "B) AWS Glue",
+                "C) AWS Lambda",
+                "D) AWS Redshift"
+            ],
+            "answer": "A) AWS Data Pipeline"
+        },
+        {
+            "id": "A20",
+            "question": "Which AWS service enables you to monitor and set alarms for specific metrics related to your resources?",
+            "options": [
+                "A) AWS CloudWatch",
+                "B) AWS CloudTrail",
+                "C) AWS Config",
+                "D) AWS Inspector"
+            ],
+            "answer": "A) AWS CloudWatch"
+        },
+        {
+            "id": "A21",
+            "question": "Which AWS service helps manage multi-region, multi-account environments by organizing resources into hierarchical units?",
+            "options": [
+                "A) AWS CloudFormation",
+                "B) AWS Control Tower",
+                "C) AWS Config",
+                "D) AWS Organizations"
+            ],
+            "answer": "B) AWS Control Tower"
+        },
+        {
+            "id": "A22",
+            "question": "What service does AWS offer for load balancing traffic across multiple EC2 instances?",
+            "options": [
+                "A) AWS Elastic Load Balancing",
+                "B) AWS Route 53",
+                "C) AWS API Gateway",
+                "D) AWS Lambda"
+            ],
+            "answer": "A) AWS Elastic Load Balancing"
+        },
+        {
+            "id": "A23",
+            "question": "Which AWS service provides automated security assessments of AWS environments?",
+            "options": [
+                "A) AWS Shield",
+                "B) AWS WAF",
+                "C) AWS Inspector",
+                "D) AWS Config"
+            ],
+            "answer": "C) AWS Inspector"
+        },
+        {
+            "id": "A24",
+            "question": "Which service provides continuous compliance monitoring in AWS?",
+            "options": [
+                "A) AWS Config",
+                "B) AWS Inspector",
+                "C) AWS Security Hub",
+                "D) AWS Shield"
+            ],
+            "answer": "A) AWS Config"
+        },
+        {
+            "id": "A25",
+            "question": "Which AWS service can be used to create, manage, and enforce policies for EC2 instances?",
+            "options": [
+                "A) AWS CloudFormation",
+                "B) AWS Config",
+                "C) AWS Systems Manager",
+                "D) AWS IAM"
+            ],
+            "answer": "C) AWS Systems Manager"
+        },
+        {
+            "id": "A26",
+            "question": "Which AWS service is a managed Kubernetes service for running containerized applications?",
+            "options": [
+                "A) Amazon EKS",
+                "B) Amazon ECS",
+                "C) AWS Fargate",
+                "D) AWS Lambda"
+            ],
+            "answer": "A) Amazon EKS"
+        },
+        {
+            "id": "A27",
+            "question": "What AWS service is best suited for building and deploying machine learning models?",
+            "options": [
+                "A) AWS SageMaker",
+                "B) AWS Deep Learning AMIs",
+                "C) AWS Lambda",
+                "D) AWS Redshift"
+            ],
+            "answer": "A) AWS SageMaker"
+        },
+        {
+            "id": "A28",
+            "question": "Which AWS service helps with the deployment of microservices architectures?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS ECS",
+                "C) AWS Elastic Beanstalk",
+                "D) AWS Fargate"
+            ],
+            "answer": "B) AWS ECS"
+        },
+        {
+            "id": "A29",
+            "question": "What is the primary purpose of AWS WAF (Web Application Firewall)?",
+            "options": [
+                "A) To protect applications from DDoS attacks",
+                "B) To protect web applications from common exploits",
+                "C) To monitor AWS CloudWatch metrics",
+                "D) To secure AWS S3 buckets"
+            ],
+            "answer": "B) To protect web applications from common exploits"
+        },
+        {
+            "id": "A30",
+            "question": "Which AWS service provides a scalable content delivery network (CDN)?",
+            "options": [
+                "A) AWS CloudFront",
+                "B) AWS Route 53",
+                "C) AWS S3",
+                "D) AWS Elastic Load Balancer"
+            ],
+            "answer": "A) AWS CloudFront"
+        },
+        {
+            "id": "A31",
+            "question": "Which AWS service is used to automate the process of applying patches to EC2 instances?",
+            "options": [
+                "A) AWS Systems Manager",
+                "B) AWS Elastic Beanstalk",
+                "C) AWS CloudFormation",
+                "D) AWS Lambda"
+            ],
+            "answer": "A) AWS Systems Manager"
+        },
+        {
+            "id": "A32",
+            "question": "Which AWS service allows you to create and manage a virtual private network (VPN) connection?",
+            "options": [
+                "A) AWS VPC",
+                "B) AWS Direct Connect",
+                "C) AWS VPN",
+                "D) AWS Lambda"
+            ],
+            "answer": "C) AWS VPN"
+        },
+        {
+            "id": "A33",
+            "question": "Which AWS service provides cloud-based storage for backup and recovery?",
+            "options": [
+                "A) Amazon S3",
+                "B) AWS Backup",
+                "C) Amazon EBS",
+                "D) AWS Glacier"
+            ],
+            "answer": "B) AWS Backup"
+        },
+        {
+            "id": "A34",
+            "question": "Which AWS service is used for real-time notifications based on events?",
+            "options": [
+                "A) Amazon SNS",
+                "B) Amazon SQS",
+                "C) AWS CloudFormation",
+                "D) AWS Kinesis"
+            ],
+            "answer": "A) Amazon SNS"
+        },
+        {
+            "id": "A35",
+            "question": "Which AWS service is used for automating the deployment of applications?",
+            "options": [
+                "A) AWS Elastic Beanstalk",
+                "B) AWS Lambda",
+                "C) AWS CloudFormation",
+                "D) AWS CodeDeploy"
+            ],
+            "answer": "A) AWS Elastic Beanstalk"
+        },
+        {
+            "id": "A36",
+            "question": "Which AWS service can be used to set up an isolated network within AWS?",
+            "options": [
+                "A) AWS VPC",
+                "B) AWS Direct Connect",
+                "C) AWS CloudFormation",
+                "D) AWS EC2"
+            ],
+            "answer": "A) AWS VPC"
+        },
+        {
+            "id": "A37",
+            "question": "Which AWS service is used for distributed data storage with high durability?",
+            "options": [
+                "A) AWS S3",
+                "B) AWS EBS",
+                "C) AWS DynamoDB",
+                "D) AWS Glacier"
+            ],
+            "answer": "A) AWS S3"
+        },
+        {
+            "id": "A38",
+            "question": "What is the main purpose of AWS IAM (Identity and Access Management)?",
+            "options": [
+                "A) To create and manage virtual servers",
+                "B) To manage access permissions to AWS resources",
+                "C) To monitor and log AWS services",
+                "D) To deploy applications"
+            ],
+            "answer": "B) To manage access permissions to AWS resources"
+        },
+        {
+            "id": "A39",
+            "question": "Which AWS service enables high-performance computing (HPC) workloads?",
+            "options": [
+                "A) AWS EC2",
+                "B) AWS Lambda",
+                "C) AWS Batch",
+                "D) AWS Elastic Beanstalk"
+            ],
+            "answer": "C) AWS Batch"
+        },
+        {
+            "id": "A40",
+            "question": "Which AWS service is designed for managing large datasets for analytics?",
+            "options": [
+                "A) Amazon Redshift",
+                "B) Amazon Athena",
+                "C) Amazon Kinesis",
+                "D) AWS Glue"
+            ],
+            "answer": "A) Amazon Redshift"
+        },
+        {
+            "id": "A41",
+            "question": "What AWS service allows you to create and manage scalable storage systems for your applications?",
+            "options": [
+                "A) Amazon EBS",
+                "B) Amazon S3",
+                "C) AWS Storage Gateway",
+                "D) AWS Glacier"
+            ],
+            "answer": "A) Amazon EBS"
+        },
+        {
+            "id": "A42",
+            "question": "Which AWS service can be used to perform advanced data analytics on structured and semi-structured data?",
+            "options": [
+                "A) AWS Redshift",
+                "B) AWS S3",
+                "C) AWS Athena",
+                "D) AWS Kinesis"
+            ],
+            "answer": "C) AWS Athena"
+        },
+        {
+            "id": "A43",
+            "question": "What AWS service is primarily used to integrate multiple AWS services and create workflows?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS Step Functions",
+                "C) AWS Elastic Beanstalk",
+                "D) AWS CloudFormation"
+            ],
+            "answer": "B) AWS Step Functions"
+        },
+        {
+            "id": "A44",
+            "question": "Which AWS service is used for managing the lifecycle of software releases?",
+            "options": [
+                "A) AWS CodePipeline",
+                "B) AWS Lambda",
+                "C) AWS CodeDeploy",
+                "D) AWS CodeBuild"
+            ],
+            "answer": "A) AWS CodePipeline"
+        },
+        {
+            "id": "A45",
+            "question": "Which AWS service is used to deploy, manage, and scale containerized applications?",
+            "options": [
+                "A) AWS ECS",
+                "B) AWS Lambda",
+                "C) AWS EC2",
+                "D) AWS Fargate"
+            ],
+            "answer": "A) AWS ECS"
+        },
+        {
+            "id": "A46",
+            "question": "What AWS service allows you to create, deploy, and manage RESTful APIs?",
+            "options": [
+                "A) AWS API Gateway",
+                "B) AWS Lambda",
+                "C) AWS EC2",
+                "D) AWS S3"
+            ],
+            "answer": "A) AWS API Gateway"
+        },
+        {
+            "id": "A47",
+            "question": "Which AWS service can be used to centrally manage security, compliance, and auditing?",
+            "options": [
+                "A) AWS Inspector",
+                "B) AWS Shield",
+                "C) AWS Security Hub",
+                "D) AWS WAF"
+            ],
+            "answer": "C) AWS Security Hub"
+        },
+        {
+            "id": "A48",
+            "question": "Which AWS service helps you monitor, troubleshoot, and optimize the performance of your applications?",
+            "options": [
+                "A) AWS CloudWatch",
+                "B) AWS CloudTrail",
+                "C) AWS X-Ray",
+                "D) AWS GuardDuty"
+            ],
+            "answer": "C) AWS X-Ray"
+        },
+        {
+            "id": "A49",
+            "question": "Which AWS service is used to secure and monitor serverless applications?",
+            "options": [
+                "A) AWS Lambda",
+                "B) AWS X-Ray",
+                "C) AWS Step Functions",
+                "D) AWS CloudWatch"
+            ],
+            "answer": "B) AWS X-Ray"
+        },
+        {
+            "id": "A50",
+            "question": "Which AWS service can be used for distributed event streaming and real-time analytics?",
+            "options": [
+                "A) AWS Kinesis",
+                "B) AWS Lambda",
+                "C) AWS SQS",
+                "D) AWS SNS"
+            ],
+            "answer": "A) AWS Kinesis"
+        }
+        
+    ]
+  }

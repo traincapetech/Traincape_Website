@@ -1,0 +1,463 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaServer, FaNetworkWired } from "react-icons/fa";
+import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
+import { MdSecurity, MdStorage } from "react-icons/md";
+
+const ComptiaSecureInfrastructure = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
+  const courseDetails = {
+    stackableFrom: ["CompTIA A+", "CompTIA Network+", "CompTIA Security+"],
+    level: "Specialist",
+    focus: "Infrastructure Security",
+    pathway: "Infrastructure Track"
+  };
+
+  const certificationPath = [
+    {
+      step: 1,
+      cert: "CompTIA A+ (Core 1 & Core 2)",
+      desc: "Foundation hardware and OS knowledge"
+    },
+    {
+      step: 2,
+      cert: "CompTIA Network+ (N10-009)",
+      desc: "Network infrastructure and security"
+    },
+    {
+      step: 3,
+      cert: "CompTIA Security+ (SY0-701)",
+      desc: "Core security concepts and practices"
+    }
+  ];
+
+  const keyCompetencies = [
+    {
+      icon: <FaServer />,
+      title: "Hardware Management",
+      skills: [
+        "PC, mobile, and IoT device configuration",
+        "Hardware troubleshooting",
+        "System upgrades and maintenance",
+        "Device security hardening"
+      ]
+    },
+    {
+      icon: <FaNetworkWired />,
+      title: "Network Infrastructure",
+      skills: [
+        "Network design and implementation",
+        "Routing and switching",
+        "Wireless technologies",
+        "Network troubleshooting"
+      ]
+    },
+    {
+      icon: <MdSecurity />,
+      title: "Security Implementation",
+      skills: [
+        "Security controls and frameworks",
+        "Threat detection and mitigation",
+        "Access management",
+        "Incident response"
+      ]
+    },
+    {
+      icon: <MdStorage />,
+      title: "Infrastructure Security",
+      skills: [
+        "Secure architecture design",
+        "Infrastructure monitoring",
+        "Compliance and governance",
+        "Risk management"
+      ]
+    }
+  ];
+
+  const benefits = [
+    {
+      icon: <BsShieldCheck />,
+      title: "Comprehensive Skills",
+      desc: "Master end-to-end infrastructure security"
+    },
+    {
+      icon: <FaCertificate />,
+      title: "Stackable Certification",
+      desc: "Earn recognition for multiple certifications"
+    },
+    {
+      icon: <BsGraphUp />,
+      title: "Career Advancement",
+      desc: "Qualify for senior infrastructure roles"
+    },
+    {
+      icon: <FaNetworkWired />,
+      title: "Holistic Knowledge",
+      desc: "Hardware, network, and security expertise"
+    }
+  ];
+
+  const careerRoles = [
+    "Infrastructure Security Specialist",
+    "Systems Security Administrator",
+    "Network Security Engineer",
+    "IT Security Infrastructure Analyst",
+    "Senior Systems Administrator",
+    "Infrastructure Security Architect"
+  ];
+
+  const whyChoose = [
+    "Recognized by employers globally",
+    "Demonstrates broad technical competency",
+    "Meets baseline requirements for infrastructure security roles",
+    "Foundation for advanced certifications",
+    "Industry-standard validation"
+  ];
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+      {/* Hero Section */}
+      <motion.section 
+        initial="hidden"
+        animate="visible"
+        variants={fadeInUp}
+        className="relative bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 text-white py-20 px-6 overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
+              >
+                <span className="text-sm font-semibold">SPECIALIST LEVEL • STACKABLE</span>
+              </motion.div>
+              <motion.h1 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-4xl md:text-5xl font-bold mb-4"
+              >
+                CompTIA Secure Infrastructure Specialist
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="text-xl md:text-2xl mb-6 text-purple-100"
+              >
+                Master the Full Infrastructure Security Stack
+              </motion.p>
+              <motion.p 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="text-lg mb-8 max-w-2xl"
+              >
+                The CompTIA Secure Infrastructure Specialist (CSIS) stackable certification demonstrates your ability to secure IT infrastructure from the ground up - from hardware to networks to security implementation.
+              </motion.p>
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-wrap gap-4"
+              >
+                <button 
+                  onClick={() => navigate("/contact-us")}
+                  className="bg-white text-purple-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
+                  Start Your Journey
+                </button>
+                <button 
+                  onClick={() => navigate("/CompTIA-single-page")}
+                  className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-purple-700 transition"
+                >
+                  View All CompTIA Certs
+                </button>
+              </motion.div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex-1 max-w-md"
+            >
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-white/20">
+                <h3 className="text-2xl font-bold mb-6">Certification Stack</h3>
+                <div className="space-y-4">
+                  {certificationPath.map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-3">
+                      <div className="bg-white text-purple-700 w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0">
+                        {item.step}
+                      </div>
+                      <div>
+                        <p className="font-semibold">{item.cert}</p>
+                        <p className="text-sm text-purple-100">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Certification Path Visual */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Your Certification Journey</h2>
+            <p className="text-xl text-gray-600">Complete three certifications to earn the stackable CSIS</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {certificationPath.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.2 }}
+                className="relative"
+              >
+                <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all border-t-4 border-purple-600">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl">
+                    {item.step}
+                  </div>
+                  <div className="mt-4">
+                    <h3 className="text-xl font-bold text-gray-800 mb-3">{item.cert}</h3>
+                    <p className="text-gray-600 mb-4">{item.desc}</p>
+                    <button
+                      onClick={() => {
+                        if (item.step === 1) navigate("/comptia/specialist/a-plus");
+                        else if (item.step === 2) navigate("/comptia/specialist/network-plus");
+                        else if (item.step === 3) navigate("/comptia/specialist/security-plus");
+                      }}
+                      className="text-purple-600 font-semibold hover:text-purple-800 transition"
+                    >
+                      Learn More →
+                    </button>
+                  </div>
+                </div>
+                {idx < certificationPath.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 text-purple-300 text-3xl">
+                    →
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Competencies Section */}
+      <section className="py-16 px-6 bg-gradient-to-br from-purple-50 to-indigo-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Comprehensive Skill Coverage</h2>
+            <p className="text-xl text-gray-600">Master all aspects of infrastructure security</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {keyCompetencies.map((comp, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="text-4xl text-purple-600">{comp.icon}</div>
+                  <h3 className="text-2xl font-bold text-gray-800">{comp.title}</h3>
+                </div>
+                <ul className="space-y-3">
+                  {comp.skills.map((skill, skillIdx) => (
+                    <li key={skillIdx} className="flex items-start gap-3">
+                      <FaCheckCircle className="text-green-500 mt-1 flex-shrink-0" />
+                      <span className="text-gray-700">{skill}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Benefits Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Why Earn This Stackable?</h2>
+            <p className="text-xl text-gray-600">Demonstrate comprehensive expertise</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {benefits.map((benefit, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-2"
+              >
+                <div className="text-4xl mb-4">{benefit.icon}</div>
+                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                <p className="text-purple-100">{benefit.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Career Paths Section */}
+      <section className="py-16 px-6 bg-gradient-to-br from-indigo-50 to-purple-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Career Opportunities</h2>
+            <p className="text-xl text-gray-600">Advanced infrastructure security roles</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {careerRoles.map((role, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border-l-4 border-purple-600"
+              >
+                <BsShieldCheck className="text-purple-600 text-2xl mb-3" />
+                <h3 className="text-lg font-bold text-gray-800">{role}</h3>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="mt-12 bg-gradient-to-r from-purple-600 to-indigo-700 text-white rounded-2xl p-8 text-center"
+          >
+            <h3 className="text-2xl font-bold mb-3">Average Salary Range</h3>
+            <p className="text-4xl font-bold">$85,000 - $110,000</p>
+            <p className="mt-2 text-purple-100">Mid to senior-level infrastructure security positions</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why Choose Section */}
+      <section className="py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">Industry Recognition</h2>
+            <p className="text-xl text-gray-600">Trusted by employers worldwide</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {whyChoose.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeInUp}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all"
+              >
+                <FaCheckCircle className="text-purple-600 text-2xl mb-3" />
+                <p className="text-gray-700 font-medium">{item}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-6 bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 text-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <h2 className="text-4xl font-bold mb-4">Ready to Become an Infrastructure Expert?</h2>
+            <p className="text-xl mb-8">Start with CompTIA A+ and build your way to CSIS certification</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button 
+                onClick={() => navigate("/contact-us")}
+                className="bg-white text-purple-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
+              >
+                Start Your Journey
+              </button>
+              <button 
+                onClick={() => navigate("/frequently-asked-questions")}
+                className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-purple-700 transition text-lg"
+              >
+                Learn More
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default ComptiaSecureInfrastructure;
+

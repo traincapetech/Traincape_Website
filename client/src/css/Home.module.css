@@ -1,0 +1,846 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+.topbanner{
+  width: 100%;
+  height: auto;
+  /* margin-bottom: 10px; */
+
+}
+.banner{
+  background-image: url(../assets/banner01.jpg);
+  width: 100%;
+  height: 60vh;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: brightness(60%);
+  position: relative;
+
+}
+.bannertext{
+  top: 25%;
+  width: 50%;
+  left: 50px;
+  position: absolute;
+  color: rgb(253, 250, 250);
+
+}
+.bannertext h1{
+  font-size: 35px;
+  font-weight: 800;
+  color: rgb(252, 251, 251);
+  margin-bottom: 20px;
+
+}
+.bannertext h3{
+  font-size: 22px;
+  font-weight: 500;
+  color: rgb(252, 251, 251);
+  word-spacing: 2px;
+  
+}
+
+/* Ribbon container */
+.ribbon {
+  background-color: rgb(231, 242, 253) !important;
+  margin: 0;
+  padding: 0 20px;
+  display: inline-flex;
+  width: 100%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Box styles */
+.ribbon .box {
+  box-sizing: border-box;
+  background-color: white;
+  height: 158px;
+  text-align: center;
+  align-items: center;
+  /* margin: 20px; */
+  width: 210px;
+  padding: 20px 13px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.box:hover {
+  background-color: #0B2048;
+  cursor: pointer;
+}
+
+/* Image styles */
+.ribbon .box img {
+  width: 60px;
+  height: 60px;
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.box:hover img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  padding: 11px;
+  background-color: white;
+  animation: rotate 1s ease-in-out;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+    border-radius: 0;
+    background-color: #005da3;
+  }
+
+  100% {
+    transform: rotate(360deg);
+    border-radius: 50%;
+    background-color: white;
+  }
+}
+
+/* Text styles */
+.ribbon .box h3 {
+  font-size: 16px;
+  margin-top: 27px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  transition: color 0.3s ease-in-out;
+}
+
+.box:hover h3 {
+  color: white;
+}
+.card{
+  width: 100%;
+  /* padding: 40px 110px; */
+  background-color: white;
+  text-align: center;
+  justify-content: center;
+
+}
+.card h2{
+  font-size: 35px;
+  font-weight: 800;
+}
+.cards{
+ display: inline-flex;
+ margin: 20px 110px;
+ gap: 50px;
+justify-content: center;
+ flex-wrap: wrap;
+
+}
+.cards h3{
+  font-size: 25px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+.card1{
+  width: 320px;
+  height: 450px;
+  position: relative;
+  box-sizing: border-box;
+  
+}
+.card1 img{
+  width: 320px;
+  height: 250px;
+  border-radius: 20px;
+}
+.card1 .cardtext{
+  width: 280px;
+  height: auto;
+  background-color: rgb(248, 239, 222);
+  text-align: center;
+  padding: 13px 22px;
+  margin: 20px 10px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  position: absolute;
+  color: black;
+  margin-top: -33px;
+  margin-left: 22px;
+ 
+}
+.card1 .cardtext:hover{
+  color: white;
+  background-color: #0B2048;
+  
+}
+.card2{
+  width: 320px;
+  height: 450px;
+gap: 20px;
+}
+.card2 img{
+  width: 320px;
+  height: 250px;
+  border-radius: 20px;
+}
+.card2 .cardtext{
+  width: 280px;
+  height: auto;
+  background-color: #0B2048;
+  text-align: center;
+  padding: 13px 22px;
+  color: white;
+  margin: 20px 10px;
+  box-sizing: border-box;
+  border-radius: 25px;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 22px;
+}
+.cardtext h6{
+  font-size: 13px;
+}
+.aboutus{
+  width: 100%;
+  padding: 50px 10px;
+  text-align: center;
+}
+.aboutus h1{
+  font-size: 40px;
+  font-weight: 800;
+}
+.about{
+ padding: 60px 0 30px;
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+}
+.aboutimg{
+  width: 500px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutimg img{
+  width: 500px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutext{
+  width: 550px;
+  height: auto;
+  text-align: center;
+}
+
+.hero{
+  
+  display: flex;
+  margin-top: 6%;
+  padding-top: 40px;
+  /* padding-left: 20%; */
+  min-height: 600px;
+  background: rgb(234, 234, 236);
+  color: black;
+  justify-content: center;
+  position: relative;
+  gap: 60px;
+  background-image:  url(../assets/Back.jpg);
+}
+.heroImg img{
+  display: block;
+  max-height: 350px;
+  
+}
+.heroText {
+  /* margin: 1%; */
+  gap: 10px;
+  width: 30%;
+}
+.heroText h3{
+  font-size: 15px;
+  font-family: poppins;
+  font-weight: bold;
+  color: rgb(250, 6, 205); 
+}
+.heroText h1{
+  font-size: 20px;
+  font-family: poppins;
+  font-weight: bold;
+  color: #1A1A1A; 
+}
+.heroText p{
+  font-size: 16px;
+  font-family: poppins;
+  font-weight: lighter;
+  color: #555556; 
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.vdo{
+  width: 500px; 
+  height: 400px;
+  object-fit: cover;
+  /* display: block; */}
+
+  .call {
+      display: flex;
+      background: white;
+      align-items: center;
+      border-radius: 10px;
+      justify-content: space-around;
+      align-items: center;
+  }
+  
+  .call p{
+      font-size: 16px;
+      font-family: poppins;
+      font-weight: bold;
+      color: #898787; 
+      margin-top: 8%;
+      margin-bottom: -2%;
+  }
+  .call h4{
+      font-size: 20px;
+      font-family: poppins;
+      font-weight: bold;
+      color: #070707; 
+     
+  }
+  
+  .call img{
+      width: 30%;
+      height: 30%;
+  }
+  .btnDiv{
+      display: flex;
+      justify-content: center;
+  }
+  .herobtn{
+      border: none;
+      width: 120px;
+      padding: 5px;
+      background:  #80669d;
+      color:rgb(245, 245, 248);
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+      /* padding: 3%; */
+      margin: 0 auto;
+      margin-top: 15px;
+      border-radius: 5px;
+  }
+  
+  .herobtn:hover{
+      background: rgb(207, 93, 93);
+      color: white;
+      transition: background-color 1.9s ease;
+  
+  }
+  
+  .heroDown{
+      display: flex;
+      width: 100%;
+      background: rgb(255, 255, 255);
+      color: black;
+      align-items: center;
+      flex-direction: column;
+      /* background-image:  url(../assets/HeroDownBG.png) ; */
+  }
+  
+  .heroDown p:nth-child(1){
+      font-size: 20px;
+      font-family: poppins;
+      font-weight: bold;
+      color: #593fff; 
+      margin-top: 5%;
+      margin-bottom: 0%;
+  }
+  .heroDown h1:nth-child(2){
+      font-size: 50px;
+      font-family: poppins;
+      font-weight: bold;
+      color: #1A1A1A; 
+      margin-bottom: -3%;
+  }
+  .whatsapp{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+  .whatappicon{
+      width: 50px;
+      height: 50px;
+      color: green;
+      cursor: pointer;
+  }
+
+
+  @media (max-width:1440px) and (min-width:1024px) {
+    /* .topbanner{
+      width: 100%;
+      height: 60vh;
+      margin-bottom: 20px; */
+  
+  /* } */
+  .banner{
+      background-image: url(../assets/banner01.jpg);
+      width: 100%;
+      height: 50vh;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      filter: brightness(60%);
+      position: relative;
+  
+  }
+    .cards{
+      display: inline-flex;
+      margin: 20px 70px;
+      gap: 40px;
+     width: 90%;
+      flex-wrap: wrap;
+      justify-content: center;
+   
+     }
+  }
+  @media (max-width:1024px) and (min-width:768px) {
+    .bannertext{
+      top: 30%;
+      width: 50%;
+      left: 40px;
+      position: absolute;
+      color: rgb(253, 250, 250);
+  
+  }
+
+  .bannertext h1{
+    font-size: 28px;
+    font-weight: 800;
+    color: rgb(252, 251, 251);
+    margin-bottom: 10px;
+
+}
+.bannertext h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(252, 251, 251);
+    word-spacing: 2px;
+    
+}
+.aboutus{
+  width: 100%;
+  padding: 50px 30px;
+  text-align: center;
+}
+.aboutimg{
+  max-width: 470px;
+  width: 400px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutimg img{
+  max-width: 470px;
+  width: 400px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutext{
+  max-width: 440px;
+  width: 400px;
+  height: auto;
+  text-align: center;
+}
+
+.cards{
+  display: inline-flex;
+  margin: 20px 20px;
+  gap: 10px;
+
+ }
+ .ribbon {
+ gap: 15px;
+}
+  }
+
+  @media (max-width:768px) and (min-width:425px) {
+    .bannertext{
+      top: 33%;
+      width: 60%;
+      left: 30px;
+      position: absolute;
+      color: rgb(253, 250, 250);
+  
+  }
+
+  .bannertext h1{
+    font-size: 24px;
+    font-weight: 800;
+    color: rgb(252, 251, 251);
+    margin-bottom: 5px;
+
+}
+.bannertext h3{
+    font-size: 16px;
+    font-weight: 500;
+    color: rgb(252, 251, 251);
+    word-spacing: 2px;
+    
+}
+
+.banner{
+  height:50vh;
+}
+.aboutus{
+  width: 100%;
+  padding: 50px 30px;
+  text-align: center;
+}
+.about{
+  padding: 60px 0 30px;
+   display: flex;
+   flex-direction: column-reverse;
+   gap: 20px;
+   align-items: center;
+   justify-content: center;
+ }
+.aboutimg{
+  width: 470px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutimg img{
+  width: 470px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutext{
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+.cards{
+  display: inline-flex;
+  margin: 20px 20px;
+  gap: 20px;
+
+
+ }
+ .ribbon {
+  flex-wrap: wrap;
+  padding: 30px 20px;
+  height: auto;
+ }
+
+ .hero{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+ }
+ .heroText {
+  /* margin: 1%; */
+  gap: 10px;
+  width: 90%;
+}
+  }
+  @media (max-width:425px) and (min-width:310px) {
+
+    .banner{
+      background-image: url(../assets/banner02.jpg);
+      width: 100%;
+      height: 50vh;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      filter: brightness(60%);
+      position: relative;
+  
+  }
+    .bannertext{
+      top: 35%;
+      width: 80%;
+      left: 20px;
+      position: absolute;
+      color: rgb(253, 250, 250);
+  
+  }
+
+  .bannertext h1{
+    font-size: 23px;
+    font-weight: 800;
+    color: rgb(252, 251, 251);
+    margin-bottom: 5px;
+
+}
+.bannertext h3{
+    font-size: 13px;
+    font-weight: 500;
+    color: rgb(252, 251, 251);
+    word-spacing: 2px;
+    
+}
+.aboutus{
+  width: 100%;
+  padding: 50px 30px;
+  text-align: center;
+}
+.about{
+  padding: 60px 0 10px;
+   display: flex;
+   flex-direction: column-reverse;
+   gap: 20px;
+   align-items: center;
+   justify-content: center;
+ }
+.aboutimg{
+  width: 300px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutimg img{
+  width: 300px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutext{
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+.cards{
+  display: inline-flex;
+  flex-direction: column;
+  margin: 20px 20px;
+  gap: 20px;
+  height: auto;
+  justify-content: center;
+
+
+ }
+ .ribbon {
+  flex-wrap: wrap;
+  padding: 30px 20px;
+  height: auto;
+ }
+ .ribbon .box {
+  
+  
+  width: 150px;
+  
+}
+
+ .hero{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+ }
+ .heroText {
+  /* margin: 1%; */
+  gap: 10px;
+  width: 90%;
+}
+
+.vdo{
+width: auto; 
+height: auto;
+object-fit: cover;
+/* display: block; */}
+.card2 .cardtext{
+  width: 300px;
+ 
+  border-radius: 22px;
+ 
+  margin-top: -50px;
+  margin-left: 12px;
+}
+
+.card1 .cardtext{
+  width: 300px;
+  height: auto;
+  background-color: rgb(248, 239, 222);
+  text-align: center;
+  padding: 13px 22px;
+  margin: 20px 10px;
+  box-sizing: border-box;
+  border-radius: 22px;
+  position: absolute;
+  color: black;
+  margin-top: -50px;
+  margin-left: 10px;
+ 
+}
+
+
+.call h4{
+  font-size: 15px;
+ 
+}
+.call p{
+font-size: 13px;
+
+}
+
+  }
+
+  @media (max-width:310px) and (min-width:270px) {
+
+    .banner{
+      background-image: url(../assets/banner02.jpg);
+      width: 100%;
+      height: 60vh;
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      filter: brightness(60%);
+      position: relative;
+  
+  }
+    .bannertext{
+      top: 33%;
+      width: 80%;
+      left: 20px;
+      position: absolute;
+      color: rgb(253, 250, 250);
+  
+  }
+
+  .bannertext h1{
+    font-size: 21px;
+    font-weight: 800;
+    color: rgb(252, 251, 251);
+    margin-bottom: 5px;
+
+}
+.bannertext h3{
+    font-size: 11px;
+    font-weight: 500;
+    color: rgb(252, 251, 251);
+    word-spacing: 2px;
+    
+}
+.aboutus{
+  width: 100%;
+  padding: 50px 10px;
+  text-align: center;
+}
+.about{
+  padding: 60px 0 10px;
+   display: flex;
+   flex-direction: column-reverse;
+   gap: 20px;
+   align-items: center;
+   justify-content: center;
+ }
+.aboutimg{
+  width: 270px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutimg img{
+  width: 270px;
+  height: auto;
+  border-radius: 20px;
+}
+.aboutext{
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+.cards{
+  display: inline-flex;
+  flex-direction: column;
+  margin: 20px 10px;
+  gap: 20px;
+  height: auto;
+  justify-content: center;
+
+
+ }
+ .ribbon {
+  flex-wrap: wrap;
+  padding: 30px 10px;
+  height: auto;
+ }
+ .ribbon .box {
+  
+  
+  width: 200px;
+  
+}
+
+ .hero{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+ }
+ .heroText {
+  /* margin: 1%; */
+  gap: 10px;
+  width: 90%;
+}
+
+.vdo{
+width: auto; 
+height: auto;
+object-fit: cover;
+/* display: block; */}
+.card2 .cardtext{
+  width: 250px;
+ 
+  border-radius: 22px;
+ 
+  margin-top: -50px;
+  margin-left: 12px;
+}
+.card1{
+  width: 270px;
+  height: 400px;
+gap: 20px;
+}
+.card1 img{
+  width: 270px;
+  height: 220px;
+  border-radius: 20px;
+}
+.card2{
+  width: 270px;
+  height: 400px;
+gap: 20px;
+
+}
+.card2 img{
+  width: 270px;
+  height: 220px;
+  border-radius: 20px;
+}
+.card1 .cardtext{
+  width: 250px;
+  height: auto;
+  background-color: rgb(248, 239, 222);
+  text-align: center;
+  padding: 13px 22px;
+  margin: 20px 10px;
+  box-sizing: border-box;
+  border-radius: 22px;
+  position: absolute;
+  color: black;
+  margin-top: -50px;
+  margin-left: 10px;
+ 
+}
+
+
+.call h4{
+  font-size: 13px;
+ 
+}
+.call p{
+font-size: 12px;
+
+}
+
+  }

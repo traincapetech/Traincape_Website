@@ -1,0 +1,74 @@
+# Redirect non-www to www (canonical domain)
+https://traincapetech.in/* https://www.traincapetech.in/:splat 301!
+http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
+
+# Ensure static assets are served from root
+/static/* /static/:splat 200
+/AdobeCourse/static/* /static/:splat 200
+/MicrosoftCourse/static/* /static/:splat 200
+/UnityCourse/static/* /static/:splat 200
+
+# Redirect old URLs to new ones
+/contact-us /contact-us 301
+/about-us /about-us 301
+/our-services /courses 301
+/frequently-asked-questions /faq 301
+/Our-Blogs /blogs 301
+/Our-Policies /policies 301
+/Terms-and-Conditions /terms-and-conditions 301
+/Career-details /career 301
+
+# Redirect old course URLs
+/microsoftoffice /microsoft 301
+/ciscocard /cisco 301
+/comptiaCloudCLOExamples /comptia 301
+/IBMSQL /ibm 301
+/ISO45001 /iso-courses 301
+/IBMDevopsFundamentals /ibm 301
+/PMIProjectManagement /pmi 301
+/MicrosoftCourse/MicrosoftPowerPointAssociate /microsoft 301
+/PartnerPage /partners 301
+/CCTdatacenter /cisco 301
+/instructors/ /team 301
+/microsoftpl-300 /microsoft 301
+/CCSTcybersecurity /cisco 301
+/microsoftAzuresolutions /microsoft 301
+/microsoftcyberanalyst /microsoft 301
+/ISOIEC27001 /iso-courses 301
+/microsoftazureadmin /microsoft 301
+/CCIEcollab /cisco 301
+/SCADASecurityManager /security-courses 301
+/CCCA /cisco 301
+/comptiaLinux /comptia 301
+/microsoftDeveloper /microsoft 301
+/CCNPsecurity /cisco 301
+/comptiaNetwork007 /comptia 301
+/comptiaCybersecurity /comptia 301
+/CCIEserviceprovider /cisco 301
+/Cisco /cisco 301
+/comptiaProject /comptia 301
+# /Adobe /adobe 301
+/PECB /pecb 301
+/CCNPdevnet /cisco 301
+/microsoftazureSAP /microsoft 301
+/microsoftazuredata /microsoft 301
+/microsoftAzurecosmos /microsoft 301
+/microsoft365 /microsoft 301
+/microsoft S C I /microsoft 301
+/CCNPenterprises /cisco 301
+/Computerforensics /security-courses 301
+/ISO37001 /iso-courses 301
+/PecbCertifiedISO27001Foundation /pecb 301
+/comptiaData /comptia 301
+
+# Handle trailing slashes
+/*/ /:splat 301
+
+# Handle query parameters (optional)
+/*?* /:splat 301
+
+# Handle client-side routing - serve index.html for all routes
+/* /index.html 200
+
+# Fallback for 404s (this should not be reached due to the above rule)
+/* /404 404 
