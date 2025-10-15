@@ -25,8 +25,6 @@ import webImg from "../assets/web.png";
 
 import { Link } from "react-router-dom";
 
-
-
 import {
   FaReact,
   FaNodeJs,
@@ -106,14 +104,23 @@ const servicesData = [
   },
 ];
 
-
-
 /* ---------------------- COMPONENT ---------------------- */
 const Services = () => {
   const navigate = useNavigate();
   const containerRef = useRef(null);
   const firstCardRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  // ---------- ADD: mobile detection (responsive) ----------
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768); // adjust breakpoint if you prefer
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  // ------------------------------------------------------
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -270,47 +277,39 @@ const Services = () => {
     },
   ];
 
-
-
-
-   // Renamed to 'solutions' for a broader 'Service' feel
-    const solutions = [
-      {
-        icon: <MdDeveloperMode size={30} className="text-white" />,
-        title: "Custom Web Application Development", // More specific
-        desc: "Building complex, feature-rich web platforms and SaaS solutions from the ground up using modern frameworks.",
-      },
-      {
-        icon: <FaTabletAlt size={30} className="text-white" />,
-        title: "Cross-Platform Mobile App Services",
-        desc: "Native and cross-platform mobile solutions for iOS and Android, focusing on performance, speed, and UX.",
-      },
-      {
-        icon: <MdCloudQueue size={30} className="text-white" />,
-        title: "Cloud & DevOps Infrastructure",
-        desc: "Expertise in AWS, Azure, and Google Cloud, ensuring seamless deployment, scaling, and infrastructure as code.",
-      },
-      {
-        icon: <FaBrain size={30} className="text-white" />,
-        title: "AI/ML & Data Integration Services",
-        desc: "Embedding intelligent features like recommendation engines, data analysis, and predictive modeling for business intelligence.",
-      },
-      {
-        icon: <AiOutlineDeploymentUnit size={30} className="text-white" />,
-        title: "Enterprise System Integration",
-        desc: "Developing robust, secure, and integrated systems for large-scale business operations (ERP, CRM) and connecting disparate systems.",
-      },
-      {
-        icon: <MdOutlineSecurity size={30} className="text-white" />,
-        title: "Software Modernization & Audit",
-        desc: "Migrating legacy systems to modern, scalable architectures like microservices and serverless, and performing security audits.",
-      },
-    ];
-
-
-
-
-
+  // Renamed to 'solutions' for a broader 'Service' feel
+  const solutions = [
+    {
+      icon: <MdDeveloperMode size={30} className="text-white" />,
+      title: "Custom Web Application Development", // More specific
+      desc: "Building complex, feature-rich web platforms and SaaS solutions from the ground up using modern frameworks.",
+    },
+    {
+      icon: <FaTabletAlt size={30} className="text-white" />,
+      title: "Cross-Platform Mobile App Services",
+      desc: "Native and cross-platform mobile solutions for iOS and Android, focusing on performance, speed, and UX.",
+    },
+    {
+      icon: <MdCloudQueue size={30} className="text-white" />,
+      title: "Cloud & DevOps Infrastructure",
+      desc: "Expertise in AWS, Azure, and Google Cloud, ensuring seamless deployment, scaling, and infrastructure as code.",
+    },
+    {
+      icon: <FaBrain size={30} className="text-white" />,
+      title: "AI/ML & Data Integration Services",
+      desc: "Embedding intelligent features like recommendation engines, data analysis, and predictive modeling for business intelligence.",
+    },
+    {
+      icon: <AiOutlineDeploymentUnit size={30} className="text-white" />,
+      title: "Enterprise System Integration",
+      desc: "Developing robust, secure, and integrated systems for large-scale business operations (ERP, CRM) and connecting disparate systems.",
+    },
+    {
+      icon: <MdOutlineSecurity size={30} className="text-white" />,
+      title: "Software Modernization & Audit",
+      desc: "Migrating legacy systems to modern, scalable architectures like microservices and serverless, and performing security audits.",
+    },
+  ];
 
   return (
     <>
@@ -371,7 +370,7 @@ const Services = () => {
         METRICS / ACHIEVEMENTS (Enhanced)
         ========================================
       */}
-        <section className="bg-[#020911] py-20 px-6 md:px-16 text-center pt-20">
+        <section className="bg-[#020911] py-20 px-6 md:px-16 text-center pt-20 mt-12 mb-12 ml-4 mr-4 rounded-3xl">
           <div className="max-w-6xl mx-auto">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#FFA500] mb-3">
               Our Track Record
@@ -412,7 +411,7 @@ const Services = () => {
         {/* ========================================
                 TECHNOLOGIES CAROUSEL (Two Rows, Different Icons)
               ======================================== */}
-        <section className="bg-[#020911] text-white py-20 px-6 md:px-16 overflow-hidden relative mb-20 pt-20">
+        <section className="bg-[#020911] text-white py-20 px-6 md:px-16 overflow-hidden relative mb-20 pt-20 mt-18">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
             Technologies We Excel In
           </h2>
@@ -487,8 +486,15 @@ const Services = () => {
         </section>
 
         {/* CARDS */}
-        <div ref={containerRef} className="min-h-[800vh] bg-gray-50">
-          <div className="sticky top-0 h-screen flex flex-col lg:flex-row justify-between px-6 md:px-20">
+        <div
+          ref={containerRef}
+          className={`bg-gray-50 ${isMobile ? "min-h-0" : "min-h-[800vh]"}`}
+        >
+          <div
+            className={`flex flex-col lg:flex-row justify-between px-6 md:px-20 ${
+              isMobile ? "relative h-auto" : "sticky top-0 h-screen"
+            }`}
+          >
             {/* LEFT */}
             <div className="lg:w-1/2 flex flex-col justify-center">
               <h2 className="text-4xl md:text-5xl font-bold text-[#152B54] mb-6">
@@ -506,59 +512,115 @@ const Services = () => {
             </div>
 
             {/* RIGHT */}
-            <div className="lg:w-1/2 relative flex items-center justify-center lg:mt-0">
-              {servicesData.map((service, index) => {
-                const isActive = activeIndex === index;
-                const { y, opacity, scale } = cardTransforms[index];
+            <div
+              className={`lg:w-1/2 ${
+                isMobile
+                  ? "relative h-auto flex flex-col gap-6 px-4 py-6 items-center bg-[#040f25] mt-20 mb-20 rounded-3xl"
+                  : "relative h-[400vh]"
+              }`}
+            >
+              {isMobile
+                ? // ✅ Normal stacked layout for mobile
+                  servicesData.map((service, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: index * 0.1 }}
+                      className="relative w-full max-w-[90%] bg-white/80 backdrop-blur-xl border border-white/60 text-gray-800 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                    >
+                      {/* light gradient border glow */}
+                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#b7d3ff]/20 via-white/10 to-[#152B54]/10 pointer-events-none"></div>
 
-                return (
-                  <motion.div
-                    key={index}
-                    ref={index === 0 ? firstCardRef : null}
-                    style={{ y, opacity, scale }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className={`absolute w-[85%] min-h-[420px] rounded-3xl p-8 md:p-12 shadow-xl transition-all duration-500 ${
-                      isActive
-                        ? "bg-[#040f25] text-white scale-105 shadow-2xl"
-                        : "bg-white text-gray-700 border border-gray-200"
-                    } ${
-                      isActive ? "pointer-events-auto" : "pointer-events-none"
-                    }`}
-                  >
-                    <div className="flex items-center gap-4 mb-5">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-12 h-12 object-contain"
-                      />
-                      <h3
-                        className={`text-2xl font-bold ${
-                          isActive ? "text-white" : "text-[#152B54]"
-                        }`}
+                      {/* floating glow accent */}
+                      <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#00AEEF]/20 rounded-full blur-2xl"></div>
+
+                      {/* header */}
+                      <div className="flex items-center gap-4 mb-4 relative z-10">
+                        <div className="w-12 h-12 min-w-[48px] min-h-[48px] bg-[#152B54] rounded-2xl flex items-center justify-center shadow-md shadow-[#152B54]/30">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-7 h-7 object-contain"
+                          />
+                        </div>
+                        <h3 className="text-lg font-bold text-[#152B54] tracking-tight leading-tight">
+                          {service.title}
+                        </h3>
+                      </div>
+
+                      {/* description */}
+                      <p className="text-gray-600 mb-6 leading-relaxed text-[15px] relative z-10">
+                        {service.description.slice(0, 200)}...
+                      </p>
+
+                      {/* button */}
+                      <div className="flex justify-start relative z-10">
+                        <button
+                          onClick={() => handleClick(service)}
+                          className="group relative px-5 py-2.5 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 shadow-md hover:shadow-lg"
+                        >
+                          <span className="relative z-10">Learn More →</span>
+                          <div className="absolute inset-0 bg-gradient-to-r from-[#1A2980] via-[#152B54] to-[#26D0CE] group-hover:from-[#26D0CE] group-hover:to-[#1A2980] transition-all duration-500"></div>
+                        </button>
+                      </div>
+                    </motion.div>
+                  ))
+                : // 💻 Original animated cards for desktop
+                  servicesData.map((service, index) => {
+                    const transforms = cardTransforms[index];
+                    return (
+                      <motion.div
+                        key={index}
+                        ref={index === 0 ? firstCardRef : null}
+                        style={{
+                          y: transforms.y,
+                          opacity: transforms.opacity,
+                          scale: transforms.scale,
+                          zIndex: servicesData.length - index, // ensures top card is clickable
+                        }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                        className={`absolute w-[85%] min-h-[420px] rounded-3xl p-10 md:p-12 shadow-2xl transition-all duration-500 backdrop-blur-xl overflow-hidden
+        bg-gradient-to-br from-[#0b1b3a] via-[#08122c] to-[#152B54] text-white scale-100 shadow-[0_10px_40px_rgba(21,43,84,0.6)]
+        pointer-events-auto`}
                       >
-                        {service.title}
-                      </h3>
-                    </div>
-                    <p
-                      className={`mb-8 leading-relaxed ${
-                        isActive ? "text-gray-200" : "text-gray-600"
-                      }`}
-                    >
-                      {service.description.slice(0, 220)}...
-                    </p>
-                    <button
-                      className={`px-6 py-3 rounded-lg font-semibold transition duration-300 ${
-                        isActive
-                          ? "bg-white text-[#152B54] hover:bg-gray-100"
-                          : "bg-[#152B54] text-white hover:bg-blue-900"
-                      }`}
-                      onClick={() => handleClick(service)}
-                    >
-                      Learn More →
-                    </button>
-                  </motion.div>
-                );
-              })}
+                        {/* Decorative top accent line */}
+                        <div className="absolute top-0 left-0 w-full h-[4px] rounded-t-3xl bg-gradient-to-r from-[#26D0CE] via-[#1A2980] to-[#152B54]"></div>
+
+                        {/* Floating accent glow */}
+                        <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#00AEEF]/25 rounded-full blur-3xl"></div>
+
+                        {/* Header */}
+                        <div className="flex items-center gap-5 mb-6 relative z-10">
+                          <div className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl flex items-center justify-center shadow-md bg-white/20 border border-white/30">
+                            <img
+                              src={service.image}
+                              alt={service.title}
+                              className="w-9 h-9 object-contain"
+                            />
+                          </div>
+                          <h3 className="text-2xl font-bold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
+                            {service.title}
+                          </h3>
+                        </div>
+
+                        {/* Description */}
+                        <p className="mb-10 leading-relaxed relative z-10 text-gray-200 transition-all duration-300">
+                          {service.description.slice(0, 240)}...
+                        </p>
+
+                        {/* Learn More button */}
+                        <button
+                          onClick={() => handleClick(service)}
+                          className="relative z-20 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md overflow-hidden group text-[#152B54] bg-white hover:bg-gray-100"
+                        >
+                          <span className="relative z-10">Learn More →</span>
+                        </button>
+                      </motion.div>
+                    );
+                  })}
+              ;
             </div>
           </div>
         </div>
@@ -611,43 +673,36 @@ const Services = () => {
           </div>
         </section>
 
-
-
- <section className="bg-gradient-to-r from-[#020b18] via-[#081a30] to-[#020b18] text-white py-24 px-6 md:px-16 text-center  mb-20">
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          Ready to Build Your Digital Future?
-        </motion.h2>
-        <motion.p
-          className="max-w-3xl mx-auto text-gray-300 text-lg mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          Let's discuss your project and create intelligent, scalable software
-          that gives you a competitive edge.
-        </motion.p>
-        <motion.button
-          className="text-white font-bold py-4 px-12 rounded-xl text-xl shadow-2xl transition-all duration-300"
-           onClick={() => navigate("/contact-us")}
-          style={{ backgroundColor: SECONDARY_COLOR }} // FIX
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 10px 30px rgba(255, 165, 0, 0.6)",
-            
-          }}
-          whileTap={{ scale: 0.95 }}
-          
-        >
-          Schedule a Free Consultation 💬
-        </motion.button>
-      </section>
-
-
-
+        <section className="bg-gradient-to-r from-[#020b18] via-[#081a30] to-[#020b18] text-white py-24 px-6 md:px-16 text-center  mb-20">
+          <motion.h2
+            className="text-3xl md:text-5xl font-extrabold mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+          >
+            Ready to Build Your Digital Future?
+          </motion.h2>
+          <motion.p
+            className="max-w-3xl mx-auto text-gray-300 text-lg mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            Let's discuss your project and create intelligent, scalable software
+            that gives you a competitive edge.
+          </motion.p>
+          <motion.button
+            className="text-white font-bold py-4 px-12 rounded-xl text-xl shadow-2xl transition-all duration-300"
+            onClick={() => navigate("/contact-us")}
+            style={{ backgroundColor: SECONDARY_COLOR }} // FIX
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 10px 30px rgba(255, 165, 0, 0.6)",
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Schedule a Free Consultation 💬
+          </motion.button>
+        </section>
       </div>
     </>
   );
