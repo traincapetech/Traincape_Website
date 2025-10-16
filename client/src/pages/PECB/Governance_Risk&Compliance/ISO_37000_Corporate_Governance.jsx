@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const ISO37000CorporateGovernance = () => {
   const navigate = useNavigate();
@@ -27,6 +28,18 @@ const ISO37000CorporateGovernance = () => {
   };
 
   return (
+
+<>
+            <Helmet>
+                <title>PECB ISO 37000 Corporate Governance Certification</title>
+                <meta
+                  name="description"
+                  content="Gain globally recognized expertise in corporate governance with PECB ISO 37000 Training & certification from Traincape Technology. Learn effective governance principles and practices. Get in touch with us now."
+                />
+                <link rel="canonical" href="https://traincapetech.in/pecb/governance/iso-37000" />
+              </Helmet>
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-indigo-100">
       <motion.section 
         initial="hidden"
@@ -52,7 +65,7 @@ const ISO37000CorporateGovernance = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 37000 Corporate Governance
+                ISO 37000 Corporate Governance Training & Certification
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -210,6 +223,7 @@ const ISO37000CorporateGovernance = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

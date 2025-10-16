@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaExclamationTriangle, FaChartLine, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdAssessment } from "react-icons/md";
+import { Helmet } from "react-helmet";
+
 
 const ISO31000RiskManagement = () => {
   const navigate = useNavigate();
@@ -130,6 +132,20 @@ const ISO31000RiskManagement = () => {
   ];
 
   return (
+
+<>
+        <Helmet>
+            <title>PECB ISO 31000:2018 Risk Management Training | Traincape Technology</title>
+            <meta
+              name="description"
+              content="Master PECB's ISO 31000 Certification with Traincape Technology's 5-Day Training. Master risk management and boost your career with our Training Programme. Join us and get started with us."
+            />
+            <link rel="canonical" href="https://traincapetech.in/pecb/governance/iso-31000" />
+          </Helmet>
+
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
       {/* Hero Section */}
       <motion.section 
@@ -156,7 +172,7 @@ const ISO31000RiskManagement = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 31000:2018 Risk Management
+               ISO 31000:2018 Risk Management Training
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -485,6 +501,7 @@ const ISO31000RiskManagement = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const ISO37301ComplianceManagementSystem = () => {
   const navigate = useNavigate();
@@ -27,6 +28,20 @@ const ISO37301ComplianceManagementSystem = () => {
   };
 
   return (
+
+
+      <>
+            <Helmet>
+                <title>ISO 37301 Compliance Management System Certification </title>
+                <meta
+                  name="description"
+                  content="PECB ISO 37301 Compliance Management System Certification – Learn to implement, manage, and audit compliance frameworks effectively with our ISO 37301 Certification"
+                />
+                <link rel="canonical" href="https://traincapetech.in/pecb/governance/iso-37301" />
+              </Helmet>
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100">
       <motion.section 
         initial="hidden"
@@ -52,7 +67,7 @@ const ISO37301ComplianceManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 37301 Compliance Management System
+               ISO 37301 Compliance Management System Training Course
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -210,6 +225,7 @@ const ISO37301ComplianceManagementSystem = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
