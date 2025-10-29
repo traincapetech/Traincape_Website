@@ -25,6 +25,8 @@ import webImg from "../assets/web.png";
 
 import { Link } from "react-router-dom";
 
+import ScrollStack, { ScrollStackItem } from "../components/ScrollStack";
+
 import {
   FaReact,
   FaNodeJs,
@@ -96,11 +98,10 @@ const servicesData = [
   },
   {
     title: "Software Services and Development",
-    slug: "software-services", // <-- this must match your ServiceDetail route
     description:
       "Software services include custom software development, web development, mobile app development, cloud computing, quality assurance, software maintenance, and consulting.",
     image: Software,
-    banner: Saas,
+    banner: SoftwareImg,
   },
 ];
 
@@ -486,7 +487,7 @@ const Services = () => {
         </section>
 
         {/* CARDS */}
-        <div
+        {/* <div
           ref={containerRef}
           className={`bg-gray-50 ${isMobile ? "min-h-0" : "min-h-[800vh]"}`}
         >
@@ -496,7 +497,7 @@ const Services = () => {
             }`}
           >
             {/* LEFT */}
-            <div className="lg:w-1/2 flex flex-col justify-center">
+        {/* <div className="lg:w-1/2 flex flex-col justify-center">
               <h2 className="text-4xl md:text-5xl font-bold text-[#152B54] mb-6">
                 End-to-End Digital Services to Design, Build, & Support Business
               </h2>
@@ -509,10 +510,10 @@ const Services = () => {
                 begins on web and can extend to mobile apps for seamless
                 performance & lasting impact.
               </p>
-            </div>
+            </div> */}
 
-            {/* RIGHT */}
-            <div
+        {/* RIGHT */}
+        {/* <div
               className={`lg:w-1/2 ${
                 isMobile
                   ? "relative h-auto flex flex-col gap-6 px-4 py-6 items-center bg-[#040f25] mt-20 mb-20 rounded-3xl"
@@ -529,15 +530,15 @@ const Services = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.6, delay: index * 0.1 }}
                       className="relative w-full max-w-[90%] bg-white/80 backdrop-blur-xl border border-white/60 text-gray-800 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                    >
-                      {/* light gradient border glow */}
-                      <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#b7d3ff]/20 via-white/10 to-[#152B54]/10 pointer-events-none"></div>
+                    > */}
+        {/* light gradient border glow */}
+        {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#b7d3ff]/20 via-white/10 to-[#152B54]/10 pointer-events-none"></div>
 
                       {/* floating glow accent */}
-                      <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#00AEEF]/20 rounded-full blur-2xl"></div>
+        {/* <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#00AEEF]/20 rounded-full blur-2xl"></div>
 
                       {/* header */}
-                      <div className="flex items-center gap-4 mb-4 relative z-10">
+        {/* <div className="flex items-center gap-4 mb-4 relative z-10">
                         <div className="w-12 h-12 min-w-[48px] min-h-[48px] bg-[#152B54] rounded-2xl flex items-center justify-center shadow-md shadow-[#152B54]/30">
                           <img
                             src={service.image}
@@ -548,14 +549,14 @@ const Services = () => {
                         <h3 className="text-lg font-bold text-[#152B54] tracking-tight leading-tight">
                           {service.title}
                         </h3>
-                      </div>
+                      </div> */}
 
-                      {/* description */}
-                      <p className="text-gray-600 mb-6 leading-relaxed text-[15px] relative z-10">
+        {/* description */}
+        {/* <p className="text-gray-600 mb-6 leading-relaxed text-[15px] relative z-10">
                         {service.description.slice(0, 200)}...
-                      </p>
+                      </p>  */}
 
-                      {/* button */}
+        {/* button
                       <div className="flex justify-start relative z-10">
                         <button
                           onClick={() => handleClick(service)}
@@ -586,13 +587,13 @@ const Services = () => {
         pointer-events-auto`}
                       >
                         {/* Decorative top accent line */}
-                        <div className="absolute top-0 left-0 w-full h-[4px] rounded-t-3xl bg-gradient-to-r from-[#26D0CE] via-[#1A2980] to-[#152B54]"></div>
+        {/* <div className="absolute top-0 left-0 w-full h-[4px] rounded-t-3xl bg-gradient-to-r from-[#26D0CE] via-[#1A2980] to-[#152B54]"></div>
 
                         {/* Floating accent glow */}
-                        <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#00AEEF]/25 rounded-full blur-3xl"></div>
+        {/* <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#00AEEF]/25 rounded-full blur-3xl"></div>  */}
 
-                        {/* Header */}
-                        <div className="flex items-center gap-5 mb-6 relative z-10">
+        {/* Header */}
+        {/* <div className="flex items-center gap-5 mb-6 relative z-10">
                           <div className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl flex items-center justify-center shadow-md bg-white/20 border border-white/30">
                             <img
                               src={service.image}
@@ -602,16 +603,16 @@ const Services = () => {
                           </div>
                           <h3 className="text-2xl font-bold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
                             {service.title}
-                          </h3>
-                        </div>
+                          </h3> */}
+        {/* </div>
 
                         {/* Description */}
-                        <p className="mb-10 leading-relaxed relative z-10 text-gray-200 transition-all duration-300">
+        {/* <p className="mb-10 leading-relaxed relative z-10 text-gray-200 transition-all duration-300">
                           {service.description.slice(0, 240)}...
-                        </p>
+                        </p> */}
 
-                        {/* Learn More button */}
-                        <button
+        {/* Learn More button */}
+        {/* <button
                           onClick={() => handleClick(service)}
                           className="relative z-20 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md overflow-hidden group text-[#152B54] bg-white hover:bg-gray-100"
                         >
@@ -623,7 +624,119 @@ const Services = () => {
               ;
             </div>
           </div>
-        </div>
+        </div>  */}
+
+        <section className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center ">
+            Our Services
+          </h2>
+
+          {/* Desktop scroll effect */}
+          <div className="hidden md:block">
+            <ScrollStack
+              itemDistance={100}
+              itemScale={0.04}
+              itemStackDistance={35}
+              baseScale={0.9}
+              rotationAmount={0}
+              blurAmount={0.5}
+              scaleEndPosition="25%"
+              stackPosition="20%"
+              useWindowScroll
+            >
+              {servicesData.map((service, index) => (
+                <ScrollStackItem key={index}>
+                  <div
+                    className="
+              bg-[#0b1b3a] 
+              text-white 
+              rounded-3xl 
+              p-8 md:p-12 
+              flex flex-col md:flex-row 
+              gap-6 md:gap-10 
+              items-center 
+              justify-between 
+              shadow-2xl 
+              border border-[#173b69]
+              w-[85%] lg:w-[75%] 
+              mx-auto
+            "
+                  >
+                    <img
+                      src={service.banner}
+                      alt={service.title}
+                      className="w-full md:w-1/2 h-56 md:h-64 object-contain rounded-2xl"
+                    />
+                    <div className="md:w-1/2 space-y-4">
+                      <h3 className="text-2xl md:text-3xl font-bold text-[#00AEEF]">
+                        {service.title}
+                      </h3>
+                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                        {service.description}
+                      </p>
+                      <button
+                        onClick={() =>
+                          navigate(
+                            `/service-detail/${service.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}`
+                          )
+                        }
+                        className="mt-4 px-6 py-3 bg-[#FFA500] text-white font-semibold rounded-xl hover:bg-[#ffb733] transition-all"
+                      >
+                        Learn More →
+                      </button>
+                    </div>
+                  </div>
+                </ScrollStackItem>
+              ))}
+            </ScrollStack>
+          </div>
+
+          {/* Mobile static version */}
+          <div className="flex flex-col gap-8 md:hidden">
+            {servicesData.map((service, index) => (
+              <div
+                key={index}
+                className="
+          bg-[#0b1b3a] 
+          text-white 
+          rounded-3xl 
+          p-6 sm:p-8 
+          flex flex-col 
+          gap-6 
+          items-center 
+          shadow-2xl 
+          border border-[#173b69]
+        "
+              >
+                <img
+                  src={service.banner}
+                  alt={service.title}
+                  className="w-full h-48 sm:h-56 object-contain rounded-2xl"
+                />
+                <h3 className="text-2xl font-bold text-[#00AEEF]">
+                  {service.title}
+                </h3>
+                <p className="text-gray-300 leading-relaxed text-sm sm:text-base text-center">
+                  {service.description}
+                </p>
+                <button
+                  onClick={() =>
+                    navigate(
+                      `/service-detail/${service.title
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`
+                    )
+                  }
+                  className="mt-2 px-6 py-3 bg-[#FFA500] text-white font-semibold rounded-xl hover:bg-[#ffb733] transition-all"
+                >
+                  Learn More →
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* ========================================
                 CORE SERVICES / SOLUTIONS
