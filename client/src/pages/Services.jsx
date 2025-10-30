@@ -111,6 +111,9 @@ const Services = () => {
   const containerRef = useRef(null);
   const firstCardRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const servicesSectionRef = useRef(null);
+
+
 
   // ---------- ADD: mobile detection (responsive) ----------
   const [isMobile, setIsMobile] = useState(false);
@@ -232,9 +235,9 @@ const Services = () => {
   };
 
   const handleExploreClick = () => {
-    firstCardRef.current?.scrollIntoView({
+      servicesSectionRef.current?.scrollIntoView({
       behavior: "smooth",
-      block: "center",
+      block: "start",
     });
   };
 
@@ -487,147 +490,12 @@ const Services = () => {
         </section>
 
         {/* CARDS */}
-        {/* <div
-          ref={containerRef}
-          className={`bg-gray-50 ${isMobile ? "min-h-0" : "min-h-[800vh]"}`}
+        {/* ScrollStack Component */}
+        <section 
+        ref={servicesSectionRef}
+        className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16"
         >
-          <div
-            className={`flex flex-col lg:flex-row justify-between px-6 md:px-20 ${
-              isMobile ? "relative h-auto" : "sticky top-0 h-screen"
-            }`}
-          >
-            {/* LEFT */}
-        {/* <div className="lg:w-1/2 flex flex-col justify-center">
-              <h2 className="text-4xl md:text-5xl font-bold text-[#152B54] mb-6">
-                End-to-End Digital Services to Design, Build, & Support Business
-              </h2>
-              <p className="text-gray-600 text-lg max-w-xl leading-relaxed">
-                We offer custom and full-cycle web design services that include
-                intuitive interface design, feature-rich development, and
-                ongoing support. Whether you want to start a new venture or
-                scale your existing one globally, our web designing company in
-                India creates a complete digital ecosystem for your business. It
-                begins on web and can extend to mobile apps for seamless
-                performance & lasting impact.
-              </p>
-            </div> */}
-
-        {/* RIGHT */}
-        {/* <div
-              className={`lg:w-1/2 ${
-                isMobile
-                  ? "relative h-auto flex flex-col gap-6 px-4 py-6 items-center bg-[#040f25] mt-20 mb-20 rounded-3xl"
-                  : "relative h-[400vh]"
-              }`}
-            >
-              {isMobile
-                ? // ✅ Normal stacked layout for mobile
-                  servicesData.map((service, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 40 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: index * 0.1 }}
-                      className="relative w-full max-w-[90%] bg-white/80 backdrop-blur-xl border border-white/60 text-gray-800 rounded-3xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden"
-                    > */}
-        {/* light gradient border glow */}
-        {/* <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#b7d3ff]/20 via-white/10 to-[#152B54]/10 pointer-events-none"></div>
-
-                      {/* floating glow accent */}
-        {/* <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#00AEEF]/20 rounded-full blur-2xl"></div>
-
-                      {/* header */}
-        {/* <div className="flex items-center gap-4 mb-4 relative z-10">
-                        <div className="w-12 h-12 min-w-[48px] min-h-[48px] bg-[#152B54] rounded-2xl flex items-center justify-center shadow-md shadow-[#152B54]/30">
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="w-7 h-7 object-contain"
-                          />
-                        </div>
-                        <h3 className="text-lg font-bold text-[#152B54] tracking-tight leading-tight">
-                          {service.title}
-                        </h3>
-                      </div> */}
-
-        {/* description */}
-        {/* <p className="text-gray-600 mb-6 leading-relaxed text-[15px] relative z-10">
-                        {service.description.slice(0, 200)}...
-                      </p>  */}
-
-        {/* button
-                      <div className="flex justify-start relative z-10">
-                        <button
-                          onClick={() => handleClick(service)}
-                          className="group relative px-5 py-2.5 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300 shadow-md hover:shadow-lg"
-                        >
-                          <span className="relative z-10">Learn More →</span>
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#1A2980] via-[#152B54] to-[#26D0CE] group-hover:from-[#26D0CE] group-hover:to-[#1A2980] transition-all duration-500"></div>
-                        </button>
-                      </div>
-                    </motion.div>
-                  ))
-                : // 💻 Original animated cards for desktop
-                  servicesData.map((service, index) => {
-                    const transforms = cardTransforms[index];
-                    return (
-                      <motion.div
-                        key={index}
-                        ref={index === 0 ? firstCardRef : null}
-                        style={{
-                          y: transforms.y,
-                          opacity: transforms.opacity,
-                          scale: transforms.scale,
-                          zIndex: servicesData.length - index, // ensures top card is clickable
-                        }}
-                        transition={{ duration: 0.6, ease: "easeInOut" }}
-                        className={`absolute w-[85%] min-h-[420px] rounded-3xl p-10 md:p-12 shadow-2xl transition-all duration-500 backdrop-blur-xl overflow-hidden
-        bg-gradient-to-br from-[#0b1b3a] via-[#08122c] to-[#152B54] text-white scale-100 shadow-[0_10px_40px_rgba(21,43,84,0.6)]
-        pointer-events-auto`}
-                      >
-                        {/* Decorative top accent line */}
-        {/* <div className="absolute top-0 left-0 w-full h-[4px] rounded-t-3xl bg-gradient-to-r from-[#26D0CE] via-[#1A2980] to-[#152B54]"></div>
-
-                        {/* Floating accent glow */}
-        {/* <div className="absolute -bottom-12 -right-12 w-44 h-44 bg-[#00AEEF]/25 rounded-full blur-3xl"></div>  */}
-
-        {/* Header */}
-        {/* <div className="flex items-center gap-5 mb-6 relative z-10">
-                          <div className="w-14 h-14 min-w-[56px] min-h-[56px] rounded-2xl flex items-center justify-center shadow-md bg-white/20 border border-white/30">
-                            <img
-                              src={service.image}
-                              alt={service.title}
-                              className="w-9 h-9 object-contain"
-                            />
-                          </div>
-                          <h3 className="text-2xl font-bold tracking-tight text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.4)]">
-                            {service.title}
-                          </h3> */}
-        {/* </div>
-
-                        {/* Description */}
-        {/* <p className="mb-10 leading-relaxed relative z-10 text-gray-200 transition-all duration-300">
-                          {service.description.slice(0, 240)}...
-                        </p> */}
-
-        {/* Learn More button */}
-        {/* <button
-                          onClick={() => handleClick(service)}
-                          className="relative z-20 px-6 py-3 rounded-xl font-semibold transition-all duration-300 shadow-md overflow-hidden group text-[#152B54] bg-white hover:bg-gray-100"
-                        >
-                          <span className="relative z-10">Learn More →</span>
-                        </button>
-                      </motion.div>
-                    );
-                  })}
-              ;
-            </div>
-          </div>
-        </div>  */}
-
-        <section className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center ">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center pb-8">
             Our Services
           </h2>
 
@@ -645,7 +513,8 @@ const Services = () => {
               useWindowScroll
             >
               {servicesData.map((service, index) => (
-                <ScrollStackItem key={index}>
+                <ScrollStackItem key={index}  
+                        ref={index === 0 ? firstCardRef : null}>
                   <div
                     className="
               bg-[#0b1b3a] 
@@ -698,6 +567,7 @@ const Services = () => {
             {servicesData.map((service, index) => (
               <div
                 key={index}
+                ref={index === 0 ? firstCardRef : null}
                 className="
           bg-[#0b1b3a] 
           text-white 
@@ -715,7 +585,7 @@ const Services = () => {
                   alt={service.title}
                   className="w-full h-48 sm:h-56 object-contain rounded-2xl"
                 />
-                <h3 className="text-2xl font-bold text-[#00AEEF]">
+                <h3 className="text-2xl font-bold text-[#00AEEF] text-center">
                   {service.title}
                 </h3>
                 <p className="text-gray-300 leading-relaxed text-sm sm:text-base text-center">

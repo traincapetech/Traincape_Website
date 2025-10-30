@@ -168,7 +168,7 @@ const ContactUs = () => {
                     value={payoload.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 text-pink placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                   >
                     <option value="" disabled>Select Service</option>
                     <option value="Cloud Computing">Cloud Computing</option>
