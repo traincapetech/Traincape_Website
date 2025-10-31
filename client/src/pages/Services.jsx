@@ -113,8 +113,6 @@ const Services = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const servicesSectionRef = useRef(null);
 
-
-
   // ---------- ADD: mobile detection (responsive) ----------
   const [isMobile, setIsMobile] = useState(false);
 
@@ -235,7 +233,7 @@ const Services = () => {
   };
 
   const handleExploreClick = () => {
-      servicesSectionRef.current?.scrollIntoView({
+    servicesSectionRef.current?.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -491,9 +489,9 @@ const Services = () => {
 
         {/* CARDS */}
         {/* ScrollStack Component */}
-        <section 
-        ref={servicesSectionRef}
-        className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16"
+        <section
+          ref={servicesSectionRef}
+          className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center pb-8">
             Our Services
@@ -513,8 +511,10 @@ const Services = () => {
               useWindowScroll
             >
               {servicesData.map((service, index) => (
-                <ScrollStackItem key={index}  
-                        ref={index === 0 ? firstCardRef : null}>
+                <ScrollStackItem
+                  key={index}
+                  ref={index === 0 ? firstCardRef : null}
+                >
                   <div
                     className="
               bg-[#0b1b3a] 

@@ -52,6 +52,7 @@ const OperationalRiskManagementinFinancialInstitutions = () => {
         />
       </Helmet>
 
+
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50 to-emerald-100">
         <motion.section
           initial="hidden"

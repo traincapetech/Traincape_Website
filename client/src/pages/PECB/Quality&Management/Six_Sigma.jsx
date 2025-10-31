@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaAward, FaCogs } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const SixSigma = () => {
   const navigate = useNavigate();
@@ -120,6 +121,25 @@ const SixSigma = () => {
   ];
 
   return (
+
+    <>
+
+      <Helmet>
+        <title>
+        Six Sigma Professional Training & Certification 
+        </title>
+        <meta
+          name="description"
+          content="Join our Six Sigma training and certification programs. Learn DMAIC, process improvement, and quality management to become a certified Six Sigma professional with Traincape Technology."
+        />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/six-sigma"
+        />
+      </Helmet>
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
       {/* Hero Section */}
       <motion.section 
@@ -442,6 +462,7 @@ const SixSigma = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

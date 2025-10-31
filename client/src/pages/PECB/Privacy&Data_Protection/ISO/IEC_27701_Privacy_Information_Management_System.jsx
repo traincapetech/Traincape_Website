@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const IEC27701PrivacyInformationManagementSystem = () => {
   const navigate = useNavigate();
@@ -27,6 +28,26 @@ const IEC27701PrivacyInformationManagementSystem = () => {
   };
 
   return (
+
+    <>
+
+     <Helmet>
+        <title>
+        ISO/IEC 27701 Certification – Privacy Information Management
+        </title>
+        <meta
+          name="description"
+          content="Achieve ISO/IEC 27701 certification with expert training and certification from Traincape Technology. Learn how to implement and audit ISO/IEC 27701. Our certified training courses help you develop the skills to manage and protect personal data effectively."
+        />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/privacy/iso-27701"
+        />
+      </Helmet>
+
+
+
+    
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-pink-50 to-pink-100">
       <motion.section 
         initial="hidden"
@@ -210,6 +231,7 @@ const IEC27701PrivacyInformationManagementSystem = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaHeartbeat, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const ISO13485MedicalDevicesQualityManagementSystem = () => {
   const navigate = useNavigate();
@@ -119,6 +120,24 @@ const ISO13485MedicalDevicesQualityManagementSystem = () => {
   ];
 
   return (
+
+
+<>
+          <Helmet>
+              <title>
+             ISO 13485 Medical Devices QMS Certification | PECB Training
+              </title>
+              <meta
+                name="description"
+                content="Join our PECB ISO 13485 training to master Medical Devices QMS, improve compliance, and enhance quality management. Enroll now for expert-led training from Traincape Technology."
+              />
+              <link
+                rel="canonical"
+                href="https://traincapetech.in/pecb/quality/iso-13485"
+              />
+            </Helmet>
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-pink-50">
       {/* Hero Section */}
       <motion.section 
@@ -441,6 +460,7 @@ const ISO13485MedicalDevicesQualityManagementSystem = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 
