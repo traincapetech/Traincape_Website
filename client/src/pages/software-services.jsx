@@ -276,44 +276,7 @@ const SoftwareDevelopment = () => {
         </motion.div>
       </section>
 
-      {/* ========================================
-        METRICS / ACHIEVEMENTS (Enhanced)
-        ========================================
-      */}
-      <section className="bg-[#020b18] py-20 px-6 md:px-16 text-center">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#FFA500] mb-3">
-            Our Track Record
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-white">
-            Results That Speak Volumes
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-            {metrics.map((item, idx) => (
-              <motion.div
-                key={idx}
-                className="flex flex-col items-center bg-[#111827] p-8 rounded-2xl shadow-xl border-b-4 border-b-transparent transition-all duration-300 transform group"
-                whileHover={{ y: -8, scale: 1.05, borderColor: PRIMARY_COLOR }} // FIX dynamic style
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ delay: idx * 0.1 }}
-              >
-                <div className="w-16 h-16 flex items-center justify-center mb-4 text-[#00AEEF] transition-all duration-300 group-hover:scale-110">
-                  {item.icon}
-                </div>
-                <p className="mt-4 text-4xl md:text-5xl font-extrabold text-[#FFA500]">
-                  {item.value}
-                </p>
-                <p className="mt-1 text-sm text-gray-400 font-medium uppercase tracking-wide">
-                  {item.unit}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    
       {/* ========================================
         CORE SERVICES / SOLUTIONS
         ========================================
@@ -397,61 +360,6 @@ const SoftwareDevelopment = () => {
         </div>
       </section>
 
-  {/* ========================================
-  TECHNOLOGIES CAROUSEL (Two Rows, Different Icons)
-======================================== */}
-<section className="bg-[#0A0A0A] text-white py-20 px-6 md:px-16 overflow-hidden relative">
-  <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
-    Technologies We Excel In
-  </h2>
-
-  {/* Top Row: Right to Left */}
-  <motion.div
-    className="flex gap-8 w-max mb-8"
-    style={{ width: "max-content" }}
-    animate={{ x: ["0%", "-50%"] }}
-    transition={{ repeat: Infinity, duration: 15, ease: "linear" }}
-  >
-    {[...techs, ...techs].map((tech, idx) => (
-      <div
-        key={idx}
-        className="bg-[#111827] py-6 px-8 rounded-xl border border-[#1E293B] flex flex-col items-center min-w-[100px]"
-      >
-        {tech.icon}
-        <p className="text-xs mt-2">{tech.name}</p>
-      </div>
-    ))}
-  </motion.div>
-
-  {/* Bottom Row: Left to Right */}
-  <motion.div
-    className="flex gap-8 w-max"
-    style={{ width: "max-content" }}
-    animate={{ x: ["-50%", "0%"] }}
-    transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
-  >
-    {[
-      { icon: <FaCode size={40} color="#00AEEF" />, name: "DevOps" },
-      { icon: <FaShieldAlt size={40} color="#FFA500" />, name: "Security" },
-      { icon: <MdSpeed size={40} color="#00AEEF" />, name: "Performance" },
-      { icon: <FaBrain size={40} color="#FF6F61" />, name: "AI/ML" },
-      { icon: <FaTabletAlt size={40} color="#007FFF" />, name: "Mobile" },
-      { icon: <FaAws size={40} color="#FF9900" />, name: "AWS Cloud" },
-      { icon: <SiKubernetes size={40} color="#326ce5" />, name: "Kubernetes" },
-      { icon: <SiPostgresql size={40} color="#336791" />, name: "PostgreSQL" },
-      { icon: <SiGraphql size={40} color="#E10098" />, name: "GraphQL" },
-      { icon: <SiMongodb size={40} color="#4DB33D" />, name: "MongoDB" },
-    ].map((tech, idx) => (
-      <div
-        key={idx}
-        className="bg-[#111827] py-6 px-8 rounded-xl border border-[#1E293B] flex flex-col items-center min-w-[100px]"
-      >
-        {tech.icon}
-        <p className="text-xs mt-2">{tech.name}</p>
-      </div>
-    ))}
-  </motion.div>
-</section>
 
 
       {/* ========================================

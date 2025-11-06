@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaTruck, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp, MdSecurity } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO28000SupplyChainSecurityManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -25,7 +25,27 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
-
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 28000 Supply Chain Security Management System Certification",
+    "description":
+      "Secure your global supply chain operations with PECB ISO 28000 Certification. Master supply chain risk assessment, security controls, and business continuity planning. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
   const keyDomains = [
     {
       icon: <FaTruck />,
@@ -120,6 +140,58 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50">
+      {/* ✅ SEO Meta Tags */}
+      <Helmet>
+        <title>PECB ISO 28000 Certification – Supply Chain Security Management | Traincape Technology</title>
+        <meta
+          name="description"
+          content="Learn how PECB's ISO 28000 Certification helps organizations secure their supply chain with risk-based management and certification for global operations. Understand risks, implement controls, and enhance operational resilience. Get Certified with Traincape Technology."
+        />
+        <meta
+          name="keywords"
+          content="ISO 28000 training, supply chain security certification, PECB ISO 28000, Traincape Technology, supply chain risk assessment, security controls, business continuity planning"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-28000-supply-chain-security-management-system"
+        />
+        {/* Open Graph Tags */}
+        <meta
+          property="og:title"
+          content="ISO 28000 Supply Chain Security Management System Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Secure your global supply chain operations with PECB ISO 28000 Certification. Master supply chain risk assessment, security controls, and business continuity planning. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-28000-supply-chain-security-management-system"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO 28000 Supply Chain Security Management System Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Secure your global supply chain operations with PECB ISO 28000 Certification. Master supply chain risk assessment, security controls, and business continuity planning. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -145,7 +217,7 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 28000 Supply Chain Security Management System
+              ISO 28000 Supply Chain Security Management System Training
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

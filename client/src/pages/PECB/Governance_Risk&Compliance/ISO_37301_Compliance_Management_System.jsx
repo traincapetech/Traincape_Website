@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO37301ComplianceManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -25,9 +25,90 @@ const ISO37301ComplianceManagementSystem = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
-
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 37301 Compliance Management System Training & Certification",
+    "description":
+      "Master organizational compliance with PECB ISO 37301 Training & certification from Traincape Technology. Ensure regulatory compliance and ethical business conduct. Get in touch with us now.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-blue-100">
+      <Helmet>
+        {/* Title */}
+        <title>
+        ISO 37301 Compliance Management System Certification | Traincape Technology
+        </title>
+
+        {/* Meta Description */}
+        <meta
+          name="description"
+          content="PECB ISO 37301 Compliance Management System Certification – Learn to implement, manage, and audit compliance frameworks effectively with our ISO 37301 Certification"
+        />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/governance/iso-37301-training"
+        />
+
+        {/* Keywords (Optional but useful for niche SEO) */}
+        <meta
+          name="keywords"
+          content="ISO 37301, Compliance Management System, PECB Certification, ISO Training, Compliance, Governance Training, Traincape Tech"
+        />
+
+        {/* Open Graph (for social media previews) */}
+        <meta
+          property="og:title"
+          content="PECB ISO 37301 Training and Certification"
+        />
+        <meta
+          property="og:description"
+          content="Master organizational compliance with PECB ISO 37301 Training & certification from Traincape Technology. Ensure regulatory compliance and ethical business conduct. Get in touch with us now."
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/governance/iso-37301-training"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Traincape Technology" />
+        <meta
+          property="og:image"
+          content="https://traincapetech.in/assets/iso37301-banner.webp"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PECB ISO 37301 Training and Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Master organizational compliance with PECB ISO 37301 Training & certification from Traincape Technology. Ensure regulatory compliance and ethical business conduct. Get in touch with us now."
+        />
+        <meta
+          name="twitter:image"
+          content="https://traincapetech.in/assets/iso37301-banner.webp"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

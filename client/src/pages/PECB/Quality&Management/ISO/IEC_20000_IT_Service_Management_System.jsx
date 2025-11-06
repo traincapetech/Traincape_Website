@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaServer, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const IEC20000ITServiceManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -25,9 +25,79 @@ const IEC20000ITServiceManagementSystem = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
-
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO/IEC 20000 IT Service Management System Certification",
+    "description":
+      "Master IT Service Management Excellence with PECB ISO/IEC 20000 Certification. Learn to implement and manage effective IT service delivery and support processes aligned with best practices. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-slate-50 to-zinc-50">
+      <Helmet>
+        <title>ISO/IEC 20000 IT Service Management System Training & Certification </title>
+        <meta
+          name="description"
+          content="Advance your IT career with ISO 20000 training from Traincape Technology. Become a certified ISO/IEC 20000 professional. Get globally recognized ISO IT Service Management System certification and practical skills for service excellence. Get in touch with us now!"
+        />
+        <meta
+          name="keywords"
+          content="ISO/IEC 20000 training, IT service management certification, PECB ISO/IEC 20000, Traincape Technology, IT service delivery, support processes"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-iec-20000-it-service-management-system"
+        />
+        {/* Open Graph Tags */}
+        <meta
+          property="og:title"
+          content="ISO/IEC 20000 IT Service Management System Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Master IT Service Management Excellence with PECB ISO/IEC 20000 Certification. Learn to implement and manage effective IT service delivery and support processes aligned with best practices. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-iec-20000-it-service-management-system"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO/IEC 20000 IT Service Management System Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Master IT Service Management Excellence with PECB ISO/IEC 20000 Certification. Learn to implement and manage effective IT service delivery and support processes aligned with best practices. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr" />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -53,7 +123,7 @@ const IEC20000ITServiceManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO/IEC 20000 IT Service Management System
+                ISO/IEC 20000 IT Service Management (ITSM) Training & Certification
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

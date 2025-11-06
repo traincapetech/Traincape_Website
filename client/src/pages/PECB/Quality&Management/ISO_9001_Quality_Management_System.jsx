@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaCogs, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 const ISO9001QualityManagementSystem = () => {
   const navigate = useNavigate();
@@ -119,6 +120,24 @@ const ISO9001QualityManagementSystem = () => {
   ];
 
   return (
+
+     <>
+        <Helmet>
+              <title>
+             ISO 9001:2015 Training & Certification | ISO 9001 Certified 
+              </title>
+              <meta
+                name="description"
+                content="Learn ISO 9001:2015 Quality Management System through expert training and certification. Understand ISO 9001 criteria and become ISO 9001 certified today."
+              />
+              <link
+                rel="canonical"
+                href="https://traincapetech.in/pecb/quality/iso-9001"
+              />
+            </Helmet>
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
       {/* Hero Section */}
       <motion.section 
@@ -145,7 +164,7 @@ const ISO9001QualityManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 9001:2015 Quality Management System
+               ISO 9001:2015 Training & Certification | ISO 9001 Certified
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -441,6 +460,7 @@ const ISO9001QualityManagementSystem = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

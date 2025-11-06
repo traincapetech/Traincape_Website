@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaGraduationCap, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp, MdSchool } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO21001EducationalOrganizationsManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -24,6 +24,27 @@ const ISO21001EducationalOrganizationsManagementSystem = () => {
     prerequisites: "Understanding of educational management concepts",
     examDuration: "3 hours",
     certificationBody: "PECB"
+  };
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 21001 Educational Organizations Management System Certification",
+    "description":
+      "Advance your career with PECB ISO 21001 Certification for Educational Organizations. Learn EOMS implementation, auditing, and compliance best practices. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
   };
 
   const keyDomains = [
@@ -120,6 +141,60 @@ const ISO21001EducationalOrganizationsManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+
+      {/* ✅ Helmet for SEO */}
+      <Helmet>
+        <title>ISO 21001 Educational Organizations Management System Certification | Traincape Technology</title>
+        <meta
+          name="description"
+          content="Advance your career with PECB ISO 21001 Certification for Educational Organizations. Learn EOMS implementation, auditing, and compliance best practices. Contact us now!"
+        />
+        <meta
+          name="keywords"
+          content="ISO 21001, Educational Management System, ISO 21001 Training, PECB ISO 21001 Certification, Educational Quality Management, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-21001-certification"
+        />
+        {/* OpenGraph / Facebook */}
+        <meta
+          property="og:title"
+          content="ISO 21001 Educational Organizations Management System Certification"
+        />
+        <meta
+          property="og:description"
+          content="Advance your career with PECB ISO 21001 Certification for Educational Organizations. Learn EOMS implementation, auditing, and compliance best practices. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-21001-certification"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO 21001 Educational Organizations Management System Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Advance your career with PECB ISO 21001 Certification for Educational Organizations. Learn EOMS implementation, auditing, and compliance best practices."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

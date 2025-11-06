@@ -34,13 +34,12 @@
     <link rel="preload" href="/styles.css" as="style" />
     <link rel="stylesheet" href="/styles.css" />
 
-    <!-- DNS Prefetch and Preconnect -->
+    <!-- DNS Prefetch and Preconnect (limited to 2 preconnect to stay under 4 total) -->
     <link rel="dns-prefetch" href="https://traincape-backend-1.onrender.com">
     <link rel="preconnect" href="https://traincape-backend-1.onrender.com" crossorigin>
-    <link rel="dns-prefetch" href="https://unpkg.com">
-    <link rel="preconnect" href="https://unpkg.com" crossorigin>
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <!-- Removed unpkg preconnect - use dns-prefetch only for less critical resources -->
+    <link rel="dns-prefetch" href="https://unpkg.com">
 
     <!-- Preload key scripts -->
     <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.js" as="script" />

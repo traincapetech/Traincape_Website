@@ -141,3 +141,14 @@ code {
   bottom: 20%; 
   right: 20%; 
 }
+
+
+
+.scroll-stack-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: translateZ(0);
+  transition: transform 0.05s linear; /* smooths micro jitter */
+}

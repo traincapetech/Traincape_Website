@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaCogs, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-
+import {Helmet} from "react-helmet";
 const ISO55001AssetManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -25,7 +25,27 @@ const ISO55001AssetManagementSystem = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
-
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 55001 Asset Management System Certification",
+    "description":
+      "Optimize your asset performance and value with PECB ISO 55001 Certification. Learn to manage assets systematically, reduce costs, and create long-term value. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
   const keyDomains = [
     {
       icon: <FaCogs />,
@@ -120,6 +140,56 @@ const ISO55001AssetManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-yellow-50 to-orange-50">
+      <Helmet>
+        <title>PECB ISO 55001 Certification – Asset Management System | IT Trainings</title>
+        <meta
+          name="description"
+          content="Achieve ISO 55001 certification to optimize asset management, improve performance, and promote sustainability. It offers a framework for effective asset management and helps organizations maintain assets efficiently. Contact us for IT Training & Certifications."
+        />
+        <meta
+          name="keywords"
+          content="ISO 55001 training, asset management certification, PECB ISO 55001, Traincape Technology, asset lifecycle management, performance optimization, risk management, value creation"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-55001-asset-management-system"
+        />
+        {/* Open Graph Tags */}
+        <meta
+          property="og:title"
+          content="ISO 55001 Asset Management System Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Optimize your asset performance and value with PECB ISO 55001 Certification. Learn to manage assets systematically, reduce costs, and create long-term value. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-55001-asset-management-system"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO 55001 Asset Management System Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Optimize your asset performance and value with PECB ISO 55001 Certification. Learn to manage assets systematically, reduce costs, and create long-term value. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr" />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -145,7 +215,7 @@ const ISO55001AssetManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO 55001 Asset Management System
+                ISO 55001 Asset Management System Certification
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

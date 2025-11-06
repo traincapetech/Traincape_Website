@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO37000CorporateGovernance = () => {
   const navigate = useNavigate();
 
@@ -25,9 +25,78 @@ const ISO37000CorporateGovernance = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 37000 Corporate Governance Training & Certification",
+    "description":
+      "Gain globally recognized expertise in corporate governance with PECB ISO 37000 Training & certification from Traincape Technology. Learn effective governance principles and practices. Get in touch with us now.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-indigo-100">
+      <Helmet>
+        <title>PECB ISO 37000 Corporate Governance Certification</title>
+        <meta
+          name="description"
+          content="Gain globally recognized expertise in corporate governance with PECB ISO 37000 Training & certification from Traincape Technology. Learn effective governance principles and practices. Get in touch with us now."
+        />
+        <meta
+          name="keywords"
+          content="ISO 37000, PECB Corporate Governance Certification, Corporate Governance Training, ISO 37000 Training, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/governance/iso-37000-certification"
+        />
+        <meta
+          property="og:title"
+          content="ISO 37000 Corporate Governance Training & Certification"
+        />
+        <meta
+          property="og:description"
+          content="Gain globally recognized expertise in corporate governance with PECB ISO 37000 Training & certification from Traincape Technology."
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/governance/iso-37000-certification"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PECB ISO 37000 Corporate Governance Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Learn effective governance principles and practices through Traincape Technology’s PECB ISO 37000 certification."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

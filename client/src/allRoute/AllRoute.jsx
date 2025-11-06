@@ -76,21 +76,12 @@ const CertificateTemplate = lazyWithRetry(() =>
 
 // Other pages
 const ServiceDetail = lazyWithRetry(() => import("../pages/ServiceDetail"));
-// const IBM = lazyWithRetry(() => import("../pages/IBM"));
-// const META = lazyWithRetry(() => import("../pages/META"));
 const PartnerPage = lazyWithRetry(() => import("../pages/PartnerPage"));
-// const PMI = lazyWithRetry(() => import("../pages/PMI"));
-// const ITSpeacialist = lazyWithRetry(() => import("../pages/ITSpecialist"));
-// const SwiftDevelopment = lazyWithRetry(() =>
-//   // import("../pages/SwiftDevelopment")
-// );
-// const Cart = lazyWithRetry(() => import("../pages/Cart/Cart"));
-// const SuccessCartPayment = lazyWithRetry(() =>
-//   // import("../pages/Cart/SuccessCartPayment")
-// );
-// const CancelCartPayment = lazyWithRetry(() =>
-//   // import("../pages/Cart/CancelCartPayment")
-// );
+
+// Service Pages
+const DigitalMarketing = lazyWithRetry(() => import("../pages/digital-marketing"));
+const WebDevelopment = lazyWithRetry(() => import("../pages/WebDevelopment"));
+const SoftwareServices = lazyWithRetry(() => import("../pages/software-services"));
 
 // CompTIA Certification Pages
 // Main CompTIA pages
@@ -223,6 +214,7 @@ const AllRoute = () => {
 
         <Route path="/review-page" element={<ReviewPage />} />
         <Route path="/" element={<Home />} />
+        <Route path="/partner-page" element={<PartnerPage />} />
         {/* <Route
           path="/ebook-page"
           element={
@@ -245,12 +237,13 @@ const AllRoute = () => {
 
 
 
-       <Route path="service-detail/:slug" element={<ServiceDetail />} />
+       <Route path="/service-detail/:slug" element={<ServiceDetail />} />
 
-
-  {/* <Route path="/service-detail/cloud-services" element={<CloudService />} /> */}
-  {/* <Route path="/service-detail/data-analytics" element={<DataAnalytics />} />
-  <Route path="/service-detail/web-development" element={<WebDevelopment />} /> */}
+        {/* Service Routes */}
+        <Route path="/services/cloud-services" element={<CloudService />} />
+        <Route path="/services/digital-marketing" element={<DigitalMarketing />} />
+        <Route path="/services/web-development" element={<WebDevelopment />} />
+        <Route path="/services/software-services" element={<SoftwareServices />} />
 
 
 

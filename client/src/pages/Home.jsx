@@ -26,7 +26,15 @@ import card6 from "../assets/card6.jpeg"
 
 // Logos
 import comptia from "../assets/comptia-2.webp"
+import comptiaA from "../assets/CompTIA_A+.png"
+import comptiaCySA from "../assets/CompTIA_CySA+.png"
+import comptiaNetwork from "../assets/CompTIA_Network+.png"
+import comptiaSecurity from "../assets/CompTIA_Security+.png"
 import pecb from "../assets/PECB1.png"
+import pecbAI from "../assets/PECB_AIP.jpeg"
+import pecbAIMR from "../assets/AI_Risk_Management.jpeg"
+import pecbNetwork from "../assets/PECB_IEC_27033_Network_Security.jpeg"
+import pecbComputerForensics from "../assets/PECB_Computer_Forensics.jpeg"
 import certiport from "../assets/certiportlogo.png"
 import pearson from "../assets/pearsonlogo.png"
 import etraind from "../assets/etrainlogo.png"
@@ -53,15 +61,41 @@ const trainingVideo = "https://videos.pexels.com/video-files/3209828/3209828-hd_
 
 
 const serviceCards = [
-  { title: "Cloud Services", description: "Cloud services provide computing resources...", image: card1 },
-  { title: "UI Design", description: "UI design involves designing and developing...", image: card2 },
-  { title: "Digital Marketing", description: "Digital marketing uses online strategies...", image: card3 },
-  { title: "Web Development", description: "Web development involves creating and maintaining...", image: card4 },
-  { title: "Software Services", description: "Software services include custom software development...", image: card5 },
+  { 
+    title: "Cloud Services", 
+    description: "Cloud services provide computing resources...", 
+    image: card1,
+    route: "/services/cloud-services"
+  },
+  { 
+    title: "UI Design", 
+    description: "UI design involves designing and developing...", 
+    image: card2,
+    route: "/our-services"
+  },
+  { 
+    title: "Digital Marketing", 
+    description: "Digital marketing uses online strategies...", 
+    image: card3,
+    route: "/services/digital-marketing"
+  },
+  { 
+    title: "Web Development", 
+    description: "Web development involves creating and maintaining...", 
+    image: card4,
+    route: "/services/web-development"
+  },
+  { 
+    title: "Software Services", 
+    description: "Software services include custom software development...", 
+    image: card5,
+    route: "/services/software-services"
+  },
   {
     title: "Software Development",
     description: "Software development is the process of designing, creating...",
     image: card6,
+    route: "/services/software-services"
   },
 ]
 
@@ -71,10 +105,38 @@ const Home = () => {
   const courseData = [
     {
       image: comptia,
-      title: "COMPTIA",
+      title: "COMPTIA" ,
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia",
+    },
+    {
+      image: comptiaA,
+      title: "COMPTIA A+" ,
+      description: "Industry-standard IT certifications across multiple levels and specializations",
+      price: "$300",
+      url: "/comptia/specialist/a-plus",
+    },
+    {
+      image: comptiaNetwork,
+      title: "CompTIA Network+" ,
+      description: "Industry-standard IT certifications across multiple levels and specializations",
+      price: "$300",
+      url: "/comptia/specialist/network-plus",
+    },
+    {
+      image: comptiaSecurity,
+      title: "COMPTIA Security+" ,
+      description: "Industry-standard IT certifications across multiple levels and specializations",
+      price: "$300",
+      url: "/comptia/specialist/security-plus",
+    },
+    {
+      image: comptiaCySA,
+      title: "CompTIA CySA+" ,
+      description: "Industry-standard IT certifications across multiple levels and specializations",
+      price: "$300",
+      url:"/comptia/professional/cysa-plus",
     },
     { 
       image: PECB, 
@@ -83,6 +145,36 @@ const Home = () => {
       price: "$400", 
       url: "/PECB" 
     },
+    { 
+      image: pecbAI, 
+      title: "Artificial Intelligence Professional", 
+      description: "Master AI technologies, machine learning, and AI implementation strategies for business applications", 
+      price: "$400", 
+      url: "/pecb/artificial-intelligence/ai-professional" 
+    },
+    { 
+      image: pecbAIMR, 
+      title: "AI Risk Management Professional", 
+      description: "Learn to identify, assess, and manage risks associated with artificial intelligence systems", 
+      price: "$400", 
+      url: "/pecb/artificial-intelligence/ai-risk-management" 
+    },
+    { 
+      image: pecbNetwork, 
+      title: "IEC_27033_Network_Security", 
+      description: "Master network security principles and best practices for protecting digital assets", 
+      price: "$400", 
+      url: "/pecb/cybersecurity/network-security" 
+    },
+    { 
+      image: pecbComputerForensics, 
+      title: "Computer_Forensics_Professional", 
+      description: "Learn digital forensics techniques for investigating cybercrimes and security incidents", 
+      price: "$400", 
+      url: "/pecb/cybersecurity/computer-forensics" 
+    },
+
+
   ]
 
   // State declarations
@@ -90,7 +182,10 @@ const Home = () => {
 
   // Hooks
   const navigate = useNavigate()
-  const { ref, inView } = useInView()
+  const { ref, inView } = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  })
 
   // Constants
   const bgColors = ["bg-[#E0E7FF]", "bg-[#E0F2FE]", "bg-[#FEF3C7]", "bg-[#FDE68A]", "bg-[#FCE7F3]", "bg-[#DCFCE7]"]
@@ -435,8 +530,7 @@ const Home = () => {
             {serviceCards.map((service, index) => (
               <div
                 key={index}
-                className="bg-[#E6F0FF] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border  cursor-pointer"
-                onClick={() => navigate("/service-detail", { state: { service } })}
+                className="bg-[#E6F0FF] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-2 border"
               >
                 <div className="h-48 overflow-hidden">
                   <img
@@ -451,7 +545,8 @@ const Home = () => {
                     {service.description}
                   </p>
                   <button
-                    className="text-[#152B54] font-semibold hover:text-blue-700 flex items-center transition-colors duration-300 group"
+                    onClick={() => navigate(service.route)}
+                    className="text-[#152B54] font-semibold hover:text-blue-700 flex items-center transition-colors duration-300 group cursor-pointer"
                     aria-label={`Learn more about ${service.title}`}
                   >
                     <span>Learn More</span>
@@ -613,7 +708,7 @@ const Home = () => {
               <FaArrowRight className="ml-2" />
             </button>
             <button
-              onClick={() => navigate("/PartnerPage")}
+              onClick={() => navigate("/partner-page")}
               className="partner-btn bg-gray-100 text-teal-700 border-2 border-gray-200 px-8 py-4 rounded-lg font-semibold hover:bg-teal-100 hover:text-teal-800 transition-colors duration-500"
             >
               View All Partners

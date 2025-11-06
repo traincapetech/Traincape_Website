@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaTasks, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO21502ProjectManagement = () => {
   const navigate = useNavigate();
 
@@ -24,6 +24,27 @@ const ISO21502ProjectManagement = () => {
     prerequisites: "Basic understanding of project management",
     examDuration: "2 hours",
     certificationBody: "PECB"
+  };
+  // ✅ Structured Data for SEO
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO 21502 Project Management Training | All IT Training & Certification",
+    "description":
+      "Learn how ISO 21502 provides internationally recognized guidelines for project management. Understand best practices, processes, and implementation strategies. Get certified globally from Traincape Technology.",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
   };
 
   const keyDomains = [
@@ -118,6 +139,60 @@ const ISO21502ProjectManagement = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-red-50">
+
+      {/* ✅ SEO Meta Tags */}
+      <Helmet>
+        <title>ISO 21502 Project Management Training | All IT Training & Certification</title>
+        <meta
+          name="description"
+          content="Learn how ISO 21502 provides internationally recognized guidelines for project management. Understand best practices, processes, and implementation strategies. Get certified globally from Traincape Technology."
+        />
+        <meta
+          name="keywords"
+          content="ISO 21502 training, project management certification, PECB ISO 21502, Traincape Technology, project governance, project risk management, ISO project best practices"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-21502-training"
+        />
+        {/* Open Graph Tags */}
+        <meta
+          property="og:title"
+          content="ISO 21502 Project Management Training | All IT Training & Certification"
+        />
+        <meta
+          property="og:description"
+          content="Learn how ISO 21502 provides internationally recognized guidelines for project management. Understand best practices, processes, and implementation strategies. Get certified globally from Traincape Technology."
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-21502-training"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO 21502 Project Management Training | All IT Training & Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Master project management best practices and gain a globally recognized ISO 21502 certification with Traincape Technology."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+      
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

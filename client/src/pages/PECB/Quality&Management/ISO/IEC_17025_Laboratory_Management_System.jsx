@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaFlask, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const IEC17025LaboratoryManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -25,7 +25,27 @@ const IEC17025LaboratoryManagementSystem = () => {
     examDuration: "3 hours",
     certificationBody: "PECB"
   };
-
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "ISO/IEC 17025 Laboratory Management System Certification",
+    "description":
+      "Ensure laboratory competence and accreditation with PECB ISO/IEC 17025 Certification. Master technical competence, measurement uncertainty, and quality assurance for accredited laboratory operations. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
   const keyDomains = [
     {
       icon: <FaFlask />,
@@ -120,6 +140,56 @@ const IEC17025LaboratoryManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50">
+      <Helmet>
+        <title>PECB ISO/IEC 17025 Certification | Laboratory Management System </title>
+        <meta
+          name="description"
+          content="Get PECB ISO/IEC 17025 certified accreditation with a straightforward Laboratory Management System designed for accuracy and ongoing enhancement. Streamline your lab operations with our ISO 17025 from Traincape Technology LIMS software - manage testing and quality with full compliance."
+        />
+        <meta
+          name="keywords"
+          content="ISO/IEC 17025 training, laboratory management certification, PECB ISO/IEC 17025, Traincape Technology, technical competence, measurement uncertainty, quality assurance"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/quality/iso-iec-17025-laboratory-management-system"
+        />
+        {/* Open Graph Tags */}
+        <meta
+          property="og:title"
+          content="ISO/IEC 17025 Laboratory Management System Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Ensure laboratory competence and accreditation with PECB ISO/IEC 17025 Certification. Master technical competence, measurement uncertainty, and quality assurance for accredited laboratory operations. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/quality/iso-iec-17025-laboratory-management-system"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="ISO/IEC 17025 Laboratory Management System Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Ensure laboratory competence and accreditation with PECB ISO/IEC 17025 Certification. Master technical competence, measurement uncertainty, and quality assurance for accredited laboratory operations. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr" />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -145,7 +215,7 @@ const IEC17025LaboratoryManagementSystem = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                ISO/IEC 17025 Laboratory Management System
+                ISO/IEC 17025 Laboratory Management System Training
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

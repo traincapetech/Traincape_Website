@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaClock,
+  FaBook,
+  FaCertificate,
+  FaUserTie,
+  FaChartLine,
+  FaShieldAlt,
+  FaAward,
+} from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ISO37001AntiBriberyManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -14,7 +23,7 @@ const ISO37001AntiBriberyManagementSystem = () => {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   const courseDetails = {
@@ -23,12 +32,126 @@ const ISO37001AntiBriberyManagementSystem = () => {
     level: "Lead Auditor/Implementer",
     prerequisites: "Basic understanding of relevant concepts",
     examDuration: "3 hours",
-    certificationBody: "PECB"
+    certificationBody: "PECB",
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-purple-100">
-      <motion.section 
+      <Helmet>
+        {/* Title */}
+        <title>
+          PECB ISO 37001 Training and Certification | IT Training &
+          Certifications
+        </title>
+
+        {/* Meta Description */}
+        <meta
+          name="description"
+          content="Get certified in ISO 37001 with our PECB ISO Training. Learn to prevent bribery and enhance compliance. Get guidance from expert Trainers in the industry. Enroll now!"
+        />
+
+        {/* Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/governance/iso-37001-training"
+        />
+
+        {/* Keywords (Optional but useful for niche SEO) */}
+        <meta
+          name="keywords"
+          content="ISO 37001, Anti-Bribery Management System, PECB Certification, ISO Training, Compliance, Governance Training, Traincape Tech"
+        />
+
+        {/* Open Graph (for social media previews) */}
+        <meta
+          property="og:title"
+          content="PECB ISO 37001 Training and Certification"
+        />
+        <meta
+          property="og:description"
+          content="Get certified in ISO 37001 with our PECB ISO Training. Learn to prevent bribery and enhance compliance. Enroll now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/governance/iso-37001-training"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Traincape Technology" />
+        <meta
+          property="og:image"
+          content="https://traincapetech.in/assets/iso37001-banner.webp"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PECB ISO 37001 Training and Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Get certified in ISO 37001 with our PECB ISO Training. Learn to prevent bribery and enhance compliance."
+        />
+        <meta
+          name="twitter:image"
+          content="https://traincapetech.in/assets/iso37001-banner.webp"
+        />
+        <script type="application/ld+json">
+          {`
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": "PECB ISO 37001 Anti-Bribery Management System Certification",
+  "description": "Get certified in ISO 37001 with our PECB ISO Training. Learn to prevent bribery and enhance compliance. Get guidance from expert trainers in the industry. Enroll now!",
+  "provider": {
+    "@type": "Organization",
+    "name": "Traincape Technology",
+    "url": "https://traincapetech.in",
+    "logo": "https://traincapetech.in/assets/logo.webp"
+  },
+  "courseCode": "ISO 37001:2016",
+  "hasCourseInstance": {
+    "@type": "CourseInstance",
+    "name": "PECB ISO 37001 Lead Auditor/Implementer Training",
+    "courseMode": "Offline/Online",
+    "instructor": {
+      "@type": "Person",
+      "name": "Expert PECB Certified Trainers"
+    },
+    "duration": "PT40H",
+    "startDate": "2025-11-01",
+    "endDate": "2025-12-01",
+    "location": {
+      "@type": "Place",
+      "name": "Traincape Technology",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "New Delhi, India",
+        "addressLocality": "New Delhi",
+        "addressRegion": "New Delhi",
+        "addressCountry": "IN"
+      }
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "400",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "https://traincapetech.in/pecb/governance/iso-37001-training"
+    }
+  },
+  "educationalCredentialAwarded": "PECB Certified ISO 37001 Lead Implementer/Lead Auditor",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Professionals seeking Anti-Bribery Management certification"
+  },
+  "learningResourceType": "Professional Certification Course",
+  "keywords": ["ISO 37001", "Anti-Bribery Management", "PECB Certification", "Compliance", "Governance Training", "Traincape Technology"]
+}
+`}
+        </script>
+      </Helmet>
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -38,15 +161,17 @@ const ISO37001AntiBriberyManagementSystem = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
                 className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
               >
-                <span className="text-sm font-semibold">PECB CERTIFICATION</span>
+                <span className="text-sm font-semibold">
+                  PECB CERTIFICATION
+                </span>
               </motion.div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -54,7 +179,7 @@ const ISO37001AntiBriberyManagementSystem = () => {
               >
                 ISO 37001 Anti-Bribery Management System
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -62,27 +187,29 @@ const ISO37001AntiBriberyManagementSystem = () => {
               >
                 Combat Corruption & Ensure Ethics
               </motion.p>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
                 className="text-lg mb-8 max-w-2xl"
               >
-                ISO 37001 helps organizations implement an anti-bribery management system to prevent, detect, and address bribery. Learn to establish a culture of integrity and compliance.
+                ISO 37001 helps organizations implement an anti-bribery
+                management system to prevent, detect, and address bribery. Learn
+                to establish a culture of integrity and compliance.
               </motion.p>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-wrap gap-4"
               >
-                <button 
+                <button
                   onClick={() => navigate("/contact-us")}
                   className="bg-white text-purple-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Enroll Now
                 </button>
-                <button 
+                <button
                   onClick={() => navigate("/PECB")}
                   className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-purple-700 transition"
                 >
@@ -90,7 +217,7 @@ const ISO37001AntiBriberyManagementSystem = () => {
                 </button>
               </motion.div>
             </div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
@@ -126,7 +253,6 @@ const ISO37001AntiBriberyManagementSystem = () => {
           </div>
         </div>
       </motion.section>
-
       <section className="py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -136,10 +262,14 @@ const ISO37001AntiBriberyManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Professional Certification</h2>
-            <p className="text-xl text-gray-600">Advance your career with globally recognized expertise</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Professional Certification
+            </h2>
+            <p className="text-xl text-gray-600">
+              Advance your career with globally recognized expertise
+            </p>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-3 gap-8">
             <motion.div
               initial="hidden"
@@ -149,10 +279,14 @@ const ISO37001AntiBriberyManagementSystem = () => {
               className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
             >
               <MdSecurity className="text-purple-600 text-4xl mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-3">Industry Recognition</h3>
-              <p className="text-gray-600">Globally recognized professional certification</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">
+                Industry Recognition
+              </h3>
+              <p className="text-gray-600">
+                Globally recognized professional certification
+              </p>
             </motion.div>
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -162,10 +296,14 @@ const ISO37001AntiBriberyManagementSystem = () => {
               className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
             >
               <FaChartLine className="text-purple-600 text-4xl mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-3">Career Growth</h3>
-              <p className="text-gray-600">Advance to senior management positions</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">
+                Career Growth
+              </h3>
+              <p className="text-gray-600">
+                Advance to senior management positions
+              </p>
             </motion.div>
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -175,13 +313,16 @@ const ISO37001AntiBriberyManagementSystem = () => {
               className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all"
             >
               <FaAward className="text-purple-600 text-4xl mb-4" />
-              <h3 className="text-xl font-bold text-gray-800 mb-3">Professional Expertise</h3>
-              <p className="text-gray-600">Master best practices and methodologies</p>
+              <h3 className="text-xl font-bold text-gray-800 mb-3">
+                Professional Expertise
+              </h3>
+              <p className="text-gray-600">
+                Master best practices and methodologies
+              </p>
             </motion.div>
           </div>
         </div>
       </section>
-
       <section className="py-16 px-6 bg-gradient-to-r from-purple-700 via-indigo-700 to-blue-700 text-white">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
@@ -190,16 +331,20 @@ const ISO37001AntiBriberyManagementSystem = () => {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-4xl font-bold mb-4">Start Your Professional Journey</h2>
-            <p className="text-xl mb-8">Enroll now and advance your career with PECB certification</p>
+            <h2 className="text-4xl font-bold mb-4">
+              Start Your Professional Journey
+            </h2>
+            <p className="text-xl mb-8">
+              Enroll now and advance your career with PECB certification
+            </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-purple-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Enroll Now
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-purple-700 transition text-lg"
               >

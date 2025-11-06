@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaCogs, FaAward, FaChartLine, FaUserTie, FaShieldAlt, FaGraduationCap, FaFlask } from "react-icons/fa";
 import { MdBusiness, MdSchool } from "react-icons/md";
+import { Helmet } from "react-helmet";
+
 
 const QualityManagement = () => {
   const navigate = useNavigate();
@@ -119,6 +121,27 @@ const QualityManagement = () => {
   ];
 
   return (
+
+
+<>
+       <Helmet>
+              <title>
+            Quality & Management Training | ISO 9001 Certification
+              </title>
+              <meta
+                name="description"
+                content="Enhance your skills with Quality & Management training and certification. Get ISO 9001 certification and QMS certificate to boost your career."
+              />
+              <link
+                rel="canonical"
+                href="https://traincapetech.in/pecb/quality"
+              />
+            </Helmet>
+      
+
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-emerald-50">
       {/* Hero Section */}
       <motion.section 
@@ -145,7 +168,7 @@ const QualityManagement = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Quality & Management
+               Quality & Management Training & ISO 9001 Certification
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -393,6 +416,7 @@ const QualityManagement = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

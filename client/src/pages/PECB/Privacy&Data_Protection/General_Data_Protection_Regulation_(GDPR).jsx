@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaLock, FaEye } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdPrivacyTip } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const GeneralDataProtectionRegulationGDPR = () => {
   const navigate = useNavigate();
 
@@ -127,9 +127,84 @@ const GeneralDataProtectionRegulationGDPR = () => {
     "Right to Object",
     "Rights Related to Automated Decision Making"
   ];
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "GDPR Training & Certification | PECB Privacy Courses",
+    "description":
+      "Advance your career with GDPR certification from Traincape Technology. Gain practical knowledge in data protection, privacy regulations, and compliance frameworks. Join us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified PECB Trainer",
+      },
+    },
+  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-purple-50">
+
+<Helmet>
+        <title>GDPR Training & Certification | PECB Privacy Courses</title>
+        <meta
+          name="description"
+          content="Advance your career with GDPR certification from Traincape Technology. Gain practical knowledge in data protection, privacy regulations, and compliance frameworks. Join us now!"
+        />
+        <meta
+          name="keywords"
+          content="GDPR Training, GDPR Certification, PECB GDPR Course, Data Protection Training, Privacy Certification, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/pecb/privacy/gdpr-training"
+        />
+        {/* Open Graph */}
+        <meta
+          property="og:title"
+          content="GDPR Training & Certification | PECB Privacy Courses"
+        />
+        <meta
+          property="og:description"
+          content="Gain expert knowledge in GDPR compliance, privacy law, and data protection frameworks with Traincape Technology's PECB GDPR Certification course."
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/pecb/privacy/gdpr-training"
+        />
+        <meta
+          property="og:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <meta property="og:type" content="website" />
+        {/* Twitter Meta */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="GDPR Training & Certification | PECB Privacy Courses"
+        />
+        <meta
+          name="twitter:description"
+          content="Advance your career with GDPR certification from Traincape Technology and gain expertise in data protection, privacy, and compliance frameworks."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
+
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

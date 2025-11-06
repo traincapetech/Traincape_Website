@@ -53,11 +53,11 @@ if (isProduction) {
   reportWebVitals();
 }
 
-// Preconnect to domains we'll need resources from
+// Preconnect to domains we'll need resources from (limit to 2 to stay under 4 total)
+// Only the most critical domains - fonts are already in index.html
 const preconnectDomains = [
   'https://fonts.googleapis.com',
-  'https://fonts.gstatic.com',
-  'https://unpkg.com'
+  'https://fonts.gstatic.com'
 ];
 
 preconnectDomains.forEach(domain => {

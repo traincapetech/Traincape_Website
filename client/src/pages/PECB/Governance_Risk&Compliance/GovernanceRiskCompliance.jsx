@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaBalanceScale, FaShieldAlt, FaChartLine, FaUserTie, FaGavel, FaCheckCircle } from "react-icons/fa";
 import { MdSecurity, MdBusiness } from "react-icons/md";
+import { Helmet } from "react-helmet";
+
+
 
 const GovernanceRiskCompliance = () => {
   const navigate = useNavigate();
@@ -97,6 +100,20 @@ const GovernanceRiskCompliance = () => {
   ];
 
   return (
+
+<>
+
+    <Helmet>
+            <title>PECB Governance, Risk & Compliance Training & Certifications</title>
+            <meta
+              name="description"
+              content="Enhance your expertise with PECB’s globally recognized Governance, Risk, and Compliance (GRC) training and certifications. Learn ISO standards, master risk management, and boost your IT career with our training & certifications."
+            />
+            <link rel="canonical" href="https://traincapetech.in/pecb/governance" />
+          </Helmet>
+
+
+
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-indigo-50 to-blue-50">
       <motion.section 
         initial="hidden"
@@ -122,7 +139,7 @@ const GovernanceRiskCompliance = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                Governance, Risk & Compliance
+            Governance, Risk & Compliance Certifications
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}
@@ -305,7 +322,11 @@ const GovernanceRiskCompliance = () => {
         </div>
       </section>
     </div>
+      </>
+
   );
+
+
 };
 
 export default GovernanceRiskCompliance;

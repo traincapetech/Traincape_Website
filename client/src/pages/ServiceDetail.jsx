@@ -4,6 +4,7 @@ import CloudServices from "./CloudServices";
 import WebDevelopment from "./WebDevelopment";
 import DigitalMarketing from "./digital-marketing";
 import SoftwareServices from "./software-services"; // correct file
+import AIMLDevelopment from "./AIMLDevelopment";
 
 const ServiceDetail = () => {
   const { slug } = useParams();
@@ -12,6 +13,7 @@ const ServiceDetail = () => {
   // if (slug === "data-analytics") return <DataAnalytics />;
   if (slug === "web-development") return <WebDevelopment />;
   if (slug === "digital-marketing") return <DigitalMarketing />;
+  if (slug === "ai-and-ml-development") return <AIMLDevelopment />;
   // if (slug === "software-services") return <SoftwareServices />; // match slug
   if (slug === "software-services-and-development") return <SoftwareServices />;
 
