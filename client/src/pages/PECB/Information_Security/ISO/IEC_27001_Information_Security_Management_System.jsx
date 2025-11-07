@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const IEC27001InformationSecurityManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -111,6 +111,13 @@ const IEC27001InformationSecurityManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
+      <Helmet>
+        <title> Traning and Certifications|| PECB || ISO/IEC 27001 Information Security Management System || Traincape Technology </title>
+        <meta name="description" content="Learn to implement and manage information security management system with the international standard for ISMS implementation and auditing." />
+        <meta name="keywords" content="Training and Certifications, PECB, ISO/IEC 27001 Information Security Management System, Information Security Management System, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Management System, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/iso/iec_27001_information_security_management_system" />
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaNetworkWired, FaCloud } from "react-icons/fa";
 import { BsCloudFill, BsGraphUp } from "react-icons/bs";
 import { MdStorage } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ComptiaCNVP = () => {
   const navigate = useNavigate();
 
@@ -29,6 +29,27 @@ const ComptiaCNVP = () => {
       desc: "Vendor-neutral cloud computing expertise"
     }
   ];
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "CompTIA Cloud Network Virtualization Professional Certification",
+    "description":
+      "Master Cloud Networking & Virtualization with CompTIA Cloud Network Virtualization Professional Certification. Learn to design, implement, and manage cloud-based network infrastructures. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified CompTIA Trainer",
+      },
+    },
+  };
 
   const comprehensiveSkills = [
     {
@@ -108,6 +129,65 @@ const ComptiaCNVP = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+{/* ✅ SEO Helmet */}
+<Helmet>
+        <title>
+          CompTIA Cloud Network Virtualization Professional Training & Certification
+        </title>
+        <meta
+          name="description"
+          content="Earn your CompTIA Cloud Network Virtualization Professional (CNVP) certification. Step up your IT career with CompTIA CNVP Certification from Traincape Technology. Gain expertise in cloud networking and virtualization with Network+ (N10-009) and Cloud+ (CV0-004) certification path."
+        />
+        <meta
+          name="keywords"
+          content="CompTIA Cloud Network Virtualization Professional, CompTIA CNVP Certification, Cloud Networking Training, Network+ N10-009, Cloud+ CV0-004, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/comptia/professional/cnvp-certification"
+        />
+
+        {/* ✅ Open Graph */}
+        <meta
+          property="og:title"
+          content="CompTIA Cloud Network Virtualization Professional Training & Certification"
+        />
+        <meta
+          property="og:description"
+          content="Earn your CompTIA Cloud Network Virtualization Professional (CNVP) certification. Gain expertise in cloud networking and virtualization with Network+ and Cloud+ from Traincape Technology."
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/comptia/professional/cnvp-certification"
+        />
+        <meta
+          property="og:image"
+          content="https://traincapetech.in/assets/images/cnvp-banner.webp"
+        />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="CompTIA Cloud Network Virtualization Professional Training & Certification"
+        />
+        <meta
+          name="twitter:description"
+          content="Step up your IT career with CompTIA CNVP Certification from Traincape Technology. Master cloud networking and virtualization with Network+ and Cloud+ certification path."
+        />
+        <meta
+          name="twitter:image"
+          content="https://traincapetech.in/assets/images/cnvp-banner.webp"
+        />
+
+        {/* ✅ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

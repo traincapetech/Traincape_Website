@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import banner from "../assets/servicesBanner.webp";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 const WebDevelopment = () => {
     const navigate = useNavigate(); // ✅ you forgot this line
 
@@ -13,6 +13,13 @@ const WebDevelopment = () => {
 
   return (
     <div className="w-full overflow-hidden">
+      <Helmet>
+        <title>Web Development | Traincape Technology</title>
+        <meta name="description" content="Experience innovation with custom-built, API-driven web solutions optimized for performance, security, and growth." />
+        <meta name="keywords" content="Web Development, Web Development Services, Web Development Company, Traincape Technology, Custom Website Development, E-commerce Website Development, CMS Development, CRM Development, API-driven Web Solutions, Performance-Optimized Websites" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/web-development" />
+      </Helmet>
       {/* HERO SECTION (UNCHANGED) */}
       <section
         className="relative text-white py-28 px-6 md:px-16 flex flex-col justify-center items-start"

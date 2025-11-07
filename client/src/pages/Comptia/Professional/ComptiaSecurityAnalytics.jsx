@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaChartLine, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdAnalytics } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ComptiaSecurityAnalytics = () => {
   const navigate = useNavigate();
 
@@ -29,7 +29,27 @@ const ComptiaSecurityAnalytics = () => {
       desc: "Advanced cybersecurity analyst skills"
     }
   ];
-
+  // ✅ JSON-LD structured data
+  const structuredData = {
+    "@context": "https://schema.org/",
+    "@type": "Course",
+    "name": "CompTIA Security Analytics Professional Certification",
+    "description":
+      "Master Security Operations & Analytics with CompTIA Security Analytics Professional Certification. Learn to detect, analyze, and respond to cybersecurity threats. Contact us now!",
+    "provider": {
+      "@type": "Organization",
+      "name": "Traincape Technology",
+      "url": "https://traincapetech.in",
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "Online / Offline",
+      "instructor": {
+        "@type": "Person",
+        "name": "Certified CompTIA Trainer",
+      },
+    },
+  };
   const comprehensiveSkills = [
     {
       icon: <MdSecurity />,
@@ -108,6 +128,94 @@ const ComptiaSecurityAnalytics = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+      <Helmet>
+        <title>CompTIA Security Analytics Professional (CSAP) Training & Certifications </title>
+        <meta
+          name="description"
+          content="Get CompTIA Security+ & CySA+ certified to achieve the CSAP credential. The CompTIA CSAP Certification validates your ability in security operations and analysis — from Security+ to CySA+. Get certified with Traincape Technology."
+        />
+        <meta
+          name="keywords"
+          content="CompTIA Security Analytics Professional Certification, CompTIA CSAP, Security Operations, Security Analytics, CompTIA, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://traincapetech.in/comptia/professional/security-analytics-professional-certification"
+        />
+
+        {/* ✅ Open Graph */}
+        <meta
+          property="og:title"
+          content="CompTIA Security Analytics Professional Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Master Security Operations & Analytics with CompTIA Security Analytics Professional Certification. Learn to detect, analyze, and respond to cybersecurity threats. Contact us now!"
+        />
+        <meta
+          property="og:url"
+          content="https://traincapetech.in/comptia/professional/security-analytics-professional-certification"
+        />
+        <meta
+          property="og:image"
+          content="https://traincapetech.in/assets/images/security-analytics-professional-banner.webp"
+        />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="CompTIA Security Analytics Professional Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Master Security Operations & Analytics with CompTIA Security Analytics Professional Certification. Learn to detect, analyze, and respond to cybersecurity threats. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://traincapetech.in/assets/images/security-analytics-professional-banner.webp"
+        />
+
+
+        {/* ✅ Open Graph */}
+        <meta
+          property="og:title"
+          content="CompTIA Security Analytics Professional Certification | Traincape Technology"
+        />
+        <meta
+          property="og:description"
+          content="Master Security Operations & Analytics with CompTIA Security Analytics Professional Certification. Learn to detect, analyze, and respond to cybersecurity threats. Contact us now!"
+        />
+        <meta
+          property="og:url"
+            content="https://traincapetech.in/comptia/professional/security-analytics-professional-certification"
+        />
+        <meta
+          property="og:image"
+          content="https://traincapetech.in/assets/images/security-analytics-professional-banner.webp"
+        />
+        <meta property="og:type" content="website" />
+
+        {/* ✅ Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="CompTIA Security Analytics Professional Certification | Traincape Technology"
+        />
+        <meta
+          name="twitter:description"
+          content="Master Security Operations & Analytics with CompTIA Security Analytics Professional Certification. Learn to detect, analyze, and respond to cybersecurity threats. Contact us now!"
+        />
+        <meta
+          name="twitter:image"
+          content="https://traincapetech.in/assets/images/security-analytics-professional-banner.webp"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify(structuredData)}
+        </script>
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -133,7 +241,7 @@ const ComptiaSecurityAnalytics = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                CompTIA Security Analytics Professional (CSAP)
+                CompTIA Security Analytics Professional (CSAP) Certification
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

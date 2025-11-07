@@ -4,7 +4,7 @@ import { Cloud, ShieldCheck, Rocket } from "lucide-react";
 import banner from "../assets/cloud_banner.jpeg";
 import C from "../assets/CC.jpeg";
 import { useNavigate } from "react-router-dom";
-
+import { Helmet } from "react-helmet";  
 const CloudServices = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,6 +16,15 @@ const navigate = useNavigate();
 
   return (
     <div className="w-full overflow-hidden font-sans text-gray-800">
+      
+        <Helmet>
+          <title>Cloud Services | Traincape Technology</title>
+          <meta name="description" content="Modernize your business operations with cloud solutions that boost productivity, reduce costs, and scale with ease." />
+          <meta name="keywords" content="Cloud Services, Cloud Solutions, Cloud Technology, Cloud Infrastructure, Cloud Migration, Traincape Technology, Cloud Computing, Cloud Services Provider, Cloud Solutions Provider, Cloud Technology Provider, Cloud Infrastructure Provider, Cloud Migration Provider" />
+          <meta name="robots" content="index, follow" />
+          <link rel="canonical" href="https://traincapetech.in/cloud-services" />
+        </Helmet>
+      
       {/* HERO SECTION */}
       <section
         className="relative text-white py-28 px-6 md:px-16 flex flex-col justify-center items-start"
@@ -79,7 +88,7 @@ const navigate = useNavigate();
           </p>
 
           <h2 className="text-2xl md:text-4xl font-bold leading-snug mb-6 text-center md:text-left">
-            Cloud-Ready Solutions for Every Business
+          Every business is unique. Our adaptable cloud services guarantee peak performance and return on investment by matching your particular goals. Scale with confidence and safeguard your data. Our cloud solutions are constructed with unparalleled dependability and enterprise-grade security.
           </h2>
 
           <p className="text-gray-600 max-w-3xl mx-auto md:mx-0 text-center md:text-left">

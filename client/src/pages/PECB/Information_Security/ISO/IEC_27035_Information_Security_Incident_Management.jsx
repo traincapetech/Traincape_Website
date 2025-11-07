@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const IEC27035InformationSecurityIncidentManagement = () => {
   const navigate = useNavigate();
 
@@ -28,6 +28,13 @@ const IEC27035InformationSecurityIncidentManagement = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-red-100">
+      <Helmet>
+        <title> Traning and Certifications|| PECB || ISO/IEC 27035 Information Security Incident Management || Traincape Technology </title>
+        <meta name="description" content="Learn to detect, respond to, and recover from security incidents effectively with the international standard for information security incident management throughout the incident response lifecycle." />
+        <meta name="keywords" content="Training and Certifications, PECB, ISO/IEC 27035 Information Security Incident Management, Information Security Incident Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Incident Management, Traincape Technology, ISO/IEC 27035 Information Security Incident Management, Information Security Incident Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Incident Management, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/iso/iec_27035_information_security_incident_management" />
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

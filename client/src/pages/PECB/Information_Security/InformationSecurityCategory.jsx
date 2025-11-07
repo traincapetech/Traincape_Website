@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaShieldAlt, FaLock, FaEye, FaExclamationTriangle, FaUserTie, FaChartLine } from "react-icons/fa";
 import { MdSecurity, MdBusiness } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const InformationSecurityCategory = () => {
   const navigate = useNavigate();
 
@@ -98,7 +98,14 @@ const InformationSecurityCategory = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
-      {/* Hero Section */}
+      <Helmet>
+        <title> Traning and Certifications|| PECB || Information Security Category || Traincape Technology </title>
+        <meta name="description" content="Explore information security certifications covering ISMS implementation, risk management, incident response, and executive leadership with the international standard for information security management and controls." />
+        <meta name="keywords" content="Training and Certifications, PECB, Information Security Category, Information Security, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Category, Traincape Technology, Information Security Category, Information Security, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Category, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/information-security-category" />
+      </Helmet>
+        {/* Hero Section */}
       <motion.section 
         initial="hidden"
         animate="visible"

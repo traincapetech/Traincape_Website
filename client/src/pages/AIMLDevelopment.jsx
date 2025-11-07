@@ -17,7 +17,7 @@ import {
   MdTrendingUp,
 } from "react-icons/md";
 import { IoSparkles } from "react-icons/io5";
-
+import { Helmet } from "react-helmet";
 const AIMLDevelopment = () => {
   const navigate = useNavigate();
 
@@ -130,7 +130,14 @@ const AIMLDevelopment = () => {
 
   return (
     <div className="w-full font-sans text-[#0A0A0A] overflow-x-hidden">
-      {/* HERO SECTION */}
+      <Helmet>
+        <title>AI & ML Development | Traincape Technology</title>
+        <meta name="description" content="Transform your business with AI & ML solutions that automate processes, enhance decision-making, and drive growth through data-driven insights." />
+        <meta name="keywords" content="AI & ML Development, AI Development, ML Development, AI Solutions, ML Solutions, AI Frameworks, ML Frameworks, AI Tools, ML Tools, AI Development Services, ML Development Services, AI Development Company, ML Development Company, AI Development Solutions, ML Development Solutions, AI Development Agency, ML Development Agency, AI Development Provider, ML Development Provider, AI Development Provider, ML Development Provider, AI & ML Development, AI Development, ML Development, AI Solutions, ML Solutions, AI Frameworks, ML Frameworks, AI Tools, ML Tools, AI Development Services, ML Development Services, AI Development Company, ML Development Company, AI Development Solutions, ML Development Solutions, AI Development Agency, ML Development Agency, AI Development Provider, ML Development Provider, AI Development Provider, ML Development Provider" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/ai-ml-development" />
+      </Helmet>
+        {/* HERO SECTION */}
       <section
         className="relative text-white py-32 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between overflow-hidden min-h-[70vh]"
         style={{

@@ -3,7 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import banner from "../assets/digitalMarketingBanner.jpg"; 
-
+import { Helmet } from "react-helmet";
 const Counter = ({ target, label }) => {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
@@ -57,7 +57,14 @@ const DigitalMarketing = () => {
 
   return (
     <div className="w-full overflow-hidden font-inter text-[#0A0A0A]">
-      {/* 🌟 HERO SECTION */}
+      <Helmet>
+        <title>Digital Marketing | Traincape Technology</title>
+        <meta name="description" content="Use professional digital marketing services to increase your internet visibility. We provide social media, PPC, SEO, and content marketing that produces tangible outcomes." />
+        <meta name="keywords" content="Digital Marketing, Digital Marketing Services, Digital Marketing Agency, Traincape Technology, Social Media, PPC, SEO, Content Marketing, Digital Marketing Solutions, Performance-Driven Marketing" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/digital-marketing" />
+      </Helmet>
+        {/* 🌟 HERO SECTION */}
       <section
         className="relative text-white py-24 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between overflow-hidden"
         style={{

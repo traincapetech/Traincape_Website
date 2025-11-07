@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaShieldAlt, FaUserTie } from "react-icons/fa";
 import { BsShieldCheck, BsBriefcaseFill } from "react-icons/bs";
 import { MdSecurity, MdArchitecture } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const CSAE = () => {
   const navigate = useNavigate();
 
@@ -113,6 +113,13 @@ const CSAE = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-indigo-900 to-purple-900 text-white">
+      <Helmet>
+        <title>CompTIA Security Analytics Expert (CSAE) Training & Certification  </title>
+        <meta name="description" content="Master the complete CompTIA Security Analytics Expert (CSAE) Certification Path: Security+, CySA+ or PenTest+, and CASP+ with Traincape Technology. Build expert-level cybersecurity analytics skills. Start from foundational security with Security+ and advance to elite CSAE status. Train and get certified today." />
+        <meta name="keywords" content="CompTIA CSAE, CompTIA, CSAE, CompTIA Certification, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/comptia/expert/csae" />
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
@@ -138,7 +145,7 @@ const CSAE = () => {
                 transition={{ delay: 0.3 }}
                 className="text-4xl md:text-5xl font-bold mb-4"
               >
-                CompTIA Security Analytics Expert (CSAE)
+                CompTIA Security Analytics Expert (CSAE) Training
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, x: -50 }}

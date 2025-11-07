@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaBug, FaSearch, FaShieldAlt, FaUserSecret, FaChartLine, FaUserTie } from "react-icons/fa";
 import { MdSecurity } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const TechnicalCybersecurity = () => {
   const navigate = useNavigate();
 
@@ -65,6 +65,13 @@ const TechnicalCybersecurity = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-orange-50">
+      <Helmet>
+        <title>Technical Cybersecurity || Traning and Certifications|| PECB || Cybersecurity Certification || Traincape Technology || Technical Cybersecurity Certifications</title>
+        <meta name="description" content="Master advanced cybersecurity skills in ethical hacking, threat analysis, digital forensics, and incident response with the international standard for cybersecurity management and controls." />
+        <meta name="keywords" content="Training and Certifications, PECB, Technical Cybersecurity, Technical Cybersecurity, Technical Cybersecurity, Traincape Technology, Technical Cybersecurity Certifications, Technical Cybersecurity, Technical Cybersecurity, Technical Cybersecurity, Technical Cybersecurity, Technical Cybersecurity, Technical Cybersecurity" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/technical-cybersecurity" />
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

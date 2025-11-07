@@ -32,6 +32,7 @@ import {
 } from "react-icons/md";
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
 import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
+import { Helmet } from "react-helmet";
 const SoftwareDevelopment = () => {
   const navigate = useNavigate(); // ✅ you forgot this line
   useEffect(() => window.scrollTo(0, 0), []);
@@ -190,6 +191,13 @@ const SoftwareDevelopment = () => {
 
   return (
     <div className="w-full font-sans text-[#0A0A0A] overflow-x-hidden">
+      <Helmet>
+        <title>Software Services & Development | Traincape Technology</title>
+        <meta name="description" content="Custom software development that helps you grow, optimize, and maintain your competitive edge in the digital age by fusing innovation with technology." />
+        <meta name="keywords" content="Software Services & Development, Software Development, Software Development Services, Software Development Company, Traincape Technology, Custom Software Development, E-commerce Software Development, CMS Development, CRM Development" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/software-services-and-development" />
+      </Helmet>
       {/* ========================================
         HERO SECTION: Fixed Color Interpolation
         ========================================

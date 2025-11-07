@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const EBIOSRiskManager = () => {
   const navigate = useNavigate();
 
@@ -28,6 +28,13 @@ const EBIOSRiskManager = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-teal-50 to-cyan-50">
+      <Helmet>
+        <title> Traning and Certifications|| PECB || EBIOS Risk Manager || Traincape Technology </title>
+        <meta name="description" content="Master EBIOS Risk Assessment Methodology for comprehensive information security risk assessment." />
+        <meta name="keywords" content="Training and Certifications, PECB, EBIOS Risk Manager, Information Security Risk Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB EBIOS Risk Manager, Traincape Technology, EBIOS Risk Manager, Information Security Risk Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB EBIOS Risk Manager, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/ebios" />
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

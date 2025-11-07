@@ -6,7 +6,7 @@ import AIImage from "../assets/aii.jpeg"; // <-- New import
 
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-
+import { Helmet } from "react-helmet";
 const ContactUs = () => {
   const [payoload, setPayoload] = useState({
     name: "",
@@ -59,6 +59,13 @@ const ContactUs = () => {
 
   return (
     <section className="bg-gradient-to-br from-cyan-800 via-teal-700 to-blue-800 py-12">
+      <Helmet>
+        <title> Contact Us || Traincape Technology </title>
+        <meta name="description" content="Contact us for any questions or inquiries about our services or to book a demo." />
+        <meta name="keywords" content="Contact Us, Traincape Technology, Contact Us, Traincape Technology, Contact Us, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/contact-us" />
+      </Helmet>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 grid-cols-1 gap-8">
           {/* Image Section */}

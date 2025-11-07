@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const CertifiedCyberThreatAnalystCCTA = () => {
   const navigate = useNavigate();
 
@@ -28,6 +28,13 @@ const CertifiedCyberThreatAnalystCCTA = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-red-100">
+      <Helmet>
+        <title>Certified Cyber Threat Analyst (CCTA) || Traning and Certifications|| PECB || Cyber Threat Analyst Certification || Traincape Technology || CCTA Certifications</title>
+        <meta name="description" content="Advance your cybersecurity career with the PECB Certified Cyber Threat Analyst (CCTA) program. Gain hands-on skills in threat intelligence and cyber threat analysis." />
+        <meta name="keywords" content="Training and Certifications, PECB, Certified Cyber Threat Analyst (CCTA), Certified Cyber Threat Analyst (CCTA), Certified Cyber Threat Analyst (CCTA), Traincape Technology, CCTA Certifications, Cyber Threat Intelligence, Cyber Threat Analysis, Cyber Threat Defense, Cyber Threat Detection, Cyber Threat Prevention" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/technical-cybersecurity/certified-cyber-threat-analyst-ccta" />
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

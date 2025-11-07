@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const IEC27034ApplicationSecurity = () => {
   const navigate = useNavigate();
 
@@ -28,6 +28,13 @@ const IEC27034ApplicationSecurity = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-green-100">
+      <Helmet>
+        <title> Traning and Certifications|| PECB || ISO/IEC 27034 Application Security || Traincape Technology </title>
+        <meta name="description" content="Learn to secure applications from design to deployment with the international standard for application security throughout the software development lifecycle." />
+        <meta name="keywords" content="Training and Certifications, PECB, ISO/IEC 27034 Application Security, Application Security, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Application Security, Traincape Technology, ISO/IEC 27034 Application Security, Application Security, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Application Security, Traincape Technology" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/iso/iec_27034_application_security" />
+      </Helmet>
       <motion.section 
         initial="hidden"
         animate="visible"

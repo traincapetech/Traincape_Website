@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaRobot, FaBrain, FaCogs } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdPsychology } from "react-icons/md";
-
+import { Helmet } from "react-helmet";
 const ArtificialIntelligenceProfessional = () => {
   const navigate = useNavigate();
 
@@ -131,6 +131,13 @@ const ArtificialIntelligenceProfessional = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-pink-50">
+      <Helmet>
+        <title>Artificial Intelligence Professional || Traning and Certifications|| PECB || AI Certification || Traincape Technology || AI Professional Certifications</title>
+        <meta name="description" content="Become a certified AI professional with comprehensive training in machine learning, AI ethics, implementation, and security across various industries." />
+        <meta name="keywords" content="Training and Certifications, PECB, Artificial Intelligence Professional, Artificial Intelligence Professional, Artificial Intelligence Professional, Traincape Technology, AI Professional Certifications, AI Professional, AI Professional, AI Professional" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://traincapetech.in/pecb/artificial-intelligence/ai-professional" />
+      </Helmet>
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
