@@ -27,6 +27,7 @@ const WebDevelopment = () => {
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          alt: "Web Development image",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#001F3F]/90 via-[#002952]/80 to-[#001F3F]/90"></div>
@@ -115,6 +116,7 @@ const WebDevelopment = () => {
                 key={idx}
                 className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-6 text-center"
                 whileHover={{ y: -5 }}
+                alt={`${card.title} icon`}
               >
                 <div className="text-4xl mb-3">{card.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">{card.title}</h3>
@@ -179,7 +181,8 @@ const WebDevelopment = () => {
                 key={idx}
                 className="bg-[#F8FBFF] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6"
                 whileHover={{ y: -5 }}
-              >
+                alt={`${service.title} service`}
+                >
                 <div className="text-3xl mb-4">{service.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">
                   {service.title}

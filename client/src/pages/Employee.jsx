@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 // import employeeStyles from "../css/Employee.module.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import emailjs from "@emailjs/browser";
 // Team member images
 import madan from "../assets/madan.jpeg";
 import rajeshImage from "../assets/rajesh.png";
@@ -11,6 +10,8 @@ import shivamImage from "../assets/shivam.jpeg";
 import EshitaImage from "../assets/Eshita.jpeg";
 import sauravImage from "../assets/Saurav.jpeg";
 import { Helmet } from "react-helmet";
+import toast from "react-hot-toast";
+import { submitLead } from "../utils/submitLead";
 
 const Employee = () => {
   const [hoveredMember, setHoveredMember] = useState(null);
@@ -22,6 +23,7 @@ const Employee = () => {
     phoneNumber: "",
     location: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const boardMembers = [
     {
@@ -74,36 +76,55 @@ const Employee = () => {
   const handleMouseEnter = (index) => setHoveredMember(index);
   const handleMouseLeave = () => setHoveredMember(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
-    const serviceId = "service_pjwgjas";
-    const templateId = "template_eueffas";
-    const publicId = "GmJ24jEVf6swWXgb0";
+    const name = String(payload.name || "").trim();
+    const email = String(payload.email || "").trim();
+    const phoneNumber = String(payload.phoneNumber || "").trim();
+    const location = String(payload.location || "").trim();
+    const link = String(payload.link || "").trim();
+    const message = String(payload.message || "").trim();
 
-    const { name, email, link, message, phoneNumber, location } = payload;
-    const templateParams = {
-      from_name: name,
-      from_email: email,
-      resume_link: link,
-      phone_number: phoneNumber,
-      location,
-      message,
-    };
+    if (name.length < 2) return toast.error("Please enter your name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return toast.error("Please enter a valid email.");
+    if (!location) return toast.error("Please enter your country.");
+    if (!phoneNumber) return toast.error("Please enter your WhatsApp number.");
+    if (message.length < 10) return toast.error("Please enter a message (min 10 characters).");
 
-    emailjs.send(serviceId, templateId, templateParams, publicId).then(
-      () => alert("Email sent successfully!"),
-      (err) => console.error("Failed to send email:", err)
-    );
+    setIsSubmitting(true);
+    try {
+      const data = await submitLead({
+        name,
+        email,
+        phoneNumber,
+        location,
+        subject: "Join Our Team",
+        message: [
+          message,
+          "",
+          link ? `Resume Link: ${link}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      });
 
-    setPayload({
-      name: "",
-      email: "",
-      phoneNumber: "",
-      link: "",
-      message: "",
-      location: "",
-    });
+      toast.success(data?.message || "Message sent!");
+      setPayload({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        link: "",
+        message: "",
+        location: "",
+      });
+    } catch (err) {
+      toast.error(err?.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
   };
 
   const handleChange = (e) =>
@@ -307,9 +328,10 @@ const Employee = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full py-3 bg-[#152B54] text-white font-semibold rounded-md hover:bg-blue-900 focus:outline-none"
+              disabled={isSubmitting}
+              className="w-full py-3 bg-[#152B54] text-white font-semibold rounded-md hover:bg-blue-900 focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </form>
 

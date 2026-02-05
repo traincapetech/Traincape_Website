@@ -5,7 +5,7 @@ import { ImCross } from "react-icons/im";
 import { FaCopy, FaCheck } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../slices/userSlice";
-import logo from "../assets/WhatsApp_Image_2024-06-22_at_10.01.48-removebg-preview.png";
+import logo from "../assets/TT.png";
 import DashboardHeader from "../pages/DashboardHeader";
 import ReactDOM from "react-dom";
 
@@ -158,7 +158,7 @@ const Navbar = () => {
 
   // Improved active state styling
   const isActive = (path) =>
-    location.pathname === path
+    location.pathname === path || location.pathname.startsWith(`${path}/`)
       ? "text-purple-400 border-b-2 border-purple-400 font-semibold transition duration-300 ease-in-out"
       : "text-gray-300 hover:text-teal-300 border-b-2 border-transparent hover:border-teal-300 transition duration-300 ease-in-out";
 
@@ -263,7 +263,13 @@ const Navbar = () => {
                 About
               </Link>
               <Link to="/our-services" className={isActive("/our-services")}>
-                Services
+                IT Services
+              </Link>
+              <Link to="/training" className={isActive("/training")}>
+                Training
+              </Link>
+              <Link to="/certifications" className={isActive("/certifications")}>
+                Certifications
               </Link>
               <Link to="/review-page" className={isActive("/review-page")}>
                 Reviews
@@ -358,7 +364,21 @@ const Navbar = () => {
               className={`${isActive("/our-services")} py-2`}
               onClick={() => setMenuOpen(false)}
             >
-              Services
+              IT Services
+            </Link>
+            <Link
+              to="/training"
+              className={`${isActive("/training")} py-2`}
+              onClick={() => setMenuOpen(false)}
+            >
+              Training
+            </Link>
+            <Link
+              to="/certifications"
+              className={`${isActive("/certifications")} py-2`}
+              onClick={() => setMenuOpen(false)}
+            >
+              Certifications
             </Link>
             <Link
               to="/review-page"

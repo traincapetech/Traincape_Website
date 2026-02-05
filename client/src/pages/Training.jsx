@@ -1,158 +1,178 @@
-"use client";
-
-import React, { useState } from 'react';
+import React, { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SEOHead from "../components/SEOHead";
+import AdvisorModal from "../components/AdvisorModal";
 
-// Import course images
 import AWS from "../assets/aws-kartikey.png";
 import Cisco from "../assets/Cisco/CiscoIcon.png";
 import comptia from "../assets/comptia-2.webp";
 import microsoft from "../assets/microsoft-kartikey.png";
 import PECB from "../assets/PECB1.png";
-import Traincape from "../assets/Traincape logo.jpeg";
 
+const TRAINING_TRACKS = [
+  {
+    title: "Certification Training",
+    desc: "Structured learning paths aligned to certification objectives — with exam guidance and practice support.",
+  },
+  {
+    title: "Skill-Based Training",
+    desc: "Hands-on programs focused on real projects, job outcomes, and practical tooling.",
+  },
+  {
+    title: "Corporate Training",
+    desc: "Customized training for teams with measurable skill progression and delivery support.",
+  },
+];
 
-
-// Reusable component for a single course card
-const CourseCard = ({ course }) => {
-  const navigate = useNavigate();
-  
-  const handleViewCourse = () => {
-    navigate(course.url);
-  };
-
-  return (
-    <div
-      onClick={handleViewCourse}
-      className="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer flex flex-col border border-gray-200 group relative"
-    >
-      <div className="h-48 bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-        <img src={course.image} alt={course.title} className="max-h-full max-w-full object-contain transition-transform duration-500 group-hover:scale-110" />
-      </div>
-      <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{course.title}</h3>
-        <p className="text-gray-600 mb-4 flex-grow">{course.description}</p>
-        <div className="flex justify-between items-center mt-auto">
-          <span className="text-2xl font-bold text-blue-600">{course.price}</span>
-          <button className="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-            View Course
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-// Component for the animated background
-const AnimatedBackground = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    {/* Base gradient background */}
-    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600"></div>
-    
-    {/* Animated elements - using inline styles for guaranteed visibility */}
-    <div className="absolute top-20 left-20 w-32 h-32 bg-red-500 rounded-full animate-pulse" style={{opacity: 0.8}}></div>
-    <div className="absolute top-40 right-40 w-24 h-24 bg-yellow-400 rounded-lg animate-bounce" style={{opacity: 0.9}}></div>
-    <div className="absolute bottom-40 left-40 w-40 h-40 bg-green-500 rounded-full animate-ping" style={{opacity: 0.7}}></div>
-    <div className="absolute top-1/2 right-1/3 w-28 h-28 bg-purple-500 rounded-xl animate-spin" style={{opacity: 0.8, animationDuration: '6s'}}></div>
-    <div className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-cyan-400 rounded-full animate-pulse" style={{opacity: 0.9}}></div>
-    <div className="absolute top-1/3 left-1/2 w-16 h-16 bg-orange-400 rounded-lg animate-bounce" style={{opacity: 0.8}}></div>
-    <div className="absolute bottom-1/4 right-1/4 w-12 h-12 bg-pink-500 rounded-full animate-ping" style={{opacity: 0.9}}></div>
-    <div className="absolute top-3/4 left-1/4 w-18 h-18 bg-blue-400 rounded-lg animate-pulse" style={{opacity: 0.8}}></div>
-  </div>
-);
-
-// Component for the floating "Add to Cart" button
-const FloatingButton = () => {
-  const handleAddToCart = () => {
-    alert('Add to Cart clicked!');
-  };
-
-  return (
-    <div
-      onClick={handleAddToCart}
-      className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg z-50 transition-transform duration-300 hover:scale-110 cursor-pointer"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-      </svg>
-    </div>
-  );
-};
-
-const Training = () => {
-  const courseData = [
-    {
-      image: AWS,
-      title: "AWS",
-      description: "Master cloud computing with Amazon Web Services. Learn scalable IT solutions and cloud architecture.",
-      price: "Free",
-      url: "/aws",
-    },
-    {
-      image: Cisco,
-      title: "CISCO",
-      description: "Master networking fundamentals with Cisco. Learn routing, switching, and network security.",
-      price: "Free",
-      url: "/ciscocard",
-    },
-    {
+const VENDORS = [
+  {
+    title: "CompTIA",
+    desc: "A+, Network+, Security+ and more — foundational to advanced IT career tracks.",
       image: comptia,
-      title: "COMPTIA",
-      description: "Comprehensive IT certifications covering A+, Network+, Security+, and more.",
-      price: "Free",
-      url: "/comptia",
+    href: "/comptia",
     },
     {
+    title: "Microsoft",
+    desc: "Azure, security, and productivity certifications for modern IT and cloud roles.",
       image: microsoft,
-      title: "Microsoft",
-      description: "Learn Microsoft technologies including Azure, Office 365, and Windows administration.",
-      price: "Free",
-      url: "/microsoft",
-    },
-    {
-      image: PECB,
-      title: "PECB",
-      description: "Professional certifications in ISO standards, cybersecurity, and management systems.",
-      price: "Free",
-      url: "/PECB",
-    },
-    {
-      image: Traincape,
-      title: "Internal Employees Exams",
-      description: "Traincape internal assessments for employees only.",
-      price: "Free",
-      url: "/internal-exams",
-    },
-  ];
+    href: "/training/microsoft",
+  },
+  {
+    title: "Cisco",
+    desc: "Networking and security pathways for enterprise infrastructure roles.",
+    image: Cisco,
+    href: "/training/cisco",
+  },
+  {
+    title: "AWS",
+    desc: "Cloud foundations to architect-level paths for building and scaling on AWS.",
+    image: AWS,
+    href: "/training/aws",
+  },
+  {
+    title: "PECB",
+    desc: "ISO and governance-focused training (internal audit, risk, compliance).",
+    image: PECB,
+    href: "/pecb",
+  },
+];
+
+function VendorCard({ vendor, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className="text-left bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all"
+    >
+      <div className="h-14 flex items-center gap-4">
+        <img
+          src={vendor.image}
+          alt={`${vendor.title} training`}
+          className="h-12 w-12 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="text-lg font-extrabold text-gray-900">{vendor.title}</div>
+      </div>
+      <p className="mt-3 text-sm text-gray-600">{vendor.desc}</p>
+      <div className="mt-4 text-sm font-semibold text-blue-700">Browse programs</div>
+    </button>
+  );
+}
+
+export default function Training() {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState("");
+  const [advisorOpen, setAdvisorOpen] = useState(false);
+
+  const vendorsFiltered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return VENDORS;
+    return VENDORS.filter((v) => `${v.title} ${v.desc}`.toLowerCase().includes(q));
+  }, [query]);
 
   return (
-    <div className="bg-gray-50 font-sans">
-      {/* Floating button */}
-      <FloatingButton />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
+      <SEOHead
+        title="IT Training | Certification & Skill-Based Programs | Traincape Technology"
+        description="Explore Traincape Technology’s IT training: certification-aligned programs, hands-on skill training, and corporate upskilling. Talk to an advisor and choose the right learning path."
+        canonical="https://www.traincapetech.in/training"
+        ogType="website"
+      />
 
-      {/* Hero section with background animations */}
-      <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
-        <AnimatedBackground />
-        <div className="relative z-10 w-full h-full flex items-center justify-center p-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
-            Unlock your tech potential with our free comprehensive IT assessments
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-slate-900 to-purple-900" />
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,#60a5fa,transparent_40%),radial-gradient(circle_at_80%_20%,#22c55e,transparent_35%),radial-gradient(circle_at_50%_80%,#a855f7,transparent_35%)]" />
+        <div className="relative max-w-7xl mx-auto px-6 py-16 text-white">
+          <p className="text-sm font-semibold tracking-widest uppercase text-cyan-200">
+            IT Training
+          </p>
+          <h1 className="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">
+            Job‑ready training for cloud, security, networking, and modern IT roles
           </h1>
-        </div>
-      </div>
+          <p className="mt-4 max-w-3xl text-white/85 text-lg">
+            Choose certification-aligned learning or practical skill-based programs. We’ll help you pick a path based on your goals.
+          </p>
 
-      {/* Courses section */}
-      <div className="bg-white py-16 px-6">
-        <h1 className="text-blue-600 text-center text-3xl font-extrabold mb-4">Choose Now</h1>
-        <h2 className="text-black text-4xl font-extrabold text-center mb-8">Our Popular Courses</h2>
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Map through the course data to create CourseCard components */}
-          {courseData.map((course, index) => (
-            <CourseCard key={index} course={course} />
+          <div className="mt-8 flex flex-col md:flex-row gap-3 max-w-3xl">
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search training providers (e.g., Microsoft, CompTIA, AWS)…"
+              className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-300"
+            />
+            <button
+              onClick={() => setAdvisorOpen(true)}
+              className="px-5 py-3 rounded-xl font-bold bg-cyan-400 text-slate-900 hover:bg-cyan-300 transition"
+            >
+              Talk to Advisor
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Training Tracks</h2>
+        <p className="mt-2 text-gray-600 max-w-3xl">
+          Pick a track based on your role, background, and timeline. We’ll tailor recommendations accordingly.
+        </p>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TRAINING_TRACKS.map((t) => (
+            <div key={t.title} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900">{t.title}</h3>
+              <p className="mt-2 text-gray-600">{t.desc}</p>
+            </div>
           ))}
         </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="flex items-end justify-between flex-wrap gap-6">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Browse Programs</h2>
+            <p className="mt-2 text-gray-600">
+              Explore training providers and catalogs. (We keep Certifications separate under the Certifications menu.)
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/certifications")}
+            className="px-5 py-3 rounded-xl bg-white border border-gray-200 font-bold text-gray-900 hover:shadow-md transition"
+          >
+            Explore Certifications
+          </button>
       </div>
+
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {vendorsFiltered.map((v) => (
+            <VendorCard key={v.title} vendor={v} onClick={() => navigate(v.href)} />
+          ))}
+        </div>
+      </section>
+
+      <AdvisorModal
+        isOpen={advisorOpen}
+        onClose={() => setAdvisorOpen(false)}
+        prefillCourse=""
+      />
     </div>
   );
-};
-
-export default Training;
+}

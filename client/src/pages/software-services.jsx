@@ -208,6 +208,7 @@ const SoftwareDevelopment = () => {
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          alt: "Software Services & Development banner",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#020b18]/95 via-[#081a30]/85 to-black/90"></div>
@@ -280,6 +281,7 @@ const SoftwareDevelopment = () => {
             autoplay
             loop
             style={{ width: "100%", maxWidth: "450px" }}
+            alt="Software Services & Development Lottie Animation"
           />
         </motion.div>
       </section>
@@ -314,6 +316,7 @@ const SoftwareDevelopment = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: idx * 0.1 }}
+                alt={`${service.title} service`}
               >
                 <div
                   className="w-12 h-12 flex items-center justify-center rounded-full mb-4"
@@ -358,6 +361,7 @@ const SoftwareDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: idx * 0.15 }}
+                alt={`${focus.title} focus`}
               >
                 <div className="flex justify-center mb-4">{focus.icon}</div>
                 <h3 className="text-xl font-bold mb-3">{focus.title}</h3>
@@ -395,6 +399,7 @@ const SoftwareDevelopment = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ delay: idx * 0.1 }}
+                alt={`${item.title} step`}
               >
                 <div
                   className="absolute -top-6 left-6 w-12 h-12 flex items-center justify-center rounded-full text-white text-xl font-bold shadow-xl"
@@ -432,6 +437,7 @@ const SoftwareDevelopment = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: idx * 0.15 }}
+              alt={`${item.name} testimonial`}
             >
               <p className="text-gray-300 mb-6 italic leading-relaxed">
                 "{item.text}"

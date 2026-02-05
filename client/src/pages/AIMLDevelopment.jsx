@@ -144,6 +144,7 @@ const AIMLDevelopment = () => {
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          alt: "AI & ML Development banner",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1a2f]/95 via-[#0a223a]/85 to-black/95"></div>
@@ -205,6 +206,7 @@ const AIMLDevelopment = () => {
             autoplay
             loop
             style={{ width: "90%", height: "auto" }}
+            alt="AI & ML Development Lottie Animation"
           />
         </motion.div>
       </section>
@@ -235,6 +237,7 @@ const AIMLDevelopment = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
+                alt={`${service.title} icon`}
               >
                 <div className="mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
@@ -267,6 +270,7 @@ const AIMLDevelopment = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: idx * 0.05 }}
+                alt={`${tech.name} technology`}
               >
                 <p className="text-lg font-semibold text-gray-800">
                   {tech.name}
@@ -298,6 +302,7 @@ const AIMLDevelopment = () => {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
+                alt={`${item.title} step`}
               >
                 <h3 className="text-[#00AEEF] text-xl font-bold mb-3">
                   {item.step}
@@ -330,6 +335,7 @@ const AIMLDevelopment = () => {
                 initial={{ opacity: 0, x: idx % 2 === 0 ? -30 : 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1 }}
+                alt={`${useCase.title} use case`}
               >
                 <div className="text-4xl text-[#FFA500] mb-4">
                   {useCase.icon}

@@ -26,8 +26,7 @@
     <meta property="twitter:image" content="https://www.traincapetech.in/android-chrome-512x512.png" />
 
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"></noscript>
+    <!-- AOS is bundled via npm (not loaded from CDN) for better SEO/prerender stability -->
     
     <link rel="manifest" href="/manifest.json" />
     <link rel="canonical" href="https://www.traincapetech.in/" />
@@ -37,14 +36,9 @@
     <!-- DNS Prefetch and Preconnect (limited to 2 preconnect to stay under 4 total) -->
     <link rel="dns-prefetch" href="https://traincape-backend-1.onrender.com">
     <link rel="preconnect" href="https://traincape-backend-1.onrender.com" crossorigin>
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    <!-- Removed unpkg preconnect - use dns-prefetch only for less critical resources -->
-    <link rel="dns-prefetch" href="https://unpkg.com">
+    <!-- Avoid preconnecting to third-party analytics for prerender stability -->
 
     <!-- Preload key scripts -->
-    <link rel="preload" href="https://unpkg.com/aos@next/dist/aos.js" as="script" />
-    <link rel="preload" href="https://www.googletagmanager.com/gtag/js?id=G-1416H96S6J" as="script" />
-
     <title>Traincape Technology | IT Training & Certification</title>
     
     <!-- JSON-LD for structured data -->
@@ -88,83 +82,101 @@
       }
     </script>
     
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      defer
-      src="https://www.googletagmanager.com/gtag/js?id=G-1416H96S6J"
-    ></script>
+    <!-- Google tag (gtag.js) - loaded dynamically to keep react-snap prerender stable -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+      (function() {
+        var isReactSnap = (navigator && navigator.userAgent && navigator.userAgent.indexOf('ReactSnap') !== -1);
+        if (isReactSnap) return;
 
-      gtag("config", "G-1416H96S6J", {
-        send_page_view: false // Defer page view sending until after page load
-      });
-      // Only send pageview when page is fully loaded
-      window.addEventListener('load', function() {
-        gtag('event', 'page_view');
-      });
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag("js", new Date());
+        gtag("config", "G-1416H96S6J", { send_page_view: false });
+
+        var s = document.createElement('script');
+        s.async = true;
+        s.defer = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-1416H96S6J";
+        s.onload = function() {
+          // Only send pageview when analytics is loaded and page is ready
+          window.addEventListener('load', function() {
+            gtag('event', 'page_view');
+          });
+        };
+        document.head.appendChild(s);
+      })();
     </script>
   </head>
 
   <body>
-    <header>
-      <h1>Traincape Technology - IT Training & Certification</h1>
-      <h2>Expert-led online training for IT professionals</h2>
-      <h2>AWS, CompTIA, Microsoft, Cisco certification courses</h2>
-    </header>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="max-width: 960px; margin: 0 auto; padding: 24px; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;">
+        <h1 style="margin: 0 0 8px 0;">Traincape Technology</h1>
+        <p style="margin: 0 0 16px 0; line-height: 1.5;">
+          We provide <strong>IT Services</strong> (web development, maintenance, CRM, mobile apps, cloud) and
+          <strong> IT Training</strong> (certification &amp; skill-based programs). This website works best with JavaScript enabled,
+          but you can still access key information below.
+        </p>
+        <ul style="margin: 0; padding-left: 18px; line-height: 1.8;">
+          <li><a href="/" rel="nofollow">Home</a></li>
+          <li><a href="/about-us" rel="nofollow">About Us</a></li>
+          <li><a href="/our-services" rel="nofollow">Our Services</a></li>
+          <li><a href="/contact-us" rel="nofollow">Contact Us</a></li>
+        </ul>
+        <hr style="margin: 20px 0;" />
+        <p style="margin: 0; line-height: 1.6;">
+          <strong>Email:</strong> <a href="mailto:sales@traincapetech.in">sales@traincapetech.in</a><br />
+          <strong>WhatsApp:</strong> <a href="https://wa.me/+916280281505" target="_blank" rel="noopener noreferrer">+91 6280281505</a>
+        </p>
+      </div>
+    </noscript>
     <div id="root"></div>
 
     <!-- WhatsApp button is now handled by React component -->
   </body>
-  <script src="https://unpkg.com/aos@next/dist/aos.js" defer></script>
   <script>
-    // Initialize AOS after page load for better performance
-    window.addEventListener('load', function() {
-      AOS.init({ offset: 200, duration: 800, once: true });
-    });
+    // Skip SW + hard reload handlers in react-snap prerender (puppeteer) to prevent failures/flakiness
+    var isReactSnap = (navigator && navigator.userAgent && navigator.userAgent.indexOf('ReactSnap') !== -1);
 
-    // Register service worker for chunk loading error handling
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function() {
-        navigator.serviceWorker.register('/sw.js')
-          .then(function(registration) {
-            console.log('Service Worker registered successfully:', registration.scope);
-          })
-          .catch(function(error) {
-            console.log('Service Worker registration failed:', error);
-          });
+    if (!isReactSnap) {
+      // Register service worker for chunk loading error handling
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('Service Worker registered successfully:', registration.scope);
+            })
+            .catch(function(error) {
+              console.log('Service Worker registration failed:', error);
+            });
+        });
+      }
+
+      // Global error handler for chunk loading errors
+      window.addEventListener('error', function(event) {
+        if (event.filename && event.filename.includes('chunk')) {
+          console.error('Chunk loading error detected:', event);
+          // Clear cache and reload
+          if ('caches' in window) {
+            caches.keys().then(function(names) {
+              names.forEach(function(name) { caches.delete(name); });
+            });
+          }
+          setTimeout(function() { window.location.reload(); }, 1000);
+        }
+      });
+
+      // Handle unhandled promise rejections (chunk loading failures)
+      window.addEventListener('unhandledrejection', function(event) {
+        if (event.reason && event.reason.message &&
+            (event.reason.message.includes('Loading chunk') ||
+             event.reason.message.includes('Unexpected token'))) {
+          console.error('Chunk loading promise rejection:', event.reason);
+          event.preventDefault();
+          window.location.reload();
+        }
       });
     }
-
-    // Global error handler for chunk loading errors
-    window.addEventListener('error', function(event) {
-      if (event.filename && event.filename.includes('chunk')) {
-        console.error('Chunk loading error detected:', event);
-        // Clear cache and reload
-        if ('caches' in window) {
-          caches.keys().then(names => {
-            names.forEach(name => caches.delete(name));
-          });
-        }
-        setTimeout(() => window.location.reload(), 1000);
-      }
-    });
-
-    // Handle unhandled promise rejections (chunk loading failures)
-    window.addEventListener('unhandledrejection', function(event) {
-      if (event.reason && event.reason.message && 
-          (event.reason.message.includes('Loading chunk') || 
-           event.reason.message.includes('Unexpected token'))) {
-        console.error('Chunk loading promise rejection:', event.reason);
-        event.preventDefault();
-        window.location.reload();
-      }
-    });
   </script>
 </html>

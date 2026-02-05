@@ -1,355 +1,687 @@
-.container {
-    /* max-width: fit-content; */
+/* Enterprise Career Page Styles */
+
+/* ===== PAGE LAYOUT ===== */
+.careerPage {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+/* ===== HERO SECTION ===== */
+.heroSection {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #152b54 100%);
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="0.5"/></svg>');
+  background-size: 30px 30px;
+  animation: float 20s linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
   }
-  
-  .bannerIMG {
-    position: relative;
-    width: 100%;
+  100% {
+    transform: translateY(-30px);
   }
-  .bannerimg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 900px;
+}
+
+.heroBadge {
+  display: inline-block;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5);
   }
-  .bannerText {
-    position: absolute;
-    top: 40%;
-    right: 50%;
-    max-width: 35%;
-    color: aliceblue;
-    font-family: poppins;
-    font-weight: bold;
+  50% {
+    box-shadow: 0 0 0 15px rgba(59, 130, 246, 0);
   }
-  .bannerText h1 {
-    color: aliceblue;
+}
+
+.heroTitle {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  color: white;
+  margin: 0 0 20px;
+  line-height: 1.2;
+  font-family: "Inter", "Segoe UI", sans-serif;
+}
+
+.heroTitle span {
+  background: linear-gradient(135deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.heroStats {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNumber {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  font-family: "Inter", sans-serif;
+}
+
+.statLabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
+
+/* ===== SECTION COMMON STYLES ===== */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionTag {
+  display: inline-block;
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  color: #3b82f6;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 16px;
+  font-family: "Inter", sans-serif;
+}
+
+.sectionDescription {
+  font-size: 1.1rem;
+  color: #64748b;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ===== BENEFITS SECTION ===== */
+.benefitsSection {
+  padding: 100px 5%;
+  background: white;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.benefitCard {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefitCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.benefitCard:hover::before {
+  transform: scaleX(1);
+}
+
+.benefitIcon {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border-radius: 20px;
+  margin: 0 auto 24px;
+  font-size: 28px;
+  color: #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.benefitCard:hover .benefitIcon {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+  transform: scale(1.1);
+}
+
+.benefitCard h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px;
+}
+
+.benefitCard p {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== POSITIONS SECTION ===== */
+.positionsSection {
+  padding: 100px 5%;
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+
+.jobsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.jobCard {
+  background: white;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.jobCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.02),
+    rgba(139, 92, 246, 0.02)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.jobCard:hover,
+.jobCard.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.15);
+}
+
+.jobCard:hover::before,
+.jobCard.selected::before {
+  opacity: 1;
+}
+
+.jobHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.jobTitleSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.jobIcon {
+  font-size: 24px;
+  color: #3b82f6;
+  background: #eff6ff;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.jobTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 4px;
+}
+
+.jobDepartment {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.jobTypeBadge {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.jobDescription {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.jobMeta {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.metaItem svg {
+  color: #3b82f6;
+}
+
+.jobDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.detailSection h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px;
+}
+
+.detailSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.detailSection li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #475569;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.detailSection li svg {
+  color: #10b981;
+  font-size: 12px;
+  margin-top: 5px;
+  flex-shrink: 0;
+}
+
+.jobBenefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.benefitTag {
+  background: #f1f5f9;
+  color: #475569;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.applyButton {
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #152b54, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.applyButton:hover {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.5);
+}
+
+.applyButton svg {
+  transition: transform 0.3s ease;
+}
+
+.applyButton:hover svg {
+  transform: translateX(4px);
+}
+
+/* ===== APPLICATION SECTION ===== */
+.applicationSection {
+  padding: 100px 5%;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+}
+
+.formContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 32px;
+  padding: 60px;
+  box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.25);
+}
+
+.formHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.formHeader h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 12px;
+}
+
+.formHeader p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.applicationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+  padding: 14px 18px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #0f172a;
+  background: #f9fafb;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.formGroup input:focus,
+.formGroup select:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: #9ca3af;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.formHint {
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.submitButton {
+  padding: 18px 40px;
+  background: linear-gradient(135deg, #152b54, #1e40af);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px -10px rgba(59, 130, 246, 0.5);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submitButton svg {
+  transition: transform 0.3s ease;
+}
+
+.submitButton:hover:not(:disabled) svg {
+  transform: translateX(4px);
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1024px) {
+  .jobsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .jobDetails {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    min-height: 60vh;
+  }
+
+  .heroStats {
+    gap: 30px;
+  }
+
+  .statNumber {
     font-size: 2rem;
-    font-family: poppins;
-    font-weight: bold;
   }
-  .bannerText p {
-    color: aliceblue;
+
+  .benefitsSection,
+  .positionsSection,
+  .applicationSection {
+    padding: 60px 5%;
+  }
+
+  .formContainer {
+    padding: 40px 24px;
+    border-radius: 24px;
+  }
+
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+
+  .jobCard {
+    padding: 30px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .heroSubtitle {
     font-size: 1rem;
-    font-family: poppins;
-    font-weight: bold;
   }
-  .joinBtn {
-    color: antiquewhite;
-    background: blue;
-    border: none;
-    border-radius: 5px;
-  }
-  .joinBtn:hover {
-    background: black;
-    color: aliceblue;
-    transition: 1.9s ease-in-out;
-  }
-  .benefits {
-    max-width: 100%;
-    /* border: 2px dashed red; */
-    padding: 2%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-    gap: 20px;
-    margin-bottom: 5%;
-  }
-  .benefits h3 {
-    font-size: 1rem;
-    font-family: poppins;
-    font-weight: bold;
-  }
-  .benefits h1 {
-    font-size: 1rem;
-    font-family: poppins;
-    font-weight: bold;
-  }
-  
-  .banefit {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+  .heroStats {
+    flex-direction: column;
     gap: 20px;
   }
-  .banefit p {
-    font-size: 0.9rem;
-    font-family: poppins;
+
+  .sectionTitle {
+    font-size: 1.75rem;
   }
-  
-  .icon {
-    font-size: 50px;
-    color: aqua;
+
+  .benefitCard {
+    padding: 30px 20px;
   }
-  .contact {
-    width: 100%;
-    /* padding: 2%; */
-    display: flex;
-  
-    justify-content: center;
-    margin-bottom: 5%;
+
+  .jobHeader {
+    flex-direction: column;
+    gap: 12px;
   }
-  .contactImg {
-    width: 37%;
+
+  .jobMeta {
+    flex-direction: column;
+    gap: 12px;
   }
-  .contactImg img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0 12px 12px 0;
-    opacity: 0.9;
-    /* object-fit: cover; */
-    display: block;
-  }
-  .officeMail {
-    width: 42%;
-    height: 70%;
-    background: rgb(224, 228, 235);
-    padding: 5%;
-    border-radius: 12px 0 0 12px;
-  }
-  .NameAndEmail {
-    display: flex;
-  }
-  .inputbox {
-    width: 100%;
-    height: 46px;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 19px;
-    color: #373738;
-    font-weight: lighter;
-    font-family: serif;
-  }
-  .inputbox::placeholder {
-    font-size: 19px;
-    color: #878d97;
-    font-weight: lighter;
-    font-family: serif;
-    padding: 5px;
-  }
-  .contactLable {
-    font-size: 20px;
-    color: #878d97;
-    font-weight: lighter;
-    font-family: serif;
-    /* margin-bottom: 15px; */
-  }
-  #select {
-    height: 46px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 19px;
-    color: #424243;
-    font-weight: lighter;
-    font-family: serif;
-    padding: 5px;
-  }
-  .textarea {
-    width: 100%;
-    height: 200px;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 19px;
-    color: #48494a;
-    font-weight: lighter;
-    font-family: serif;
-    padding: 5px;
-  }
-  
-  .contactBtn {
-    width: 100%;
-    height: 46px;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    font-size: 19px;
-    color: white;
-    font-weight: lighter;
-    font-family: serif;
-    padding: 5px;
-    background: rgb(21 43 84);
-  }
-  @media (min-width:500px) and (max-width: 950px) {
-    .bannerIMG {
-    position: relative;
-    width: 100%;
-    height: 35vh;
-  }
-  .bannerimg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-    .bannerText {
-      top: 26%;
-      left: 7%;
-      max-width: 100%;
-      width: 90%;
-    }
-    .bannerText h1 {
-      font-size: 2.3rem;
-    }
-    .bannerText p {
-      font-size: 1.2rem;
-    }
-    .joinBtn {
-      font-size: 10px;
-    }
-    .benefits {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    .contact {
-      flex-direction: column-reverse;
-      align-items: center;
-    }
-    .officeMail {
-      width: 80%;
-      border-radius: 0 0 12px 12px;
-    }
-    .contactImg {
-      width: 80%;
-      height: 60vh;
-    }
-    .contactImg img{
-      border-radius: 12px 12px 0 0;
-    }
-  }
-  
-  @media screen and (min-width: 300px) and (max-width: 500px) {
-    .bannerIMG {
-        position: relative;
-        width: 100%;
-        height: 30vh;
-      }
-      .bannerimg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-    .bannerText {
-      top: 25%;
-      left: 7%;
-      max-width: 90%;
-      width: 80%;
-    }
-    .bannerText h1 {
-      font-size: 1.5rem;
-    }
-    .bannerText p {
-      font-size: 0.7rem;
-    }
-    .contact {
-      flex-direction: column-reverse;
-      justify-content: center;
-      justify-items: center;
-      align-items: center;
-    }
-    .officeMail {
-      width: 90%;
-      border-radius: 0 0 12px 12px;
-    }
-    .contactImg {
-      width: 90%;
-      height: 50vh;
-      
-    }
-    .contactImg img{
-      border-radius: 12px 12px 0 0;
-    }
-    .inputbox::placeholder {
-      font-size: 10px;
-    }
-    #select {
-      font-size: 10px;
-    }
-    .benefits {
-        max-width: 100%;
-        /* border: 2px dashed red; */
-        padding: 2%;
-        left: 6%;
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        place-items: center;
-        gap: 20px;
-        margin-bottom: 5%;
-      }
-  }
-  
-  @media screen and (min-width: 1300px) and (max-width: 2440px) {
-    .bannerText {
-      top: 30%;
-      right: 10%;
-      max-width: 100%;
-    }
-    .bannerText h1 {
-      font-size: 0.7rem;
-    }
-    .bannerText p {
-      font-size: 0.3rem;
-    }
-    .contact {
-      width: 100%;
-      /* padding: 2%; */
-      display: flex;
-    align-items: center;
-      justify-content: center;
-      margin-bottom: 5%;
-    }
-    .contactImg {
-      width: 37%;
-      height: 94vh;
-    }
-    .contactImg img {
-      width: 100%;
-      height: 100%;
-      border-radius: 0 12px 12px 0;
-      opacity: 0.9;
-      /* object-fit: cover; */
-      display: block;
-    }
-    .officeMail {
-      width: 42%;
-      height: 70%;
-      background: rgb(224, 228, 235);
-      padding: 5%;
-      border-radius: 12px 0 0 12px;
-    }
-    .inputbox::placeholder {
-      font-size: 10px;
-    }
-    #select {
-      font-size: 10px;
-    }
-  }
-  
-  @media screen and (min-width: 950px) and (max-width: 1300px) {
-    .bannerIMG {
-        position: relative;
-        width: 100%;
-        height: 45vh;
-      }
-      .bannerimg img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-      }
-    .bannerText {
-      top: 30%;
-      left: 10%;
-      max-width: 100%;
-      width: 50%;
-      line-height: 1.3;
-    }
-    .bannerText h1 {
-      font-size: 2.7rem;
-      margin-bottom: 10px;
-    }
-    .bannerText p {
-      font-size: 1.4rem;
-    }
-  }
+}

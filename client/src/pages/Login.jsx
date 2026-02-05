@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../slices/userSlice";
 import banner from "../assets/loginbanner.jpeg";
-import logo from "../assets/WhatsApp_Image_2024-06-22_at_10.01.48-removebg-preview.png";
+import logo from "../assets/TT.png";
 import Lottie from "lottie-react";
 import signup from "../assets/signup.json";
 

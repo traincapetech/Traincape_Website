@@ -207,7 +207,7 @@ import {
 } from "react-icons/fa";
 import { BiCertification } from "react-icons/bi";
 import { BsGlobe } from "react-icons/bs";
-import { Helmet } from "react-helmet-async";
+import PageSEO from "../components/PageSEO";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -289,7 +289,7 @@ const AboutUS = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveTimelineIndex((prev) => (prev + 1) % timelineData.length);
-    }, 1000);
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -302,10 +302,7 @@ const AboutUS = () => {
 
   return (
     <>
-      <Helmet>
-        <title>About Us- IT Industry Training and Certifications</title>
-        <meta name="description" content="Traincape Technology offers IT certifications for Cyber Security, Cloud Computing, Project Management, Networking, etc"/>
-      </Helmet>
+      <PageSEO pageType="about" />
 
       <section className="relative w-full h-[400px] md:h-[500px] overflow-hidden mb-20">
         <div className="flex items-center w-full py-4 px-6 bg-white rounded shadow-md border border-gray-200">
@@ -323,6 +320,7 @@ const AboutUS = () => {
           muted
           loop
           playsInline
+          preload="none"
           /* give title - as video doesn't support alt */
           title="IT Training and Certifications"
           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -339,12 +337,11 @@ const AboutUS = () => {
         <div className="max-w-5xl mx-auto text-xl md:text-2xl leading-relaxed text-black p-8 rounded-lg shadow-md">
           <p className="mb-6 text-justify relative font-normal">
             <span className="text-7xl text-[#F97316] font-bold float-left mr-2 leading-none font-sans align-baseline" style={{ verticalAlign: "baseline" }}>T</span>
-            raincape Technology is on a mission to empower the next generation of professionals through cutting-edge IT education, real-world projects, and a deep commitment to industry relevance.
+            Traincape Technology is on a mission to empower the next generation of professionals through cutting-edge IT education, real-world projects, and a deep commitment to industry relevance.
           </p>
           <ul className="space-y-4 pl-4 font-sans">
             {["Certified training programs tailored to high-demand IT skills.",
               "Real-world internship experiences guided by seasoned mentors.",
-              "Partnerships with certifying bodies like CompTIA and Microsoft.",
               "Career services including resume building and job placement support.",
             ].map((item, index) => (
               <li key={index} className="flex items-start gap-3">

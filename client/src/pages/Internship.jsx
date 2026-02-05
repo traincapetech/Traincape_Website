@@ -8,7 +8,6 @@ import learning from "../assets/learning.jpg";
 import support from "../assets/support.jpg";
 import progress from "../assets/progress.jpg";
 import career from "../pages/Career/Career.module.css";
-import emailjs from "@emailjs/browser";
 import love from "../assets/Love (1).jpg";
 import Akshay from "../assets/Akshay (1).jpg";
 import Ritik from "../assets/Ritik (1).jpg";
@@ -22,6 +21,8 @@ import kartikey from "../assets/kartikey.jpg";
 // import shubh from "../assets/shubh.jpg";
 import harshda from "../assets/harshda.jpg";
 import ashu from "../assets/ashu.jpg";
+import toast from "react-hot-toast";
+import { submitLead } from "../utils/submitLead";
 
 export default function Internship() {
   const [payoload, setPayoload] = useState({
@@ -32,6 +33,7 @@ export default function Internship() {
     phoneNumber: "",
     resumeLink: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -40,38 +42,55 @@ export default function Internship() {
     vanshika, Tripti, love, Akansha, Akshay, Ritik, one, two, three, four
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return;
 
-    const serviceId = "service_pjwgjas";
-    const templateId = "template_oihg6cs";
-    const publicId = "GmJ24jEVf6swWXgb0";
+    const name = String(payoload.name || "").trim();
+    const email = String(payoload.email || "").trim();
+    const role = String(payoload.subject || "").trim();
+    const phoneNumber = String(payoload.phoneNumber || "").trim();
+    const resumeLink = String(payoload.resumeLink || "").trim();
+    const message = String(payoload.message || "").trim();
 
-    const templateParams = {
-      from_name: payoload.name,
-      from_email: payoload.email,
-      from_subject: payoload.subject,
-      to_name: "Parichay singh Rana",
-      message: `Name: ${payoload.name}\nEmail: ${payoload.email}\nWhatsapp-Number: ${payoload.phoneNumber}\nSelected Role: ${payoload.subject}\nMessage: ${payoload.message}\nResume Link: ${payoload.resumeLink}`,
-    };
+    if (name.length < 2) return toast.error("Please enter your name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return toast.error("Please enter a valid email.");
+    if (!phoneNumber) return toast.error("Please enter your WhatsApp number.");
+    if (!role) return toast.error("Please select a role.");
+    if (message.length < 10) return toast.error("Please enter a message (min 10 characters).");
 
-    emailjs.send(serviceId, templateId, templateParams, publicId).then(
-      (res) => {
-        alert("Email sent successfully!", res);
-      },
-      (err) => {
-        console.log("Error:", err);
-      }
-    );
+    setIsSubmitting(true);
+    try {
+      const data = await submitLead({
+        name,
+        email,
+        phoneNumber,
+        location: "",
+        subject: `Internship Application — ${role}`,
+        message: [
+          message,
+          "",
+          resumeLink ? `Resume Link: ${resumeLink}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      });
 
-    setPayoload({
-      name: "",
-      email: "",
-      phoneNumber: "",
-      subject: "",
-      message: "",
-      resumeLink: "",
-    });
+      toast.success(data?.message || "Message sent!");
+      setPayoload({
+        name: "",
+        email: "",
+        phoneNumber: "",
+        subject: "",
+        message: "",
+        resumeLink: "",
+      });
+    } catch (err) {
+      toast.error(err?.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+
   };
 
   const handleChange = (e) => {
@@ -214,8 +233,8 @@ export default function Internship() {
             onChange={handleChange}
             value={payoload.message}
           ></textarea>
-          <button className={career.contactBtn} onClick={handleSubmit}>
-            Send Message
+          <button className={career.contactBtn} onClick={handleSubmit} disabled={isSubmitting}>
+            {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </div>
         <div className={career.contactImg}>

@@ -8,10 +8,7 @@ http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
 /MicrosoftCourse/static/* /static/:splat 200
 /UnityCourse/static/* /static/:splat 200
 
-# Redirect old URLs to new ones
-/contact-us /contact-us 301
-/about-us /about-us 301
-/our-services /courses 301
+# Redirect legacy URLs to clean, SEO-friendly routes
 /frequently-asked-questions /faq 301
 /Our-Blogs /blogs 301
 /Our-Policies /policies 301
@@ -64,8 +61,31 @@ http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
 # Handle trailing slashes
 /*/ /:splat 301
 
-# Handle query parameters (optional)
-/*?* /:splat 301
+# NOTE: Do not strip query parameters globally; it can break payment redirects and tracking.
+
+# Serve prerendered HTML pages when available (react-snap)
+/certifications /certifications/index.html 200
+/certifications/project-program-management /certifications/project-program-management/index.html 200
+/certifications/agile-scrum-lean /certifications/agile-scrum-lean/index.html 200
+/certifications/cybersecurity-compliance /certifications/cybersecurity-compliance/index.html 200
+/certifications/cloud-infrastructure-networking /certifications/cloud-infrastructure-networking/index.html 200
+/certifications/ai-data-emerging-tech /certifications/ai-data-emerging-tech/index.html 200
+/certifications/software-dev-testing /certifications/software-dev-testing/index.html 200
+/certifications/business-hr-management /certifications/business-hr-management/index.html 200
+/certifications/digital-marketing-cx /certifications/digital-marketing-cx/index.html 200
+/training /training/index.html 200
+/training/aws /training/aws/index.html 200
+/training/cisco /training/cisco/index.html 200
+/training/microsoft /training/microsoft/index.html 200
+/about-us /about-us/index.html 200
+/our-services /our-services/index.html 200
+/services/cloud-services /services/cloud-services/index.html 200
+/services/web-development /services/web-development/index.html 200
+/contact-us /contact-us/index.html 200
+/frequently-asked-questions /frequently-asked-questions/index.html 200
+/review-page /review-page/index.html 200
+/partner-page /partner-page/index.html 200
+/pecb /pecb/index.html 200
 
 # Handle client-side routing - serve index.html for all routes
 /* /index.html 200

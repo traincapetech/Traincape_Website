@@ -1,0 +1,644 @@
+
+> client@0.1.0 prebuild
+> node scripts/prepare-build.js && node scripts/generate-sitemap.js
+
+[prepare-build] Cleaned: /Users/a/Desktop/Traincape-Technology-main/Traincape_/client/build
+[generate-sitemap] Wrote 256 URLs -> /Users/a/Desktop/Traincape-Technology-main/Traincape_/client/public/sitemap.xml
+
+> client@0.1.0 build
+> craco build
+
+Creating an optimized production build...
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[BABEL] Note: The code generator has deoptimised the styling of /Users/a/Desktop/Traincape-Technology-main/Traincape_/client/src/assets/CareerBannerIMG.svg as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of undefined as it exceeds the max of 500KB.
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Browserslist: browsers data (caniuse-lite) is 11 months old. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Compiled with warnings.
+
+Failed to parse source map from '/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/html2pdf.js/dist/es6-promise.map' file: Error: ENOENT: no such file or directory, open '/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/html2pdf.js/dist/es6-promise.map'
+
+[eslint] 
+src/allRoute/AllRoute.jsx
+  Line 6:8:    'NotFound' is defined but never used           no-unused-vars
+  Line 10:13:  'BsIcons' is defined but never used            no-unused-vars
+  Line 196:9:  'location' is assigned a value but never used  no-unused-vars
+
+src/components/ExamProctor.jsx
+  Line 56:9:   'exitFullscreen' is assigned a value but never used                                                                                                                                                                                                                                   no-unused-vars
+  Line 136:6:  React Hook useCallback has a missing dependency: 'maxViolations'. Either include it or remove the dependency array. If 'setWarningMessage' needs the current value of 'maxViolations', you can also switch to useReducer instead of useState and read 'maxViolations' in the reducer  react-hooks/exhaustive-deps
+  Line 155:6:  React Hook useCallback has a missing dependency: 'maxViolations'. Either include it or remove the dependency array. If 'setWarningMessage' needs the current value of 'maxViolations', you can also switch to useReducer instead of useState and read 'maxViolations' in the reducer  react-hooks/exhaustive-deps
+  Line 170:6:  React Hook useCallback has a missing dependency: 'maxViolations'. Either include it or remove the dependency array. If 'setWarningMessage' needs the current value of 'maxViolations', you can also switch to useReducer instead of useState and read 'maxViolations' in the reducer  react-hooks/exhaustive-deps
+  Line 278:6:  React Hook useEffect has a missing dependency: 'examStarted'. Either include it or remove the dependency array                                                                                                                                                                        react-hooks/exhaustive-deps
+
+src/components/Navbar.jsx
+  Line 117:9:  'handleLogout' is assigned a value but never used  no-unused-vars
+
+src/components/ScrollStack.jsx
+  Line 86:41:  'scrollContainer' is assigned a value but never used  no-unused-vars
+
+src/pages/AIMLDevelopment.jsx
+  Line 28:9:  'PRIMARY_COLOR' is assigned a value but never used    no-unused-vars
+  Line 29:9:  'SECONDARY_COLOR' is assigned a value but never used  no-unused-vars
+
+src/pages/AboutUs/data.js
+  Line 19:9:  Duplicate key 'contactUs'  no-dupe-keys
+
+src/pages/AdminPanel/AdminSidebar.jsx
+  Line 4:3:   'PlusCircle' is defined but never used     no-unused-vars
+  Line 6:3:   'Settings' is defined but never used       no-unused-vars
+  Line 10:3:  'ShoppingCart' is defined but never used   no-unused-vars
+  Line 11:3:  'Code' is defined but never used           no-unused-vars
+  Line 12:3:  'Monitor' is defined but never used        no-unused-vars
+  Line 13:3:  'HelpCircle' is defined but never used     no-unused-vars
+  Line 15:3:  'MessageCircle' is defined but never used  no-unused-vars
+  Line 17:3:  'Video' is defined but never used          no-unused-vars
+
+src/pages/AdminPanel/CourseAnalytics/CourseAnalytics.jsx
+  Line 16:3:  'AreaChart' is defined but never used      no-unused-vars
+  Line 17:3:  'Area' is defined but never used           no-unused-vars
+  Line 18:3:  'CartesianGrid' is defined but never used  no-unused-vars
+
+src/pages/AdminPanel/EmployeeManagement/EmployeeManagement.jsx
+  Line 121:27:  Expected '===' and instead saw '=='            eqeqeq
+  Line 122:28:  Expected '===' and instead saw '=='            eqeqeq
+  Line 130:28:  Expected '===' and instead saw '=='            eqeqeq
+  Line 254:13:  'response' is assigned a value but never used  no-unused-vars
+
+src/pages/AdminPanel/EmployeeManagement/editEmployee/EditEmployee.jsx
+  Line 2:13:    'Save' is defined but never used               no-unused-vars
+  Line 2:19:    'CheckCircle' is defined but never used        no-unused-vars
+  Line 161:13:  'response' is assigned a value but never used  no-unused-vars
+
+src/pages/AdminPanel/VoucherManagement/CreateVoucherBatch.jsx
+  Line 131:13:  'response' is assigned a value but never used  no-unused-vars
+
+src/pages/AutoPlay.jsx
+  Line 8:8:    'Img6' is defined but never used                                                                                                                                                                 no-unused-vars
+  Line 14:8:   'Phoneimg6' is defined but never used                                                                                                                                                            no-unused-vars
+  Line 49:21:  Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop  jsx-a11y/img-redundant-alt
+  Line 56:21:  Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop  jsx-a11y/img-redundant-alt
+  Line 59:21:  Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop  jsx-a11y/img-redundant-alt
+  Line 65:21:  Redundant alt attribute. Screen-readers already announce `img` tags as an image. You don’t need to use the words `image`, `photo,` or `picture` (or any specified custom words) in the alt prop  jsx-a11y/img-redundant-alt
+
+src/pages/Comptia/Expert/CASP+.jsx
+  Line 4:34:  'FaBook' is defined but never used     no-unused-vars
+  Line 5:25:  'BsGraphUp' is defined but never used  no-unused-vars
+
+src/pages/Comptia/Professional/ComptiaCYSA+.jsx
+  Line 5:25:  'BsGraphUp' is defined but never used  no-unused-vars
+
+src/pages/Comptia/Professional/ComptiaCloud+.jsx
+  Line 4:34:  'FaBook' is defined but never used  no-unused-vars
+
+src/pages/Comptia/Professional/ComptiaNetworkSecurity.jsx
+  Line 4:56:  'FaShieldAlt' is defined but never used  no-unused-vars
+
+src/pages/Comptia/Professional/ComptiaPenTest.jsx
+  Line 5:25:  'BsGraphUp' is defined but never used  no-unused-vars
+
+src/pages/Comptia/Specialist/ComptiaSecureInfrastructure.jsx
+  Line 4:25:  'FaClock' is defined but never used                 no-unused-vars
+  Line 4:34:  'FaBook' is defined but never used                  no-unused-vars
+  Line 20:9:  'courseDetails' is assigned a value but never used  no-unused-vars
+
+src/pages/Comptia/Specialist/ComptiaSecurity+.jsx
+  Line 4:34:  'FaBook' is defined but never used     no-unused-vars
+  Line 5:25:  'BsGraphUp' is defined but never used  no-unused-vars
+
+src/pages/ContactUs.jsx
+  Line 69:9:  'navigate' is assigned a value but never used  no-unused-vars
+
+src/pages/Courses.jsx
+  Line 14:8:  'mircro' is defined but never used                    no-unused-vars
+  Line 85:9:  'handleAddToCart' is assigned a value but never used  no-unused-vars
+
+src/pages/ForgotPassword.jsx
+  Line 1:17:   'useEffect' is defined but never used      no-unused-vars
+  Line 11:8:   'axios' is defined but never used          no-unused-vars
+  Line 16:11:  'user' is assigned a value but never used  no-unused-vars
+
+src/pages/Gallery.jsx
+  Line 7:8:    'workingBoy' is defined but never used                                                                            no-unused-vars
+  Line 23:8:   'GP10' is defined but never used                                                                                  no-unused-vars
+  Line 24:8:   'GP11' is defined but never used                                                                                  no-unused-vars
+  Line 25:8:   'GP12' is defined but never used                                                                                  no-unused-vars
+  Line 26:8:   'GP13' is defined but never used                                                                                  no-unused-vars
+  Line 27:8:   'GP14' is defined but never used                                                                                  no-unused-vars
+  Line 28:8:   'GP15' is defined but never used                                                                                  no-unused-vars
+  Line 29:8:   'GP16' is defined but never used                                                                                  no-unused-vars
+  Line 194:6:  React Hook useEffect has a missing dependency: 'handleKeyDown'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+src/pages/Home.jsx
+  Line 1:10:  'useEffect' is defined but never used        no-unused-vars
+  Line 20:8:  'card3' is defined but never used            no-unused-vars
+  Line 36:8:  'certiport' is defined but never used        no-unused-vars
+  Line 37:8:  'pearson' is defined but never used          no-unused-vars
+  Line 38:8:  'etraind' is defined but never used          no-unused-vars
+  Line 50:8:  'mircro' is defined but never used           no-unused-vars
+  Line 52:8:  'AWS' is defined but never used              no-unused-vars
+  Line 53:8:  'Cisco' is defined but never used            no-unused-vars
+  Line 94:7:  'images' is assigned a value but never used  no-unused-vars
+
+src/pages/PECB.jsx
+  Line 4:37:  'FaCloud' is defined but never used     no-unused-vars
+  Line 4:86:  'FaLock' is defined but never used      no-unused-vars
+  Line 5:22:  'MdBusiness' is defined but never used  no-unused-vars
+
+src/pages/PECB/Artificial_Intelligence/AI_Risk_Management.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Artificial_Intelligence/Artificial_Intelligence_Professional.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:22:  'MdPsychology' is defined but never used   no-unused-vars
+
+src/pages/PECB/Artificial_Intelligence/ISO/IEC_42001_Artificial_Intelligence_Management_System.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/ContinuityResilienceRecovery.jsx
+  Line 5:10:  'MdSecurity' is defined but never used  no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/Crisis_Management.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/Digital_Operational_Resilience_Act_(DORA).jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/Disaster_Recovery.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/ISO_22301_Business_Continuity_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdSecurity' is defined but never used     no-unused-vars
+
+src/pages/PECB/Continuity_Resilience_Recovery/Operational_Resilience_Management.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/Cloud_Security.jsx
+  Line 6:22:  'MdCloudQueue' is defined but never used  no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/Computer_Forensics.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdSecurity' is defined but never used     no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/CyberSecurityManagement.jsx
+  Line 10:3:   'FaUserTie' is defined but never used   no-unused-vars
+  Line 13:10:  'MdSecurity' is defined but never used  no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/Cybersecurity_Maturity_Model_Certification_(CMMC).jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/ISO/IEC_27033_Network_Security.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/Penetration_Testing_Professional.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/CyberSecurity_Management/SCADA_Security_Manager.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Digital_Trasformation/Digital_Transformation.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/ISO 37001_Anti-Bribery_Management_System.jsx
+  Line 5:3:    'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 9:3:    'FaUserTie' is defined but never used      no-unused-vars
+  Line 11:3:   'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 14:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 15:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/ISO/IEC_38500_IT_Governance.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/ISO_37000_Corporate_Governance.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/ISO_37301_Compliance_Management_System.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/Management_Systems_Internal_Auditor.jsx
+  Line 5:3:    'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 9:3:    'FaUserTie' is defined but never used      no-unused-vars
+  Line 11:3:   'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 14:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 15:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Governance_Risk&Compliance/Operational_Risk_Management_in_Financial_Institutions.jsx
+  Line 5:3:    'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 9:3:    'FaUserTie' is defined but never used      no-unused-vars
+  Line 11:3:   'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 14:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 15:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Information_Security/EBIOS.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Information_Security/ISO/IEC_27002_Information_Security_Controls.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Information_Security/ISO/IEC_27005_Information _Security _Risk_Management.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdSecurity' is defined but never used     no-unused-vars
+
+src/pages/PECB/Information_Security/ISO/IEC_27034_Application_Security.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Information_Security/ISO/IEC_27035_Information_Security_Incident_Management.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Information_Security/InformationSecurity.jsx
+  Line 5:22:  'MdBusiness' is defined but never used  no-unused-vars
+
+src/pages/PECB/Information_Security/PECB_Chief_Information_Security_Officer.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdSecurity' is defined but never used     no-unused-vars
+
+src/pages/PECB/Privacy&Data_Protection/General_Data_Protection_Regulation_(GDPR).jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdSecurity' is defined but never used     no-unused-vars
+
+src/pages/PECB/Privacy&Data_Protection/ISO/IEC_27701_Privacy_Information_Management_System.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO/IEC_17025_Laboratory_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO/IEC_20000_IT_Service_Management_System.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 5:25:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:10:  'MdBusiness' is defined but never used     no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_13485_Medical_Devices_Quality_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_21001_Educational_Organizations_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:10:  'MdBusiness' is defined but never used     no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_21502_Project_Management.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_28000_Supply_Chain_Security_Management_System.jsx
+  Line 4:90:  'FaAward' is defined but never used        no-unused-vars
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_55001_Asset_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/ISO_9001_Quality_Management_System.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/QualityManagement.jsx
+  Line 5:22:  'MdSchool' is defined but never used  no-unused-vars
+
+src/pages/PECB/Quality&Management/Six_Sigma.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+
+src/pages/PECB/Technical_Cybersecurity/Certified_Cyber_Threat_Analyst_(CCTA).jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Technical_Cybersecurity/Certified_Digital_Forensics_Examiner.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/PECB/Technical_Cybersecurity/Ethical_Hacking.jsx
+  Line 5:10:  'BsShieldCheck' is defined but never used  no-unused-vars
+  Line 6:22:  'MdComputer' is defined but never used     no-unused-vars
+
+src/pages/PECB/Technical_Cybersecurity/Incident_Response.jsx
+  Line 4:10:  'FaCheckCircle' is defined but never used  no-unused-vars
+  Line 4:57:  'FaUserTie' is defined but never used      no-unused-vars
+  Line 4:81:  'FaShieldAlt' is defined but never used    no-unused-vars
+  Line 5:10:  'BsGraphUp' is defined but never used      no-unused-vars
+  Line 6:22:  'MdTrendingUp' is defined but never used   no-unused-vars
+
+src/pages/Services.jsx
+  Line 13:8:    'UI' is defined but never used                       no-unused-vars
+  Line 17:8:    'softwareDevelopment' is defined but never used      no-unused-vars
+  Line 20:8:    'UiUx' is defined but never used                     no-unused-vars
+  Line 26:10:   'Link' is defined but never used                     no-unused-vars
+  Line 117:10:  'isMobile' is assigned a value but never used        no-unused-vars
+  Line 210:9:   'cardTransforms' is assigned a value but never used  no-unused-vars
+  Line 230:9:   'handleClick' is assigned a value but never used     no-unused-vars
+
+src/pages/Signup.jsx
+  Line 559:13:  'hasSpecialChar' is assigned a value but never used  no-unused-vars
+
+src/pages/Test/Test.jsx
+  Line 34:10:  'examStarted' is assigned a value but never used     no-unused-vars
+  Line 34:23:  'setExamStarted' is assigned a value but never used  no-unused-vars
+
+src/pages/Test/VerifyCertificate.jsx
+  Line 7:10:  'certificateData' is assigned a value but never used     no-unused-vars
+  Line 7:27:  'setCertificateData' is assigned a value but never used  no-unused-vars
+  Line 9:10:  'verifying' is assigned a value but never used           no-unused-vars
+
+src/pages/software-services.jsx
+  Line 45:9:   'techs' is assigned a value but never used    no-unused-vars
+  Line 163:9:  'metrics' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  725.14 kB  build/static/js/vendors.9bc71fab.js
+  63.82 kB   build/static/js/9483.230e734a.chunk.js
+  60.74 kB   build/static/js/main.59d190d0.js
+  42.15 kB   build/static/js/common.9e1bc7ce.chunk.js
+  39.18 kB   build/static/js/2377.e70756c4.chunk.js
+  26.04 kB   build/static/js/9453.947c523b.chunk.js
+  22.3 kB    build/static/js/963.ac0dbf78.chunk.js
+  20.45 kB   build/static/css/main.c7e73653.css
+  7.89 kB    build/static/css/vendors.91e9e48f.css
+  7.29 kB    build/static/js/186.1b753aea.chunk.js
+  5.89 kB    build/static/js/6831.70bf9e28.chunk.js
+  4.79 kB    build/static/js/2710.35bc2a54.chunk.js
+  4.2 kB     build/static/js/1884.78f59719.chunk.js
+  3.98 kB    build/static/js/6118.83d8e19c.chunk.js
+  3.71 kB    build/static/js/5993.0aa7a2f8.chunk.js
+  3.67 kB    build/static/js/4504.3eed24a9.chunk.js
+  3.63 kB    build/static/js/5996.344148a5.chunk.js
+  3.61 kB    build/static/js/3842.3aa02314.chunk.js
+  3.58 kB    build/static/js/4226.7e130471.chunk.js
+  3.55 kB    build/static/js/190.00707e83.chunk.js
+  3.54 kB    build/static/js/5641.81d1f544.chunk.js
+  3.54 kB    build/static/js/4430.9a66b351.chunk.js
+  3.49 kB    build/static/js/4656.7ea572fe.chunk.js
+  3.45 kB    build/static/js/8265.ec9094d4.chunk.js
+  3.44 kB    build/static/js/7885.eeb5c871.chunk.js
+  3.43 kB    build/static/js/1248.b81a7d14.chunk.js
+  3.42 kB    build/static/js/5870.b472dc55.chunk.js
+  3.39 kB    build/static/js/1447.fe81bc7c.chunk.js
+  3.31 kB    build/static/js/3630.6b94e567.chunk.js
+  3.28 kB    build/static/js/runtime.502e835c.js
+  3.2 kB     build/static/js/892.b9eea84b.chunk.js
+  3.18 kB    build/static/js/6451.96c43c7c.chunk.js
+  3.16 kB    build/static/js/4933.116fdd4a.chunk.js
+  3.13 kB    build/static/js/2614.112cb733.chunk.js
+  3.13 kB    build/static/js/552.2c0dc0e7.chunk.js
+  3.1 kB     build/static/js/4043.7c54bed8.chunk.js
+  3.09 kB    build/static/js/5970.38836b54.chunk.js
+  3.09 kB    build/static/js/959.9e7b6f3f.chunk.js
+  3.07 kB    build/static/js/5612.86de2e72.chunk.js
+  3.07 kB    build/static/js/4305.106ed705.chunk.js
+  3.06 kB    build/static/js/8464.f02e5652.chunk.js
+  3.03 kB    build/static/js/4678.71bf56a3.chunk.js
+  3.02 kB    build/static/js/357.68e98c76.chunk.js
+  2.99 kB    build/static/js/2974.062c716c.chunk.js
+  2.99 kB    build/static/js/1050.592b5089.chunk.js
+  2.96 kB    build/static/js/2270.9cd736f8.chunk.js
+  2.96 kB    build/static/js/3537.abb4c5ef.chunk.js
+  2.95 kB    build/static/js/164.2b7ca0f0.chunk.js
+  2.93 kB    build/static/js/3862.f5641fa4.chunk.js
+  2.93 kB    build/static/js/3617.5cde18c1.chunk.js
+  2.88 kB    build/static/js/1221.73036bd8.chunk.js
+  2.83 kB    build/static/js/5000.4c8c8502.chunk.js
+  2.83 kB    build/static/js/1563.89659613.chunk.js
+  2.81 kB    build/static/js/6710.7d3dbc32.chunk.js
+  2.8 kB     build/static/css/963.a21487d4.chunk.css
+  2.8 kB     build/static/js/8207.13d095e0.chunk.js
+  2.8 kB     build/static/js/5094.4de67455.chunk.js
+  2.71 kB    build/static/js/4453.4eb8d787.chunk.js
+  2.66 kB    build/static/js/7227.fd134100.chunk.js
+  2.62 kB    build/static/js/4750.8e67bf45.chunk.js
+  2.62 kB    build/static/js/2769.85cb4709.chunk.js
+  2.56 kB    build/static/js/8422.5728553e.chunk.js
+  2.44 kB    build/static/js/9189.8b03ca8b.chunk.js
+  2.42 kB    build/static/js/1692.cdf5d466.chunk.js
+  2.42 kB    build/static/js/1553.088a151c.chunk.js
+  2.4 kB     build/static/js/3705.add043f0.chunk.js
+  2.39 kB    build/static/js/1308.a85fe98e.chunk.js
+  2.38 kB    build/static/js/533.a0df4ae4.chunk.js
+  2.37 kB    build/static/js/7448.bfa71a2e.chunk.js
+  2.36 kB    build/static/js/8689.decc08d4.chunk.js
+  2.28 kB    build/static/js/5815.33d351d1.chunk.js
+  2.25 kB    build/static/js/4143.939889d7.chunk.js
+  2.17 kB    build/static/js/6947.0fe1c470.chunk.js
+  2.09 kB    build/static/js/9357.c539e563.chunk.js
+  2.09 kB    build/static/js/9136.ef7aef23.chunk.js
+  2.08 kB    build/static/js/9946.0b39170d.chunk.js
+  2.07 kB    build/static/js/2140.47794321.chunk.js
+  2.07 kB    build/static/js/1690.ffd2aabe.chunk.js
+  2.05 kB    build/static/js/298.d5bf42f6.chunk.js
+  2.04 kB    build/static/js/9700.0f606b76.chunk.js
+  2.03 kB    build/static/js/411.490be974.chunk.js
+  2 kB       build/static/js/8868.5be78c0c.chunk.js
+  2 kB       build/static/js/7387.789645d3.chunk.js
+  1.96 kB    build/static/js/7014.2131acbb.chunk.js
+  1.94 kB    build/static/js/1348.bf0d1c2a.chunk.js
+  1.93 kB    build/static/js/1374.5ac26427.chunk.js
+  1.9 kB     build/static/css/4750.a9a57ae1.chunk.css
+  1.83 kB    build/static/js/5652.28876f90.chunk.js
+  1.83 kB    build/static/js/2034.baff75de.chunk.js
+  1.8 kB     build/static/js/7890.dc2f860a.chunk.js
+  1.8 kB     build/static/js/3297.017b2260.chunk.js
+  1.8 kB     build/static/js/4381.b2cbb0f6.chunk.js
+  1.8 kB     build/static/js/9991.3f4afb28.chunk.js
+  1.8 kB     build/static/js/5465.41b2ef23.chunk.js
+  1.79 kB    build/static/js/949.4a1a7210.chunk.js
+  1.79 kB    build/static/js/9448.63a7cdae.chunk.js
+  1.79 kB    build/static/js/8449.97923469.chunk.js
+  1.78 kB    build/static/js/3451.6bb81abe.chunk.js
+  1.7 kB     build/static/js/8472.5dd201b8.chunk.js
+  1.61 kB    build/static/js/3431.150b2d5a.chunk.js
+  1.55 kB    build/static/js/5096.14a3eac7.chunk.js
+  1.51 kB    build/static/js/7302.0b7e6c71.chunk.js
+  1.34 kB    build/static/js/3704.8e907330.chunk.js
+  1.3 kB     build/static/js/9381.556c5d8d.chunk.js
+  1.15 kB    build/static/css/4143.030ff39b.chunk.css
+  1.14 kB    build/static/js/4352.8a4319d8.chunk.js
+  816 B      build/static/js/9983.a7ec21c3.chunk.js
+  765 B      build/static/js/1711.11e5ecab.chunk.js
+  739 B      build/static/css/5652.cbec7501.chunk.css
+  442 B      build/static/js/416.d9992c53.chunk.js
+  356 B      build/static/css/9381.0ec309a5.chunk.css
+  343 B      build/static/css/7302.2eb3a848.chunk.css
+  326 B      build/static/css/416.0c94e236.chunk.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
+
+> client@0.1.0 postbuild
+> react-snap
+
+️️️💬  console.log at /: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /: Failed to load resource: net::ERR_FAILED
+✅  crawled 1 out of 26 (/)
+️️️💬  console.log at /about-us: Failed to load resource: net::ERR_FAILED
+✅  crawled 2 out of 26 (/about-us)
+️️️💬  console.log at /our-services: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /our-services: Failed to load resource: net::ERR_FAILED
+✅  crawled 3 out of 26 (/our-services)
+️️️💬  console.log at /certifications: Failed to load resource: net::ERR_FAILED
+✅  crawled 4 out of 26 (/certifications)
+️️️💬  console.log at /certifications/project-program-management: Failed to load resource: net::ERR_FAILED
+✅  crawled 5 out of 26 (/certifications/project-program-management)
+️️️💬  console.log at /certifications/agile-scrum-lean: Failed to load resource: net::ERR_FAILED
+✅  crawled 6 out of 26 (/certifications/agile-scrum-lean)
+️️️💬  console.log at /certifications/cybersecurity-compliance: Failed to load resource: net::ERR_FAILED
+✅  crawled 7 out of 26 (/certifications/cybersecurity-compliance)
+️️️💬  console.log at /certifications/cloud-infrastructure-networking: Failed to load resource: net::ERR_FAILED
+✅  crawled 8 out of 26 (/certifications/cloud-infrastructure-networking)
+️️️💬  console.log at /certifications/ai-data-emerging-tech: Failed to load resource: net::ERR_FAILED
+✅  crawled 9 out of 26 (/certifications/ai-data-emerging-tech)
+️️️💬  console.log at /certifications/software-dev-testing: Failed to load resource: net::ERR_FAILED
+✅  crawled 10 out of 26 (/certifications/software-dev-testing)
+️️️💬  console.log at /certifications/business-hr-management: Failed to load resource: net::ERR_FAILED
+✅  crawled 11 out of 26 (/certifications/business-hr-management)
+️️️💬  console.log at /certifications/digital-marketing-cx: Failed to load resource: net::ERR_FAILED
+✅  crawled 12 out of 26 (/certifications/digital-marketing-cx)
+️️️💬  console.log at /training: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /training: An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323
+✅  crawled 13 out of 26 (/training)
+️️️💬  console.log at /training/aws: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /training/aws: An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323
+✅  crawled 14 out of 26 (/training/aws)
+️️️💬  console.log at /training/cisco: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /training/cisco: An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323
+✅  crawled 15 out of 26 (/training/cisco)
+️️️💬  console.log at /training/microsoft: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /training/microsoft: An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323
+✅  crawled 16 out of 26 (/training/microsoft)
+️️️💬  console.log at /services/cloud-services: Failed to load resource: net::ERR_FAILED
+️️️💬  console.log at /services/cloud-services: An <img> element was lazyloaded with loading=lazy, but had no dimensions specified. Specifying dimensions improves performance. See https://crbug.com/954323
+✅  crawled 17 out of 26 (/services/cloud-services)
+️️️💬  console.log at /services/web-development: Failed to load resource: net::ERR_FAILED
+✅  crawled 18 out of 26 (/services/web-development)
+️️️💬  console.log at /services/digital-marketing: Failed to load resource: net::ERR_FAILED
+🔥  error at /services/digital-marketing TimeoutError: Navigation Timeout Exceeded: 30000ms exceeded
+    at /Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/puppeteer/lib/LifecycleWatcher.js:142:21
+  -- ASYNC --
+    at Frame.<anonymous> (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/puppeteer/lib/helper.js:111:15)
+    at Page.goto (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/puppeteer/lib/Page.js:674:49)
+    at Page.<anonymous> (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/puppeteer/lib/helper.js:112:23)
+    at fetchPage (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/react-snap/src/puppeteer_utils.js:232:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1492
+            throw new Error('Cannot write to stream after nil');
+            ^
+
+Error: Cannot write to stream after nil
+    at push (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1492:19)
+    at /Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:2146:13
+    at s._send (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1549:9)
+    at Stream.write (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1650:18)
+    at Stream._send (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:974:26)
+    at Stream._readFromBuffer (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1112:18)
+    at Stream._resume (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1164:14)
+    at Stream._checkBackPressure (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1091:10)
+    at Stream._resume (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1172:33)
+    at Stream._checkBackPressure (/Users/a/Desktop/Traincape-Technology-main/Traincape_/client/node_modules/highland/lib/index.js:1091:10)
+
+Node.js v20.19.6
+BUILD_EXIT:1

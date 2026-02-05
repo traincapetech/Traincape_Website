@@ -4,7 +4,7 @@ import { Cloud, ShieldCheck, Rocket } from "lucide-react";
 import banner from "../assets/cloud_banner.jpeg";
 import C from "../assets/CC.jpeg";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";  
+import SEOHead from "../components/SEOHead";
 const CloudServices = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -16,24 +16,25 @@ const navigate = useNavigate();
 
   return (
     <div className="w-full overflow-hidden font-sans text-gray-800">
-      
-        <Helmet>
-          <title>Cloud Services | Traincape Technology</title>
-          <meta name="description" content="Modernize your business operations with cloud solutions that boost productivity, reduce costs, and scale with ease." />
-          <meta name="keywords" content="Cloud Services, Cloud Solutions, Cloud Technology, Cloud Infrastructure, Cloud Migration, Traincape Technology, Cloud Computing, Cloud Services Provider, Cloud Solutions Provider, Cloud Technology Provider, Cloud Infrastructure Provider, Cloud Migration Provider" />
-          <meta name="robots" content="index, follow" />
-          <link rel="canonical" href="https://traincapetech.in/cloud-services" />
-        </Helmet>
+
+      <SEOHead
+        title="Cloud Services | Migration, DevOps & Managed Cloud | Traincape Technology"
+        description="Modernize your business with cloud migration, cloud-native build, DevOps, and managed cloud services. Improve scalability, security, and cost efficiency."
+        canonical="https://www.traincapetech.in/services/cloud-services"
+        ogType="website"
+      />
       
       {/* HERO SECTION */}
       <section
-        className="relative text-white py-28 px-6 md:px-16 flex flex-col justify-center items-start"
-        style={{
-          backgroundImage: `url(${banner})`,
-          backgroundSize: "contain",
-          backgroundPosition: "center",
-        }}
+        className="relative text-white py-28 px-6 md:px-16 flex flex-col justify-center items-start overflow-hidden"
       >
+        <img
+          src={banner}
+          alt="Cloud services banner"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
         {/* Dark Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#001F3F]/60 via-[#002952]/50 to-[#001F3F]/60"></div>
 
@@ -132,20 +133,72 @@ const navigate = useNavigate();
         </div>
       </section>
 
+      {/* USE CASES */}
+      <section className="py-16 bg-[#F8FBFF] px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+            Cloud Use Cases We Deliver
+          </h2>
+          <p className="text-gray-600 max-w-3xl mb-10">
+            Practical, business-driven cloud implementations — from migration to modernization and ongoing operations.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { title: "Cloud Migration", desc: "Lift-and-shift, re-platform, or refactor with minimal downtime and clear cutover plans." },
+              { title: "Cloud-Native Applications", desc: "Build resilient services using containers, managed databases, and event-driven patterns." },
+              { title: "DevOps & CI/CD", desc: "Automate builds, deployments, and rollbacks with secure pipelines and environment promotion." },
+              { title: "Managed Cloud & Optimization", desc: "Monitoring, cost optimization, backup & DR, and security hardening for long-term stability." },
+            ].map((c) => (
+              <div key={c.title} className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <h3 className="text-xl font-bold text-gray-900">{c.title}</h3>
+                <p className="mt-2 text-gray-600">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TECHNOLOGIES */}
+      <section className="py-16 bg-white px-6 md:px-16">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4">
+            Technologies & Tools
+          </h2>
+          <p className="text-gray-600 max-w-3xl mb-8">
+            We select the right tools based on your security, compliance, and performance needs.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              "AWS",
+              "Microsoft Azure",
+              "Google Cloud",
+              "Docker",
+              "Kubernetes",
+              "Terraform",
+              "CI/CD (GitHub Actions / GitLab CI)",
+              "Monitoring (CloudWatch / Prometheus)",
+              "IaC & Policy as Code",
+            ].map((t) => (
+              <span key={t} className="text-sm bg-blue-50 text-blue-900 border border-blue-100 px-3 py-1 rounded-full">
+                {t}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
   
 
       {/* IMAGE SECTION */}
       <section className="py-12 bg-blue-100/50 px-6 md:px-16 mb-10 w-full mt-10 overflow-hidden">
         <div className="max-w-6xl flex flex-col md:flex-row mx-auto gap-10">
-          <div
-            className="w-[400px] h-[300px] md:h-[600px] rounded-2xl"
-            style={{
-              backgroundImage: `url(${C})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          <img
+            src={C}
+            alt="Cloud architecture illustration"
+            className="w-full md:w-[400px] h-[300px] md:h-[600px] rounded-2xl object-cover"
+            loading="lazy"
+            decoding="async"
+          />
 
           <motion.div className="flex-1 font-bold">
             <motion.h2

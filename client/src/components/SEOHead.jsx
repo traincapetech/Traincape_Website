@@ -8,7 +8,8 @@ const SEOHead = ({
   canonical, 
   ogImage, 
   ogType = 'website',
-  structuredData 
+  structuredData,
+  noindex = false
 }) => {
   const location = useLocation();
   
@@ -32,7 +33,7 @@ const SEOHead = ({
       {/* Basic Meta Tags */}
       <title>{title || defaultTitle}</title>
       <meta name="description" content={description || defaultDescription} />
-      <meta name="robots" content="index, follow" />
+      <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
       
       {/* Canonical URL - Always use www version */}
       <link rel="canonical" href={canonicalUrl} />
@@ -60,11 +61,6 @@ const SEOHead = ({
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
-      )}
-      
-      {/* Prevent indexing of non-www URLs */}
-      {!location.pathname.includes('www.') && (
-        <meta name="robots" content="noindex, nofollow" />
       )}
     </Helmet>
   );

@@ -6,8 +6,8 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { Button } from "@mui/material";
+import SEOHead from "../components/SEOHead";
 
 import cloud from "../assets/Cloud-services.svg";
 import UI from "../assets/UI-development.svg";
@@ -22,6 +22,7 @@ import DigitalImg from "../assets/digital.jpg";
 import Saas from "../assets/saas.jpg";
 import SoftwareImg from "../assets/software.jpeg";
 import webImg from "../assets/web.png";
+import AdvisorModal from "../components/AdvisorModal";
 
 import { Link } from "react-router-dom";
 
@@ -111,6 +112,7 @@ const Services = () => {
   const containerRef = useRef(null);
   const firstCardRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [advisorOpen, setAdvisorOpen] = useState(false);
   const servicesSectionRef = useRef(null);
 
   // ---------- ADD: mobile detection (responsive) ----------
@@ -231,7 +233,6 @@ const Services = () => {
     const slug = service.title.toLowerCase().replace(/\s*&\s*/g, "-and-").replace(/\s+/g, "-");
     navigate(`/service-detail/${slug}`); // ✅ must be ${slug}
   };
-
   const handleExploreClick = () => {
     servicesSectionRef.current?.scrollIntoView({
       behavior: "smooth",
@@ -315,16 +316,14 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Our Services - IT Certifications</title>
-        <meta
-          name="description"
-          content="Empowering businesses with cutting-edge technology solutions."
-        />
-        <link rel="canonical" href="https://traincapetech.in/our-services" />
-      </Helmet>
+      <SEOHead
+        title="IT Services | Web, Cloud, CRM & Mobile | Traincape Technology"
+        description="End-to-end IT services: web development, maintenance, CRM development, mobile apps, and cloud services. Build faster with a reliable engineering partner."
+        canonical="https://www.traincapetech.in/our-services"
+        ogType="website"
+      />
 
-      <div className="bg-gray-50">
+        <div className="bg-gray-50">
         {/* HERO SECTION */}
         <div className="relative w-full h-[80vh]">
           <div className="absolute inset-0 bg-black/50 z-10"></div>
@@ -335,14 +334,14 @@ const Services = () => {
             loop
             muted
             playsInline
+            preload="none"
           ></video>
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
               Our IT Services
             </h1>
             <p className="text-white text-lg md:text-xl max-w-3xl drop-shadow-md">
-              Empowering businesses with cutting-edge technology solutions for
-              sustainable growth and innovation.
+              Web & app development, cloud enablement, and CRM solutions designed to help your business scale securely.
             </p>
             <div className="w-full flex items-center justify-center gap-10 mt-6">
               <Button
@@ -364,9 +363,90 @@ const Services = () => {
               >
                 Explore
               </Button>
+              <Button
+                onClick={() => navigate("/training")}
+                variant="outlined"
+                sx={{
+                  color: "white",
+                  borderColor: "white",
+                  fontSize: "1.1rem",
+                  padding: "7px 20px",
+                  textTransform: "none",
+                  borderRadius: "8px",
+                  "&:hover": {
+                    backgroundColor: "rgba(255,255,255,0.12)",
+                    borderColor: "white",
+                  },
+                }}
+              >
+                Explore Training
+              </Button>
             </div>
           </div>
         </div>
+
+        {/* TRAINING SERVICES OVERVIEW */}
+        <section className="max-w-7xl mx-auto px-4 md:px-10 py-16">
+          <div className="text-center mb-10">
+            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+              IT Training
+            </p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
+              Upskill with Job‑Ready Training Programs
+            </h2>
+            <p className="mt-3 text-gray-600 max-w-3xl mx-auto">
+              From certification prep to skill-based programs, we help individuals and teams build practical capability with
+              expert-led sessions and hands-on projects.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Certification Training",
+                desc: "Structured programs aligned to leading certification paths with exam guidance.",
+              },
+              {
+                title: "Skill-Based Learning",
+                desc: "Hands-on training for real-world outcomes in cloud, security, and development.",
+              },
+              {
+                title: "Corporate Training",
+                desc: "Customized training plans for teams with measurable skill progression and support.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                <p className="mt-2 text-gray-600">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
+            <Button
+              onClick={() => navigate("/training")}
+              variant="contained"
+              sx={{
+                backgroundColor: PRIMARY_COLOR,
+                textTransform: "none",
+                borderRadius: "10px",
+                "&:hover": { backgroundColor: "#0099d4" },
+              }}
+            >
+              Browse Training
+            </Button>
+            <Button
+              onClick={() => setAdvisorOpen(true)}
+              variant="outlined"
+              sx={{
+                textTransform: "none",
+                borderRadius: "10px",
+              }}
+            >
+              Talk to an Expert
+            </Button>
+          </div>
+        </section>
 
         {/* ========================================
         METRICS / ACHIEVEMENTS (Enhanced)
@@ -689,6 +769,7 @@ const Services = () => {
           </motion.button>
         </section>
       </div>
+      <AdvisorModal isOpen={advisorOpen} onClose={() => setAdvisorOpen(false)} />
     </>
   );
 };

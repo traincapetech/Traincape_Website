@@ -65,7 +65,10 @@
   },
   "scripts": {
     "start": "craco start",
+    "prebuild": "node scripts/prepare-build.js && node scripts/generate-sitemap.js",
     "build": "craco build",
+    "postbuild": "react-snap",
+    "scrape:gipmc": "node scripts/scrape-gipmc-certifications.js",
     "build:production": "node scripts/build-production.js",
     "build:analyze": "npm run build && npm run analyze",
     "optimize-build": "gzip-size build/static/js/*.js && gzip-size build/static/css/*.css",
@@ -74,6 +77,46 @@
     "eject": "react-scripts eject",
     "preview": "serve -s build -l 3000",
     "clean": "rm -rf build node_modules/.cache"
+  },
+  "reactSnap": {
+    "inlineCss": false,
+    "minifyHtml": {
+      "collapseWhitespace": true,
+      "removeComments": true
+    },
+    "skipThirdPartyRequests": true,
+    "crawl": false,
+    "concurrency": 1,
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
+    "include": [
+      "/",
+      "/about-us",
+      "/our-services",
+      "/certifications",
+      "/certifications/project-program-management",
+      "/certifications/agile-scrum-lean",
+      "/certifications/cybersecurity-compliance",
+      "/certifications/cloud-infrastructure-networking",
+      "/certifications/ai-data-emerging-tech",
+      "/certifications/software-dev-testing",
+      "/certifications/business-hr-management",
+      "/certifications/digital-marketing-cx",
+      "/training",
+      "/training/aws",
+      "/training/cisco",
+      "/training/microsoft",
+      "/services/cloud-services",
+      "/services/web-development",
+      "/contact-us",
+      "/frequently-asked-questions",
+      "/review-page",
+      "/partner-page",
+      "/PECB",
+      "/pecb"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -84,6 +127,7 @@
   "browserslist": {
     "production": [
       ">0.2%",
+      "chrome >= 74",
       "not dead",
       "not op_mini all"
     ],

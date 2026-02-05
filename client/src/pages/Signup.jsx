@@ -480,7 +480,7 @@ import { signupUser } from "../slices/userSlice";
 import banner from "../../src/assets/loginbanner.jpeg";
 import Lottie from "lottie-react";
 import signup from "../assets/signup.json";
-import logo from "../assets/WhatsApp_Image_2024-06-22_at_10.01.48-removebg-preview.png";
+import logo from "../assets/TT.png";
 
 const Signup = () => {
   const navigate = useNavigate();

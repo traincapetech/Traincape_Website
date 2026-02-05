@@ -51,6 +51,8 @@ const Counter = ({ target, label }) => {
 
 const DigitalMarketing = () => {
   const navigate = useNavigate(); // ✅ Initialize navigate
+  const isReactSnap =
+    typeof navigator !== "undefined" && String(navigator.userAgent || "").includes("ReactSnap");
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -71,6 +73,7 @@ const DigitalMarketing = () => {
           backgroundImage: `url(${banner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          alt: "Digital Marketing Banner",
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#0a1a2f]/95 via-[#0a223a]/85 to-black/90"></div>
@@ -130,12 +133,19 @@ const DigitalMarketing = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 1 }}
         >
-          <DotLottieReact
-            src="https://lottie.host/4208efc8-3f24-4b46-8829-cd60fa16f8ff/U4RA0RklY2.lottie"
-            autoplay
-            loop
-            style={{ width: "90%", height: "auto" }}
-          />
+          {isReactSnap ? (
+            <div className="w-[90%] aspect-[16/10] rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-white/80 text-sm">
+              Digital marketing animation
+            </div>
+          ) : (
+            <DotLottieReact
+              src="https://lottie.host/4208efc8-3f24-4b46-8829-cd60fa16f8ff/U4RA0RklY2.lottie"
+              autoplay
+              loop
+              style={{ width: "90%", height: "auto" }}
+              alt="Digital Marketing Lottie Animation"
+            />
+          )}
         </motion.div>
       </section>
 

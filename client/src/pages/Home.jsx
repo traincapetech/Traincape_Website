@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { FaArrowRight, FaSquareWhatsapp } from "react-icons/fa6"
 import { Link, useNavigate, NavLink } from "react-router-dom"
@@ -42,7 +40,6 @@ import etraind from "../assets/etrainlogo.png"
 // Partner logos
 import Logo1 from "../assets/SBS.png"
 import Logo2 from "../assets/ThreatMatrix.png"
-import Logo3 from "../assets/Digitalearn.webp"
 import Logo4 from "../assets/Gruslabs.svg"
 import Logo5 from "../assets/MSA.png"
 import Logo6 from "../assets/spectre.webp"
@@ -55,7 +52,7 @@ import PECB from "../assets/PECB1.png"
 import AWS from "../assets/aws-kartikey.png"
 import Cisco from "../assets/Cisco/CiscoIcon.png"
 
-// Video URL
+// Video URL (loaded only in real browsers; disabled for react-snap prerender stability)
 const trainingVideo = "https://videos.pexels.com/video-files/3209828/3209828-hd_1280_720_25fps.mp4";
 
 
@@ -73,12 +70,7 @@ const serviceCards = [
     image: card2,
     route: "/our-services"
   },
-  { 
-    title: "Digital Marketing", 
-    description: "Digital marketing uses online strategies...", 
-    image: card3,
-    route: "/services/digital-marketing"
-  },
+  
   { 
     title: "Web Development", 
     description: "Web development involves creating and maintaining...", 
@@ -102,6 +94,8 @@ const serviceCards = [
 const images = [img1, img2, img3, img4]
 
 const Home = () => {
+  const isReactSnap =
+    typeof navigator !== "undefined" && String(navigator.userAgent || "").includes("ReactSnap");
   const courseData = [
     {
       image: comptia,
@@ -197,7 +191,6 @@ const Home = () => {
   const partners = [
     { logo: Logo1, name: "SBS", url: "https://sbs-mea.com/" },
     { logo: Logo2, name: "ThreatMatrix", url: "https://threatmatrix.co.uk/" },
-    { logo: Logo3, name: "Digitalearn", url: "https://digitalearnsolution.com/" },
     { logo: Logo4, name: "Gruslabs", url: "https://www.gruslabs.com/" },
     { logo: Logo5, name: "MSA Software", url: "https://msasoftware.in/" },
     { logo: Logo6, name: "Spectre", url: "https://spectreme.ai/" },
@@ -206,14 +199,14 @@ const Home = () => {
   return (
     <div className="bg-white">
       <SEOHead
-        title="Traincape Technology | IT Training & Certifications"
-        description="Traincape Technology offers training for the best IT certifications to boost your career with CompTIA, PMI, Cisco, Salesforce, & many more certifications."
+        title="Traincape Technology | IT Services & IT Training"
+        description="Traincape Technology delivers IT services (web, mobile, CRM, cloud) and job-ready IT training (certification & skill-based). Build, scale, and upskill with expert-led support."
         canonical="https://www.traincapetech.in/"
         structuredData={{
           "@context": "https://schema.org",
           "@type": "WebPage",
           "name": "Traincape Technology - IT Training & Certification",
-          "description": "Expert-led online courses for AWS, CompTIA, Microsoft, Cisco and other IT certifications",
+          "description": "IT services and job-ready IT training for professionals and teams",
           "url": "https://www.traincapetech.in/",
           "mainEntity": {
             "@type": "Organization",
@@ -225,24 +218,40 @@ const Home = () => {
         }}
       />
 
-      {/* Video Hero Section */}
+      {/* Hero Section */}
       <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source src={trainingVideo} type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        {isReactSnap ? (
+          <img
+            src={img1}
+            alt="Traincape Technology — IT services and training"
+            className="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        ) : (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={img1}
+            className="absolute inset-0 w-full h-full object-cover"
+          >
+            <source src={trainingVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        )}
         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center p-4 text-center z-10">
           <div className="max-w-6xl mx-auto w-full">
              {/* h1 for SEO  */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl  mb-8 font-bold text-white leading-tight drop-shadow-lg">
-              Elevate Your Career with Expert IT Training
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 font-bold text-white leading-tight drop-shadow-lg">
+              IT Services & IT Training for Modern Teams
             </h1>
+            <p className="max-w-3xl mx-auto text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+              Build high-performing digital products with our engineering team — and upskill with job-ready training for
+              cloud, cybersecurity, and project management.
+            </p>
             <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
               <Typewriter
                 options={{
@@ -278,13 +287,24 @@ const Home = () => {
                 }}
               />
             </div>
-            <div className="mt-6 flex justify-center">
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/contact-us"
-                className="inline-block px-6 py-3 bg-white text-[#152B54] font-semibold rounded-lg shadow hover:bg-opacity-90 transition"
-                aria-label="Get a suggestion"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-[#152B54] font-semibold rounded-lg shadow hover:bg-opacity-95 transition w-full sm:w-auto"
               >
-                Want a Suggestion?
+                Get a Quote
+              </Link>
+              <Link
+                to="/our-services"
+                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/70 text-white font-semibold rounded-lg hover:bg-white/10 transition w-full sm:w-auto"
+              >
+                Explore IT Services
+              </Link>
+              <Link
+                to="/training"
+                className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/70 text-white font-semibold rounded-lg hover:bg-white/10 transition w-full sm:w-auto"
+              >
+                Browse Training
               </Link>
             </div>
             <div className="mt-6">

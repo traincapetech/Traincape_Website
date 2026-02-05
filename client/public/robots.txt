@@ -1,37 +1,10 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
-# Disallow non-www URLs to prevent duplicate content
-Disallow: https://traincapetech.in/
-Disallow: http://traincapetech.in/
-
-# Allow www version
-Allow: https://www.traincapetech.in/
-
-# Disallow admin and private areas
+# Block non-public areas (path-only directives; robots.txt spec-compliant)
 Disallow: /admin/
 Disallow: /admin-panel/
 Disallow: /private/
 Disallow: /api/
-Disallow: /_headers
-Disallow: /_redirects
 
-# Disallow temporary and development files
-Disallow: /temp/
-Disallow: /dev/
-Disallow: /test/
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /sitemap.xml
-
-# Allow important files
-Allow: /sitemap.xml
-Allow: /robots.txt
-Allow: /manifest.json
-
-# Crawl delay (optional)
-Crawl-delay: 1
-
-# Sitemap
 Sitemap: https://www.traincapetech.in/sitemap.xml

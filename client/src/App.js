@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import AllRoute from "./allRoute/AllRoute";
@@ -13,6 +13,21 @@ import { LanguageProvider } from "./context/LanguageContext";
 import WebsiteCounter from "./components/WebsiteCounter";
 
 const App = () => {
+  useEffect(() => {
+    // AOS is initialized via npm bundle (not via CDN) to keep react-snap stable.
+    // Skip during react-snap prerender.
+    if (typeof navigator !== "undefined" && String(navigator.userAgent || "").includes("ReactSnap")) return;
+    (async () => {
+      try {
+        const AOS = (await import("aos")).default;
+        await import("aos/dist/aos.css");
+        AOS.init({ offset: 200, duration: 800, once: true });
+      } catch (e) {
+        // no-op (AOS is optional)
+      }
+    })();
+  }, []);
+
   return (
     <ChunkErrorBoundary>
       <HelmetProvider>

@@ -40,7 +40,7 @@ const Services = lazyWithRetry(() => import("../pages/Services"));
 const TermsAndCondition = lazyWithRetry(() =>
   import("../pages/TermsAndCondition")
 );
-// const Courses = lazyWithRetry(() => import("../pages/Courses"));
+const Courses = lazyWithRetry(() => import("../pages/Courses"));
 const Career = lazyWithRetry(() => import("../pages/Career/Career"));
 const Policy = lazyWithRetry(() => import("../pages/Policy"));
 const PageNotFound = lazyWithRetry(() => import("../pages/404/PageNotFound"));
@@ -55,7 +55,8 @@ const LandingPage = lazyWithRetry(() =>
 const Employee = lazyWithRetry(() => import("../pages/Employee"));
 const Internship = lazyWithRetry(() => import("../pages/Internship"));
 const Test = lazyWithRetry(() => import("../pages/Test/Test"));
-// const Training = lazyWithRetry(() => import("../pages/Training"));
+const Training = lazyWithRetry(() => import("../pages/Training"));
+const TrainingVendor = lazyWithRetry(() => import("../pages/TrainingVendor"));
 const InternalExams = lazyWithRetry(() => import("../pages/InternalExams"));
 // const VoucherSuccess = lazyWithRetry(() => import("../pages/VoucherSuccess"));
 // const VoucherCancel = lazyWithRetry(() => import("../pages/VoucherCancel"));
@@ -77,6 +78,9 @@ const CertificateTemplate = lazyWithRetry(() =>
 // Other pages
 const ServiceDetail = lazyWithRetry(() => import("../pages/ServiceDetail"));
 const PartnerPage = lazyWithRetry(() => import("../pages/PartnerPage"));
+const CertificationsIndex = lazyWithRetry(() => import("../pages/Certifications/CertificationsIndex"));
+const CertificationsCategory = lazyWithRetry(() => import("../pages/Certifications/CertificationsCategory"));
+const CertificationDetail = lazyWithRetry(() => import("../pages/Certifications/CertificationDetail"));
 
 // Service Pages
 const DigitalMarketing = lazyWithRetry(() => import("../pages/digital-marketing"));
@@ -215,6 +219,9 @@ const AllRoute = () => {
         <Route path="/review-page" element={<ReviewPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/partner-page" element={<PartnerPage />} />
+        <Route path="/certifications" element={<CertificationsIndex />} />
+        <Route path="/certifications/:categorySlug" element={<CertificationsCategory />} />
+        <Route path="/certifications/:categorySlug/:certSlug" element={<CertificationDetail />} />
         {/* <Route
           path="/ebook-page"
           element={
@@ -226,12 +233,20 @@ const AllRoute = () => {
           }
         /> */}
 
-        {/* <Route path="/login" element={!token ? <Login /> : <Navigate to="/" replace />} /> */}
-        {/* <Route path="/signup" element={!token ? <Signup /> : <Navigate to="/" replace />} /> */}
-        {/* <Route path="/forgot-password" element={!token ? <ForgotPassword /> : <Navigate to="/" replace />} /> */}
-
+        
         <Route path="/about-us" element={<AboutUS />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        {/* Clean URL aliases */}
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/policies" element={<Policy />} />
+        <Route path="/career" element={<Career />} />
+        <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
+        <Route path="/partners" element={<PartnerPage />} />
+        <Route path="/courses" element={<Courses />} />
+        <Route path="/training" element={<Training />} />
+        <Route path="/training/:vendorSlug" element={<TrainingVendor />} />
+
         <Route path="/frequently-asked-questions" element={<FAQ />} />
         <Route path="/our-services" element={<Services />} />
 
@@ -251,7 +266,8 @@ const AllRoute = () => {
         <Route path="/Terms-and-Conditions" element={<TermsAndCondition />} />
         <Route path="/CertificateLookup" element={<CertificateLookup />} />
         <Route path="/verifyCertificate" element={<VerifyCertificate />} />
-        {/* <Route path="/Courses-details" element={<Courses />} /> */}
+        {/* Legacy URL alias */}
+        <Route path="/Courses-details" element={<Courses />} />
 
         <Route path="/Career-details" element={<Career />} />
         <Route path="/Our-Policies" element={<Policy />} />
