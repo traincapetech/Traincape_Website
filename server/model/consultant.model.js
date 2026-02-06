@@ -1,0 +1,9 @@
+import mongoose from 'mongoose';
+
+const consultantSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  isOnline: { type: Boolean, default: false },
+  activeToken: { type: String, default: null } // null = free, string = busy
+});
+
+export default mongoose.model('Consultant', consultantSchema);
