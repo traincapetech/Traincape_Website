@@ -76,7 +76,6 @@ const CreateVoucherBatch = ({ onBatchCreated }) => {
       'IBMMethodology',
       'IBMNoSQL',
       'IBMNodeJs',
-      'IBMPython',
       'IBMRDBMS',
       'IBMRestAPI',
       'IBMScala',
@@ -97,8 +96,8 @@ const CreateVoucherBatch = ({ onBatchCreated }) => {
       'ITSpecialistNetworking'
     ],
     'Swift Development': ['SwiftDevelopment'],
-    Tally: ['TallyPrime','TallyERP9'],
-    Unity: ['UnityCertifiedUserArtist','UnityCertifiedUserProgrammer']
+    Tally: ['TallyPrime', 'TallyERP9'],
+    Unity: ['UnityCertifiedUserArtist', 'UnityCertifiedUserProgrammer']
   };
 
   const handleInputChange = (e) => {
@@ -168,7 +167,7 @@ const CreateVoucherBatch = ({ onBatchCreated }) => {
     <div className={styles['create-voucher-batch']}>
       <h2>Create New Voucher Batch</h2>
       <p className={styles.description}>
-        Create a new batch of vouchers for a specific course and subcourse. 
+        Create a new batch of vouchers for a specific course and subcourse.
         Enter the voucher codes from Certiport or other providers.
       </p>
 

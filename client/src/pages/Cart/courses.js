@@ -24,68 +24,61 @@ export const Cards = [
     image: Logo6,
     title: "Digital Marketing Certification",
     description: "Safeguard your digital assets in today's challenging landscape.",
-    url:"/META"
+    url: "/META"
   },
   {
     image: Logo3,
     title: "PMI Project Management",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/PMI"
+    url: "/PMI"
   },
   {
     image: Logo9,
     title: "Information Technology Specialist",
     description: "Empowering organizations to safeguard their digital assets in today's challenging landscape.",
-    url:"/ITSpeacialist"
+    url: "/ITSpeacialist"
   },
   {
     image: Logo10,
     title: "App Development with Swift",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/SwiftDevelopment"
+    url: "/SwiftDevelopment"
   },
   {
     image: Logo2,
     title: "Tally Certifications",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/Tally"
+    url: "/Tally"
   },
   {
     image: Logo5,
     title: "Microsoft Office Specialist",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/Microsoftoffice"
+    url: "/Microsoftoffice"
   },
   {
     image: Logo13,
     title: "Autodesk Certified User",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/Autodesk"
-  },
-  {
-    image: Logo7,
-    title: "Microsoft Certified Fundamentals",
-    description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/MicrosoftCertified"
-
+    url: "/Autodesk"
   },
   {
     image: Logo12,
     title: "Adobe Certified Professional",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/Adobe"
+    url: "/Adobe"
   },
   {
     image: Logo8,
     title: "Unity Certified User",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/unity" ,
+    url: "/unity",
   },
-    {
+  {
     image: Logo1,
     title: "Cisco Certified",
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url:"/ciscocard"
+    url: "/ciscocard"
   },
   // {
   //   id: "microsoft-powerpoint-associate",

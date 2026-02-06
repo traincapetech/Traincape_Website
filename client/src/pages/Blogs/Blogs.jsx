@@ -295,6 +295,8 @@
 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+
 
 const Blogs = () => {
   const [pageOne, setPageOne] = useState(true);
@@ -443,6 +445,12 @@ const Blogs = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-5 sm:px-10">
+      <Helmet>
+        <title>Our Blogs & Resources - Traincape Technology</title>
+        <meta name="description" content="Explore our latest articles, insights, and resources on technology, certifications, and professional development." />
+        <link rel="canonical" href="https://www.traincapetech.in/Our-Blogs" />
+      </Helmet>
+
       <div className="text-center mb-10">
         <h1 className="text-4xl font-semibold text-gray-900">Welcome to Our Resources</h1>
         <p className="mt-2 text-lg text-gray-600">Explore our latest articles and insights on various topics.</p>
@@ -450,18 +458,16 @@ const Blogs = () => {
       <div className="flex justify-center mb-10">
         <button
           onClick={handlePageOne}
-          className={`px-6 py-2 rounded-lg border-2 text-lg font-medium transition-colors duration-300 mr-4 ${
-            pageOne ? "bg-blue-600 text-white border-blue-600" : "bg-white text-blue-600 border-blue-600 hover:bg-blue-50"
-          }`}
+          className={`px-6 py-2 rounded-lg border-2 text-lg font-medium transition-colors duration-300 mr-4 ${pageOne ? "bg-blue-600 text-white border-blue-600" : "bg-white text-blue-600 border-blue-600 hover:bg-blue-50"
+            }`}
           disabled={pageOne}
         >
           1
         </button>
         <button
           onClick={handlePageTwo}
-          className={`px-6 py-2 rounded-lg border-2 text-lg font-medium transition-colors duration-300 ${
-            pageTwo ? "bg-blue-600 text-white border-blue-600" : "bg-white text-blue-600 border-blue-600 hover:bg-blue-50"
-          }`}
+          className={`px-6 py-2 rounded-lg border-2 text-lg font-medium transition-colors duration-300 ${pageTwo ? "bg-blue-600 text-white border-blue-600" : "bg-white text-blue-600 border-blue-600 hover:bg-blue-50"
+            }`}
           disabled={pageTwo}
         >
           2
