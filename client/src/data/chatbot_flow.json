@@ -1,0 +1,37 @@
+{
+    "routes": {
+        "/certifications/project-program-management": "project_management"
+    },
+    "flows": {
+        "project_management": {
+            "title": "Project & Program Management",
+            "options": [
+                {
+                    "label": "What certifications do you offer?",
+                    "answer": "We offer a range of certifications including PMP, PRINCE2, CAPM, and PgMP to help advance your project management career."
+                },
+                {
+                    "label": "What is the duration of these courses?",
+                    "answer": "Duration varies by course. Typically, our Project Management courses range from 3 to 5 days for bootcamps, or 3-6 months for comprehensive programs."
+                },
+                {
+                    "label": "Do you provide exam vouchers?",
+                    "answer": "Yes, many of our certification courses include the exam voucher in the training fee. Please check the specific course details or talk to a consultant."
+                }
+            ]
+        },
+        "default": {
+            "title": "Traincape Support",
+            "options": [
+                {
+                    "label": "What services do you provide?",
+                    "answer": "We provide IT training, certifications, and consultancy services across various domains including Cloud, Cyber Security, and Project Management."
+                },
+                {
+                    "label": "Where are you located?",
+                    "answer": "We have a global presence. You can find our specific office locations on our Contact Us page."
+                }
+            ]
+        }
+    }
+}
