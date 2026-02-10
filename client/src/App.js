@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast";
 import AllRoute from "./allRoute/AllRoute";
 
 import WhatsAppPopup from "./components/WhatsAppPopup";
-import ChatbotPopup from "./components/ChatbotPopup";
+import GlobalChat from "./components/GlobalChat";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ChunkErrorBoundary from "./components/ChunkErrorBoundary";
 
@@ -41,7 +41,7 @@ const App = () => {
             <Footer />
 
             <WhatsAppPopup />
-            <ChatbotPopup />
+            <GlobalChat />
             <WebsiteCounter />
           </ErrorBoundary>
         </LanguageProvider>

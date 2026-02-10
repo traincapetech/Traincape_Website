@@ -1,21 +1,23 @@
-import Consultant from '../model/consultant.model.js';
+import ChatSession from '../model/chatSession.model.js';
+import { getIO } from '../socket/socketManager.js';
 
 export const requestHumanHandover = async (req, res) => {
   try {
     const sessionToken = `live_${Date.now()}`;
 
-    // Find 1 free consultant and lock them immediately
-    const consultant = await Consultant.findOneAndUpdate(
-      { isOnline: true, activeToken: null },
-      { $set: { activeToken: sessionToken } },
-      { new: true }
-    );
+    // Create new session in Waiting state
+    const newSession = await ChatSession.create({
+      token: sessionToken,
+      status: 'waiting'
+    });
 
-    if (!consultant) {
-      return res.status(404).json({ success: false, message: "No consultants free" });
+    // Notify all consultants
+    const io = getIO();
+    if (io) {
+      io.to('consultant_room').emit('new_session', newSession);
     }
 
-    res.json({ success: true, token: sessionToken, consultantName: consultant.name });
+    res.json({ success: true, token: sessionToken, status: 'waiting' });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -23,6 +25,16 @@ export const requestHumanHandover = async (req, res) => {
 
 export const endSession = async (req, res) => {
   const { token } = req.body;
-  await Consultant.findOneAndUpdate({ activeToken: token }, { activeToken: null });
+  await ChatSession.findOneAndUpdate({ token }, { status: 'closed' });
   res.json({ success: true });
+};
+
+// Endpoint for Consultant App to see what's waiting
+export const getPendingSessions = async (req, res) => {
+  try {
+    const sessions = await ChatSession.find({ status: 'waiting' }).sort({ createdAt: 1 });
+    res.json({ success: true, sessions });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
 };

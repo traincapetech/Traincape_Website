@@ -21,7 +21,7 @@ const LoadingComponent = () => (
       fontSize: "18px",
       color: "#333",
     }}
-    
+
   >
     <p>Loading content...</p>
   </div>
@@ -29,6 +29,7 @@ const LoadingComponent = () => (
 
 // Lazy load high-level pages for better performance
 const CloudService = lazyWithRetry(() => import("../pages/CloudServices"));
+const ConsultantChat = lazyWithRetry(() => import("../pages/ConsultantChat")); // Added ConsultantChat import
 const Home = lazyWithRetry(() => import("../pages/Home"));
 // const UserPage = lazy(() => import("../pages/userPage/UserPage"));
 const Login = lazyWithRetry(() => import("../pages/Login"));
@@ -233,9 +234,10 @@ const AllRoute = () => {
           }
         /> */}
 
-        
+
         <Route path="/about-us" element={<AboutUS />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/consultant" element={<ConsultantChat />} /> {/* Added Consultant Route */}
         {/* Clean URL aliases */}
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blogs" element={<Blogs />} />
@@ -252,7 +254,7 @@ const AllRoute = () => {
 
 
 
-       <Route path="/service-detail/:slug" element={<ServiceDetail />} />
+        <Route path="/service-detail/:slug" element={<ServiceDetail />} />
 
         {/* Service Routes */}
         <Route path="/services/cloud-services" element={<CloudService />} />
@@ -281,13 +283,13 @@ const AllRoute = () => {
         <Route path="/comptia/specialist" element={<ComptiaSpecialistLevel />} />
         <Route path="/comptia/professional" element={<ComptiaProfessionalLevel />} />
         <Route path="/comptia/expert" element={<ComptiaExpertLevel />} />
-        
+
         {/* Specialist Level Certifications */}
         <Route path="/comptia/specialist/a-plus" element={<ComptiaAPlus />} />
         <Route path="/comptia/specialist/network-plus" element={<ComptiaNetworkPlus />} />
         <Route path="/comptia/specialist/security-plus" element={<ComptiaSecurityPlusSpecialist />} />
         <Route path="/comptia/specialist/secure-infrastructure" element={<ComptiaSecureInfrastructure />} />
-        
+
         {/* Professional Level Certifications */}
         <Route path="/comptia/professional/cysa-plus" element={<ComptiaCYSAPlus />} />
         <Route path="/comptia/professional/pentest-plus" element={<ComptiaPenTestPlus />} />
@@ -296,7 +298,7 @@ const AllRoute = () => {
         <Route path="/comptia/professional/network-security" element={<ComptiaNetworkSecurity />} />
         <Route path="/comptia/professional/secure-cloud" element={<ComptiaSecureCloud />} />
         <Route path="/comptia/professional/security-analytics" element={<ComptiaSecurityAnalytics />} />
-        
+
         {/* Expert Level Certifications */}
         <Route path="/comptia/expert/casp-plus" element={<CASPPlus />} />
         <Route path="/comptia/expert/csae" element={<CSAE />} />
@@ -311,7 +313,7 @@ const AllRoute = () => {
         <Route path="/pecb/information-security/iso-27035" element={<IEC27035IncidentManagement />} />
         <Route path="/pecb/information-security/ciso" element={<PECBChiefInformationSecurityOfficer />} />
         <Route path="/pecb/information-security/ebios" element={<EBIOSRiskManager />} />
-        
+
         {/* Cybersecurity Management */}
         <Route path="/pecb/cybersecurity" element={<CyberSecurityManagement />} />
         <Route path="/pecb/cybersecurity/penetration-testing" element={<PenetrationTestingProfessional />} />
@@ -320,7 +322,7 @@ const AllRoute = () => {
         <Route path="/pecb/cybersecurity/cmmc" element={<CMMC />} />
         <Route path="/pecb/cybersecurity/network-security" element={<IEC27033NetworkSecurity />} />
         <Route path="/pecb/cybersecurity/scada-security" element={<SCADASecurityManager />} />
-        
+
         {/* Quality & Management */}
         <Route path="/pecb/quality" element={<QualityManagement />} />
         <Route path="/pecb/quality/iso-9001" element={<ISO9001QualityManagementSystem />} />
@@ -332,7 +334,7 @@ const AllRoute = () => {
         <Route path="/pecb/quality/six-sigma" element={<SixSigma />} />
         <Route path="/pecb/quality/iso-17025" element={<IEC17025LaboratoryMS />} />
         <Route path="/pecb/quality/iso-20000" element={<IEC20000ITServiceMS />} />
-        
+
         {/* Governance, Risk & Compliance */}
         <Route path="/pecb/governance" element={<GovernanceRiskCompliance />} />
         <Route path="/pecb/governance/iso-31000" element={<ISO31000RiskManagement />} />
@@ -342,18 +344,18 @@ const AllRoute = () => {
         <Route path="/pecb/governance/iso-38500" element={<IEC38500ITGovernance />} />
         <Route path="/pecb/governance/internal-auditor" element={<ManagementSystemsInternalAuditor />} />
         <Route path="/pecb/governance/operational-risk" element={<OperationalRiskManagement />} />
-        
+
         {/* Artificial Intelligence */}
         <Route path="/pecb/artificial-intelligence" element={<ArtificialIntelligence />} />
         <Route path="/pecb/artificial-intelligence/ai-professional" element={<ArtificialIntelligenceProfessional />} />
         <Route path="/pecb/artificial-intelligence/ai-risk-management" element={<AIRiskManagement />} />
         <Route path="/pecb/artificial-intelligence/iso-42001" element={<IEC42001AIMS />} />
-        
+
         {/* Privacy & Data Protection */}
         <Route path="/pecb/privacy" element={<PrivacyDataProtection />} />
         <Route path="/pecb/privacy/gdpr" element={<GeneralDataProtectionRegulationGDPR />} />
         <Route path="/pecb/privacy/iso-27701" element={<IEC27701PrivacyMS />} />
-        
+
         {/* Continuity, Resilience & Recovery */}
         <Route path="/pecb/continuity" element={<ContinuityResilienceRecovery />} />
         <Route path="/pecb/continuity/iso-22301" element={<ISO22301BusinessContinuityManagementSystem />} />
@@ -361,14 +363,14 @@ const AllRoute = () => {
         <Route path="/pecb/continuity/dora" element={<DORA />} />
         <Route path="/pecb/continuity/disaster-recovery" element={<DisasterRecovery />} />
         <Route path="/pecb/continuity/operational-resilience" element={<OperationalResilienceManagement />} />
-        
+
         {/* Technical Cybersecurity */}
         <Route path="/pecb/technical-cybersecurity" element={<TechnicalCybersecurity />} />
         <Route path="/pecb/technical-cybersecurity/ethical-hacking" element={<EthicalHacking />} />
         <Route path="/pecb/technical-cybersecurity/ccta" element={<CCTA />} />
         <Route path="/pecb/technical-cybersecurity/digital-forensics" element={<DigitalForensicsExaminer />} />
         <Route path="/pecb/technical-cybersecurity/incident-response" element={<IncidentResponse />} />
-        
+
         {/* Digital Transformation */}
         <Route path="/pecb/digital-transformation" element={<DigitalTransformation />} />
 

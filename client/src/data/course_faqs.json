@@ -1,0 +1,48 @@
+{
+    "project-program-management": {
+        "default": [
+            {
+                "question": "What certifications do you offer in Project Management?",
+                "answer": "We offer PMP, CAPM, PRINCE2, and PgMP certifications."
+            },
+            {
+                "question": "Do you provide exam vouchers?",
+                "answer": "Yes, many of our courses include exam vouchers. Please check specific course details."
+            },
+            {
+                "question": "Is the training online or classroom-based?",
+                "answer": "We offer both live online instructor-led training and self-paced learning options."
+            }
+        ]
+    },
+    "courses": {
+        "pmp-certification": [
+            {
+                "question": "What are the prerequisites for PMP?",
+                "answer": "You need a 4-year degree + 36 months of leading projects OR a high school diploma + 60 months of leading projects, plus 35 hours of PM education."
+            },
+            {
+                "question": "Does this course include the 35 PDUs?",
+                "answer": "Yes, our PMP training provides the required 35 Contact Hours/PDUs."
+            },
+            {
+                "question": "What is the PMP exam fee?",
+                "answer": "The exam fee is paid directly to PMI. It is typically $405 for members and $555 for non-members."
+            }
+        ],
+        "prince2-foundation-practitioner": [
+            {
+                "question": "What is the difference between Foundation and Practitioner?",
+                "answer": "Foundation covers the basic methodology, while Practitioner focuses on applying it to real scenarios."
+            },
+            {
+                "question": "Is the exam included?",
+                "answer": "Yes, our PRINCE2 bundle usually includes vouchers for both exams."
+            },
+            {
+                "question": "How long is the access valid?",
+                "answer": "You will have access to course materials for 1 year."
+            }
+        ]
+    }
+}

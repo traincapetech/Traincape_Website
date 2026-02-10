@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./db.js";
 import { createServer } from 'http';
-import { initSocket } from './socket/socketManager.js';
+import { initSocket, setIO } from './socket/socketManager.js';
 
 
 // Routers
@@ -44,7 +44,8 @@ const corsOptions = {
       'http://localhost:3000',
       'http://localhost:5173',
       'http://localhost:3001',
-      'http://127.0.0.1:3000'
+      'http://127.0.0.1:3000',
+      'http://localhost:3006'
     ];
 
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -96,8 +97,13 @@ app.get("/", (req, res) => {
 // ✅ Server Bootstrap
 const PORT = process.env.PORT || 3001;
 
+
+
+// ...
+
 const httpServer = createServer(app);
-initSocket(httpServer);
+const io = initSocket(httpServer);
+setIO(io);
 
 const startServer = async () => {
   try {
