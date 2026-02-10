@@ -1,9 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
-  useScroll,
-  useTransform,
   motion,
-  useMotionValueEvent,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -26,7 +23,7 @@ import AdvisorModal from "../components/AdvisorModal";
 
 import { Link } from "react-router-dom";
 
-import ScrollStack, { ScrollStackItem } from "../components/ScrollStack";
+
 
 import {
   FaReact,
@@ -109,9 +106,7 @@ const servicesData = [
 /* ---------------------- COMPONENT ---------------------- */
 const Services = () => {
   const navigate = useNavigate();
-  const containerRef = useRef(null);
-  const firstCardRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
+
   const [advisorOpen, setAdvisorOpen] = useState(false);
   const servicesSectionRef = useRef(null);
 
@@ -126,104 +121,7 @@ const Services = () => {
   }, []);
   // ------------------------------------------------------
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
 
-  // -------------------- INDIVIDUAL HOOKS --------------------
-  // Call useTransform for each card separately (fixed order)
-  const y0 = useTransform(
-    scrollYProgress,
-    [0 * 0.125, 0 * 0.125 + 0.175],
-    [200, -150]
-  );
-  const opacity0 = useTransform(
-    scrollYProgress,
-    [0, 0.02, 0.08, 0.175],
-    [1, 1, 1, 0.1]
-  );
-  const scale0 = useTransform(
-    scrollYProgress,
-    [0, 0.03, 0.175],
-    [0.92, 1, 0.9]
-  );
-
-  const y1 = useTransform(scrollYProgress, [0.125, 0.125 + 0.175], [200, -150]);
-  const opacity1 = useTransform(
-    scrollYProgress,
-    [0.125, 0.145, 0.205, 0.3],
-    [0, 1, 1, 0.1]
-  );
-  const scale1 = useTransform(
-    scrollYProgress,
-    [0.125, 0.155, 0.3],
-    [0.92, 1, 0.9]
-  );
-
-  const y2 = useTransform(scrollYProgress, [0.25, 0.25 + 0.175], [200, -150]);
-  const opacity2 = useTransform(
-    scrollYProgress,
-    [0.25, 0.27, 0.33, 0.425],
-    [0, 1, 1, 0.1]
-  );
-  const scale2 = useTransform(
-    scrollYProgress,
-    [0.25, 0.28, 0.425],
-    [0.92, 1, 0.9]
-  );
-
-  const y3 = useTransform(scrollYProgress, [0.375, 0.375 + 0.175], [200, -150]);
-  const opacity3 = useTransform(
-    scrollYProgress,
-    [0.375, 0.395, 0.455, 0.55],
-    [0, 1, 1, 0.1]
-  );
-  const scale3 = useTransform(
-    scrollYProgress,
-    [0.375, 0.405, 0.55],
-    [0.92, 1, 0.9]
-  );
-
-  const y4 = useTransform(scrollYProgress, [0.5, 0.5 + 0.175], [200, -150]);
-  const opacity4 = useTransform(
-    scrollYProgress,
-    [0.5, 0.52, 0.58, 0.675],
-    [0, 1, 1, 0.1]
-  );
-  const scale4 = useTransform(
-    scrollYProgress,
-    [0.5, 0.53, 0.675],
-    [0.92, 1, 0.9]
-  );
-
-  const y5 = useTransform(scrollYProgress, [0.625, 0.625 + 0.175], [200, -150]);
-  const opacity5 = useTransform(
-    scrollYProgress,
-    [0.625, 0.645, 0.705, 0.8],
-    [0, 1, 1, 0.1]
-  );
-  const scale5 = useTransform(
-    scrollYProgress,
-    [0.625, 0.655, 0.8],
-    [0.92, 1, 0.9]
-  );
-
-  const cardTransforms = [
-    { y: y0, opacity: opacity0, scale: scale0 },
-    { y: y1, opacity: opacity1, scale: scale1 },
-    { y: y2, opacity: opacity2, scale: scale2 },
-    { y: y3, opacity: opacity3, scale: scale3 },
-    { y: y4, opacity: opacity4, scale: scale4 },
-    { y: y5, opacity: opacity5, scale: scale5 },
-  ];
-
-  // -------------------- ACTIVE CARD TRACKING --------------------
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const segment = 1 / (servicesData.length + 2);
-    const newIndex = Math.min(servicesData.length - 1, Math.floor(v / segment));
-    if (newIndex !== activeIndex) setActiveIndex(newIndex);
-  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -323,9 +221,64 @@ const Services = () => {
         ogType="website"
       />
 
-        <div className="bg-gray-50">
+      <div className="bg-gray-50">
         {/* HERO SECTION */}
-        <div className="relative w-full h-[80vh]">
+        <section
+          ref={servicesSectionRef}
+          className="bg-[#020911] text-white py-20 px-4 sm:px-6 md:px-12 lg:px-16"
+        >
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[#00AEEF] font-semibold tracking-wider uppercase text-sm">
+                What We Offer
+              </span>
+              <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-6">
+                Our Services
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                Comprehensive technology solutions tailored to drive your business growth.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {servicesData.map((service, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AEEF] transition-all duration-300 group flex flex-col"
+                >
+                  <div className="h-48 overflow-hidden relative">
+                    <img
+                      src={service.banner}
+                      alt={service.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-60"></div>
+                  </div>
+
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00AEEF] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                      {service.description}
+                    </p>
+                    <button
+                      onClick={() => handleClick(service)}
+                      className="inline-flex items-center text-[#00AEEF] font-semibold hover:text-[#33c9ff] transition-colors mt-auto"
+                    >
+                      Learn More <span className="ml-2">→</span>
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+        {/* <div className="relative w-full h-[80vh]">
           <div className="absolute inset-0 bg-black/50 z-10"></div>
           <video
             className="h-full w-full object-cover"
@@ -383,7 +336,7 @@ const Services = () => {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* TRAINING SERVICES OVERVIEW */}
         <section className="max-w-7xl mx-auto px-4 md:px-10 py-16">
@@ -569,126 +522,62 @@ const Services = () => {
 
         {/* CARDS */}
         {/* ScrollStack Component */}
-        <section
+        {/* OUR SERVICES - GRID LAYOUT */}
+        {/* <section
           ref={servicesSectionRef}
-          className="bg-[#020911] text-white h-[2900px] py-20 px-4 sm:px-6 md:px-12 lg:px-16"
+          className="bg-[#020911] text-white py-20 px-4 sm:px-6 md:px-12 lg:px-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center pb-8">
-            Our Services
-          </h2>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[#00AEEF] font-semibold tracking-wider uppercase text-sm">
+                What We Offer
+              </span>
+              <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-6">
+                Our Services
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+                Comprehensive technology solutions tailored to drive your business growth.
+              </p>
+            </div>
 
-          {/* Desktop scroll effect */}
-          <div className="hidden md:block">
-            <ScrollStack
-              itemDistance={100}
-              itemScale={0.04}
-              itemStackDistance={35}
-              baseScale={0.9}
-              rotationAmount={0}
-              blurAmount={0.5}
-              scaleEndPosition="25%"
-              stackPosition="20%"
-              useWindowScroll
-            >
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {servicesData.map((service, index) => (
-                <ScrollStackItem
+                <motion.div
                   key={index}
-                  ref={index === 0 ? firstCardRef : null}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AEEF] transition-all duration-300 group flex flex-col"
                 >
-                  <div
-                    className="
-              bg-[#0b1b3a] 
-              text-white 
-              rounded-3xl 
-              p-8 md:p-12 
-              flex flex-col md:flex-row 
-              gap-6 md:gap-10 
-              items-center 
-              justify-between 
-              shadow-2xl 
-              border border-[#173b69]
-              w-[85%] lg:w-[75%] 
-              mx-auto
-            "
-                  >
+                  <div className="h-48 overflow-hidden relative">
                     <img
                       src={service.banner}
                       alt={service.title}
-                      className="w-full md:w-1/2 h-56 md:h-64 object-contain rounded-2xl"
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
-                    <div className="md:w-1/2 space-y-4">
-                      <h3 className="text-2xl md:text-3xl font-bold text-[#00AEEF]">
-                        {service.title}
-                      </h3>
-                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {service.description}
-                      </p>
-                      <button
-                        onClick={() =>
-                          navigate(
-                            `/service-detail/${service.title
-                              .toLowerCase()
-                              .replace(/\s*&\s*/g, "-and-")
-                              .replace(/\s+/g, "-")}`
-                          )
-                        }
-                        className="mt-4 px-6 py-3 bg-[#FFA500] text-white font-semibold rounded-xl hover:bg-[#ffb733] transition-all"
-                      >
-                        Learn More →
-                      </button>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-60"></div>
                   </div>
-                </ScrollStackItem>
-              ))}
-            </ScrollStack>
-          </div>
 
-          {/* Mobile static version */}
-          <div className="flex flex-col gap-8 md:hidden">
-            {servicesData.map((service, index) => (
-              <div
-                key={index}
-                ref={index === 0 ? firstCardRef : null}
-                className="
-          bg-[#0b1b3a] 
-          text-white 
-          rounded-3xl 
-          p-6 sm:p-8 
-          flex flex-col 
-          gap-6 
-          items-center 
-          shadow-2xl 
-          border border-[#173b69]
-        "
-              >
-                <img
-                  src={service.banner}
-                  alt={service.title}
-                  className="w-full h-48 sm:h-56 object-contain rounded-2xl"
-                />
-                <h3 className="text-2xl font-bold text-[#00AEEF] text-center">
-                  {service.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed text-sm sm:text-base text-center">
-                  {service.description}
-                </p>
-                <button
-                  onClick={() =>
-                    navigate(
-                      `/service-detail/${service.title
-                        .toLowerCase()
-                        .replace(/\s*&\s*/g, "-and-")
-                        .replace(/\s+/g, "-")}`
-                    )
-                  }
-                  className="mt-2 px-6 py-3 bg-[#FFA500] text-white font-semibold rounded-xl hover:bg-[#ffb733] transition-all"
-                >
-                  Learn More →
-                </button>
-              </div>
-            ))}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00AEEF] transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                      {service.description}
+                    </p>
+                    <button
+                      onClick={() => handleClick(service)}
+                      className="inline-flex items-center text-[#00AEEF] font-semibold hover:text-[#33c9ff] transition-colors mt-auto"
+                    >
+                      Learn More <span className="ml-2">→</span>
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </section>
+        </section> */}
 
         {/* ========================================
                 CORE SERVICES / SOLUTIONS

@@ -254,19 +254,19 @@ const ContactUs = () => {
                     autoComplete="off"
                     className="w-full px-4 py-3 border border-white/30 rounded-lg bg-white/10 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                   >
-                    <option value="" disabled>
+                    <option value="" disabled className="bg-gray-800 text-white">
                       Select Service
                     </option>
-                    <option value="Cloud Computing">Cloud Computing</option>
-                    <option value="Cyber Security">Cyber Security</option>
-                    <option value="Project Management">
+                    <option value="Cloud Computing" className="bg-gray-800 text-white">Cloud Computing</option>
+                    <option value="Cyber Security" className="bg-gray-800 text-white">Cyber Security</option>
+                    <option value="Project Management" className="bg-gray-800 text-white">
                       Project Management
                     </option>
-                    <option value="Partner">Partner</option>
-                    <option value="Website Development">Website Development</option>
-                    <option value="Mobile App Development">Mobile App Development</option>
-                    <option value="CRM">CRM</option>
-                    <option value="Others(Please Specify)">Others(Please Specify)</option>
+                    <option value="Partner" className="bg-gray-800 text-white">Partner</option>
+                    <option value="Website Development" className="bg-gray-800 text-white">Website Development</option>
+                    <option value="Mobile App Development" className="bg-gray-800 text-white">Mobile App Development</option>
+                    <option value="CRM" className="bg-gray-800 text-white">CRM</option>
+                    <option value="Others(Please Specify)" className="bg-gray-800 text-white">Others(Please Specify)</option>
                   </select>
                 </motion.div>
 

@@ -58,28 +58,28 @@ const trainingVideo = "https://videos.pexels.com/video-files/3209828/3209828-hd_
 
 
 const serviceCards = [
-  { 
-    title: "Cloud Services", 
-    description: "Cloud services provide computing resources...", 
+  {
+    title: "Cloud Services",
+    description: "Cloud services provide computing resources...",
     image: card1,
     route: "/services/cloud-services"
   },
-  { 
-    title: "UI Design", 
-    description: "UI design involves designing and developing...", 
+  {
+    title: "UI Design",
+    description: "UI design involves designing and developing...",
     image: card2,
     route: "/our-services"
   },
-  
-  { 
-    title: "Web Development", 
-    description: "Web development involves creating and maintaining...", 
+
+  {
+    title: "Web Development",
+    description: "Web development involves creating and maintaining...",
     image: card4,
     route: "/services/web-development"
   },
-  { 
-    title: "Software Services", 
-    description: "Software services include custom software development...", 
+  {
+    title: "Software Services",
+    description: "Software services include custom software development...",
     image: card5,
     route: "/services/software-services"
   },
@@ -99,73 +99,73 @@ const Home = () => {
   const courseData = [
     {
       image: comptia,
-      title: "COMPTIA" ,
+      title: "COMPTIA",
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia",
     },
     {
       image: comptiaA,
-      title: "COMPTIA A+" ,
+      title: "COMPTIA A+",
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia/specialist/a-plus",
     },
     {
       image: comptiaNetwork,
-      title: "CompTIA Network+" ,
+      title: "CompTIA Network+",
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia/specialist/network-plus",
     },
     {
       image: comptiaSecurity,
-      title: "COMPTIA Security+" ,
+      title: "COMPTIA Security+",
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
       url: "/comptia/specialist/security-plus",
     },
     {
       image: comptiaCySA,
-      title: "CompTIA CySA+" ,
+      title: "CompTIA CySA+",
       description: "Industry-standard IT certifications across multiple levels and specializations",
       price: "$300",
-      url:"/comptia/professional/cysa-plus",
+      url: "/comptia/professional/cysa-plus",
     },
-    { 
-      image: PECB, 
-      title: "PECB", 
-      description: "Excel in compliance and IT security with internationally recognized certifications", 
-      price: "$400", 
-      url: "/PECB" 
+    {
+      image: PECB,
+      title: "PECB",
+      description: "Excel in compliance and IT security with internationally recognized certifications",
+      price: "$400",
+      url: "/PECB"
     },
-    { 
-      image: pecbAI, 
-      title: "Artificial Intelligence Professional", 
-      description: "Master AI technologies, machine learning, and AI implementation strategies for business applications", 
-      price: "$400", 
-      url: "/pecb/artificial-intelligence/ai-professional" 
+    {
+      image: pecbAI,
+      title: "Artificial Intelligence Professional",
+      description: "Master AI technologies, machine learning, and AI implementation strategies for business applications",
+      price: "$400",
+      url: "/pecb/artificial-intelligence/ai-professional"
     },
-    { 
-      image: pecbAIMR, 
-      title: "AI Risk Management Professional", 
-      description: "Learn to identify, assess, and manage risks associated with artificial intelligence systems", 
-      price: "$400", 
-      url: "/pecb/artificial-intelligence/ai-risk-management" 
+    {
+      image: pecbAIMR,
+      title: "AI Risk Management Professional",
+      description: "Learn to identify, assess, and manage risks associated with artificial intelligence systems",
+      price: "$400",
+      url: "/pecb/artificial-intelligence/ai-risk-management"
     },
-    { 
-      image: pecbNetwork, 
-      title: "IEC_27033_Network_Security", 
-      description: "Master network security principles and best practices for protecting digital assets", 
-      price: "$400", 
-      url: "/pecb/cybersecurity/network-security" 
+    {
+      image: pecbNetwork,
+      title: "IEC_27033_Network_Security",
+      description: "Master network security principles and best practices for protecting digital assets",
+      price: "$400",
+      url: "/pecb/cybersecurity/network-security"
     },
-    { 
-      image: pecbComputerForensics, 
-      title: "Computer_Forensics_Professional", 
-      description: "Learn digital forensics techniques for investigating cybercrimes and security incidents", 
-      price: "$400", 
-      url: "/pecb/cybersecurity/computer-forensics" 
+    {
+      image: pecbComputerForensics,
+      title: "Computer_Forensics_Professional",
+      description: "Learn digital forensics techniques for investigating cybercrimes and security incidents",
+      price: "$400",
+      url: "/pecb/cybersecurity/computer-forensics"
     },
 
 
@@ -219,7 +219,7 @@ const Home = () => {
       />
 
       {/* Hero Section */}
-      <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+      <div className="relative w-full h-auto min-h-[600px] md:h-[600px] lg:h-[700px] overflow-hidden flex flex-col">
         {isReactSnap ? (
           <img
             src={img1}
@@ -242,9 +242,11 @@ const Home = () => {
             Your browser does not support the video tag.
           </video>
         )}
-        <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center p-4 text-center z-10">
+        {/* Dark Overlay for Video */}
+        <div className="absolute inset-0 bg-black bg-opacity-40 z-0"></div>
+        <div className="relative z-10 flex flex-col items-center justify-center p-8 md:p-12 text-center h-full flex-grow mt-20 md:mt-0">
           <div className="max-w-6xl mx-auto w-full">
-             {/* h1 for SEO  */}
+            {/* h1 for SEO  */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 font-bold text-white leading-tight drop-shadow-lg">
               IT Services & IT Training for Modern Teams
             </h1>
@@ -489,18 +491,18 @@ const Home = () => {
               ABOUT US
             </span>
             <h2 className="text-3xl font-bold text-[#1E293B] sm:text-4xl mb-4">
-            Empowering Your Business with Expert IT Certificate Programs
+              Empowering Your Business with Expert IT Certificate Programs
             </h2>
             <div className="h-1 w-20 bg-[#152B54] mx-auto"></div>
           </div>
-          <div className="flex flex-col md:flex-row gap-12 items-center pl-20">
+          <div className="flex flex-col md:flex-row gap-12 items-center md:pl-20">
             <div className="md:w-1/2 relative">
               <div className="absolute inset-0 bg-[#152B54] rounded-xl opacity-20 transform rotate-3 blur-sm"></div>
               <img
-                src={team || "/placeholder.svg"}  
+                src={team || "/placeholder.svg"}
                 // alt for SEO 
                 alt="Team of Traincape Technology providing IT Training and Certifications"
-                className="relative z-10 rounded-xl shadow-2xl w-full object-cover h-[400px]"
+                className="relative z-10 rounded-xl shadow-2xl w-full object-cover h-64 md:h-[400px]"
               />
             </div>
             <div className="md:w-1/2">
@@ -609,7 +611,7 @@ const Home = () => {
               <p className="text-blue-100 mb-8 text-lg leading-relaxed">
                 Transform your business with our comprehensive IT solutions and expert guidance.
               </p>
-              <div 
+              <div
                 className="bg-white/10 rounded-xl p-4 backdrop-blur-sm flex items-center mb-8 border border-white/20 cursor-pointer hover:bg-white/20 transition-all duration-300"
                 onClick={() => {
                   // Trigger the WhatsApp popup by simulating a click on the floating WhatsApp icon

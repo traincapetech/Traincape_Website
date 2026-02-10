@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext.jsx";
 import translations from "../pages/AboutUs/data.js";
+import { BsWhatsapp } from "react-icons/bs";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ export default function Footer() {
                   </a>
                 </div>
                 <div className="flex items-center gap-2 group/item">
-                  <Phone className="h-4 w-4 text-blue-500 flex-shrink-0" />
+                  <BsWhatsapp  className="h-4 w-4 text-blue-500 flex-shrink-0" />
                   <a
                     href="https://wa.me/+441253928501"
                     target="_blank"
