@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaCloud, FaServer } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp, BsCloudFill } from "react-icons/bs";
 import { MdSecurity, MdStorage } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaCloudPlus = () => {
   const navigate = useNavigate();
@@ -140,6 +141,11 @@ const ComptiaCloudPlus = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-sky-50 to-blue-50">
+      <SEOHead
+        title="CompTIA Cloud+ Certification Training | Cloud Infrastructure - Traincape Technology"
+        description="Get CompTIA Cloud+ certified. Master cloud computing, infrastructure, and security."
+        canonical="https://www.traincapetech.in/comptia/professional/cloud-plus"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

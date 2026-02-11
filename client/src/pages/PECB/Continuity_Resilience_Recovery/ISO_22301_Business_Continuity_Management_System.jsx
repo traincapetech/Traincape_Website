@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaExclamationTriangle, FaChartLine } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdBusiness } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ISO22301BusinessContinuityManagementSystem = () => {
   const navigate = useNavigate();
@@ -128,6 +129,11 @@ const ISO22301BusinessContinuityManagementSystem = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-yellow-50 to-orange-50">
+      <SEOHead
+        title="ISO 22301 Business Continuity Management System Training - Traincape Technology"
+        description="Get ISO 22301 certified. Master business continuity management system implementation and auditing."
+        canonical="https://www.traincapetech.in/pecb/continuity/iso-22301"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

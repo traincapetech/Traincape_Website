@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const OperationalResilienceManagement = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const OperationalResilienceManagement = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-violet-50 to-violet-100">
+      <SEOHead
+        title="PECB Operational Resilience Management Training - Traincape Technology"
+        description="Get certified in Operational Resilience Management. Master organizational resilience strategies."
+        canonical="https://www.traincapetech.in/pecb/continuity/operational-resilience"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

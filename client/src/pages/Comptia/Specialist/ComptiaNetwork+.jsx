@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaNetworkWired, FaServer } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp, BsCloudFill } from "react-icons/bs";
 import { MdSecurity, MdRouter } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaNetworkPlus = () => {
   const navigate = useNavigate();
@@ -111,6 +112,11 @@ const ComptiaNetworkPlus = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-green-50 to-teal-50">
+      <SEOHead
+        title="CompTIA Network+ Certification Training | Networking Fundamentals - Traincape Technology"
+        description="Get CompTIA Network+ certified. Master networking fundamentals, implementation, operations, and security. Exam N10-009."
+        canonical="https://www.traincapetech.in/comptia/specialist/network-plus"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

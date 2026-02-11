@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaShieldAlt, FaUserShield } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp, BsCloudCheck } from "react-icons/bs";
 import { MdSecurity, MdBugReport, MdPolicy } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaSecurityPlus = () => {
   const navigate = useNavigate();
@@ -128,6 +129,11 @@ const ComptiaSecurityPlus = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-orange-50">
+      <SEOHead
+        title="CompTIA Security+ Certification Training | Cybersecurity Fundamentals - Traincape Technology"
+        description="Get CompTIA Security+ certified. Master threats, vulnerabilities, security architecture, and operations. Exam SY0-701."
+        canonical="https://www.traincapetech.in/comptia/specialist/security-plus"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

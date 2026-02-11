@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUsers, FaLaptopCode } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaAPlus = () => {
   const navigate = useNavigate();
@@ -65,8 +66,13 @@ const ComptiaAPlus = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+      <SEOHead
+        title="CompTIA A+ Certification Training | Hardware & IT Fundamentals - Traincape Technology"
+        description="Get CompTIA A+ certified. Master hardware, networking, mobile devices, virtualization, and troubleshooting. Entry-level IT certification with 220-1101 & 220-1102 exams."
+        canonical="https://www.traincapetech.in/comptia/specialist/a-plus"
+      />
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -76,7 +82,7 @@ const ComptiaAPlus = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -84,7 +90,7 @@ const ComptiaAPlus = () => {
               >
                 <span className="text-sm font-semibold">SPECIALIST LEVEL</span>
               </motion.div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -92,7 +98,7 @@ const ComptiaAPlus = () => {
               >
                 CompTIA A+
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -100,7 +106,7 @@ const ComptiaAPlus = () => {
               >
                 The Starting Point for Your IT Career
               </motion.p>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
@@ -108,19 +114,19 @@ const ComptiaAPlus = () => {
               >
                 CompTIA A+ is the industry standard for establishing a career in IT. This certification validates foundational IT skills across multiple technologies and devices.
               </motion.p>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-wrap gap-4"
               >
-                <button 
+                <button
                   onClick={() => navigate("/contact-us")}
                   className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Enroll Now
                 </button>
-                <button 
+                <button
                   onClick={() => window.open("https://drive.google.com/file/d/1y3y94muo0LpehSOX0KIb832W-hbUL-cF/view", "_blank")}
                   className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-indigo-600 transition"
                 >
@@ -128,7 +134,7 @@ const ComptiaAPlus = () => {
                 </button>
               </motion.div>
             </div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
@@ -284,13 +290,13 @@ const ComptiaAPlus = () => {
             <h2 className="text-4xl font-bold mb-4">Ready to Start Your IT Journey?</h2>
             <p className="text-xl mb-8">Join thousands of professionals who started with CompTIA A+</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-indigo-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Enroll Now
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-indigo-600 transition text-lg"
               >

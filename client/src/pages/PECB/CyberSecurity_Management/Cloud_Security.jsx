@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaCloud, FaShieldAlt, FaServer } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdCloudQueue } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const CloudSecurity = () => {
   const navigate = useNavigate();
@@ -129,6 +130,11 @@ const CloudSecurity = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-sky-50 to-blue-50">
+      <SEOHead
+        title="PECB Cloud Security Certification Training - Traincape Technology"
+        description="Get PECB Cloud Security certified. Master cloud security controls and best practices."
+        canonical="https://www.traincapetech.in/pecb/cybersecurity/cloud-security"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

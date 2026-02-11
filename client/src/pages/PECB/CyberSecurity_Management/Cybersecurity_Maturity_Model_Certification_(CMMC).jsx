@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const CybersecurityMaturityModelCertificationCMMC = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const CybersecurityMaturityModelCertificationCMMC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-orange-50 to-orange-100">
+      <SEOHead
+        title="PECB CMMC Certification Training | Cybersecurity Maturity Model - Traincape Technology"
+        description="Get PECB CMMC certified. Master the Cybersecurity Maturity Model Certification framework."
+        canonical="https://www.traincapetech.in/pecb/cybersecurity/cmmc"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

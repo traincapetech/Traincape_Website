@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaShieldAlt, FaExclamationTriangle, FaRedo, FaBuilding, FaChartLine, FaUserTie } from "react-icons/fa";
 import { MdSecurity } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ContinuityResilienceRecovery = () => {
   const navigate = useNavigate();
@@ -76,6 +77,11 @@ const ContinuityResilienceRecovery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
+      <SEOHead
+        title="PECB Continuity, Resilience & Recovery Certifications - Traincape Technology"
+        description="Explore PECB certifications in business continuity (ISO 22301), crisis management, disaster recovery, and operational resilience."
+        canonical="https://www.traincapetech.in/pecb/continuity"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

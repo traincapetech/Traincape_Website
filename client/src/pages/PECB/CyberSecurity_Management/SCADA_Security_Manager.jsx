@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const SCADASecurityManager = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const SCADASecurityManager = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-teal-50 to-teal-100">
+      <SEOHead
+        title="PECB SCADA Security Manager Certification Training - Traincape Technology"
+        description="Get PECB SCADA Security Manager certified. Master industrial control system security."
+        canonical="https://www.traincapetech.in/pecb/cybersecurity/scada-security"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

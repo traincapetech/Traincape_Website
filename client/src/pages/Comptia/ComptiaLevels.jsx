@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaBriefcase, FaCrown, FaArrowRight } from "react-icons/fa";
+import SEOHead from "../../components/SEOHead";
 
 const ComptiaLevels = () => {
   const navigate = useNavigate();
@@ -59,8 +60,13 @@ const ComptiaLevels = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      <SEOHead
+        title="CompTIA Certifications | Specialist, Professional & Expert Levels - Traincape Technology"
+        description="Explore CompTIA certification paths: Specialist (A+, Network+, Security+), Professional (CySA+, PenTest+, Cloud+), and Expert (CASP+, CSAE). Vendor-neutral IT certifications."
+        canonical="https://www.traincapetech.in/comptia"
+      />
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -68,7 +74,7 @@ const ComptiaLevels = () => {
       >
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="max-w-7xl mx-auto relative z-10 text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -76,7 +82,7 @@ const ComptiaLevels = () => {
           >
             CompTIA Certifications
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -84,7 +90,7 @@ const ComptiaLevels = () => {
           >
             Choose Your Certification Path
           </motion.p>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -125,9 +131,9 @@ const ComptiaLevels = () => {
                 <div className={`text-6xl mb-6 bg-gradient-to-r ${level.gradient} text-white w-20 h-20 rounded-full flex items-center justify-center mx-auto shadow-lg`}>
                   {level.icon}
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">{level.title}</h3>
-                
+
                 <p className="text-gray-700 mb-6 text-center min-h-[50px]">{level.description}</p>
 
                 {/* Certifications Count */}
@@ -165,7 +171,7 @@ const ComptiaLevels = () => {
                 </div>
 
                 {/* CTA Button */}
-                <button 
+                <button
                   className={`w-full bg-gradient-to-r ${level.gradient} text-white py-3 rounded-lg font-bold hover:opacity-90 transition flex items-center justify-center gap-2 shadow-lg`}
                 >
                   View Certifications <FaArrowRight />
@@ -226,13 +232,13 @@ const ComptiaLevels = () => {
             <h2 className="text-4xl font-bold mb-4">Ready to Get Certified?</h2>
             <p className="text-xl mb-8">Contact us to find the perfect certification path for your career goals</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-indigo-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Contact Us
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-indigo-700 transition text-lg"
               >

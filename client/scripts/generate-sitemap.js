@@ -159,6 +159,10 @@ function buildUrls() {
     "/policies",
     "/terms-and-conditions",
     "/Gallery",
+    "/contact-us",
+    "/review-page",
+    "/courses",
+    "/partner-page",
   ];
   for (const p of additionalPages) base.add(p);
 

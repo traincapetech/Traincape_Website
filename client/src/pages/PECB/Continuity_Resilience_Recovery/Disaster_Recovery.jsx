@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const DisasterRecovery = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const DisasterRecovery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-rose-50 to-rose-100">
+      <SEOHead
+        title="PECB Disaster Recovery Certification Training - Traincape Technology"
+        description="Get PECB Disaster Recovery certified. Master disaster recovery planning and implementation."
+        canonical="https://www.traincapetech.in/pecb/continuity/disaster-recovery"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

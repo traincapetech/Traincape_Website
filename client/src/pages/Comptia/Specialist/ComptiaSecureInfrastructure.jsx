@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaServer, FaNetworkWired } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdStorage } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaSecureInfrastructure = () => {
   const navigate = useNavigate();
@@ -127,6 +128,11 @@ const ComptiaSecureInfrastructure = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+      <SEOHead
+        title="CompTIA Secure Infrastructure Specialist | Stackable Certification - Traincape Technology"
+        description="Earn CompTIA Secure Infrastructure Specialist by completing A+, Network+, and Security+."
+        canonical="https://www.traincapetech.in/comptia/specialist/secure-infrastructure"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

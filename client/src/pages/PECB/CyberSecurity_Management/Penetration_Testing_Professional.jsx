@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaBug, FaNetworkWired } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdComputer } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const PenetrationTestingProfessional = () => {
   const navigate = useNavigate();
@@ -115,6 +116,11 @@ const PenetrationTestingProfessional = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-red-50 to-orange-50">
+      <SEOHead
+        title="PECB Penetration Testing Professional Training - Traincape Technology"
+        description="Get certified as a PECB Penetration Testing Professional. Master penetration testing methodologies."
+        canonical="https://www.traincapetech.in/pecb/cybersecurity/penetration-testing"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

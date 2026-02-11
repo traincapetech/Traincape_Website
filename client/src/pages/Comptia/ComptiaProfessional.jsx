@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaCheckCircle, FaCertificate } from "react-icons/fa";
+import SEOHead from "../../components/SEOHead";
 
 const ComptiaProfessional = () => {
   const navigate = useNavigate();
@@ -76,8 +77,13 @@ const ComptiaProfessional = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-green-50">
+      <SEOHead
+        title="CompTIA Professional Level Certifications | CySA+, PenTest+, Cloud+ - Traincape Technology"
+        description="Advance your IT career with CompTIA Professional certifications: CySA+, PenTest+, Cloud+, CNVP, Network Security, Secure Cloud, and Security Analytics."
+        canonical="https://www.traincapetech.in/comptia/professional"
+      />
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -85,14 +91,14 @@ const ComptiaProfessional = () => {
       >
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <button 
+          <button
             onClick={() => navigate("/comptia")}
             className="flex items-center gap-2 text-white hover:text-green-200 transition mb-6"
           >
             <FaArrowLeft /> Back to Levels
           </button>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -100,7 +106,7 @@ const ComptiaProfessional = () => {
           >
             Professional Level Certifications
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -108,7 +114,7 @@ const ComptiaProfessional = () => {
           >
             Advance Your IT Career
           </motion.p>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -154,15 +160,15 @@ const ComptiaProfessional = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="p-6">
                   <p className="text-gray-700 mb-6 min-h-[60px]">{cert.description}</p>
-                  
+
                   <div className="mb-4">
                     <p className="text-sm font-semibold text-gray-700 mb-3">Key Topics:</p>
                     <div className="flex flex-wrap gap-2">
                       {cert.topics.map((topic, topicIdx) => (
-                        <span 
+                        <span
                           key={topicIdx}
                           className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
                         >
@@ -172,7 +178,7 @@ const ComptiaProfessional = () => {
                     </div>
                   </div>
 
-                  <button 
+                  <button
                     className={`w-full bg-gradient-to-r ${cert.gradient} text-white py-3 rounded-lg font-bold hover:opacity-90 transition mt-4`}
                   >
                     View Details →
@@ -249,7 +255,7 @@ const ComptiaProfessional = () => {
           >
             <h2 className="text-4xl font-bold mb-4">Ready to Advance Your Career?</h2>
             <p className="text-xl mb-8">Contact us to enroll in any Professional certification</p>
-            <button 
+            <button
               onClick={() => navigate("/contact-us")}
               className="bg-white text-teal-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
             >

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaShieldAlt, FaCloud, FaCogs, FaExclamationTriangle, FaRobot, FaLock, FaChartLine, FaUserTie } from "react-icons/fa";
 import { MdSecurity, MdBusiness, MdPrivacyTip } from "react-icons/md";
+import SEOHead from "../components/SEOHead";
 
 const PECB = () => {
   const navigate = useNavigate();
@@ -85,8 +86,13 @@ const PECB = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50">
+      <SEOHead
+        title="PECB Certifications | Information Security, Cybersecurity & Compliance Training - Traincape Technology"
+        description="Explore PECB certification courses in information security (ISO 27001), cybersecurity, quality management, governance, AI, privacy & data protection. Internationally recognized certifications."
+        canonical="https://www.traincapetech.in/PECB"
+      />
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -95,7 +101,7 @@ const PECB = () => {
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
@@ -103,7 +109,7 @@ const PECB = () => {
             >
               <span className="text-lg font-semibold">PECB CERTIFICATIONS</span>
             </motion.div>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
@@ -111,7 +117,7 @@ const PECB = () => {
             >
               PECB Certifications
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -119,19 +125,19 @@ const PECB = () => {
             >
               Excel in compliance and IT security with internationally recognized certifications across multiple domains
             </motion.p>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
               className="flex flex-wrap justify-center gap-4"
             >
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1 text-lg"
               >
                 Get Started
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition text-lg"
               >
@@ -177,7 +183,7 @@ const PECB = () => {
                     <h3 className="text-xl font-bold text-gray-800">{category.title}</h3>
                   </div>
                   <p className="text-gray-600 mb-4">{category.description}</p>
-                  
+
                   <div className="mb-4">
                     <h4 className="font-semibold text-gray-800 mb-2">Popular Certifications:</h4>
                     <div className="flex flex-wrap gap-1">
@@ -193,7 +199,7 @@ const PECB = () => {
                       )}
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-600">Explore Category</span>
                     <FaArrowRight className="text-gray-400 group-hover:text-blue-600 transition-colors" />
@@ -233,7 +239,7 @@ const PECB = () => {
                 <p className="text-gray-600">Internationally recognized certifications accepted worldwide by employers and organizations</p>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -248,7 +254,7 @@ const PECB = () => {
                 <p className="text-gray-600">Boost your career prospects with specialized certifications in high-demand fields</p>
               </div>
             </motion.div>
-            
+
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -279,13 +285,13 @@ const PECB = () => {
             <h2 className="text-4xl font-bold mb-4">Start Your PECB Certification Journey</h2>
             <p className="text-xl mb-8">Choose from our comprehensive range of internationally recognized certifications</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Get Started Today
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition text-lg"
               >

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const CrisisManagement = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const CrisisManagement = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-amber-50 to-amber-100">
+      <SEOHead
+        title="PECB Crisis Management Certification Training - Traincape Technology"
+        description="Get PECB Crisis Management certified. Master crisis management planning and response."
+        canonical="https://www.traincapetech.in/pecb/continuity/crisis-management"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

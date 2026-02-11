@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaChartLine, FaSearch } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp, BsBugFill } from "react-icons/bs";
 import { MdSecurity, MdAnalytics } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComptiaCYSAPlus = () => {
   const navigate = useNavigate();
@@ -128,6 +129,11 @@ const ComptiaCYSAPlus = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-cyan-50 to-blue-50">
+      <SEOHead
+        title="CompTIA CySA+ Certification Training | Cybersecurity Analyst - Traincape Technology"
+        description="Get CompTIA CySA+ certified. Master threat detection, vulnerability management, and incident response."
+        canonical="https://www.traincapetech.in/comptia/professional/cysa-plus"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"

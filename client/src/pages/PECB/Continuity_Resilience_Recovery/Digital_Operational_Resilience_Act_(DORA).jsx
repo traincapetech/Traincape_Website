@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const DigitalOperationalResilienceActDORA = () => {
   const navigate = useNavigate();
@@ -28,6 +29,11 @@ const DigitalOperationalResilienceActDORA = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-sky-50 to-sky-100">
+      <SEOHead
+        title="PECB DORA Certification Training | Digital Operational Resilience - Traincape Technology"
+        description="Get PECB DORA certified. Master the Digital Operational Resilience Act requirements."
+        canonical="https://www.traincapetech.in/pecb/continuity/dora"
+      />
       <motion.section 
         initial="hidden"
         animate="visible"

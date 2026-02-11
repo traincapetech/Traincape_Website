@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaSearch, FaLaptop, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdComputer } from "react-icons/md";
+import SEOHead from "../../../components/SEOHead";
 
 const ComputerForensics = () => {
   const navigate = useNavigate();
@@ -126,6 +127,11 @@ const ComputerForensics = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-purple-50 to-indigo-50">
+      <SEOHead
+        title="PECB Computer Forensics Certification Training - Traincape Technology"
+        description="Get PECB Computer Forensics certified. Master digital forensics investigation techniques."
+        canonical="https://www.traincapetech.in/pecb/cybersecurity/computer-forensics"
+      />
       {/* Hero Section */}
       <motion.section 
         initial="hidden"
