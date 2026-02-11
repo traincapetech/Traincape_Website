@@ -48,13 +48,48 @@ const GlobalChat = () => {
             }
 
         } else {
-            setGenericFlow();
-        }
+            // FALLBACK: Try to find a flow based on the URL last segment (slug)
+            const pathSegments = location.pathname.split('/').filter(Boolean);
+            const potentialSlug = pathSegments[pathSegments.length - 1]; // e.g., "web-development" or "certified-security-pro"
 
+            // Check if we have a flow matching the slug directly (e.g. "web-development")
+            // OR check if we have a flow matching "course_" + slug (e.g. "course_iso9001") if that was the convention
+            let dynamicFlowId = null;
+
+            if (chatbotData.flows[potentialSlug]) {
+                dynamicFlowId = potentialSlug;
+            } else if (chatbotData.flows[`course_${potentialSlug}`]) {
+                dynamicFlowId = `course_${potentialSlug}`;
+            }
+
+            if (dynamicFlowId) {
+                const flowData = chatbotData.flows[dynamicFlowId];
+                setCurrentFlow({
+                    title: flowData.title,
+                    options: [
+                        ...flowData.options,
+                        // Ensure Human Expert option is always present
+                        ...(flowData.options.some(o => o.action === 'handover')
+                            ? []
+                            : [{ label: "Talk to Human Expert", action: "handover" }])
+                    ]
+                });
+                // Optional: Update greeting even for dynamic flows
+                if (isOpen && !token) {
+                    const greeting = flowData.welcome || `Welcome to ${flowData.title}. How can I assist you?`;
+                    // Avoid duplicated greetings if the user just switched pages but chat was open
+                    // For now, we update it to reflect new context
+                    setMessages([{ sender: 'System', text: greeting, isGreeting: true }]);
+                }
+            } else {
+                setGenericFlow();
+            }
+        }
     }, [location.pathname, token, isOpen]); // Re-run when URL changes
 
     const setGenericFlow = () => {
         // Use existing chatbot_flow.json or hardcoded default
+        // Double check if strict route exists (already checked above actually, but good for safety)
         const flowId = chatbotData.routes[location.pathname];
         if (flowId && chatbotData.flows[flowId]) {
             setCurrentFlow(chatbotData.flows[flowId]);
@@ -116,6 +151,10 @@ const GlobalChat = () => {
                 if (data.status === 'waiting') {
                     setIsWaiting(true);
                     setMessages(prev => [...prev, { sender: 'System', text: "We have notified our experts. Please wait while someone picks up your chat..." }]);
+                } else if (data.status === 'active') {
+                    setIsWaiting(false);
+                    setConsultantName(data.consultantName);
+                    setMessages(prev => [...prev, { sender: 'System', text: `You are now connected to ${data.consultantName}.` }]);
                 } else {
                     // Should actally not happen in new flow, but backward compat
                     setMessages(prev => [...prev, { sender: 'System', text: `Connected to ${data.consultantName}` }]);
@@ -139,7 +178,7 @@ const GlobalChat = () => {
 
     useEffect(() => {
         socket.on('receive_message', (m) => {
-            if (m.sender !== 'User') setMessages(prev => [...prev, m]);
+            if (m.sender === 'Consultant') setMessages(prev => [...prev, m]);
         });
 
         socket.on('consultant_joined', (data) => {
@@ -173,7 +212,7 @@ const GlobalChat = () => {
             <div
                 onClick={() => setIsOpen(!isOpen)}
                 style={{
-                    position: 'fixed', bottom: '30px', right: '30px', zIndex: 9999,
+                    position: 'fixed', bottom: '100px', right: '20px', zIndex: 9999,
                     width: '60px', height: '60px', borderRadius: '50%',
                     backgroundColor: '#007bff', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.3)', cursor: 'pointer', transition: 'transform 0.3s'
@@ -185,7 +224,7 @@ const GlobalChat = () => {
             {/* Chat Window */}
             {isOpen && (
                 <div style={{
-                    position: 'fixed', bottom: '100px', right: '30px',
+                    position: 'fixed', bottom: '170px', right: '20px',
                     width: '350px', height: '500px', backgroundColor: 'white',
                     borderRadius: '15px', boxShadow: '0 10px 40px rgba(0,0,0,0.2)',
                     zIndex: 10000, display: 'flex', flexDirection: 'column', overflow: 'hidden',

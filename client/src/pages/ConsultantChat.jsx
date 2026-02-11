@@ -10,7 +10,8 @@ const ConsultantChat = () => {
     const [inputText, setInputText] = useState("");
     const messagesEndRef = useRef(null);
 
-    // optimize: fetch initial pending sessions
+    const myName = "Expert Consultant";
+
     useEffect(() => {
         const fetchSessions = async () => {
             try {
@@ -26,41 +27,50 @@ const ConsultantChat = () => {
 
         fetchSessions();
 
-        // Join consultant room to receive updates
         socket.connect();
-        socket.emit('join_consultant');
+        socket.emit('join_consultant', { name: myName });
 
-        // Listen for new sessions
         socket.on('new_session', (session) => {
             setPendingSessions(prev => [...prev, session]);
         });
 
-        // Listen for when a session is accepted by someone else (or self confirmation)
-        socket.on('session_accepted', ({ token, consultantName }) => {
-            // Remove from pending
-            setPendingSessions(prev => prev.filter(s => s.token !== token));
+        socket.on('auto_assigned', ({ session, consultantName }) => {
+            if (consultantName === myName) {
+                setActiveSession(session);
+                setMessages([]);
+                setActiveTab('chat');
+                socket.emit('join_session', session.token);
+            }
         });
 
-        // Listen for incoming messages
-        socket.on('receive_message', (message) => {
-            if (activeSession && message.token === activeSession.token) {
-                setMessages(prev => [...prev, message]);
-            }
+        socket.on('session_accepted', ({ token, consultantName }) => {
+            setPendingSessions(prev => prev.filter(s => s.token !== token));
         });
 
         return () => {
             socket.off('new_session');
+            socket.off('auto_assigned');
             socket.off('session_accepted');
-            socket.off('receive_message');
             socket.disconnect();
         };
+    }, []);
+
+    useEffect(() => {
+        const handleMessage = (message) => {
+            // Only add message if it belongs to current session AND it's not from self (since we add self-messages optimistically)
+            if (activeSession && message.token === activeSession.token && message.sender !== 'Consultant') {
+                setMessages(prev => [...prev, message]);
+            }
+        };
+
+        socket.on('receive_message', handleMessage);
+        return () => socket.off('receive_message');
     }, [activeSession]);
 
     const handleAcceptSession = (session) => {
-        const consultantName = "Expert Consultant"; // In real app, get from auth
-        socket.emit('accept_chat', { token: session.token, consultantName });
+        socket.emit('accept_chat', { token: session.token, consultantName: myName });
         setActiveSession(session);
-        setMessages([]); // Clear previous chat if any
+        setMessages([]);
         setActiveTab('chat');
     };
 
@@ -71,7 +81,7 @@ const ConsultantChat = () => {
             token: activeSession.token,
             text: inputText,
             sender: 'Consultant',
-            consultantName: "Expert Consultant"
+            consultantName: myName
         };
 
         socket.emit('send_message', messageData);
@@ -87,61 +97,85 @@ const ConsultantChat = () => {
         scrollToBottom();
     }, [messages]);
 
-
     return (
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex h-screen bg-gray-50 overflow-hidden font-sans">
             {/* Sidebar */}
-            <div className="w-1/4 bg-white border-r border-gray-200 flex flex-col">
-                <div className="p-4 border-b border-gray-200 font-bold text-lg text-blue-600">
-                    Consultant Dashboard
+            <div className="w-80 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
+                <div className="p-5 border-b border-gray-100 bg-white flex items-center justify-between">
+                    <span className="font-bold text-gray-800 text-lg">Dashboard</span>
+                    <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full border border-green-100 flex items-center gap-1">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                    </span>
                 </div>
 
-                <div className="flex p-2 gap-2">
+                <div className="flex p-3 gap-2 bg-gray-50/50">
                     <button
                         onClick={() => setActiveTab('waiting')}
-                        className={`flex-1 py-2 rounded-md ${activeTab === 'waiting' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-50'}`}
+                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all 
+                            ${activeTab === 'waiting'
+                                ? 'bg-white text-blue-600 shadow-sm border border-gray-200'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`}
                     >
-                        Waiting ({pendingSessions.length})
+                        Requests ({pendingSessions.length})
                     </button>
                     <button
                         onClick={() => setActiveTab('chat')}
-                        className={`flex-1 py-2 rounded-md ${activeTab === 'chat' ? 'bg-blue-100 text-blue-700' : 'text-gray-600 hover:bg-gray-50'}`}
+                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all
+                            ${activeTab === 'chat'
+                                ? 'bg-white text-blue-600 shadow-sm border border-gray-200'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`}
                         disabled={!activeSession}
                     >
                         Active Chat
                     </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto p-2">
-                    {activeTab === 'waiting' && (
-                        <div className="space-y-2">
-                            {pendingSessions.length === 0 && <p className="text-gray-400 text-center mt-4">No pending requests</p>}
-                            {pendingSessions.map(session => (
-                                <div key={session.token} className="p-3 border rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                                    <div className="flex justify-between items-start mb-2">
-                                        <div className="font-medium text-gray-800">Client #{session.token.slice(-4)}</div>
-                                        <span className="text-xs text-gray-400">{new Date(session.createdAt).toLocaleTimeString()}</span>
-                                    </div>
-                                    <button
-                                        onClick={() => handleAcceptSession(session)}
-                                        className="w-full mt-2 bg-blue-600 text-white py-1.5 rounded-md text-sm hover:bg-blue-700"
-                                    >
-                                        Accept Chat
-                                    </button>
-                                </div>
-                            ))}
+                <div className="flex-1 overflow-y-auto p-3 space-y-3">
+                    {activeTab === 'waiting' && pendingSessions.length === 0 && (
+                        <div className="flex flex-col items-center justify-center h-40 text-gray-400">
+                            <User size={32} className="mb-2 opacity-20" />
+                            <p className="text-sm">No pending requests</p>
                         </div>
                     )}
 
+                    {activeTab === 'waiting' && pendingSessions.map(session => (
+                        <div key={session.token} className="p-4 border border-gray-100 rounded-xl bg-white hover:shadow-md transition-shadow group">
+                            <div className="flex justify-between items-start mb-3">
+                                <div>
+                                    <div className="font-semibold text-gray-800 text-sm">Client #{(session.token || "").slice(-4)}</div>
+                                    <div className="text-xs text-blue-500 mt-0.5">Looking for help</div>
+                                </div>
+                                <span className="text-[10px] font-medium text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded">
+                                    {session.createdAt ? new Date(session.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'Just now'}
+                                </span>
+                            </div>
+                            <button
+                                onClick={() => handleAcceptSession(session)}
+                                className="w-full bg-blue-600 text-white py-2 rounded-lg text-sm font-medium hover:bg-blue-700 active:scale-[0.98] transition-all shadow-sm shadow-blue-200"
+                            >
+                                Accept Request
+                            </button>
+                        </div>
+                    ))}
+
                     {activeTab === 'chat' && activeSession && (
-                        <div className="p-3 border rounded-lg bg-blue-50 border-blue-200">
-                            <div className="font-medium text-blue-800">Current Session</div>
-                            <div className="text-sm text-blue-600">Client #{activeSession.token.slice(-4)}</div>
+                        <div className="p-4 border border-blue-100 rounded-xl bg-blue-50/50">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold border border-blue-200">
+                                    C
+                                </div>
+                                <div>
+                                    <div className="font-semibold text-gray-800 text-sm">Client #{(activeSession.token || "").slice(-4)}</div>
+                                    <div className="text-xs text-green-600 flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active Now
+                                    </div>
+                                </div>
+                            </div>
                             <button
                                 onClick={() => { setActiveSession(null); setActiveTab('waiting'); }}
-                                className="text-xs text-red-500 mt-2 hover:underline"
+                                className="w-full py-2 text-xs font-medium text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100"
                             >
-                                Leave Chat
+                                End Session
                             </button>
                         </div>
                     )}
@@ -149,55 +183,89 @@ const ConsultantChat = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col bg-white overflow-hidden relative">
                 {activeTab === 'waiting' ? (
-                    <div className="flex-1 flex items-center justify-center text-gray-400">
-                        Select a request from the list to start chatting
+                    <div className="flex-1 flex flex-col items-center justify-center text-gray-400 bg-gray-50/30">
+                        <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+                            <span className="text-4xl">👋</span>
+                        </div>
+                        <h2 className="text-xl font-semibold text-gray-700 mb-2">Welcome Back, Expert!</h2>
+                        <p className="max-w-xs text-center text-sm text-gray-500">
+                            Select a request from the sidebar to start a consultation session.
+                        </p>
                     </div>
                 ) : (
                     <>
-                        {/* Chat Header */}
-                        <div className="p-4 bg-white border-b border-gray-200 shadow-sm flex justify-between items-center">
-                            <div className="font-bold text-gray-800">
-                                Chatting with Client #{activeSession?.token.slice(-4)}
+                        <div className="h-16 px-6 bg-white border-b border-gray-100 flex items-center justify-between shadow-sm z-10">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold shadow-sm shadow-blue-200">
+                                    #{activeSession?.token.slice(-4)}
+                                </div>
+                                <div>
+                                    <h3 className="font-bold text-gray-800 text-sm">Client Consultation</h3>
+                                    <p className="text-xs text-gray-500">Session ID: {activeSession?.token}</p>
+                                </div>
                             </div>
-                            <div className="text-sm text-green-600 flex items-center gap-1">
-                                <span className="w-2 h-2 rounded-full bg-green-500"></span> Live
+                            <div className="flex items-center gap-2">
+                                <span className="px-3 py-1 bg-green-50 text-green-700 text-xs font-semibold rounded-full border border-green-100 flex items-center gap-1.5">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                    </span>
+                                    Live Connection
+                                </span>
                             </div>
                         </div>
 
-                        {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
+                        <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50 scroll-smooth">
+                            <div className="text-center text-xs text-gray-400 my-4">
+                                <span className="bg-gray-100 px-3 py-1 rounded-full">Session Started</span>
+                            </div>
+
                             {messages.map((m, i) => (
-                                <div key={i} className={`flex ${m.sender === 'Consultant' ? 'justify-end' : 'justify-start'}`}>
-                                    <div className={`max-w-[70%] rounded-2xl px-4 py-2 ${m.sender === 'Consultant'
-                                        ? 'bg-blue-600 text-white rounded-tr-none'
-                                        : 'bg-white border border-gray-200 text-gray-800 rounded-tl-none'
-                                        }`}>
-                                        <p className="whitespace-pre-wrap">{m.text}</p>
+                                <div key={i} className={`flex w-full ${m.sender === 'Consultant' ? 'justify-end' : 'justify-start'}`}>
+                                    <div className={`flex max-w-[70%] ${m.sender === 'Consultant' ? 'flex-row-reverse' : 'flex-row'} items-end gap-2`}>
+                                        <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold 
+                                            ${m.sender === 'Consultant' ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-600'}`}>
+                                            {m.sender === 'Consultant' ? 'You' : 'Cli'}
+                                        </div>
+                                        <div className={`px-5 py-3 shadow-sm text-sm leading-relaxed 
+                                            ${m.sender === 'Consultant'
+                                                ? 'bg-blue-600 text-white rounded-2xl rounded-br-sm'
+                                                : 'bg-white border border-gray-100 text-gray-800 rounded-2xl rounded-bl-sm'
+                                            }`}>
+                                            <p className="whitespace-pre-wrap">{m.text}</p>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
-                            <div ref={messagesEndRef} />
+                            <div ref={messagesEndRef} className="h-4" />
                         </div>
 
-                        {/* Input Area */}
-                        <div className="p-4 bg-white border-t border-gray-200">
-                            <div className="flex gap-2">
+                        <div className="p-4 bg-white border-t border-gray-100">
+                            <div className="flex items-center gap-3 bg-gray-50 p-2 rounded-full border border-gray-200 focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-50 transition-all shadow-sm">
                                 <input
                                     type="text"
                                     value={inputText}
                                     onChange={(e) => setInputText(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-                                    placeholder="Type your message..."
-                                    className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-blue-500 hover:border-blue-400 transition-colors"
+                                    placeholder="Type your message here..."
+                                    className="flex-1 bg-transparent px-4 py-2 focus:outline-none text-gray-700 placeholder-gray-400"
+                                    autoFocus
                                 />
                                 <button
                                     onClick={sendMessage}
-                                    className="bg-blue-600 text-white p-2 rounded-full hover:bg-blue-700 transition-colors flex items-center justify-center w-10 h-10"
+                                    disabled={!inputText.trim()}
+                                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200
+                                        ${inputText.trim()
+                                            ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-200 transform hover:scale-105'
+                                            : 'bg-gray-200 text-gray-400 cursor-not-allowed'}`}
                                 >
-                                    <Send size={18} />
+                                    <Send size={18} className={inputText.trim() ? 'ml-0.5' : ''} />
                                 </button>
+                            </div>
+                            <div className="text-center mt-2">
+                                <span className="text-[10px] text-gray-400">Press Enter to send</span>
                             </div>
                         </div>
                     </>

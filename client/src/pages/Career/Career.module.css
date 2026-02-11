@@ -675,6 +675,7 @@
     padding: 30px 20px;
   }
 
+
   .jobHeader {
     flex-direction: column;
     gap: 12px;
@@ -683,5 +684,133 @@
   .jobMeta {
     flex-direction: column;
     gap: 12px;
+  }
+}
+
+/* ===== INTERNSHIP FORM STYLES (Added for Internship Page) ===== */
+.contact {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 5%;
+  background-color: #f8fafc; /* Match page bg */
+  gap: 60px;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.officeMail {
+  flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+  background-color: white;
+  padding: 40px;
+  border-radius: 24px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+}
+
+.officeMail h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.officeMail p {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+.inputbox,
+.select,
+.textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  color: #1e293b;
+}
+
+.inputbox:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+.contactBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+}
+
+.contactBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.contactBtn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.contactImg {
+  flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contactImg img {
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  object-fit: cover;
+  /* Optional: maintain aspect ratio or max-height */
+  max-height: 600px; 
+}
+
+@media (max-width: 900px) {
+  .contact {
+    flex-direction: column-reverse;
+    padding: 60px 20px;
+    align-items: center;
+  }
+
+  .officeMail,
+  .contactImg {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .officeMail h1 {
+    font-size: 2rem;
   }
 }
