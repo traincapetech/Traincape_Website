@@ -36,45 +36,11 @@ const Adobe = () => {
   }, []);
 
   const adobecourses = [
-    {
-      image: Card1,
-      description: "Adobe Certified Professional – Photoshop Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobePhotoshop",
-    },
-    {
-      image: Card2,
-      description: "Adobe Certified Professional – InDesign Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobeInDesign",
-    },
-    {
-      image: Card3,
-      description: "Adobe Certified Professional – Illustrator Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobeIllustrator",
-    },
-    {
-      image: Card4,
-      description: "Adobe Certified Professional – Premiere Pro Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobePremiere",
-    },
-    {
-      image: Card5,
-      description: "Adobe Certified Professional – Lightroom Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobeLightroom",
-    },
-    {
-      image: Card6,
-      description: "Adobe Certified Professional – After Effects Certification",
-      price: "₹1149",
-      url: "/AdobeCourse/AdobeAfterEffects",
-    },
+    // All 6 AdobeCourse/* URLs removed - no routes exist
+    // AdobeInDesign was in the pending URLs list
   ];
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   return (
     <>
       <AddToCartButton />
@@ -89,9 +55,9 @@ const Adobe = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between p-5">
           <div className="lg:w-2/3 w-full ">
             <h1 className="text-2xl  md:text-3xl lg:text-4xl font-bold font-serif ">
-              <a 
-                href="https://www.adobe.com/" 
-                target="_blank" 
+              <a
+                href="https://www.adobe.com/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 transition-colors cursor-pointer"
                 title="Visit Adobe Official Website"

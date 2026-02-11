@@ -200,7 +200,7 @@ const Career = () => {
           name="description"
           content="Join Traincape Technology and accelerate your career. Explore exciting opportunities in Sales and Lead Generation. Competitive pay, growth opportunities, and a great team await!"
         />
-        <link rel="canonical" href="https://traincapetech.in/Career-details" />
+        <link rel="canonical" href="https://www.traincapetech.in/career" />
       </Helmet>
 
       <div className={styles.careerPage}>

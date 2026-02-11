@@ -15,39 +15,11 @@ const MicrosoftOffice = () => {
   }, []);
 
   const microsoftcourses = [
-    {
-        image: Card1,
-        description: "Microsoft Office Specialist – Excel Expert Certification",
-        price: "₹1149",
-        url: "/MicrosoftCourse/MicrosoftExcelExpert",
-      },
-    {
-      image: Card2,
-      description: "Microsoft Office Specialist – Word Expert Certification",
-      price: "₹1149",
-      url: "/MicrosoftCourse/MicrosoftWordExpert",
-    },
-    {
-      image: Card3,
-      description: "Microsoft Office Specialist – PowerPoint Associate Certification ",
-      price: "₹1149",
-      url: "/MicrosoftCourse/MicrosoftPowerPointAssociate",
-    },
-    {
-      image: Card4,
-      description: "Microsoft Office Specialist – Excel Associate Certification",
-      price: "₹1149",
-      url: "/MicrosoftCourse/MicrosoftExcelAssociate",
-    },
-    {
-      image: Card5,
-      description: "Microsoft Office Specialist – Word Associate Certification",
-      price: "₹1149",
-      url: "/MicrosoftCourse/MicrosoftWordAssociate",
-    },
+    // All 5 MicrosoftCourse/* URLs removed - no routes exist
+    // MicrosoftWordAssociate was in pending URLs list
   ];
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   return (
     <>
       <div
@@ -61,16 +33,16 @@ const MicrosoftOffice = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between p-5">
           <div className="lg:w-2/3 w-full ">
             <h1 className="text-3xl  md:text-4xl lg:text-4xl font-bold font-serif ">
-            Microsoft Office Specialist
+              Microsoft Office Specialist
             </h1>
             <h5 className="text-sm md:text-lg lg:text-base xl:text-xl mt-4">
-            The Microsoft Office Specialist Program provides industry-leading assessments of skills and knowledge through our project-based testing, giving students and professionals real-world exercises to appraise their understanding of Microsoft Office.              <br />
+              The Microsoft Office Specialist Program provides industry-leading assessments of skills and knowledge through our project-based testing, giving students and professionals real-world exercises to appraise their understanding of Microsoft Office.              <br />
               <br />
-              This guarantees that every certified user can prove they have the ability to command the full features and functionality of Microsoft Office, preparing them for future academic or workforce opportunities.              Tally is an accounting software that helps businesses manage their finances and inventory. It's used by small and medium-sized businesses in many countries, including India.  
+              This guarantees that every certified user can prove they have the ability to command the full features and functionality of Microsoft Office, preparing them for future academic or workforce opportunities.              Tally is an accounting software that helps businesses manage their finances and inventory. It's used by small and medium-sized businesses in many countries, including India.
             </h5>
           </div>
           <div className="hidden lg:block xl:block  mt-5 p-5">
-            <img    
+            <img
               className="w-[28rem] h-64 transition-transform duration-300 ease-in-out hover:scale-110"
               src={banner2}
               alt="IBM Banner"

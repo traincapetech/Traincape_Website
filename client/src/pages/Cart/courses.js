@@ -74,12 +74,13 @@ export const Cards = [
     description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
     url: "/unity",
   },
-  {
-    image: Logo1,
-    title: "Cisco Certified",
-    description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
-    url: "/ciscocard"
-  },
+  // Removed: ciscocard - no route exists (was in pending URLs)
+  // {
+  //   image: Logo1,
+  //   title: "Cisco Certified",
+  //   description: "We offer specialized cybersecurity services that ensure the protection of IT infrastructures and solutions.",
+  //   url: "/ciscocard"
+  // },
   // {
   //   id: "microsoft-powerpoint-associate",
   //   title: "Microsoft PowerPoint Associate",

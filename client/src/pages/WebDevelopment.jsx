@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 const WebDevelopment = () => {
-    const navigate = useNavigate(); // ✅ you forgot this line
+  const navigate = useNavigate(); // ✅ you forgot this line
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -18,7 +18,7 @@ const WebDevelopment = () => {
         <meta name="description" content="Experience innovation with custom-built, API-driven web solutions optimized for performance, security, and growth." />
         <meta name="keywords" content="Web Development, Web Development Services, Web Development Company, Traincape Technology, Custom Website Development, E-commerce Website Development, CMS Development, CRM Development, API-driven Web Solutions, Performance-Optimized Websites" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/web-development" />
+        <link rel="canonical" href="https://www.traincapetech.in/services/web-development" />
       </Helmet>
       {/* HERO SECTION (UNCHANGED) */}
       <section
@@ -139,7 +139,7 @@ const WebDevelopment = () => {
           </h2>
 
           <p className="text-gray-600 max-w-3xl mb-10">
-            Bringing unique ideas to life can be challenging, especially when you aim to disrupt the industry with innovation. 
+            Bringing unique ideas to life can be challenging, especially when you aim to disrupt the industry with innovation.
             We develop personalized websites that perfectly reflect your goals and reach your targeted audience across the world.
           </p>
 
@@ -182,7 +182,7 @@ const WebDevelopment = () => {
                 className="bg-[#F8FBFF] rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-6"
                 whileHover={{ y: -5 }}
                 alt={`${service.title} service`}
-                >
+              >
                 <div className="text-3xl mb-4">{service.icon}</div>
                 <h3 className="text-lg font-semibold mb-2">
                   {service.title}

@@ -15,43 +15,8 @@ const ITSpeacialist = () => {
   }, []);
 
   const ITcourses = [
-    {
-      image: Card1,
-      title: "CERTIFICATION COURSE",
-      description: "HTML5 Application Development LearnKey",
-      price: "₹1149",
-      url: "/ITSpecialistHTML",
-    },
-
-    {
-      image: Card2,
-      title: "CERTIFICATION COURSE",
-      description: "IT Specialist – HTML and CSS LearnKey",
-      price: "₹1149",
-      url: "/ITSpecialistHTML",
-    },
-    {
-      image: Card3,
-      title: "CERTIFICATION COURSE",
-      description:
-        "IT Specialist – Device Configuration and Management LearnKey",
-      price: "₹1149",
-      url: "/ITSpecialistNetworking",
-    },
-    {
-      image: Card4,
-      title: "CERTIFICATION COURSE",
-      description: "IT Specialist – Databases LearnKey",
-      price: "₹1149",
-      url: "/ITSpecialistPython",
-    },
-    {
-      image: Card5,
-      title: "CERTIFICATION COURSE",
-      description: "IT Specialist – Cybersecurity LearnKey",
-      price: "₹1149",
-      url: "/ITSpecialistJavaScript",
-    },
+    // All 5 IT Specialist URLs removed - no routes exist
+    // ITSpecialistHTML, ITSpecialistJavaScript, ITSpecialistPython were in pending URLs
   ];
 
   const navigate = useNavigate();

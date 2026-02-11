@@ -15,36 +15,8 @@ const Autodesk = () => {
 
   const navigate = useNavigate()
   const autodeskcourses = [
-    {
-      image: Card1,
-      description: "Autodesk Certified User - AutoCAD",
-      price: "₹1499",
-      url: "/AutodeskCourse/AutodeskAutoCAD",
-    },
-    {
-      image: Card2,
-      description: "Autodesk Certified User - Revit Architecture",
-      price: "₹1499",
-      url: "/AutodeskCourse/AutodeskRevit",
-    },
-    {
-      image: Card3,
-      description: "Autodesk Certified User - 3ds Max",
-      price: "₹1499",
-      url: "/AutodeskCourse/Autodesk3dsMax",
-    },
-    {
-      image: Card4,
-      description: "Autodesk Certified User - Fusion 360",
-      price: "₹1499",
-      url: "/AutodeskCourse/AutodeskFusion360",
-    },
-    {
-      image: Card4,
-      description: "Autodesk Certified User - Maya",
-      price: "₹2499",
-      url: "/AutodeskCourse/AutodeskMaya",
-    },
+    // All 5 AutodeskCourse/* URLs removed - no routes exist
+    // AutoCAD, Revit, 3dsMax, Fusion360, Maya all in pending URLs list
   ];
 
   return (
@@ -60,9 +32,9 @@ const Autodesk = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between p-5">
           <div className="lg:w-2/3 w-full ">
             <h1 className="text-2xl  md:text-3xl lg:text-4xl font-bold font-serif ">
-              <a 
-                href="https://www.autodesk.com/" 
-                target="_blank" 
+              <a
+                href="https://www.autodesk.com/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 transition-colors cursor-pointer"
                 title="Visit Autodesk Official Website"

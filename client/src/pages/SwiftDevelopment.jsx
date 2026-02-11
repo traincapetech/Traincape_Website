@@ -18,16 +18,10 @@ const SwiftDevelopment = () => {
       price: "₹1,499",
       url: "/SwiftDevelopmentBasics",
     },
-    {
-      image: Card1,
-      title: "CERTIFICATION COURSE",
-      description: "Swift Development Advanced",
-      price: "₹1,999",
-      url: "/SwiftDevelopmentAdvanced",
-    },
+    // Removed: SwiftDevelopmentAdvanced - no route exists (was in pending URLs)
   ];
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   return (
     <>
       <div
@@ -41,9 +35,9 @@ const SwiftDevelopment = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between p-5">
           <div className="lg:w-2/3 w-full">
             <h1 className="text-3xl md:text-4xl lg:text-4xl font-bold font-serif">
-              <a 
-                href="https://www.apple.com/" 
-                target="_blank" 
+              <a
+                href="https://www.apple.com/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 transition-colors cursor-pointer"
                 title="Visit Apple Official Website"
@@ -52,12 +46,12 @@ const SwiftDevelopment = () => {
               </a> Certifications
             </h1>
             <h5 className="text-sm md:text-lg lg:text-xl mt-4">
-            Swift is a robust and intuitive programming language created by Apple. It's easy to learn, simple to use, and super powerful — which makes it a great language for first time coders and full time developers.        
-            <br />
-            App Development with Swift certifications recognize students for their knowledge of Swift, Xcode, and app development tools.              <br />
+              Swift is a robust and intuitive programming language created by Apple. It's easy to learn, simple to use, and super powerful — which makes it a great language for first time coders and full time developers.
+              <br />
+              App Development with Swift certifications recognize students for their knowledge of Swift, Xcode, and app development tools.              <br />
               <br />
               Students are expected to have completed at least 150 hours of instructional time before taking the certification exam.
-              
+
               Students who pass the certification exam will earn a digital badge they can share in a resume, portfolio, email, or in online professional networks.
             </h5>
           </div>
@@ -106,9 +100,9 @@ const SwiftDevelopment = () => {
           ))}
         </div>
         <br />
-      <br />  <br />  <br />  <br />  <br />
+        <br />  <br />  <br />  <br />  <br />
       </div>
-      
+
     </>
   );
 };

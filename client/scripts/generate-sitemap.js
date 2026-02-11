@@ -151,6 +151,109 @@ function buildUrls() {
   ];
   for (const s of servicePages) base.add(s);
 
+  // Additional static pages
+  const additionalPages = [
+    "/career",
+    "/faq",
+    "/blogs",
+    "/policies",
+    "/terms-and-conditions",
+    "/Gallery",
+  ];
+  for (const p of additionalPages) base.add(p);
+
+  // CompTIA Certification Routes
+  const comptiaPages = [
+    "/comptia",
+    "/comptia/specialist",
+    "/comptia/professional",
+    "/comptia/expert",
+    // Specialist
+    "/comptia/specialist/a-plus",
+    "/comptia/specialist/network-plus",
+    "/comptia/specialist/security-plus",
+    "/comptia/specialist/secure-infrastructure",
+    // Professional
+    "/comptia/professional/cysa-plus",
+    "/comptia/professional/pentest-plus",
+    "/comptia/professional/cloud-plus",
+    "/comptia/professional/cnvp",
+    "/comptia/professional/network-security",
+    "/comptia/professional/secure-cloud",
+    "/comptia/professional/security-analytics",
+    // Expert
+    "/comptia/expert/casp-plus",
+    "/comptia/expert/csae",
+  ];
+  for (const p of comptiaPages) base.add(p);
+
+  // PECB Certification Routes
+  const pecbPages = [
+    "/PECB",
+    // Information Security
+    "/pecb/information-security",
+    "/pecb/information-security/iso-27001",
+    "/pecb/information-security/iso-27002",
+    "/pecb/information-security/iso-27005",
+    "/pecb/information-security/iso-27034",
+    "/pecb/information-security/iso-27035",
+    "/pecb/information-security/ciso",
+    "/pecb/information-security/ebios",
+    // Cybersecurity Management
+    "/pecb/cybersecurity",
+    "/pecb/cybersecurity/penetration-testing",
+    "/pecb/cybersecurity/cloud-security",
+    "/pecb/cybersecurity/computer-forensics",
+    "/pecb/cybersecurity/cmmc",
+    "/pecb/cybersecurity/network-security",
+    "/pecb/cybersecurity/scada-security",
+    // Quality & Management
+    "/pecb/quality",
+    "/pecb/quality/iso-9001",
+    "/pecb/quality/iso-55001",
+    "/pecb/quality/iso-13485",
+    "/pecb/quality/iso-21001",
+    "/pecb/quality/iso-21502",
+    "/pecb/quality/iso-28000",
+    "/pecb/quality/six-sigma",
+    "/pecb/quality/iso-17025",
+    "/pecb/quality/iso-20000",
+    // Governance, Risk & Compliance
+    "/pecb/governance",
+    "/pecb/governance/iso-31000",
+    "/pecb/governance/iso-37001",
+    "/pecb/governance/iso-37000",
+    "/pecb/governance/iso-37301",
+    "/pecb/governance/iso-38500",
+    "/pecb/governance/internal-auditor",
+    "/pecb/governance/operational-risk",
+    // Artificial Intelligence
+    "/pecb/artificial-intelligence",
+    "/pecb/artificial-intelligence/ai-professional",
+    "/pecb/artificial-intelligence/ai-risk-management",
+    "/pecb/artificial-intelligence/iso-42001",
+    // Privacy & Data Protection
+    "/pecb/privacy",
+    "/pecb/privacy/gdpr",
+    "/pecb/privacy/iso-27701",
+    // Continuity, Resilience & Recovery
+    "/pecb/continuity",
+    "/pecb/continuity/iso-22301",
+    "/pecb/continuity/crisis-management",
+    "/pecb/continuity/dora",
+    "/pecb/continuity/disaster-recovery",
+    "/pecb/continuity/operational-resilience",
+    // Technical Cybersecurity
+    "/pecb/technical-cybersecurity",
+    "/pecb/technical-cybersecurity/ethical-hacking",
+    "/pecb/technical-cybersecurity/ccta",
+    "/pecb/technical-cybersecurity/digital-forensics",
+    "/pecb/technical-cybersecurity/incident-response",
+    // Digital Transformation
+    "/pecb/digital-transformation",
+  ];
+  for (const p of pecbPages) base.add(p);
+
   return Array.from(base).filter(isPublicPath).sort();
 }
 

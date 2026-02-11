@@ -196,7 +196,7 @@ const SoftwareDevelopment = () => {
         <meta name="description" content="Custom software development that helps you grow, optimize, and maintain your competitive edge in the digital age by fusing innovation with technology." />
         <meta name="keywords" content="Software Services & Development, Software Development, Software Development Services, Software Development Company, Traincape Technology, Custom Software Development, E-commerce Software Development, CMS Development, CRM Development" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/software-services-and-development" />
+        <link rel="canonical" href="https://www.traincapetech.in/services/software-services" />
       </Helmet>
       {/* ========================================
         HERO SECTION: Fixed Color Interpolation
@@ -264,7 +264,7 @@ const SoftwareDevelopment = () => {
             initial="initial"
             animate="animate"
             transition={{ delay: 0.6 }}
-            onClick={()=>navigate("/contact-us")}
+            onClick={() => navigate("/contact-us")}
           >
             Start Your Project Today 🚀
           </motion.button>
@@ -286,7 +286,7 @@ const SoftwareDevelopment = () => {
         </motion.div>
       </section>
 
-    
+
       {/* ========================================
         CORE SERVICES / SOLUTIONS
         ========================================
@@ -473,15 +473,15 @@ const SoftwareDevelopment = () => {
         </motion.p>
         <motion.button
           className="text-white font-bold py-4 px-12 rounded-xl text-xl shadow-2xl transition-all duration-300"
-          
+
           style={{ backgroundColor: SECONDARY_COLOR }} // FIX
           whileHover={{
             scale: 1.05,
             boxShadow: "0 10px 30px rgba(255, 165, 0, 0.6)",
-            
+
           }}
           whileTap={{ scale: 0.95 }}
-          onClick={()=>navigate("/contact-us")}
+          onClick={() => navigate("/contact-us")}
         >
           Schedule a Free Consultation 💬
         </motion.button>

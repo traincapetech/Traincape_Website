@@ -11,57 +11,11 @@ const MicrosoftCertified = () => {
   }, []);
 
   const courses = [
-    {
-      image: Card1,
-      description: "Microsoft 365 Fundamentals (MS-900) Certification",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/Microsoft365Fundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Security, Compliance, and Identity Fundamentals (SC-900)",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftSecurityFundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Dynamics 365 Fundamentals Customer Engagement Apps (CRM) – MB-910",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftDynamics365CRMFundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Dynamics 365 Fundamentals Finance and Operations Apps (ERP) – MB-920",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftDynamics365ERP",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Power Platform Fundamentals Certification (PL-900)",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftPowerPlatformFundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Azure Data Fundamentals Certification (DP-900)",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftAzureDataFundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Azure Fundamentals Certification (AZ-900)",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftAzureFundamentals",
-    },
-    {
-      image: Card1,
-      description: "Microsoft Azure AI Fundamentals Certification (AI-900)",
-      price: "₹2,199",
-      url: "/MicrosoftCourse/MicrosoftAi",
-    },
+    // All 8 MicrosoftCourse/* URLs removed - no routes exist
+    // Microsoft365Fundamentals was causing FAILED status in GSC
   ];
 
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   return (
     <>
       <div
