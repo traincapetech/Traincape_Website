@@ -34,10 +34,14 @@ export const initSocket = (httpServer) => {
     // Consultant accepting a chat
     socket.on('accept_chat', async ({ token, consultantName }) => {
       try {
-        // 1. Update Session in DB
+        // Find the consultant to get their ID
+        const consultant = await Consultant.findOne({ name: consultantName });
+        const consultantId = consultant ? consultant._id : null;
+
+        // 1. Update Session in DB with consultantId
         await ChatSession.findOneAndUpdate(
           { token },
-          { status: 'active', consultantName }
+          { status: 'active', consultantName, consultantId }
         );
 
         // 2. Mark consultant as busy
@@ -57,30 +61,22 @@ export const initSocket = (httpServer) => {
       }
     });
 
-    socket.on('send_message', (data) => {
-      // Broadcast to the specific token room
-      // This will reach everyone IN the room (including the sender if they are in it, 
-      // but usually frontends filter their own, or we use socket.to(room).emit for "everyone except sender")
-
-      // Better: IO.to(room) sends to everyone in room including sender
-      // socket.to(room) sends to everyone in room EXCEPT sender
-
-      // Let's use io.to so both sides see it confirmation-style if needed, 
-      // OR just rely on optimistic UI. 
-      // Your current React code appends its own message instantly, so we should probably use socket.broadcast.to(token)
-      // or just check sender on frontend.
-
-      // Current Frontend logic: 
-      // setMessages(prev => [...prev, { sender: 'User', text: inputText }]);
-      // socket.on('receive_message', (m) => { if (m.sender !== 'User') ... })
-
-      // So we can safely emit to the whole room, frontend filters self.
+    socket.on('send_message', async (data) => {
+      // Save message to the session in DB
+      try {
+        await ChatSession.findOneAndUpdate(
+          { token: data.token },
+          { $push: { messages: { sender: data.sender, text: data.text } } }
+        );
+      } catch (err) {
+        console.error('Error saving message:', err);
+      }
       io.to(data.token).emit('receive_message', data);
     });
 
     socket.on('end_chat', async ({ token, consultantName }) => {
       try {
-        await ChatSession.findOneAndUpdate({ token }, { status: 'closed' });
+        await ChatSession.findOneAndUpdate({ token }, { status: 'closed', closedAt: new Date() });
         if (consultantName) {
           await Consultant.findOneAndUpdate({ name: consultantName }, { activeToken: null });
         }

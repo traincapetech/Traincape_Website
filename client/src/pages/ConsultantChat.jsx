@@ -1,41 +1,69 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { socket } from '../socket';
-import { Send, User } from 'lucide-react';
+import { Send, User, LogOut, History, Clock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ConsultantChat = () => {
-    const [activeTab, setActiveTab] = useState('waiting'); // waiting | active
+    const [activeTab, setActiveTab] = useState('waiting'); // waiting | chat | history
     const [pendingSessions, setPendingSessions] = useState([]);
-    const [activeSession, setActiveSession] = useState(null); // The session currently being chatted with
+    const [activeSession, setActiveSession] = useState(null);
     const [messages, setMessages] = useState([]);
     const [inputText, setInputText] = useState("");
     const messagesEndRef = useRef(null);
+    const [sessionHistory, setSessionHistory] = useState([]);
+    const [selectedHistorySession, setSelectedHistorySession] = useState(null);
 
-    const myName = "Expert Consultant";
+    const [consultantName, setConsultantName] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const token = localStorage.getItem('consultantToken');
+        const name = localStorage.getItem('consultantName');
+
+        if (!token) {
+            navigate('/consultant/login');
+            return;
+        }
+
+        setConsultantName(name || 'Consultant');
+
         const fetchSessions = async () => {
             try {
-                const res = await fetch('http://localhost:8080/chat/sessions');
-                const data = await res.json();
-                if (data.success) {
-                    setPendingSessions(data.sessions);
+                const res = await axios.get('http://localhost:8080/chat/sessions');
+                if (res.data.success) {
+                    setPendingSessions(res.data.sessions);
                 }
             } catch (err) {
                 console.error("Failed to fetch sessions", err);
             }
         };
 
+        const fetchHistory = async () => {
+            try {
+                const res = await axios.get('http://localhost:8080/consultant/my-sessions', {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+                if (res.data.success) {
+                    setSessionHistory(res.data.sessions);
+                }
+            } catch (err) {
+                console.error("Failed to fetch history", err);
+            }
+        };
+
         fetchSessions();
+        fetchHistory();
 
         socket.connect();
-        socket.emit('join_consultant', { name: myName });
+        socket.emit('join_consultant', { name: name, token }); // Send token if backend needs it
 
         socket.on('new_session', (session) => {
             setPendingSessions(prev => [...prev, session]);
         });
 
-        socket.on('auto_assigned', ({ session, consultantName }) => {
-            if (consultantName === myName) {
+        socket.on('auto_assigned', ({ session, consultantName: assignedName }) => {
+            if (assignedName === name) {
                 setActiveSession(session);
                 setMessages([]);
                 setActiveTab('chat');
@@ -43,7 +71,7 @@ const ConsultantChat = () => {
             }
         });
 
-        socket.on('session_accepted', ({ token, consultantName }) => {
+        socket.on('session_accepted', ({ token, consultantName: acceptedBy }) => {
             setPendingSessions(prev => prev.filter(s => s.token !== token));
         });
 
@@ -53,7 +81,13 @@ const ConsultantChat = () => {
             socket.off('session_accepted');
             socket.disconnect();
         };
-    }, []);
+    }, [navigate]);
+
+    const handleLogout = () => {
+        localStorage.removeItem('consultantToken');
+        localStorage.removeItem('consultantName');
+        navigate('/consultant/login');
+    };
 
     useEffect(() => {
         const handleMessage = (message) => {
@@ -68,7 +102,7 @@ const ConsultantChat = () => {
     }, [activeSession]);
 
     const handleAcceptSession = (session) => {
-        socket.emit('accept_chat', { token: session.token, consultantName: myName });
+        socket.emit('accept_chat', { token: session.token, consultantName });
         setActiveSession(session);
         setMessages([]);
         setActiveTab('chat');
@@ -81,7 +115,7 @@ const ConsultantChat = () => {
             token: activeSession.token,
             text: inputText,
             sender: 'Consultant',
-            consultantName: myName
+            consultantName
         };
 
         socket.emit('send_message', messageData);
@@ -101,17 +135,27 @@ const ConsultantChat = () => {
         <div className="flex h-screen bg-gray-50 overflow-hidden font-sans">
             {/* Sidebar */}
             <div className="w-80 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
-                <div className="p-5 border-b border-gray-100 bg-white flex items-center justify-between">
-                    <span className="font-bold text-gray-800 text-lg">Dashboard</span>
-                    <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full border border-green-100 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
-                    </span>
+                <div className="p-5 border-b border-gray-100 bg-white">
+                    <div className="flex items-center justify-between mb-2">
+                        <span className="font-bold text-gray-800 text-lg">Dashboard</span>
+                        <div className="flex items-center gap-3">
+                            <span className="text-xs font-semibold text-green-600 bg-green-50 px-2 py-1 rounded-full border border-green-100 flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span> Online
+                            </span>
+                            <button onClick={handleLogout} title="Logout" className="text-gray-400 hover:text-red-500 transition-colors">
+                                <LogOut size={18} />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="text-sm text-gray-500">
+                        Welcome, <span className="font-semibold text-gray-700">{consultantName}</span>
+                    </div>
                 </div>
 
                 <div className="flex p-3 gap-2 bg-gray-50/50">
                     <button
-                        onClick={() => setActiveTab('waiting')}
-                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all 
+                        onClick={() => { setActiveTab('waiting'); setSelectedHistorySession(null); }}
+                        className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all 
                             ${activeTab === 'waiting'
                                 ? 'bg-white text-blue-600 shadow-sm border border-gray-200'
                                 : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`}
@@ -119,14 +163,23 @@ const ConsultantChat = () => {
                         Requests ({pendingSessions.length})
                     </button>
                     <button
-                        onClick={() => setActiveTab('chat')}
-                        className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all
+                        onClick={() => { setActiveTab('chat'); setSelectedHistorySession(null); }}
+                        className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all
                             ${activeTab === 'chat'
                                 ? 'bg-white text-blue-600 shadow-sm border border-gray-200'
                                 : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`}
                         disabled={!activeSession}
                     >
                         Active Chat
+                    </button>
+                    <button
+                        onClick={() => { setActiveTab('history'); setSelectedHistorySession(null); }}
+                        className={`flex-1 py-2 text-xs font-medium rounded-lg transition-all
+                            ${activeTab === 'history'
+                                ? 'bg-white text-blue-600 shadow-sm border border-gray-200'
+                                : 'text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`}
+                    >
+                        History ({sessionHistory.length})
                     </button>
                 </div>
 
@@ -172,27 +225,125 @@ const ConsultantChat = () => {
                                 </div>
                             </div>
                             <button
-                                onClick={() => { setActiveSession(null); setActiveTab('waiting'); }}
+                                onClick={() => {
+                                    if (activeSession) {
+                                        socket.emit('end_chat', { token: activeSession.token, consultantName });
+                                    }
+                                    setActiveSession(null);
+                                    setActiveTab('waiting');
+                                }}
                                 className="w-full py-2 text-xs font-medium text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-transparent hover:border-red-100"
                             >
                                 End Session
                             </button>
                         </div>
                     )}
+
+                    {activeTab === 'history' && sessionHistory.length === 0 && (
+                        <div className="flex flex-col items-center justify-center h-40 text-gray-400">
+                            <History size={32} className="mb-2 opacity-20" />
+                            <p className="text-sm">No past sessions yet</p>
+                        </div>
+                    )}
+
+                    {activeTab === 'history' && sessionHistory.map(session => (
+                        <div
+                            key={session._id}
+                            onClick={() => setSelectedHistorySession(session)}
+                            className={`p-4 border rounded-xl cursor-pointer transition-all ${selectedHistorySession?._id === session._id
+                                ? 'border-blue-300 bg-blue-50/50 shadow-sm'
+                                : 'border-gray-100 bg-white hover:shadow-md'
+                                }`}
+                        >
+                            <div className="flex justify-between items-start mb-2">
+                                <div>
+                                    <div className="font-semibold text-gray-800 text-sm">
+                                        {session.clientName || 'Guest'} #{(session.token || "").slice(-4)}
+                                    </div>
+                                    <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-1">
+                                        <Clock size={10} />
+                                        {session.createdAt ? new Date(session.createdAt).toLocaleDateString() : ''}
+                                        {' • '}
+                                        {session.messages?.length || 0} messages
+                                    </div>
+                                </div>
+                                <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded ${session.status === 'closed'
+                                    ? 'text-gray-500 bg-gray-100'
+                                    : 'text-green-600 bg-green-50'
+                                    }`}>
+                                    {session.status === 'closed' ? 'Resolved' : session.status}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col bg-white overflow-hidden relative">
-                {activeTab === 'waiting' ? (
+                {activeTab === 'waiting' && !selectedHistorySession ? (
                     <div className="flex-1 flex flex-col items-center justify-center text-gray-400 bg-gray-50/30">
                         <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
                             <span className="text-4xl">👋</span>
                         </div>
-                        <h2 className="text-xl font-semibold text-gray-700 mb-2">Welcome Back, Expert!</h2>
+                        <h2 className="text-xl font-semibold text-gray-700 mb-2">Welcome, {consultantName || 'Expert'}!</h2>
                         <p className="max-w-xs text-center text-sm text-gray-500">
                             Select a request from the sidebar to start a consultation session.
                         </p>
+                    </div>
+                ) : activeTab === 'history' || selectedHistorySession ? (
+                    <div className="flex-1 flex flex-col bg-gray-50/30 overflow-hidden">
+                        {selectedHistorySession ? (
+                            <>
+                                <div className="h-16 px-6 bg-white border-b border-gray-100 flex items-center justify-between shadow-sm z-10">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white font-bold shadow-sm">
+                                            {(selectedHistorySession.clientName || 'G')[0].toUpperCase()}
+                                        </div>
+                                        <div>
+                                            <div className="font-semibold text-gray-800">Client #{(selectedHistorySession.token || "").slice(-4)}</div>
+                                            <div className="text-xs text-gray-400">
+                                                {selectedHistorySession.createdAt ? new Date(selectedHistorySession.createdAt).toLocaleString() : ''}
+                                                {selectedHistorySession.closedAt ? ` — ${new Date(selectedHistorySession.closedAt).toLocaleString()}` : ''}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span className="text-xs bg-gray-100 text-gray-500 px-3 py-1 rounded-full font-medium">
+                                        {selectedHistorySession.messages?.length || 0} messages
+                                    </span>
+                                </div>
+                                <div className="flex-1 overflow-y-auto p-6 space-y-3">
+                                    {selectedHistorySession.messages && selectedHistorySession.messages.length > 0 ? (
+                                        selectedHistorySession.messages.map((msg, i) => (
+                                            <div key={i}
+                                                className={`flex ${msg.sender === 'Consultant' ? 'justify-end' : 'justify-start'}`}
+                                            >
+                                                <div className={`max-w-[70%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed shadow-sm ${msg.sender === 'Consultant'
+                                                    ? 'bg-blue-600 text-white rounded-br-md'
+                                                    : 'bg-white text-gray-800 border border-gray-100 rounded-bl-md'
+                                                    }`}>
+                                                    {msg.text}
+                                                    <div className={`text-[10px] mt-1 ${msg.sender === 'Consultant' ? 'text-blue-200' : 'text-gray-400'
+                                                        }`}>
+                                                        {msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="flex items-center justify-center h-40 text-gray-400 text-sm">
+                                            No messages recorded for this session
+                                        </div>
+                                    )}
+                                </div>
+                            </>
+                        ) : (
+                            <div className="flex-1 flex flex-col items-center justify-center text-gray-400">
+                                <History size={48} className="mb-4 opacity-20" />
+                                <h3 className="text-lg font-semibold text-gray-600 mb-1">Session History</h3>
+                                <p className="text-sm text-gray-400">Select a past session to view the conversation</p>
+                            </div>
+                        )}
                     </div>
                 ) : (
                     <>

@@ -133,8 +133,40 @@ const GlobalChat = () => {
 
     const [isWaiting, setIsWaiting] = useState(false);
     const [consultantName, setConsultantName] = useState(null);
+    const [showFeedback, setShowFeedback] = useState(false);
 
-    // ... (keep other state)
+    const handleFeedback = async (resolved) => {
+        setShowFeedback(false);
+        if (resolved) {
+            setMessages(prev => [...prev, { sender: 'User', text: 'Yes, my issue is resolved!' }]);
+            setTimeout(() => {
+                setMessages(prev => [...prev, {
+                    sender: 'System',
+                    text: "🎉 That's wonderful to hear! We're glad our expert could help you out. Thank you for choosing Traincape — have a great day!"
+                }]);
+                // Reset to chatbot mode after a short delay
+                setTimeout(() => {
+                    setToken(null);
+                    setConsultantName(null);
+                    setIsWaiting(false);
+                    socket.disconnect();
+                }, 3000);
+            }, 500);
+        } else {
+            setMessages(prev => [...prev, { sender: 'User', text: "No, I still need help." }]);
+            setTimeout(() => {
+                setMessages(prev => [...prev, {
+                    sender: 'System',
+                    text: "We're sorry to hear that. Let us connect you with another expert right away..."
+                }]);
+                // Auto-reconnect to another consultant
+                setToken(null);
+                setConsultantName(null);
+                socket.disconnect();
+                setTimeout(() => startHandover(), 1000);
+            }, 500);
+        }
+    };
 
     const startHandover = async () => {
         setLoading(true);
@@ -187,9 +219,18 @@ const GlobalChat = () => {
             setMessages(prev => [...prev, { sender: 'System', text: `You are now connected to ${data.consultantName}.` }]);
         });
 
+        socket.on('chat_ended', () => {
+            setMessages(prev => [...prev, {
+                sender: 'System',
+                text: "The consultant has ended this session. Was your issue resolved?"
+            }]);
+            setShowFeedback(true);
+        });
+
         return () => {
             socket.off('receive_message');
             socket.off('consultant_joined');
+            socket.off('chat_ended');
         };
     }, []);
 
@@ -255,7 +296,7 @@ const GlobalChat = () => {
                         {isTyping && <div style={{ alignSelf: 'flex-start', color: '#888', fontSize: '12px', marginLeft: '10px' }}>Typing...</div>}
 
                         {/* Options Buttons */}
-                        {!token && (
+                        {!token && !showFeedback && (
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' }}>
                                 {currentFlow.options && currentFlow.options.map((opt, idx) => (
                                     <button key={idx} onClick={() => handleOptionClick(opt)} style={{
@@ -271,13 +312,46 @@ const GlobalChat = () => {
                                 ))}
                             </div>
                         )}
+
+                        {/* Feedback Buttons - After consultant ends session */}
+                        {showFeedback && (
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
+                                <button
+                                    onClick={() => handleFeedback(true)}
+                                    style={{
+                                        background: '#28a745', border: 'none', color: 'white',
+                                        padding: '10px 24px', borderRadius: '20px', cursor: 'pointer',
+                                        fontSize: '13px', fontWeight: '600', transition: 'all 0.2s',
+                                        boxShadow: '0 2px 6px rgba(40,167,69,0.3)'
+                                    }}
+                                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+                                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                                >
+                                    ✅ Yes, Resolved!
+                                </button>
+                                <button
+                                    onClick={() => handleFeedback(false)}
+                                    style={{
+                                        background: '#dc3545', border: 'none', color: 'white',
+                                        padding: '10px 24px', borderRadius: '20px', cursor: 'pointer',
+                                        fontSize: '13px', fontWeight: '600', transition: 'all 0.2s',
+                                        boxShadow: '0 2px 6px rgba(220,53,69,0.3)'
+                                    }}
+                                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
+                                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                                >
+                                    ❌ No, Need Help
+                                </button>
+                            </div>
+                        )}
+
                         <div style={{ float: "left", clear: "both" }}
                             ref={(el) => { if (el) { el.scrollIntoView({ behavior: "smooth" }); } }}>
                         </div>
                     </div>
 
                     {/* Input */}
-                    {token && !isWaiting && (
+                    {token && !isWaiting && !showFeedback && (
                         <div style={{ padding: '15px', borderTop: '1px solid #eee', display: 'flex', gap: '10px', backgroundColor: 'white' }}>
                             <input
                                 value={inputText}

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "react-hot-toast";
 import AllRoute from "./allRoute/AllRoute";
@@ -14,6 +15,9 @@ import { LanguageProvider } from "./context/LanguageContext";
 import WebsiteCounter from "./components/WebsiteCounter";
 
 const App = () => {
+  const location = useLocation();
+  const isConsultantPage = location.pathname.startsWith('/consultant');
+
   useEffect(() => {
     // AOS is initialized via npm bundle (not via CDN) to keep react-snap stable.
     // Skip during react-snap prerender.
@@ -36,12 +40,12 @@ const App = () => {
         <LanguageProvider>
           <ErrorBoundary>
             <Toaster position="top-center" reverseOrder={false} />
-            <Navbar />
+            {!isConsultantPage && <Navbar />}
             <AllRoute />
-            <Footer />
+            {!isConsultantPage && <Footer />}
 
-            <WhatsAppPopup />
-            <GlobalChat />
+            {!isConsultantPage && <WhatsAppPopup />}
+            {!isConsultantPage && <GlobalChat />}
             <WebsiteCounter />
           </ErrorBoundary>
         </LanguageProvider>
