@@ -54,7 +54,6 @@ const ReviewPage = lazyWithRetry(() => import("../pages/review/ReviewPage"));
 const LandingPage = lazyWithRetry(() =>
   import("../pages/landingPage/LandingPage")
 );
-const Employee = lazyWithRetry(() => import("../pages/Employee"));
 const Internship = lazyWithRetry(() => import("../pages/Internship"));
 const Test = lazyWithRetry(() => import("../pages/Test/Test"));
 const Training = lazyWithRetry(() => import("../pages/Training"));
@@ -382,7 +381,7 @@ const AllRoute = () => {
         <Route path="/home" element={<LandingPage />} />
 
         {/* Employee and Training Routes */}
-        <Route path="/employee" element={<Employee />} />
+        
         <Route path="/internship" element={<Internship />} />
         <Route path="/internal-exams" element={<InternalExams />} />
         {/* <Route path="/voucher-success" element={<VoucherSuccess />} /> */}
