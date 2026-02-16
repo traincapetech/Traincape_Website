@@ -7,6 +7,9 @@ import CertificateForm from "./ClientProfiles/CertificateForm";
 import VoucherManagement from "./VoucherManagement/VoucherManagement";
 import Dashboard from "./Dashboard";
 // import PECBBrochures from "../../components/PECBBrochures";
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Shield,
@@ -15,7 +18,11 @@ import {
   ArrowLeft,
   KeyRound,
   ShieldCheck,
-  ChevronLeft
+  ChevronLeft,
+  User,
+  Mail,
+  Lock,
+  UserPlus
 } from "lucide-react";
 import CourseAnalytics from "./CourseAnalytics/CourseAnalytics";
 import EmployeeManagement from "./EmployeeManagement/EmployeeManagement";
@@ -29,12 +36,21 @@ const AdminPanel = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [isKeyVisible, setIsKeyVisible] = useState(false);
 
+  // Consultant Auth State
+  const [consultantEmail, setConsultantEmail] = useState("");
+  const [consultantPassword, setConsultantPassword] = useState("");
+  const [consultantName, setConsultantName] = useState("");
+  const [consultantConfirmPassword, setConsultantConfirmPassword] = useState("");
+  const [isConsultantSignup, setIsConsultantSignup] = useState(false);
+  const [consultantLoading, setConsultantLoading] = useState(false);
+
 
   const adminKey = "admin123"; // Security key for Admin (legacy)
   const instructorKey = "instructor456"; // Security key for Instructor (legacy)
   const courses = ["comptia", "AWS", "PECB", "microsoft", "Cisco"]; // Added Cisco to available courses
 
   const reduxRole = useSelector((state) => state.user.role);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // If logged-in user is Admin, skip key flow and set role automatically
@@ -49,6 +65,8 @@ const AdminPanel = () => {
     setRole(role);
     if (role === "Instructor") {
       setSelectedOption("courseSelection"); // For Instructor, show course selection first
+    } else if (role === "Consultant") {
+      setSelectedOption("consultantAuth");
     } else {
       setSelectedOption("keyEntry"); // For Admin, show key entry immediately
     }
@@ -67,6 +85,55 @@ const AdminPanel = () => {
       }
     } else {
       setError("Invalid security key. Please try again.");
+    }
+  };
+
+  // Handle Consultant Auth
+  const handleConsultantAuth = async (e) => {
+    e.preventDefault();
+    setConsultantLoading(true);
+
+    try {
+      if (isConsultantSignup) {
+        // Signup Logic
+        if (consultantPassword !== consultantConfirmPassword) {
+          toast.error('Passwords do not match!');
+          setConsultantLoading(false);
+          return;
+        }
+        if (consultantPassword.length < 6) {
+          toast.error('Password must be at least 6 characters');
+          setConsultantLoading(false);
+          return;
+        }
+
+        const { data } = await axios.post('http://localhost:8080/consultant/register', {
+          name: consultantName,
+          email: consultantEmail,
+          password: consultantPassword
+        });
+
+        localStorage.setItem('consultantToken', data.token);
+        localStorage.setItem('consultantName', data.name);
+        toast.success(`Welcome, ${data.name}! Account created.`);
+      } else {
+        // Login Logic
+        const { data } = await axios.post('http://localhost:8080/consultant/login', {
+          email: consultantEmail,
+          password: consultantPassword
+        });
+
+        localStorage.setItem('consultantToken', data.token);
+        localStorage.setItem('consultantName', data.name);
+        toast.success(`Welcome back, ${data.name}!`);
+      }
+
+      navigate('/consultant');
+
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Authentication failed. Please check credentials.');
+    } finally {
+      setConsultantLoading(false);
     }
   };
 
@@ -144,6 +211,23 @@ const AdminPanel = () => {
                 <h3 className="font-semibold text-lg"> Instructor </h3>
                 <p className="text-sm text-muted-foreground mt-1">
                   Create and manage courses, assignments, and student progress
+                </p>
+              </div>
+              <ChevronRight className="h-5 w-5 ml-2 text-muted-foreground transition-transform duration-300 group-hover:transform group-hover:translate-x-1" />
+            </button>
+
+            {/* Consultant Role Card */}
+            <button
+              onClick={() => handleRoleSelection("Consultant")}
+              className="group w-full p-5 rounded-xl border transition-all duration-300 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 flex items-center text-left border-purple-200 dark:border-purple-900 hover:ring-2 hover:ring-offset-2 hover:ring-purple-500 "
+            >
+              <div className="flex-shrink-0 p-3 rounded-full mr-4 transition-colors duration-300 bg-slate-100 dark:bg-slate-800 text-purple-600 dark:text-purple-400  group-hover:bg-purple-600 group-hover:text-white">
+                <User className="h-6 w-6" />
+              </div>
+              <div className="flex-grow">
+                <h3 className="font-semibold text-lg"> Consultant </h3>
+                <p className="text-sm text-muted-foreground mt-1">
+                  Access consultant dashboard to manage client chats
                 </p>
               </div>
               <ChevronRight className="h-5 w-5 ml-2 text-muted-foreground transition-transform duration-300 group-hover:transform group-hover:translate-x-1" />
@@ -287,20 +371,19 @@ const AdminPanel = () => {
             </select>
           </div>
           <div className="p-6 flex justify-between border-t border-green-100 bg-green-50">
-            <button 
+            <button
               onClick={() => setSelectedOption("roleSelection")}
               className="p-2 rounded-full hover:bg-green-100 transition-colors"
             >
               <ChevronLeft className="h-6 w-6 text-green-600" />
             </button>
             <button
-              onClick={() => setSelectedOption("keyEntry")} 
-              disabled={!selectedCourse} 
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-                selectedCourse 
-                  ? 'bg-green-500 text-white hover:bg-green-600' 
+              onClick={() => setSelectedOption("keyEntry")}
+              disabled={!selectedCourse}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${selectedCourse
+                  ? 'bg-green-500 text-white hover:bg-green-600'
                   : 'bg-green-300 text-green-100 cursor-not-allowed'
-              }`}
+                }`}
             >
               Next
               <ChevronRight className="h-4 w-4" />
@@ -311,6 +394,129 @@ const AdminPanel = () => {
     );
   }
 
+  // Consultant Authentication (Login/Signup)
+  if (selectedOption === "consultantAuth") {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-indigo-100 flex items-center justify-center p-4">
+        <div className="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden border border-purple-100 relative">
+          <button
+            onClick={() => setSelectedOption("roleSelection")}
+            className="absolute top-4 left-4 p-2 rounded-full hover:bg-white/20 text-white z-10"
+          >
+            <ArrowLeft className="h-6 w-6" />
+          </button>
+
+          <div className="bg-purple-600 p-8 text-center text-white">
+            <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+              {isConsultantSignup ? <UserPlus size={32} /> : <User size={32} />}
+            </div>
+            <h2 className="text-2xl font-bold mb-1">
+              {isConsultantSignup ? "Join as Consultant" : "Consultant Portal"}
+            </h2>
+            <p className="text-purple-100 text-sm">
+              {isConsultantSignup ? "Create your expert account" : "Secure access for authorized experts"}
+            </p>
+          </div>
+
+          <div className="p-8">
+            <form onSubmit={handleConsultantAuth} className="space-y-4">
+              {isConsultantSignup && (
+                <div className="space-y-1">
+                  <label className="text-sm font-medium text-gray-700 ml-1">Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <input
+                      type="text"
+                      value={consultantName}
+                      onChange={(e) => setConsultantName(e.target.value)}
+                      placeholder="John Doe"
+                      required={isConsultantSignup}
+                      className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-100 focus:border-purple-400 transition-all outline-none text-gray-700"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-700 ml-1">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <input
+                    type="email"
+                    value={consultantEmail}
+                    onChange={(e) => setConsultantEmail(e.target.value)}
+                    placeholder="your.email@traincape.com"
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-100 focus:border-purple-400 transition-all outline-none text-gray-700"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-sm font-medium text-gray-700 ml-1">Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <input
+                    type="password"
+                    value={consultantPassword}
+                    onChange={(e) => setConsultantPassword(e.target.value)}
+                    placeholder="••••••••"
+                    required
+                    className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-100 focus:border-purple-400 transition-all outline-none text-gray-700"
+                  />
+                </div>
+              </div>
+
+              {isConsultantSignup && (
+                <div className="space-y-1">
+                  <label className="text-sm font-medium text-gray-700 ml-1">Confirm Password</label>
+                  <div className="relative">
+                    <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                    <input
+                      type="password"
+                      value={consultantConfirmPassword}
+                      onChange={(e) => setConsultantConfirmPassword(e.target.value)}
+                      placeholder="Re-enter password"
+                      required={isConsultantSignup}
+                      className="w-full pl-10 pr-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-100 focus:border-purple-400 transition-all outline-none text-gray-700"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={consultantLoading}
+                className={`w-full py-3 rounded-lg text-white font-medium shadow-lg shadow-purple-200 transition-all
+                                ${consultantLoading
+                    ? 'bg-purple-400 cursor-not-allowed'
+                    : 'bg-purple-600 hover:bg-purple-700 hover:shadow-xl active:scale-[0.98]'}`}
+              >
+                {consultantLoading
+                  ? 'Processing...'
+                  : (isConsultantSignup ? 'Create Consultant Account' : 'Sign In to Dashboard')
+                }
+              </button>
+            </form>
+
+            <div className="mt-5 text-center text-sm text-gray-500">
+              {isConsultantSignup ? "Already have an account? " : "Don't have an account? "}
+              <button
+                onClick={() => setIsConsultantSignup(!isConsultantSignup)}
+                className="text-purple-600 hover:text-purple-700 font-medium focus:outline-none"
+              >
+                {isConsultantSignup ? "Sign In" : "Create one"}
+              </button>
+            </div>
+
+            <div className="mt-4 text-center text-xs text-gray-400">
+              Protected by Traincape Security • v1.0.0
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
 
   return (

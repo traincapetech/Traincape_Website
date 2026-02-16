@@ -22,7 +22,7 @@ const ConsultantChat = () => {
         const name = localStorage.getItem('consultantName');
 
         if (!token) {
-            navigate('/consultant/login');
+            navigate('/admin-panel');
             return;
         }
 
@@ -86,7 +86,7 @@ const ConsultantChat = () => {
     const handleLogout = () => {
         localStorage.removeItem('consultantToken');
         localStorage.removeItem('consultantName');
-        navigate('/consultant/login');
+        navigate('/admin-panel');
     };
 
     useEffect(() => {

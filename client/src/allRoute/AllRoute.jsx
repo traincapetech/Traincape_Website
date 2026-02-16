@@ -34,8 +34,7 @@ const Home = lazyWithRetry(() => import("../pages/Home"));
 // const UserPage = lazy(() => import("../pages/userPage/UserPage"));
 const Login = lazyWithRetry(() => import("../pages/Login"));
 const AboutUS = lazyWithRetry(() => import("../pages/AboutUS"));
-const ConsultantLogin = lazyWithRetry(() => import("../pages/ConsultantLogin"));
-const ConsultantSignup = lazyWithRetry(() => import("../pages/ConsultantSignup"));
+// Removed ConsultantLogin and ConsultantSignup imports as they are now part of AdminPanel
 const ContactUs = lazyWithRetry(() => import("../pages/ContactUs"));
 const Signup = lazyWithRetry(() => import("../pages/Signup"));
 const FAQ = lazyWithRetry(() => import("../pages/FAQ"));
@@ -239,8 +238,7 @@ const AllRoute = () => {
 
         <Route path="/about-us" element={<AboutUS />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/consultant/login" element={<ConsultantLogin />} />
-        <Route path="/consultant/signup" element={<ConsultantSignup />} />
+        {/* Removed Consultant Login/Signup routes */}
         <Route path="/consultant" element={<ConsultantChat />} /> {/* Added Consultant Route */}
         {/* Clean URL aliases */}
         <Route path="/faq" element={<FAQ />} />
