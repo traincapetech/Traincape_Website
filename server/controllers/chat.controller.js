@@ -1,6 +1,7 @@
 import ChatSession from '../model/chatSession.model.js';
 import Consultant from '../model/consultant.model.js';
 import { getIO } from '../socket/socketManager.js';
+import { sendNotification, sendMulticastNotification } from '../utils/firebaseAdmin.js';
 
 export const requestHumanHandover = async (req, res) => {
   try {
@@ -9,6 +10,7 @@ export const requestHumanHandover = async (req, res) => {
 
     // 1. Check for a free consultant (Online AND no active token)
     const freeConsultant = await Consultant.findOne({ isOnline: true, activeToken: null });
+    console.log("DEBUG: Human handover requested. Free consultant found:", freeConsultant ? freeConsultant.name : "None");
 
     let status = 'waiting';
     let consultantName = null;
@@ -19,6 +21,39 @@ export const requestHumanHandover = async (req, res) => {
 
       // Mark consultant as busy immediately
       await Consultant.findByIdAndUpdate(freeConsultant._id, { activeToken: sessionToken });
+
+      // Notify the assigned consultant via push notification
+      if (freeConsultant.fcmToken) {
+        console.log("DEBUG: Sending notification to consultant:", freeConsultant.name);
+        await sendNotification(
+          freeConsultant.fcmToken,
+          "New Chat Assigned",
+          "You have been auto-assigned a new client chat.",
+          { token: sessionToken }
+        );
+      } else {
+        console.log("DEBUG: Consultant has no FCM Token:", freeConsultant.name);
+      }
+    } else {
+      // Notify all available consultants
+      const onlineConsultants = await Consultant.find({ isOnline: true });
+      console.log("DEBUG: No free consultant. Notifying all online:", onlineConsultants.length);
+
+      const tokens = onlineConsultants
+        .map(c => c.fcmToken)
+        .filter(token => token); // Filter out null/undefined tokens
+
+      if (tokens.length > 0) {
+        console.log("DEBUG: Sending multicast to tokens:", tokens.length);
+        await sendMulticastNotification(
+          tokens,
+          "New Chat Request",
+          "A client is waiting for an expert.",
+          { token: sessionToken }
+        );
+      } else {
+        console.log("DEBUG: No FCM tokens found for online consultants.");
+      }
     }
 
     // 2. Create session

@@ -3,8 +3,54 @@ import { socket } from '../socket';
 import { Send, User, LogOut, History, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { messaging } from '../firebase';
+import { getToken } from 'firebase/messaging';
 
 const ConsultantChat = () => {
+    const [tokenStatus, setTokenStatus] = useState("Initializing...");
+
+    // ADDED: Register FCM Token
+    useEffect(() => {
+        const registerToken = async () => {
+            const token = localStorage.getItem('consultantToken');
+            if (!token) {
+                setTokenStatus("No Auth Token");
+                return;
+            }
+            if (!messaging) {
+                setTokenStatus("Firebase Not Supported");
+                return;
+            }
+
+            try {
+                setTokenStatus("Requesting Permission...");
+                const permission = await Notification.requestPermission();
+                if (permission === 'granted') {
+                    setTokenStatus("Generating Token...");
+                    const fcmToken = await getToken(messaging, {
+                        vapidKey: "BP-58q8LVZ_4o_4Vh7KiE0kYMa_g8mChjDOF03QfakQ8Y5Zq3h7cU8xfi-glsD0LhjJaqGLXkh8pj7FVZVA-2E8"
+                    });
+                    if (fcmToken) {
+                        console.log("Consultant FCM Token:", fcmToken);
+                        setTokenStatus("Sending to Server...");
+                        await axios.post('http://localhost:8080/consultant/fcm-token', { fcmToken }, {
+                            headers: { 'auth-token': token }
+                        });
+                        setTokenStatus("Active ✅");
+                    } else {
+                        setTokenStatus("Token Gen Failed ❌");
+                    }
+                } else {
+                    setTokenStatus("Permission Denied 🚫");
+                }
+            } catch (error) {
+                console.error("Error registering FCM token:", error);
+                setTokenStatus(`Error: ${error.message}`);
+            }
+        };
+        registerToken();
+    }, []);
+
     const [activeTab, setActiveTab] = useState('waiting'); // waiting | chat | history
     const [pendingSessions, setPendingSessions] = useState([]);
     const [activeSession, setActiveSession] = useState(null);
@@ -42,7 +88,6 @@ const ConsultantChat = () => {
         const fetchHistory = async () => {
             try {
                 const res = await axios.get('http://localhost:8080/consultant/my-sessions', {
-                    headers: { Authorization: `Bearer ${token}` }
                 });
                 if (res.data.success) {
                     setSessionHistory(res.data.sessions);
@@ -146,6 +191,10 @@ const ConsultantChat = () => {
                                 <LogOut size={18} />
                             </button>
                         </div>
+                    </div>
+                    {/* DEBUG: Token Status */}
+                    <div className="mb-2 text-[10px] text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                        Notif Status: <span className="font-bold">{tokenStatus}</span>
                     </div>
                     <div className="text-sm text-gray-500">
                         Welcome, <span className="font-semibold text-gray-700">{consultantName}</span>
