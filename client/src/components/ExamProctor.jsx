@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Maximize, AlertTriangle, XCircle, CheckCircle } from 'lucide-react';
 
-const ExamProctor = ({ 
-  onViolation, 
-  onExamTermination, 
+const ExamProctor = ({
+  onViolation,
+  onExamTermination,
   maxViolations = 3,
   debug = false,
-  children 
+  children
 }) => {
   const [fullScreenViolations, setFullScreenViolations] = useState(0);
   const [tabViolations, setTabViolations] = useState(0);
@@ -17,14 +18,23 @@ const ExamProctor = ({
   const [showWarning, setShowWarning] = useState(false);
   const [isStartingExam, setIsStartingExam] = useState(false);
 
+  // Use refs for critical state to avoid closure staleness in event listeners
+  const examStartedRef = useRef(false);
+  const gracePeriodRef = useRef(false);
+
+  // Sync state with refs for rendering
+  useEffect(() => {
+    examStartedRef.current = examStarted;
+  }, [examStarted]);
+
   const totalViolations = fullScreenViolations + tabViolations + copyViolations;
 
   // Check if fullscreen API is supported
   const isFullscreenSupported = () => {
-    return document.fullscreenEnabled || 
-           document.webkitFullscreenEnabled || 
-           document.mozFullScreenEnabled || 
-           document.msFullscreenEnabled;
+    return document.fullscreenEnabled ||
+      document.webkitFullscreenEnabled ||
+      document.mozFullScreenEnabled ||
+      document.msFullscreenEnabled;
   };
 
   // Enter fullscreen mode
@@ -71,10 +81,10 @@ const ExamProctor = ({
 
   // Check if currently in fullscreen
   const checkFullscreen = useCallback(() => {
-    return !!(document.fullscreenElement || 
-              document.webkitFullscreenElement || 
-              document.mozFullScreenElement || 
-              document.msFullscreenElement);
+    return !!(document.fullscreenElement ||
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement);
   }, []);
 
   // Force exit fullscreen (for cleanup)
@@ -99,75 +109,94 @@ const ExamProctor = ({
     const currentlyFullscreen = checkFullscreen();
     setIsFullScreen(currentlyFullscreen);
 
+    // CRITICAL: Check refs instead of state to avoid stale closures
+    if (!examStartedRef.current) return;
+    if (gracePeriodRef.current) return;
+
     if (!currentlyFullscreen && isFullScreen) {
-      // User exited fullscreen
-      const newViolations = fullScreenViolations + 1;
-      setFullScreenViolations(newViolations);
-      
-      setWarningMessage(`⚠️ Fullscreen violation! (${newViolations}/${maxViolations})`);
-      setShowWarning(true);
-      
-      if (onViolation) {
-        onViolation('fullscreen', newViolations);
-      }
+      // User exited fullscreen (and not in grace period)
+      setFullScreenViolations(prev => {
+        const newViolations = prev + 1;
+        setWarningMessage(`⚠️ Fullscreen violation! (${newViolations}/${maxViolations})`);
+        setShowWarning(true);
+        if (onViolation) onViolation('fullscreen', newViolations);
+
+        // Check for termination
+        if (totalViolations + 1 >= maxViolations) {
+          // We'll handle termination in useEffect
+        }
+
+        return newViolations;
+      });
 
       // Auto-enter fullscreen after 3 seconds
       setTimeout(() => {
         if (!isTestOver) {
-          enterFullscreen();
+          // We use the raw function to avoid dep cycles if needed, 
+          // but here enterFullscreen is useCallback with [] deps so it's fine.
+          const element = document.documentElement;
+          if (element.requestFullscreen) element.requestFullscreen().catch(() => { });
+          else if (element.webkitRequestFullscreen) element.webkitRequestFullscreen().catch(() => { });
+          else if (element.mozRequestFullScreen) element.mozRequestFullScreen().catch(() => { });
+          else if (element.msRequestFullscreen) element.msRequestFullscreen().catch(() => { });
         }
       }, 3000);
     }
-  }, [fullScreenViolations, isFullScreen, maxViolations, onViolation, enterFullscreen, checkFullscreen, isTestOver]);
+  }, [isFullScreen, maxViolations, onViolation, enterFullscreen, checkFullscreen, isTestOver, totalViolations]);
 
   // Handle visibility changes (tab switching)
   const handleVisibilityChange = useCallback(() => {
+    if (!examStartedRef.current) return;
+    if (gracePeriodRef.current) return;
+
     if (document.hidden && isFullScreen && !isTestOver) {
-      const newViolations = tabViolations + 1;
-      setTabViolations(newViolations);
-      
-      setWarningMessage(`⚠️ Tab switching detected! (${newViolations}/${maxViolations})`);
-      setShowWarning(true);
-      
-      if (onViolation) {
-        onViolation('tab', newViolations);
-      }
+      setTabViolations(prev => {
+        const newViolations = prev + 1;
+        setWarningMessage(`⚠️ Tab switching detected! (${newViolations}/${maxViolations})`);
+        setShowWarning(true);
+        if (onViolation) onViolation('tab', newViolations);
+        return newViolations;
+      });
     }
-  }, [tabViolations, isFullScreen, isTestOver, onViolation]);
+  }, [isFullScreen, isTestOver, maxViolations, onViolation]);
 
   // Disable copy/paste and right-click
   const disableCopyPaste = useCallback((e) => {
     // Prevent Ctrl+C, Ctrl+X, Ctrl+V, Ctrl+A
-    if ((e.ctrlKey || e.metaKey) && 
-        (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'a')) {
+    if ((e.ctrlKey || e.metaKey) &&
+      (e.key === 'c' || e.key === 'x' || e.key === 'v' || e.key === 'a')) {
       e.preventDefault();
-      const newViolations = copyViolations + 1;
-      setCopyViolations(newViolations);
-      
-      setWarningMessage(`⚠️ Copy/paste attempt detected! (${newViolations}/${maxViolations})`);
-      setShowWarning(true);
-      
-      if (onViolation) {
-        onViolation('copy', newViolations);
-      }
+
+      if (!examStartedRef.current) return false;
+      if (gracePeriodRef.current) return false;
+
+      setCopyViolations(prev => {
+        const newViolations = prev + 1;
+        setWarningMessage(`⚠️ Copy/paste attempt detected! (${newViolations}/${maxViolations})`);
+        setShowWarning(true);
+        if (onViolation) onViolation('copy', newViolations);
+        return newViolations;
+      });
       return false;
     }
-  }, [copyViolations, onViolation]);
+  }, [maxViolations, onViolation]);
 
   // Disable right-click context menu
   const disableContextMenu = useCallback((e) => {
     e.preventDefault();
-    const newViolations = copyViolations + 1;
-    setCopyViolations(newViolations);
-    
-    setWarningMessage(`⚠️ Right-click disabled! (${newViolations}/${maxViolations})`);
-    setShowWarning(true);
-    
-    if (onViolation) {
-      onViolation('contextmenu', newViolations);
-    }
+
+    if (!examStartedRef.current) return false;
+    if (gracePeriodRef.current) return false;
+
+    setCopyViolations(prev => {
+      const newViolations = prev + 1;
+      setWarningMessage(`⚠️ Right-click disabled! (${newViolations}/${maxViolations})`);
+      setShowWarning(true);
+      if (onViolation) onViolation('contextmenu', newViolations);
+      return newViolations;
+    });
     return false;
-  }, [copyViolations, onViolation]);
+  }, [maxViolations, onViolation]);
 
   // Disable text selection
   const disableTextSelection = useCallback((e) => {
@@ -178,9 +207,10 @@ const ExamProctor = ({
   // Start exam function
   const startExam = useCallback(async () => {
     if (isStartingExam) return; // Prevent multiple clicks
-    
+
     setIsStartingExam(true);
-    
+    gracePeriodRef.current = true; // Use ref for immediate update
+
     try {
       if (isFullscreenSupported()) {
         // First, ensure we're not in fullscreen to avoid conflicts
@@ -189,81 +219,60 @@ const ExamProctor = ({
           // Wait a moment for the exit to complete
           await new Promise(resolve => setTimeout(resolve, 500));
         }
-        
+
         const success = await enterFullscreen();
         if (success) {
-          setExamStarted(true);
+          setExamStarted(true); // Matches effect to update ref
+          examStartedRef.current = true; // Immediate update for safety
+
+          // Reset any initial false violations
+          setFullScreenViolations(0);
+          setTabViolations(0);
+          setCopyViolations(0);
+
           setWarningMessage('✅ Exam started successfully in fullscreen mode!');
           setShowWarning(true);
+
           // Hide success message after 2 seconds
           setTimeout(() => setShowWarning(false), 2000);
+
+          // End grace period after 5 seconds
+          setTimeout(() => {
+            gracePeriodRef.current = false;
+            console.log("Grace period ended");
+          }, 5000);
+
         } else {
           setWarningMessage('⚠️ Please enable fullscreen mode manually to start the exam');
           setShowWarning(true);
+          gracePeriodRef.current = false;
         }
       } else {
         setWarningMessage('⚠️ Fullscreen mode is not supported in your browser');
         setShowWarning(true);
+        gracePeriodRef.current = false;
       }
     } catch (error) {
       console.error('Error starting exam:', error);
       setWarningMessage('⚠️ Error starting exam. Please try again.');
       setShowWarning(true);
+      gracePeriodRef.current = false;
     } finally {
       setIsStartingExam(false);
     }
-  }, [enterFullscreen, checkFullscreen, forceExitFullscreen, isStartingExam]);
-
-  // Check for violations and terminate if needed
-  useEffect(() => {
-    if (totalViolations >= maxViolations && !isTestOver) {
-      setIsTestOver(true);
-      setWarningMessage('🚫 Exam terminated due to multiple violations!');
-      setShowWarning(true);
-      
-      if (onExamTermination) {
-        onExamTermination({
-          fullScreenViolations,
-          tabViolations,
-          copyViolations,
-          totalViolations
-        });
-      }
-    }
-  }, [totalViolations, maxViolations, isTestOver, fullScreenViolations, tabViolations, copyViolations, onExamTermination]);
+  }, [enterFullscreen, checkFullscreen, forceExitFullscreen, isStartingExam, isFullscreenSupported]);
 
   // Set up event listeners
   useEffect(() => {
-    // Fullscreen events
     document.addEventListener('fullscreenchange', handleFullscreenChange);
     document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
     document.addEventListener('mozfullscreenchange', handleFullscreenChange);
     document.addEventListener('MSFullscreenChange', handleFullscreenChange);
-
-    // Visibility change (tab switching)
     document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    // Copy/paste prevention
     document.addEventListener('keydown', disableCopyPaste);
     document.addEventListener('contextmenu', disableContextMenu);
     document.addEventListener('selectstart', disableTextSelection);
-    document.addEventListener('dragstart', disableTextSelection);
 
-    // Initialize fullscreen state on component mount
-    const currentFullscreen = checkFullscreen();
-    setIsFullScreen(currentFullscreen);
-    
-    // If already in fullscreen, allow exam to start
-    if (currentFullscreen && !examStarted) {
-      // Check if this is a legitimate fullscreen state (not from navigation)
-      setTimeout(() => {
-        if (checkFullscreen() && !examStarted) {
-          setExamStarted(true);
-        }
-      }, 1000);
-    }
-
-    // Cleanup
     return () => {
       document.removeEventListener('fullscreenchange', handleFullscreenChange);
       document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
@@ -273,160 +282,71 @@ const ExamProctor = ({
       document.removeEventListener('keydown', disableCopyPaste);
       document.removeEventListener('contextmenu', disableContextMenu);
       document.removeEventListener('selectstart', disableTextSelection);
-      document.removeEventListener('dragstart', disableTextSelection);
     };
-  }, [handleFullscreenChange, handleVisibilityChange, disableCopyPaste, disableContextMenu, disableTextSelection, checkFullscreen]);
+  }, [handleFullscreenChange, handleVisibilityChange, disableCopyPaste, disableContextMenu, disableTextSelection]);
 
-  // Auto-hide warning after 5 seconds
+  // Check for exam termination
   useEffect(() => {
-    if (showWarning) {
-      const timer = setTimeout(() => {
-        setShowWarning(false);
-      }, 5000);
-      return () => clearTimeout(timer);
+    const total = fullScreenViolations + tabViolations + copyViolations;
+    if (total >= maxViolations && !isTestOver && examStarted) {
+      setIsTestOver(true);
+      if (onExamTermination) {
+        onExamTermination();
+      }
     }
-  }, [showWarning]);
-
-  // Prevent leaving the page
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      if (!isTestOver && examStarted) {
-        e.preventDefault();
-        e.returnValue = 'Are you sure you want to leave? Your exam progress will be lost.';
-        return e.returnValue;
-      }
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [isTestOver, examStarted]);
-
-  // Reset exam state when component unmounts or user navigates away
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden && examStarted) {
-        // User navigated away during exam
-        setWarningMessage('⚠️ You navigated away from the exam page!');
-        setShowWarning(true);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [examStarted]);
-
-  // Manual reset function for edge cases
-  const resetExamState = useCallback(() => {
-    setExamStarted(false);
-    setIsFullScreen(false);
-    setFullScreenViolations(0);
-    setTabViolations(0);
-    setCopyViolations(0);
-    setWarningMessage('');
-    setShowWarning(false);
-    setIsStartingExam(false);
-  }, []);
+  }, [fullScreenViolations, tabViolations, copyViolations, maxViolations, onExamTermination, isTestOver, examStarted]);
 
   return (
-    <div className="exam-proctor">
-      {/* Warning overlay */}
+    <div className="relative">
+      {/* Warning Overlay */}
       {showWarning && (
-        <div className="fixed top-0 left-0 w-full h-full bg-red-500 bg-opacity-90 z-50 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
-            <div className="text-6xl mb-4">⚠️</div>
-            <h2 className="text-2xl font-bold text-red-600 mb-4">Security Violation</h2>
-            <p className="text-lg mb-4">{warningMessage}</p>
-            <div className="text-sm text-gray-600 mb-4">
-              Violations: {totalViolations}/{maxViolations}
-            </div>
-            {isTestOver && (
-              <button 
-                onClick={() => window.location.href = '/'}
-                className="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700"
-              >
-                Return to Home
-              </button>
-            )}
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 animate-bounce">
+          <div className={`${warningMessage.includes('✅') ? 'bg-green-600' : 'bg-red-600'} text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2 font-bold`}>
+            {warningMessage.includes('✅') ? <CheckCircle size={24} /> : <AlertTriangle size={24} />}
+            {warningMessage}
           </div>
         </div>
       )}
 
-      {/* Violation counter (only show during exam) */}
-      {!isTestOver && (
-        <div className="fixed top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold z-40">
-          Violations: {totalViolations}/{maxViolations}
-        </div>
-      )}
-
-      {/* Fullscreen status indicator */}
-      {!isTestOver && (
-        <div className={`fixed top-4 left-4 px-3 py-1 rounded-full text-sm font-bold z-40 ${
-          isFullScreen ? 'bg-green-600 text-white' : 'bg-yellow-600 text-white'
-        }`}>
-          {isFullScreen ? '🟢 Fullscreen' : '🟡 Windowed'}
-        </div>
-      )}
-
-      {/* Debug info */}
-      {debug && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-75 text-white px-3 py-1 rounded text-xs z-40">
-          Debug: FS={isFullScreen ? 'Y' : 'N'} | Started={examStarted ? 'Y' : 'N'} | Violations={totalViolations}
-        </div>
-      )}
-
-      {/* Exam content */}
-      <div className={isTestOver ? 'pointer-events-none opacity-50' : ''}>
-        {children}
-      </div>
-
-      {/* Start exam button (if not in fullscreen or exam not started) */}
-      {(!isFullScreen || !examStarted) && !isTestOver && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-30 flex items-center justify-center">
-          <div className="bg-white p-8 rounded-lg shadow-lg text-center max-w-md">
-            <h2 className="text-2xl font-bold mb-4">Exam Security</h2>
-            <p className="mb-6">
-              {isFullScreen && !examStarted 
-                ? "Fullscreen mode detected. Click below to start the exam."
-                : "This exam requires fullscreen mode for security purposes."
-              }
+      {/* Start Exam Modal */}
+      {!examStarted && !isTestOver && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl p-8 max-w-md w-full text-center shadow-2xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Exam Security</h2>
+            <p className="text-gray-600 mb-8">
+              This exam requires fullscreen mode for security purposes.
+              Please ensuring you are ready to take the exam without interruptions.
             </p>
-            <button 
-              onClick={startExam}
-              disabled={isStartingExam}
-              className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
-                isStartingExam 
-                  ? 'bg-gray-400 cursor-not-allowed' 
-                  : 'bg-blue-600 hover:bg-blue-700 text-white'
-              }`}
-            >
-              {isStartingExam ? (
-                <span className="flex items-center">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  Starting Exam...
-                </span>
-              ) : (
-                isFullScreen ? 'Start Exam Now' : 'Start Exam in Fullscreen'
-              )}
-            </button>
-            
-            {isFullScreen && !examStarted && (
-              <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <p className="text-sm text-yellow-800">
-                  💡 Tip: If you're already in fullscreen, click "Start Exam Now" to begin.
-                </p>
-              </div>
-            )}
-            
-            {/* Reset button for edge cases */}
-            <div className="mt-4 pt-4 border-t border-gray-200">
+            <div className="space-y-4">
               <button
-                onClick={resetExamState}
+                onClick={startExam}
+                disabled={isStartingExam}
+                className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              >
+                {isStartingExam ? 'Starting...' : 'Start Exam in Fullscreen'}
+                <Maximize size={20} />
+              </button>
+
+              <button
+                onClick={() => window.location.reload()}
                 className="text-sm text-gray-500 hover:text-gray-700 underline"
               >
                 Reset Exam State
               </button>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Content */}
+      <div className={!examStarted ? 'blur-sm pointer-events-none select-none' : ''}>
+        {children}
+      </div>
+
+      {/* Debug Info (Only in development) */}
+      {debug && (
+        <div className="fixed top-0 left-0 bg-black text-white text-xs p-1 z-[60] opacity-50 pointer-events-none">
+          Debug: FS={isFullScreen ? 'Y' : 'N'} | Started={examStarted ? 'Y' : 'N'} | Violations={totalViolations}
         </div>
       )}
     </div>

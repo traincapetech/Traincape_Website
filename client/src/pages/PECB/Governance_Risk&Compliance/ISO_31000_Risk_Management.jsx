@@ -455,6 +455,12 @@ const ISO31000RiskManagement = () => {
           >
             <h2 className="text-4xl font-bold text-gray-800 mb-4">What You'll Learn</h2>
             <p className="text-xl text-gray-600">Comprehensive risk management training</p>
+            <button 
+              onClick={() => navigate("/test", { state: { course: "PECB", subTopic: "ISO31000RiskManagement", level: "easy" } })}
+              className="bg-green-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              Take Test
+            </button>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -611,6 +617,12 @@ const ISO31000RiskManagement = () => {
               >
                 Learn More
               </button>
+            <button 
+              onClick={() => navigate("/test", { state: { course: "PECB", subTopic: "ISO31000RiskManagement", level: "easy" } })}
+              className="bg-green-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition shadow-lg text-lg"
+            >
+              Take Test
+            </button>
             </div>
           </motion.div>
         </div>

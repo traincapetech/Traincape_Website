@@ -22,18 +22,18 @@ export default function Footer() {
   const handleNavigation = (path) => {
     navigate(path);
   };
-  
+
   // Dynamic current year calculation
-  const currentYear = new Date().getFullYear(); 
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-slate-950 text-white font-sans"> 
-      
+    <footer className="bg-slate-950 text-white font-sans">
+
       {/* Top section: Contact Info (3 columns on MD+) */}
       {/* Adjusted max-w to achieve ~80% width and centered with mx-auto */}
-      <div className="mx-auto max-w-7xl px-4 md:px-10 lg:px-12 pt-10 pb-8 border-b border-blue-700/30"> 
+      <div className="mx-auto max-w-7xl px-4 md:px-10 lg:px-12 pt-10 pb-8 border-b border-blue-700/30">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-          
+
           {/* Contact Us */}
           <div className="flex items-start p-4 bg-slate-900 rounded-lg shadow-xl border border-transparent hover:border-blue-700 transition-all duration-500 group">
             <div className="bg-blue-700/30 p-3 rounded-full shadow-lg group-hover:bg-blue-700/50 transition-all duration-300">
@@ -86,9 +86,9 @@ export default function Footer() {
 
       {/* Middle section: Detailed Info (2 columns on MD, 4 on LG) */}
       {/* Adjusted max-w to achieve ~80% width and centered with mx-auto */}
-      <div className="mx-auto max-w-7xl px-4 md:px-10 lg:px-12 pt-8 pb-10"> 
+      <div className="mx-auto max-w-7xl px-4 md:px-10 lg:px-12 pt-8 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-10">
-          
+
           {/* About Us */}
           <div className="space-y-4">
             <h3 className="font-bold text-lg pb-3 text-blue-400 border-b-2 border-blue-700/60 inline-block">
@@ -130,8 +130,8 @@ export default function Footer() {
               { label: t.policy, path: "/Our-Policies" },
               { label: t.career, path: "/Career-details" },
               // { label: t.employee, path: "/Employee" },
-              { label: t.certificate, path: "/CertificateLookup" }
-
+              { label: t.certificate, path: "/CertificateLookup" },
+              { label: "Test Certificate", path: "/verify-certificate" }
             ]} handleNavigation={handleNavigation} />
 
             <FooterLinks title={t.explore} links={[

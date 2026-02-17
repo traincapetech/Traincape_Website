@@ -148,6 +148,12 @@ export default function CertificationDetail() {
                     >
                       Talk to Advisor
                     </button>
+                    <button
+                      onClick={() => navigate("/test", { state: { course: cert.categoryTitle, subTopic: cert.title, level: "easy" } })}
+                      className="w-full px-5 py-3 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-700 transition"
+                    >
+                      Take Test
+                    </button>
                     <a
                       href={cert.sourceUrl}
                       target="_blank"
