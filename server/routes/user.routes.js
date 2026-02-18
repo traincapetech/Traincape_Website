@@ -1,6 +1,7 @@
 import express from "express";
 import nodemailer from "nodemailer";
 import bcrypt from "bcryptjs";
+
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { UserModel } from "../model/user.model.js";
@@ -62,7 +63,9 @@ userRouter.post("/login", async (req, res) => {
   const authHeader = req.headers.authorization || "";
   if (authHeader.startsWith("Basic ")) {
     try {
-      const decoded = Buffer.from(authHeader.split(" ")[1], "base64").toString("utf8");
+      const decoded = Buffer.from(authHeader.split(" ")[1], "base64").toString(
+        "utf8",
+      );
       const [username, pass] = decoded.split(":");
       if (username && pass) {
         email = username;
@@ -83,7 +86,7 @@ userRouter.post("/login", async (req, res) => {
           .status(401)
           .send({ success: false, message: "Wrong Credentials" });
       }
-      
+
       // Check if SECRET_KEY is available
       if (!process.env.SECRET_KEY) {
         console.error("SECRET_KEY environment variable is not set!");
@@ -91,11 +94,11 @@ userRouter.post("/login", async (req, res) => {
           .status(500)
           .send({ success: false, message: "Server configuration error" });
       }
-      
+
       const token = jwt.sign(
         { userId: user._id, username: user.username, role: user.role },
         process.env.SECRET_KEY,
-        { expiresIn: "1h" }
+        { expiresIn: "1h" },
       );
       res.status(200).send({
         success: true,
@@ -205,8 +208,8 @@ userRouter.post("/reset_password", async (req, res) => {
       return res.status(400).send({ msg: "Wrong Credentials" });
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    console.log("Hashed Password is",hashedPassword);
-    console.log("User Password is",user.password);
+    console.log("Hashed Password is", hashedPassword);
+    console.log("User Password is", user.password);
     user.password = hashedPassword;
     user.resetOtp = "";
     user.resetOtpExpireAt = 0;
@@ -224,7 +227,10 @@ userRouter.post("/reset_password", async (req, res) => {
 // Get all users (for admin dashboard)
 userRouter.get("/", async (req, res) => {
   try {
-    const users = await UserModel.find({}, { password: 0, verifyOtp: 0, verifyOtpExpireAt: 0 });
+    const users = await UserModel.find(
+      {},
+      { password: 0, verifyOtp: 0, verifyOtpExpireAt: 0 },
+    );
     res.status(200).json(users);
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -233,13 +239,13 @@ userRouter.get("/", async (req, res) => {
 });
 
 userRouter.get("/details", async (req, res) => {
-  const useremail="ishaanj2612@gmail.com"
+  const useremail = "ishaanj2612@gmail.com";
   try {
-    const user = await UserModel.findOne({ email:useremail });
+    const user = await UserModel.findOne({ email: useremail });
     if (!user) {
       return res.status(400).send({ msg: "Wrong Credentials" });
     }
-  
+
     res.status(200).send(user);
   } catch (error) {
     console.error(error);

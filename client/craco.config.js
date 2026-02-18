@@ -1,5 +1,5 @@
 const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
+
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
@@ -33,6 +33,8 @@ module.exports = {
             name: 'runtime',
           },
         };
+
+        const CompressionPlugin = require('compression-webpack-plugin');
 
         // Add compression plugin
         webpackConfig.plugins.push(
