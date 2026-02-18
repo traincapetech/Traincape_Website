@@ -10,9 +10,110 @@
         "questions": []
     },
     "comptia_CompTIASecurity+": {
-        "course": "comptia",
+        "course": "Cybersecurity & Compliance",
         "subTopic": "CompTIASecurity+",
-        "questions": []
+        "questions": [
+            {
+                "questionText": "Which security principle ensures that data is not altered without authorization?",
+                "options": [
+                    "A) Confidentiality",
+                    "B) Integrity",
+                    "C) Availability",
+                    "D) Authentication"
+                ],
+                "correctAnswer": "B) Integrity"
+            },
+            {
+                "questionText": "What type of attack involves overwhelming a system with traffic to make it unavailable?",
+                "options": [
+                    "A) Phishing",
+                    "B) Man-in-the-middle",
+                    "C) DDoS",
+                    "D) Brute force"
+                ],
+                "correctAnswer": "C) DDoS"
+            },
+            {
+                "questionText": "Which authentication factor is based on something you are?",
+                "options": [
+                    "A) Password",
+                    "B) Smart card",
+                    "C) Fingerprint",
+                    "D) PIN"
+                ],
+                "correctAnswer": "C) Fingerprint"
+            },
+            {
+                "questionText": "What is the primary purpose of a firewall?",
+                "options": [
+                    "A) Encrypt files",
+                    "B) Filter network traffic",
+                    "C) Detect malware",
+                    "D) Backup data"
+                ],
+                "correctAnswer": "B) Filter network traffic"
+            },
+            {
+                "questionText": "Which protocol is used to securely browse the web?",
+                "options": [
+                    "A) HTTP",
+                    "B) FTP",
+                    "C) HTTPS",
+                    "D) Telnet"
+                ],
+                "correctAnswer": "C) HTTPS"
+            },
+            {
+                "questionText": "What type of malware disguises itself as legitimate software?",
+                "options": [
+                    "A) Worm",
+                    "B) Trojan",
+                    "C) Spyware",
+                    "D) Rootkit"
+                ],
+                "correctAnswer": "B) Trojan"
+            },
+            {
+                "questionText": "Which concept ensures users only have access necessary to perform their job?",
+                "options": [
+                    "A) Least privilege",
+                    "B) Separation of duties",
+                    "C) Multifactor authentication",
+                    "D) Role escalation"
+                ],
+                "correctAnswer": "A) Least privilege"
+            },
+            {
+                "questionText": "What is phishing primarily designed to do?",
+                "options": [
+                    "A) Steal sensitive information",
+                    "B) Improve network speed",
+                    "C) Patch vulnerabilities",
+                    "D) Monitor performance"
+                ],
+                "correctAnswer": "A) Steal sensitive information"
+            },
+            {
+                "questionText": "Which encryption type uses the same key for encryption and decryption?",
+                "options": [
+                    "A) Asymmetric encryption",
+                    "B) Symmetric encryption",
+                    "C) Hashing",
+                    "D) Tokenization"
+                ],
+                "correctAnswer": "B) Symmetric encryption"
+            },
+            {
+                "questionText": "What is the purpose of a security patch?",
+                "options": [
+                    "A) Add new features",
+                    "B) Fix vulnerabilities",
+                    "C) Increase storage",
+                    "D) Improve graphics"
+                ],
+                "correctAnswer": "B) Fix vulnerabilities"
+            }
+        ]
     },
     "comptia_CompTIASecureInfrastructure": {
         "course": "comptia",

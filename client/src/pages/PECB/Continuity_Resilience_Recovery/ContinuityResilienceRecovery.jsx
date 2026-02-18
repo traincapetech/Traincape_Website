@@ -82,7 +82,7 @@ const ContinuityResilienceRecovery = () => {
         description="Explore PECB certifications in business continuity (ISO 22301), crisis management, disaster recovery, and operational resilience."
         canonical="https://www.traincapetech.in/pecb/continuity"
       />
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -92,7 +92,7 @@ const ContinuityResilienceRecovery = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -100,7 +100,7 @@ const ContinuityResilienceRecovery = () => {
               >
                 <span className="text-sm font-semibold">PECB CERTIFICATION CATEGORY</span>
               </motion.div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -108,7 +108,7 @@ const ContinuityResilienceRecovery = () => {
               >
                 Continuity, Resilience & Recovery
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -116,7 +116,7 @@ const ContinuityResilienceRecovery = () => {
               >
                 Master Business Continuity & Resilience
               </motion.p>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
@@ -124,19 +124,19 @@ const ContinuityResilienceRecovery = () => {
               >
                 Comprehensive certifications covering business continuity, crisis management, disaster recovery, and operational resilience for organizational sustainability.
               </motion.p>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-wrap gap-4"
               >
-                <button 
+                <button
                   onClick={() => navigate("/contact-us")}
                   className="bg-white text-blue-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Get Started
                 </button>
-                <button 
+                <button
                   onClick={() => navigate("/PECB")}
                   className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition"
                 >
@@ -144,7 +144,7 @@ const ContinuityResilienceRecovery = () => {
                 </button>
               </motion.div>
             </div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
@@ -233,9 +233,9 @@ const ContinuityResilienceRecovery = () => {
                       </div>
                     </div>
                   </div>
-                  
+
                   <p className="text-gray-600 mb-4 text-sm">{cert.description}</p>
-                  
+
                   <div className="mb-4">
                     <h4 className="font-semibold text-gray-800 mb-2 text-sm">Key Topics:</h4>
                     <div className="flex flex-wrap gap-1">
@@ -246,7 +246,7 @@ const ContinuityResilienceRecovery = () => {
                       ))}
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-bold text-gray-800">{cert.price}</span>
@@ -272,13 +272,13 @@ const ContinuityResilienceRecovery = () => {
             <h2 className="text-4xl font-bold mb-4">Start Your BCM Journey</h2>
             <p className="text-xl mb-8">Choose from our comprehensive range of continuity & resilience certifications</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Get Started Today
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-blue-700 transition text-lg"
               >

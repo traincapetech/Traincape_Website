@@ -155,6 +155,8 @@ Make sure your local server is running (`npm start` in server folder), then:
 cd "d:\train cape career\Traincape_Website"
 node server/scripts/upload-questions.js
 ```
+or
+node Traincape_Website/server/scripts/upload-questions.js
 
 This uploads to: `http://localhost:8080/questions/addQuestion`
 
@@ -308,8 +310,41 @@ When deploying to production, make sure:
 | Wrong questions showing | `course`/`subTopic` mismatch | Ensure exact match with CertificationDetail data |
 | Popup not showing | API error on result save | Fixed: fallback shows popup even on API error |
 | Certificate goes fullscreen | ExamProctor auto-re-entry | Fixed: cleanup exits fullscreen on unmount |
-| Upload fails with duplicate | Question already exists | Script will fail silently, check server logs |
+| **Upload shows "Question already exists"** | **Duplicate Prevention** | **Normal behavior.** The system now skips duplicates automatically. |
 | `correctAnswer` not matching | Must include prefix like "A) " | Match exact string from options |
+
+---
+
+## 🛠️ Managing Duplicates & Verification
+
+We have implemented a **smart duplicate prevention system** to ensure 100% data integrity.
+
+### 1. Automatic Prevention
+When you run `upload-questions.js`, the server checks every question against the database before adding it.
+- **If it exists:** Skips and logs "Question already exists".
+- **If new:** Adds it to the database.
+
+### 2. How to Verify Question Counts
+To check exactly how many questions result in the database, you can use these scripts:
+
+**Check CompTIA CySA+ Questions:**
+```bash
+node server/scripts/check-cysa-questions.js
+```
+
+**Clean Duplicates (If ever needed):**
+```bash
+node server/scripts/clean-cysa-questions.js
+```
+*(Note: These scripts are specific to CySA+ but can be adapted for other courses)*
+
+### 3. Recommended Workflow
+1. **Edit** `server/data/course-questions.json` to add new questions.
+2. **Run** `node server/scripts/upload-questions.js` (for local) or `... prod` (for live).
+3. **Read the summary** at the end of the script output. It will tell you:
+   - ✅ Uploaded: [count] (New questions added)
+   - ⏭️ Skipped: [count] (Courses with no questions)
+   - ❌ Failed: [count] (Errors)
 
 ---
 
