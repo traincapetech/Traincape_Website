@@ -22,7 +22,7 @@ export const checkServerHealth = async () => {
 export const testQuestionsEndpoint = async (course, subTopic, level) => {
   try {
     const response = await axios.get(
-      `${API_ENDPOINTS.GET_QUESTIONS}?course=${course}&subTopic=${encodeURIComponent(subTopic)}&level=${level}`
+      `${API_ENDPOINTS.GET_QUESTIONS}?course=${encodeURIComponent(course)}&subTopic=${encodeURIComponent(subTopic)}&level=${encodeURIComponent(level)}`
     );
     return {
       status: 'success',
@@ -40,27 +40,27 @@ export const testQuestionsEndpoint = async (course, subTopic, level) => {
 
 export const runFullHealthCheck = async () => {
   console.log('🏥 Running full server health check...');
-  
+
   // Check main server
   const serverHealth = await checkServerHealth();
   console.log('📡 Server Health:', serverHealth);
-  
+
   // Test questions endpoints
   const testCases = [
     { course: 'PECB', subTopic: 'PECBComputerForensics', level: 'easy' },
     { course: 'Internal', subTopic: 'Lead-and-Sales-Assessment', level: 'easy' },
     { course: 'AWS', subTopic: 'AWSCertifiedSecurity', level: 'intermediate' }
   ];
-  
+
   for (const testCase of testCases) {
     const result = await testQuestionsEndpoint(
-      testCase.course, 
-      testCase.subTopic, 
+      testCase.course,
+      testCase.subTopic,
       testCase.level
     );
     console.log(`📝 Questions Test (${testCase.course}):`, result);
   }
-  
+
   return {
     serverHealth,
     timestamp: new Date().toISOString()

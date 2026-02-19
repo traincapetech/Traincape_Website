@@ -47,7 +47,7 @@ const Test = () => {
       try {
         const encodedSubTopic = encodeURIComponent(subTopic);
         const response = await axios.get(
-          `${API_ENDPOINTS.GET_QUESTIONS}?course=${course}&subTopic=${encodedSubTopic}&level=${level}&_=${Date.now()}`
+          `${API_ENDPOINTS.GET_QUESTIONS}?course=${encodeURIComponent(course)}&subTopic=${encodedSubTopic}&level=${encodeURIComponent(level)}&_=${Date.now()}`
         );
         setQuestions(response.data);
       } catch (error) {
