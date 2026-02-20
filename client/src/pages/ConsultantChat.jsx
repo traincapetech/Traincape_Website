@@ -105,6 +105,23 @@ const ConsultantChat = () => {
 
         socket.on('new_session', (session) => {
             setPendingSessions(prev => [...prev, session]);
+
+            // Play Sound for new waiting session
+            try {
+                const audio = new Audio('/alert.mp3');
+                audio.play().catch(e => console.log('Audio play failed:', e));
+            } catch (e) {
+                console.log('Error playing sound:', e);
+            }
+
+            // Show Native Notification
+            if (Notification.permission === 'granted') {
+                new Notification("New Chat Request", {
+                    body: "A client is waiting for an expert.",
+                    icon: "/logo192.png",
+                    tag: 'chat-request'
+                });
+            }
         });
 
         socket.on('auto_assigned', ({ session, consultantName: assignedName }) => {
@@ -113,6 +130,23 @@ const ConsultantChat = () => {
                 setMessages([]);
                 setActiveTab('chat');
                 socket.emit('join_session', session.token);
+
+                // Play Sound for auto assignment
+                try {
+                    const audio = new Audio('/alert.mp3');
+                    audio.play().catch(e => console.log('Audio play failed:', e));
+                } catch (e) {
+                    console.log('Error playing sound:', e);
+                }
+
+                // Show Native Notification
+                if (Notification.permission === 'granted') {
+                    new Notification("Immediate Chat Assigned", {
+                        body: "You have been matched with a client.",
+                        icon: "/logo192.png",
+                        tag: 'chat-request'
+                    });
+                }
             }
         });
 
@@ -136,9 +170,16 @@ const ConsultantChat = () => {
 
     useEffect(() => {
         const handleMessage = (message) => {
-            // Only add message if it belongs to current session AND it's not from self (since we add self-messages optimistically)
+            // Only add message if it belongs to current session AND it's not from self
             if (activeSession && message.token === activeSession.token && message.sender !== 'Consultant') {
                 setMessages(prev => [...prev, message]);
+
+                // Play subtle sound for incoming messages
+                try {
+                    const audio = new Audio('/alert.mp3'); // You could use a softer 'pop.mp3' here in the future
+                    audio.volume = 0.5; // lower volume for messages
+                    audio.play().catch(e => console.log('Audio play failed:', e));
+                } catch (e) { }
             }
         };
 
