@@ -473,7 +473,7 @@
 
 //Ishaan Jain Code
 import React, { useEffect, useState } from "react";
-import { FaRegEyeSlash, FaEye,FaArrowLeft } from "react-icons/fa6";
+import { FaRegEyeSlash, FaEye, FaArrowLeft } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from "../slices/userSlice";
@@ -509,11 +509,11 @@ const Signup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Handle numeric fields to prevent non-numeric input
     if (name === "phoneNumber" || name === "pinCode") {
       // Only allow digits
-      const numericValue = value.replace(/\D/g, '');
+      const numericValue = value.replace(/\D/g, "");
       setPayload({ ...payload, [name]: numericValue });
     } else {
       setPayload({ ...payload, [name]: value });
@@ -557,19 +557,24 @@ const Signup = () => {
       const hasLowerCase = /[a-z]/.test(payload.password);
       const hasNumbers = /\d/.test(payload.password);
       const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(payload.password);
-      
+
       if (!(hasUpperCase && hasLowerCase && hasNumbers)) {
-        newErrors.password = "Password must contain uppercase, lowercase, and numbers";
+        newErrors.password =
+          "Password must contain uppercase, lowercase, and numbers";
       }
     }
 
     // Phone number validation
     if (!payload.phoneNumber) {
       newErrors.phoneNumber = "Phone number is required";
-    } else if (payload.phoneNumber.length < 10 || payload.phoneNumber.length > 15) {
-      newErrors.phoneNumber = "Please enter a valid phone number (10-15 digits)";
+    } else if (
+      payload.phoneNumber.length < 10 ||
+      payload.phoneNumber.length > 15
+    ) {
+      newErrors.phoneNumber =
+        "Please enter a valid phone number (10-15 digits)";
     }
-    
+
     // Pin code validation
     if (!payload.pinCode) {
       newErrors.pinCode = "Pin code is required";
@@ -586,7 +591,8 @@ const Signup = () => {
     if (!payload.address.trim()) {
       newErrors.address = "Address is required";
     } else if (payload.address.trim().length < 10) {
-      newErrors.address = "Please enter a complete address (at least 10 characters)";
+      newErrors.address =
+        "Please enter a complete address (at least 10 characters)";
     }
 
     // Interest validation
@@ -627,7 +633,7 @@ const Signup = () => {
           country: payload.country,
           linkedIn: payload.linkedIn,
           interest: payload.interest,
-        })
+        }),
       );
 
       if (result.type === "user/signupUser/fulfilled") {
@@ -640,7 +646,7 @@ const Signup = () => {
       }
     } catch (error) {
       setSignupError(
-        "An error occurred during signup. Please try again later."
+        "An error occurred during signup. Please try again later.",
       );
       console.error("Signup error:", error);
       setConfirmSubmit(false);
@@ -688,11 +694,11 @@ const Signup = () => {
                 animationData={signup}
                 loop={true}
                 style={{ width: "100%", height: "auto", maxHeight: "100%" }}
-                renderSettings={{
+                rendererSettings={{
                   preserveAspectRatio: "xMidYMid slice",
                 }}
                 onError={(error) => {
-                  console.warn('Lottie animation error:', error);
+                  console.warn("Lottie animation error:", error);
                   // Fallback to a simple div if animation fails
                 }}
               />
@@ -713,13 +719,29 @@ const Signup = () => {
 
             {confirmSubmit ? (
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold mb-4 text-[#152B54]">Confirm Your Details</h2>
+                <h2 className="text-xl font-semibold mb-4 text-[#152B54]">
+                  Confirm Your Details
+                </h2>
                 <div className="space-y-3 mb-4">
-                  <p><span className="font-medium">Username:</span> {payload.username}</p>
-                  <p><span className="font-medium">Email:</span> {payload.email}</p>
-                  <p><span className="font-medium">Phone:</span> {payload.phoneNumber}</p>
-                  <p><span className="font-medium">Country:</span> {payload.country}</p>
-                  <p><span className="font-medium">Interest:</span> {payload.interest}</p>
+                  <p>
+                    <span className="font-medium">Username:</span>{" "}
+                    {payload.username}
+                  </p>
+                  <p>
+                    <span className="font-medium">Email:</span> {payload.email}
+                  </p>
+                  <p>
+                    <span className="font-medium">Phone:</span>{" "}
+                    {payload.phoneNumber}
+                  </p>
+                  <p>
+                    <span className="font-medium">Country:</span>{" "}
+                    {payload.country}
+                  </p>
+                  <p>
+                    <span className="font-medium">Interest:</span>{" "}
+                    {payload.interest}
+                  </p>
                 </div>
                 <div className="flex space-x-3">
                   <button
@@ -759,7 +781,9 @@ const Signup = () => {
                     aria-invalid={errors.username ? "true" : "false"}
                   />
                   {errors.username && (
-                    <p className="mt-1 text-xs text-red-500">{errors.username}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.username}
+                    </p>
                   )}
                 </div>
 
@@ -823,11 +847,14 @@ const Signup = () => {
                     </button>
                   </div>
                   {errors.password && (
-                    <p className="mt-1 text-xs text-red-500">{errors.password}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.password}
+                    </p>
                   )}
                   {!errors.password && payload.password && (
                     <p className="mt-1 text-xs text-gray-500">
-                      Password must be at least 8 characters with uppercase, lowercase, and numbers.
+                      Password must be at least 8 characters with uppercase,
+                      lowercase, and numbers.
                     </p>
                   )}
                 </div>
@@ -879,7 +906,9 @@ const Signup = () => {
                     aria-invalid={errors.address ? "true" : "false"}
                   />
                   {errors.address && (
-                    <p className="mt-1 text-xs text-red-500">{errors.address}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.address}
+                    </p>
                   )}
                 </div>
 
@@ -906,7 +935,9 @@ const Signup = () => {
                     aria-invalid={errors.pinCode ? "true" : "false"}
                   />
                   {errors.pinCode && (
-                    <p className="mt-1 text-xs text-red-500">{errors.pinCode}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.pinCode}
+                    </p>
                   )}
                 </div>
 
@@ -930,7 +961,9 @@ const Signup = () => {
                     aria-invalid={errors.country ? "true" : "false"}
                   />
                   {errors.country && (
-                    <p className="mt-1 text-xs text-red-500">{errors.country}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.country}
+                    </p>
                   )}
                 </div>
 
@@ -940,7 +973,9 @@ const Signup = () => {
                     className="block text-sm font-medium text-gray-700"
                   >
                     LinkedIn{" "}
-                    <span className="text-slate-500 text-[10px]">(optional)</span>
+                    <span className="text-slate-500 text-[10px]">
+                      (optional)
+                    </span>
                   </label>
                   <input
                     type="text"
@@ -981,7 +1016,9 @@ const Signup = () => {
                     <option value="Non-IT">Non-IT</option>
                   </select>
                   {errors.interest && (
-                    <p className="mt-1 text-xs text-red-500">{errors.interest}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.interest}
+                    </p>
                   )}
                 </div>
 
