@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { socket } from './socket';
+import API_BASE_URL from './config/api';
 
 const Chat = () => {
     const [token, setToken] = useState(null);
@@ -12,7 +13,7 @@ const Chat = () => {
     };
 
     const startHandover = async () => {
-        const res = await fetch('http://localhost:8080/chat/request-human', { method: 'POST' });
+        const res = await fetch(`${API_BASE_URL}/chat/request-human`, { method: 'POST' });
         const data = await res.json();
         if (data.success) {
             setToken(data.token);

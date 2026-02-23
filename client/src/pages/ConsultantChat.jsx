@@ -1,55 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { socket } from '../socket';
-import { Send, User, LogOut, History, Clock } from 'lucide-react';
+import { Send, User, LogOut, History, Clock, Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { messaging } from '../firebase';
-import { getToken } from 'firebase/messaging';
+import API_BASE_URL from '../config/api';
 
 const ConsultantChat = () => {
-    const [tokenStatus, setTokenStatus] = useState("Initializing...");
-
-    // ADDED: Register FCM Token
-    useEffect(() => {
-        const registerToken = async () => {
-            const token = localStorage.getItem('consultantToken');
-            if (!token) {
-                setTokenStatus("No Auth Token");
-                return;
-            }
-            if (!messaging) {
-                setTokenStatus("Firebase Not Supported");
-                return;
-            }
-
-            try {
-                setTokenStatus("Requesting Permission...");
-                const permission = await Notification.requestPermission();
-                if (permission === 'granted') {
-                    setTokenStatus("Generating Token...");
-                    const fcmToken = await getToken(messaging, {
-                        vapidKey: "BP-58q8LVZ_4o_4Vh7KiE0kYMa_g8mChjDOF03QfakQ8Y5Zq3h7cU8xfi-glsD0LhjJaqGLXkh8pj7FVZVA-2E8"
-                    });
-                    if (fcmToken) {
-                        console.log("Consultant FCM Token:", fcmToken);
-                        setTokenStatus("Sending to Server...");
-                        await axios.post('http://localhost:8080/consultant/fcm-token', { fcmToken }, {
-                            headers: { 'auth-token': token }
-                        });
-                        setTokenStatus("Active ✅");
-                    } else {
-                        setTokenStatus("Token Gen Failed ❌");
-                    }
-                } else {
-                    setTokenStatus("Permission Denied 🚫");
-                }
-            } catch (error) {
-                console.error("Error registering FCM token:", error);
-                setTokenStatus(`Error: ${error.message}`);
-            }
-        };
-        registerToken();
-    }, []);
 
     const [activeTab, setActiveTab] = useState('waiting'); // waiting | chat | history
     const [pendingSessions, setPendingSessions] = useState([]);
@@ -62,6 +18,73 @@ const ConsultantChat = () => {
 
     const [consultantName, setConsultantName] = useState("");
     const navigate = useNavigate();
+
+    // Safely check for Notification API
+    const getInitialNotificationStatus = () => {
+        try {
+            return 'Notification' in window ? Notification.permission : 'denied';
+        } catch (e) {
+            return 'denied';
+        }
+    };
+    const [notificationStatus, setNotificationStatus] = useState(getInitialNotificationStatus());
+    const [audioUnlocked, setAudioUnlocked] = useState(false);
+
+    const requestNotificationPermission = async () => {
+        const unlockAudio = () => {
+            try {
+                const audio = new Audio('/alert.mp3');
+                audio.volume = 0.01;
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => setAudioUnlocked(true)).catch(e => console.log('Audio unlock failed:', e));
+                } else {
+                    setAudioUnlocked(true);
+                }
+            } catch (e) {
+                console.log('Audio creation failed:', e);
+                setAudioUnlocked(true);
+            }
+        };
+
+        if ('Notification' in window) {
+            if (Notification.permission === 'granted') {
+                unlockAudio();
+                try {
+                    new Notification("Alerts Enabled", {
+                        body: "Desktop and sound alerts are ready.",
+                        icon: "/logo192.png",
+                        silent: false
+                    });
+                } catch (e) { }
+                setNotificationStatus('granted');
+                return;
+            }
+
+            try {
+                const permission = await Notification.requestPermission();
+                setNotificationStatus(permission);
+                if (permission === 'granted') {
+                    // Unlock audio safely
+                    unlockAudio();
+
+                    try {
+                        new Notification("Alerts Enabled", {
+                            body: "You will receive desktop and sound alerts for new clients.",
+                            icon: "/logo192.png",
+                            silent: false
+                        });
+                    } catch (e) {
+                        console.log('Notification test failed:', e);
+                    }
+                }
+            } catch (err) {
+                console.error("Error asking for notification permission", err);
+            }
+        } else {
+            alert("Your browser does not support desktop notifications.");
+        }
+    };
 
     useEffect(() => {
         const token = localStorage.getItem('consultantToken');
@@ -76,7 +99,7 @@ const ConsultantChat = () => {
 
         const fetchSessions = async () => {
             try {
-                const res = await axios.get('http://localhost:8080/chat/sessions');
+                const res = await axios.get(`${API_BASE_URL}/chat/sessions`);
                 if (res.data.success) {
                     setPendingSessions(res.data.sessions);
                 }
@@ -87,7 +110,7 @@ const ConsultantChat = () => {
 
         const fetchHistory = async () => {
             try {
-                const res = await axios.get('http://localhost:8080/consultant/my-sessions', {
+                const res = await axios.get(`${API_BASE_URL}/consultant/my-sessions`, {
                 });
                 if (res.data.success) {
                     setSessionHistory(res.data.sessions);
@@ -103,25 +126,48 @@ const ConsultantChat = () => {
         socket.connect();
         socket.emit('join_consultant', { name: name, token }); // Send token if backend needs it
 
-        socket.on('new_session', (session) => {
-            setPendingSessions(prev => [...prev, session]);
-
-            // Play Sound for new waiting session
+        const playAlert = () => {
             try {
                 const audio = new Audio('/alert.mp3');
-                audio.play().catch(e => console.log('Audio play failed:', e));
-            } catch (e) {
-                console.log('Error playing sound:', e);
-            }
-
-            // Show Native Notification
-            if (Notification.permission === 'granted') {
-                new Notification("New Chat Request", {
-                    body: "A client is waiting for an expert.",
-                    icon: "/logo192.png",
-                    tag: 'chat-request'
+                // Ensure it plays even if tab is not focused by handling the promise
+                audio.play().catch(e => {
+                    console.log('Audio autoplay blocked by browser, requires user interaction first:', e);
                 });
+            } catch (e) {
+                console.log('Error creating Audio object:', e);
             }
+        };
+
+        const fireNotification = (title, body) => {
+            if (Notification.permission === 'granted') {
+                try {
+                    // Using ServiceWorkerRegistration if available fallback to regular Notification
+                    navigator.serviceWorker?.getRegistration().then(reg => {
+                        if (reg && reg.showNotification) {
+                            reg.showNotification(title, {
+                                body,
+                                icon: "/logo192.png",
+                                tag: 'chat-request',
+                                requireInteraction: true,
+                                silent: false,
+                                vibrate: [200, 100, 200]
+                            });
+                        } else {
+                            new Notification(title, { body, icon: "/logo192.png", requireInteraction: true, silent: false });
+                        }
+                    }).catch(() => {
+                        new Notification(title, { body, icon: "/logo192.png", requireInteraction: true, silent: false });
+                    });
+                } catch (e) {
+                    new Notification(title, { body, icon: "/logo192.png", requireInteraction: true, silent: false });
+                }
+            }
+        };
+
+        socket.on('new_session', (session) => {
+            setPendingSessions(prev => [...prev, session]);
+            playAlert();
+            fireNotification("New Chat Request", "A client is waiting for an expert.");
         });
 
         socket.on('auto_assigned', ({ session, consultantName: assignedName }) => {
@@ -130,23 +176,8 @@ const ConsultantChat = () => {
                 setMessages([]);
                 setActiveTab('chat');
                 socket.emit('join_session', session.token);
-
-                // Play Sound for auto assignment
-                try {
-                    const audio = new Audio('/alert.mp3');
-                    audio.play().catch(e => console.log('Audio play failed:', e));
-                } catch (e) {
-                    console.log('Error playing sound:', e);
-                }
-
-                // Show Native Notification
-                if (Notification.permission === 'granted') {
-                    new Notification("Immediate Chat Assigned", {
-                        body: "You have been matched with a client.",
-                        icon: "/logo192.png",
-                        tag: 'chat-request'
-                    });
-                }
+                playAlert();
+                fireNotification("Immediate Chat Assigned", "You have been matched with a client.");
             }
         });
 
@@ -233,13 +264,23 @@ const ConsultantChat = () => {
                             </button>
                         </div>
                     </div>
-                    {/* DEBUG: Token Status */}
-                    <div className="mb-2 text-[10px] text-gray-500 bg-gray-100 px-2 py-1 rounded">
-                        Notif Status: <span className="font-bold">{tokenStatus}</span>
-                    </div>
+
                     <div className="text-sm text-gray-500">
                         Welcome, <span className="font-semibold text-gray-700">{consultantName}</span>
                     </div>
+
+                    {(!audioUnlocked || notificationStatus !== 'granted') && (
+                        <button
+                            onClick={requestNotificationPermission}
+                            className={`mt-3 w-full text-xs font-semibold py-2 rounded-lg flex justify-center items-center gap-2 transition-colors shadow-sm ${notificationStatus === 'granted'
+                                    ? 'bg-green-50 text-green-700 border border-green-200 hover:bg-green-100'
+                                    : 'bg-yellow-50 text-yellow-700 border border-yellow-200 hover:bg-yellow-100'
+                                }`}
+                        >
+                            <Bell size={14} className={audioUnlocked ? "" : "animate-pulse"} />
+                            {notificationStatus === 'granted' ? "Test Desktop & Sound Alerts" : "Enable Desktop & Sound Alerts"}
+                        </button>
+                    )}
                 </div>
 
                 <div className="flex p-3 gap-2 bg-gray-50/50">

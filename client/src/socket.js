@@ -1,2 +1,3 @@
 import { io } from "socket.io-client";
-export const socket = io("http://localhost:8080", { autoConnect: false });
+import API_BASE_URL from "./config/api";
+export const socket = io(API_BASE_URL, { autoConnect: false });

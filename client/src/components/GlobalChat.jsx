@@ -3,6 +3,7 @@ import { MessageSquare, X, Send } from 'lucide-react';
 import { socket } from '../socket';
 import { useLocation } from 'react-router-dom';
 import chatbotData from '../data/chatbot_flow.json';
+import API_BASE_URL from '../config/api';
 
 const GlobalChat = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -172,7 +173,7 @@ const GlobalChat = () => {
         setLoading(true);
         setMessages(prev => [...prev, { sender: 'System', text: "Requesting a human expert..." }]);
         try {
-            const res = await fetch('http://localhost:8080/chat/request-human', { method: 'POST' }); // Ensure port is correct, usually 3001 or 8080 depending on setup
+            const res = await fetch(`${API_BASE_URL}/chat/request-human`, { method: 'POST' }); // Ensure port is correct, usually 3001 or 8080 depending on setup
             const data = await res.json();
 
             if (data.success) {

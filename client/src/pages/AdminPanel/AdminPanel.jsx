@@ -10,6 +10,7 @@ import Dashboard from "./Dashboard";
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import API_BASE_URL from '../../config/api';
 
 import {
   Shield,
@@ -107,7 +108,7 @@ const AdminPanel = () => {
           return;
         }
 
-        const { data } = await axios.post('http://localhost:8080/consultant/register', {
+        const { data } = await axios.post(`${API_BASE_URL}/consultant/register`, {
           name: consultantName,
           email: consultantEmail,
           password: consultantPassword
@@ -118,7 +119,7 @@ const AdminPanel = () => {
         toast.success(`Welcome, ${data.name}! Account created.`);
       } else {
         // Login Logic
-        const { data } = await axios.post('http://localhost:8080/consultant/login', {
+        const { data } = await axios.post(`${API_BASE_URL}/consultant/login`, {
           email: consultantEmail,
           password: consultantPassword
         });
@@ -381,8 +382,8 @@ const AdminPanel = () => {
               onClick={() => setSelectedOption("keyEntry")}
               disabled={!selectedCourse}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${selectedCourse
-                  ? 'bg-green-500 text-white hover:bg-green-600'
-                  : 'bg-green-300 text-green-100 cursor-not-allowed'
+                ? 'bg-green-500 text-white hover:bg-green-600'
+                : 'bg-green-300 text-green-100 cursor-not-allowed'
                 }`}
             >
               Next
