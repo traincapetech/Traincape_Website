@@ -14,12 +14,10 @@ import ChunkErrorBoundary from "./components/ChunkErrorBoundary";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
-import WebsiteCounter from "./components/WebsiteCounter";
-
 
 const App = () => {
   const location = useLocation();
-  const isConsultantPage = location.pathname.startsWith('/consultant');
+  const isConsultantPage = location.pathname.startsWith("/consultant");
 
   // Scroll to top on every route change
   useEffect(() => {
@@ -29,7 +27,11 @@ const App = () => {
   useEffect(() => {
     // AOS is initialized via npm bundle (not via CDN) to keep react-snap stable.
     // Skip during react-snap prerender.
-    if (typeof navigator !== "undefined" && String(navigator.userAgent || "").includes("ReactSnap")) return;
+    if (
+      typeof navigator !== "undefined" &&
+      String(navigator.userAgent || "").includes("ReactSnap")
+    )
+      return;
     (async () => {
       try {
         const AOS = (await import("aos")).default;
@@ -44,7 +46,6 @@ const App = () => {
   return (
     <ChunkErrorBoundary>
       <HelmetProvider>
-
         <LanguageProvider>
           <ErrorBoundary>
             <Toaster position="top-center" reverseOrder={false} />
@@ -54,10 +55,8 @@ const App = () => {
 
             {!isConsultantPage && <WhatsAppPopup />}
             {!isConsultantPage && <GlobalChat />}
-            <WebsiteCounter />
           </ErrorBoundary>
         </LanguageProvider>
-
       </HelmetProvider>
     </ChunkErrorBoundary>
   );

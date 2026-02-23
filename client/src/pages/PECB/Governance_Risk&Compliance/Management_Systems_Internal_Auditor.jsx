@@ -88,10 +88,6 @@ const ManagementSystemsInternalAuditor = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/governance/internal-auditor"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -101,10 +97,6 @@ const ManagementSystemsInternalAuditor = () => {
         <meta
           name="twitter:description"
           content="Develop internal auditing skills and become a certified ISO auditor with Traincape Technology."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

@@ -169,10 +169,6 @@ const ISO21502ProjectManagement = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/quality/iso-21502-training"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         {/* Twitter Meta */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -183,10 +179,6 @@ const ISO21502ProjectManagement = () => {
         <meta
           name="twitter:description"
           content="Master project management best practices and gain a globally recognized ISO 21502 certification with Traincape Technology."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

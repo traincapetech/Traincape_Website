@@ -262,7 +262,7 @@ const Navbar = () => {
               <Link to="/about-us" className={isActive("/about-us")}>
                 About
               </Link>
-              <Link to="/our-services" className={isActive("/our-services")}>
+              <Link to="services/software-services" className={isActive("services/software-services")}>
                 IT Services
               </Link>
               <Link to="/certifications" className={isActive("/certifications")}>

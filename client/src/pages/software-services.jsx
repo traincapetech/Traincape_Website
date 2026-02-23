@@ -1,490 +1,1006 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import banner from "../assets/softwareBanner.jpeg";
+import React, { useEffect, useState, useRef } from "react";
 import {
-  FaReact,
-  FaNodeJs,
-  FaPython,
-  FaJava,
-  FaAws,
-  FaDocker,
-  FaCloud,
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  useMotionValue,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import {
   FaTabletAlt,
   FaBrain,
-  FaCode, // New Icon for Development Focus
-  FaShieldAlt, // New Icon for Security
+  FaCode,
+  FaShieldAlt,
+  FaSearch,
+  FaHospital,
+  FaShoppingCart,
+  FaGraduationCap,
+  FaBuilding,
+  FaChartLine,
+  FaQuoteLeft,
+  FaArrowRight,
+  FaCheck,
 } from "react-icons/fa";
-import {
-  SiMongodb,
-  SiNextdotjs,
-  SiPostgresql,
-  SiKubernetes,
-  SiTypescript,
-  SiRedux,
-  SiGraphql,
-} from "react-icons/si";
 import {
   MdOutlineSecurity,
   MdDeveloperMode,
   MdCloudQueue,
-  MdSpeed, // New Icon for Performance
+  MdSpeed,
+  MdHealthAndSafety,
 } from "react-icons/md";
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
-import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
-import { Helmet } from "react-helmet";
+import { HiOutlineGlobeAlt } from "react-icons/hi";
+
+/* ═══════════════════════════════════════════
+   ANIMATED COUNTER HOOK
+   ═══════════════════════════════════════════ */
+const useCounter = (end, duration = 2000) => {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const increment = end / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else setCount(Math.floor(start));
+    }, 16);
+    return () => clearInterval(timer);
+  }, [isInView, end, duration]);
+
+  return { count, ref };
+};
+
+/* ═══════════════════════════════════════════
+   3D TILT CARD COMPONENT
+   ═══════════════════════════════════════════ */
+const TiltCard = ({ children, className = "" }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useSpring(useTransform(y, [-0.5, 0.5], [8, -8]), {
+    stiffness: 300,
+    damping: 30,
+  });
+  const rotateY = useSpring(useTransform(x, [-0.5, 0.5], [-8, 8]), {
+    stiffness: 300,
+    damping: 30,
+  });
+
+  const handleMouse = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - rect.left) / rect.width - 0.5);
+    y.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+  const handleLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouse}
+      onMouseLeave={handleLeave}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+/* ═══════════════════════════════════════════
+   STAT CARD — Extracts useCounter into its own component
+   ═══════════════════════════════════════════ */
+const StatCard = ({ stat }) => {
+  const { count: c, ref } = useCounter(stat.value);
+  return (
+    <div
+      ref={ref}
+      className="bg-white/[0.04] rounded-2xl p-4 border border-white/5 hover:border-cyan-500/30 transition-colors"
+    >
+      <p className="text-3xl font-black bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
+        {stat.value === 99.9 ? c.toFixed(1) : c}
+        {stat.suffix}
+      </p>
+      <p className="text-xs text-slate-500 mt-1 font-medium">{stat.label}</p>
+    </div>
+  );
+};
+
+/* ═══════════════════════════════════════════
+   MAIN COMPONENT
+   ═══════════════════════════════════════════ */
 const SoftwareDevelopment = () => {
-  const navigate = useNavigate(); // ✅ you forgot this line
+  const navigate = useNavigate();
+  const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+
   useEffect(() => window.scrollTo(0, 0), []);
 
-  // --- Data Refinements ---
-
-  const PRIMARY_COLOR = "#00AEEF"; // Cyan/Blue
-  const SECONDARY_COLOR = "#FFA500"; // Orange
-
-  const techs = [
-    { icon: <FaReact size={40} color="#61DBFB" />, name: "React.js" },
-    { icon: <SiNextdotjs size={40} color="#ffffff" />, name: "Next.js" },
-    { icon: <FaNodeJs size={40} color="#8CC84A" />, name: "Node.js" },
-    { icon: <FaPython size={40} color="#FFD43B" />, name: "Python" },
-    { icon: <FaJava size={40} color="#f89820" />, name: "Java" },
-    { icon: <SiTypescript size={40} color="#3178C6" />, name: "TypeScript" },
-    { icon: <SiRedux size={40} color="#764ABC" />, name: "Redux" },
-    { icon: <SiGraphql size={40} color="#E10098" />, name: "GraphQL" },
-    { icon: <SiMongodb size={40} color="#4DB33D" />, name: "MongoDB" },
-    { icon: <SiPostgresql size={40} color="#336791" />, name: "PostgreSQL" },
-    { icon: <FaAws size={40} color="#FF9900" />, name: "AWS" },
-    { icon: <FaDocker size={40} color="#0db7ed" />, name: "Docker" },
-    { icon: <SiKubernetes size={40} color="#326ce5" />, name: "Kubernetes" },
-    { icon: <FaCloud size={40} color="#007FFF" />, name: "Azure" },
-  ];
-
+  // ── Testimonial carousel state ──
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonials = [
     {
-      name: "Alice Johnson",
-      text: "Exceptional service and top-notch software solutions! Their team delivered exactly what we needed.",
+      name: "Rajesh Sharma",
+      role: "CTO, MedConnect",
+      text: "Traincape delivered a HIPAA-compliant telemedicine platform that handles 10k+ daily consultations flawlessly. Their engineering quality is world-class.",
     },
     {
-      name: "Mark Davis",
-      text: "Professional team, delivered our project ahead of schedule and the quality was outstanding.",
+      name: "Priya Patel",
+      role: "Founder, RetailEdge",
+      text: "Our custom CRM increased sales team productivity by 40%. The real-time analytics dashboard they built is simply outstanding.",
     },
     {
-      name: "Sophia Lee",
-      text: "Innovative solutions that transformed our business operations. Highly recommend their expertise.",
+      name: "Marcus Wei",
+      role: "VP Engineering, CloudFirst",
+      text: "From architecture to deployment, their team delivered a SaaS platform that scaled from 100 to 50,000 users without any hiccups.",
+    },
+    {
+      name: "Ananya Gupta",
+      role: "Marketing Head, EduTech",
+      text: "The SEO strategy they implemented took us from page 5 to page 1 on Google within 3 months. Their technical SEO is unmatched.",
     },
   ];
 
-  // Renamed to 'solutions' for a broader 'Service' feel
-  const solutions = [
+  useEffect(() => {
+    const t = setInterval(
+      () => setActiveTestimonial((p) => (p + 1) % testimonials.length),
+      5000,
+    );
+    return () => clearInterval(t);
+  }, [testimonials.length]);
+
+  // ── Core services data ──
+  const services = [
     {
-      icon: <MdDeveloperMode size={30} className="text-white" />,
-      title: "Custom Web Application Development", // More specific
-      desc: "Building complex, feature-rich web platforms and SaaS solutions from the ground up using modern frameworks.",
+      icon: <AiOutlineDeploymentUnit size={28} />,
+      title: "SaaS-Level CRM Development",
+      desc: "Enterprise CRM platforms with real-time analytics, automated workflows, lead scoring, and multi-tenant architecture built for scale.",
+      gradient: "from-cyan-500 to-blue-600",
+      size: "lg",
     },
     {
-      icon: <FaTabletAlt size={30} className="text-white" />,
-      title: "Cross-Platform Mobile App Services",
-      desc: "Native and cross-platform mobile solutions for iOS and Android, focusing on performance, speed, and UX.",
+      icon: <MdDeveloperMode size={28} />,
+      title: "Custom Website Development",
+      desc: "High-performance React & Next.js websites with blazing-fast load times, SSR/SSG, and pixel-perfect responsive design.",
+      gradient: "from-violet-500 to-purple-600",
+      size: "md",
     },
     {
-      icon: <MdCloudQueue size={30} className="text-white" />,
+      icon: <MdHealthAndSafety size={28} />,
+      title: "Telemedicine & Healthcare Apps",
+      desc: "HIPAA-compliant mobile platforms with video consultations, e-prescriptions, patient portals, and EHR integration.",
+      gradient: "from-emerald-500 to-teal-600",
+      size: "md",
+    },
+    {
+      icon: <FaSearch size={28} />,
+      title: "Full-Proof SEO Implementation",
+      desc: "Technical SEO, schema markup, Core Web Vitals optimization, and content strategies that guarantee page-1 rankings.",
+      gradient: "from-amber-500 to-orange-600",
+      size: "lg",
+    },
+    {
+      icon: <MdCloudQueue size={28} />,
       title: "Cloud & DevOps Infrastructure",
-      desc: "Expertise in AWS, Azure, and Google Cloud, ensuring seamless deployment, scaling, and infrastructure as code.",
+      desc: "AWS, Azure, GCP — CI/CD pipelines, Kubernetes orchestration, and infrastructure-as-code for zero-downtime deployments.",
+      gradient: "from-sky-500 to-indigo-600",
+      size: "sm",
     },
     {
-      icon: <FaBrain size={30} className="text-white" />,
-      title: "AI/ML & Data Integration Services",
-      desc: "Embedding intelligent features like recommendation engines, data analysis, and predictive modeling for business intelligence.",
-    },
-    {
-      icon: <AiOutlineDeploymentUnit size={30} className="text-white" />,
-      title: "Enterprise System Integration",
-      desc: "Developing robust, secure, and integrated systems for large-scale business operations (ERP, CRM) and connecting disparate systems.",
-    },
-    {
-      icon: <MdOutlineSecurity size={30} className="text-white" />,
-      title: "Software Modernization & Audit",
-      desc: "Migrating legacy systems to modern, scalable architectures like microservices and serverless, and performing security audits.",
+      icon: <FaBrain size={28} />,
+      title: "AI/ML Integration",
+      desc: "Intelligent chatbots, recommendation engines, predictive analytics, and NLP solutions embedded into your products.",
+      gradient: "from-fuchsia-500 to-pink-600",
+      size: "sm",
     },
   ];
 
-  // New section data focusing on the 'Development' process quality
-  const developmentFocus = [
+  // ── Stats data ──
+  const stats = [
+    { value: 500, suffix: "+", label: "Projects Delivered" },
+    { value: 98, suffix: "%", label: "Client Retention" },
+    { value: 15, suffix: "+", label: "Countries Served" },
+    { value: 99.9, suffix: "%", label: "Uptime Guaranteed" },
+  ];
+
+  // ── Industries ──
+  const industries = [
     {
-      icon: <FaCode size={50} color={PRIMARY_COLOR} />,
-      title: "Clean Code & Architecture",
-      desc: "We enforce strict coding standards and design microservice architectures for long-term maintainability and flexibility.",
+      icon: <FaHospital size={32} />,
+      name: "Healthcare & Telemedicine",
+      color: "from-emerald-500 to-teal-500",
     },
     {
-      icon: <MdSpeed size={50} color={SECONDARY_COLOR} />,
-      title: "Performance & Scalability",
-      desc: "Every line of code is written with speed and scaling in mind, ensuring your application handles massive growth with ease.",
+      icon: <FaChartLine size={32} />,
+      name: "Finance & Banking",
+      color: "from-blue-500 to-indigo-500",
     },
     {
-      icon: <FaShieldAlt size={50} color={PRIMARY_COLOR} />,
-      title: "Robust Security Practices",
-      desc: "Integrating security measures (OWASP compliance, data encryption) directly into the development pipeline (SecDevOps).",
+      icon: <FaShoppingCart size={32} />,
+      name: "E-Commerce & Retail",
+      color: "from-amber-500 to-orange-500",
+    },
+    {
+      icon: <FaGraduationCap size={32} />,
+      name: "Education & EdTech",
+      color: "from-violet-500 to-purple-500",
+    },
+    {
+      icon: <FaBuilding size={32} />,
+      name: "Real Estate & PropTech",
+      color: "from-cyan-500 to-sky-500",
+    },
+    {
+      icon: <HiOutlineGlobeAlt size={32} />,
+      name: "SaaS & Startups",
+      color: "from-fuchsia-500 to-pink-500",
     },
   ];
 
-  const processSteps = [
+  // ── Process steps ──
+  const process = [
     {
       step: "01",
-      title: "Strategy & Discovery",
-      desc: "Deep-dive analysis of your business needs, market, and technical requirements to define the product roadmap.",
+      title: "Discovery & Strategy",
+      desc: "Deep-dive into your vision, market analysis, competitor research, and a bulletproof product roadmap.",
+      icon: <FaSearch />,
     },
     {
       step: "02",
       title: "Architecture & Design",
-      desc: "Crafting robust system architecture and designing an intuitive, high-fidelity UI/UX prototype.",
+      desc: "System architecture, database design, high-fidelity UI/UX prototypes, and interactive wireframes.",
+      icon: <FaCode />,
     },
     {
       step: "03",
       title: "Agile Development",
-      desc: "Iterative development cycles (Sprints) with clean, testable code and continuous client feedback.",
+      desc: "Sprint-based development with clean code, automated testing, and weekly demos for continuous feedback.",
+      icon: <MdSpeed />,
     },
     {
       step: "04",
-      title: "Quality Assurance (QA)",
-      desc: "Rigorous testing (unit, integration, performance) to ensure the software is bug-free and meets all specifications.",
+      title: "QA & Security Audit",
+      desc: "Rigorous testing — unit, integration, performance, and penetration testing with OWASP compliance.",
+      icon: <FaShieldAlt />,
     },
     {
       step: "05",
-      title: "Deployment & Launch",
-      desc: "Seamless, automated deployment to the cloud environment, ensuring zero downtime and high availability.",
+      title: "Launch & Scale",
+      desc: "Seamless cloud deployment, monitoring setup, and auto-scaling infrastructure for growth.",
+      icon: <MdCloudQueue />,
     },
     {
       step: "06",
-      title: "Maintenance & Scale",
-      desc: "Ongoing monitoring, optimization, security patches, and future feature development to ensure longevity.",
+      title: "Continuous Evolution",
+      desc: "Ongoing optimization, feature additions, security patches, and 24/7 support partnership.",
+      icon: <MdOutlineSecurity />,
     },
   ];
 
-  const metrics = [
-    {
-      value: "500+",
-      unit: "Projects Completed",
-      icon: <MdDeveloperMode size={50} color={PRIMARY_COLOR} />,
+  // ── Animation variants ──
+  const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
     },
-    {
-      value: "98%",
-      unit: "Client Retention Rate",
-      icon: <FaAws size={50} color={SECONDARY_COLOR} />,
-    },
-    {
-      value: "12+",
-      unit: "Years in the Industry",
-      icon: <SiMongodb size={50} color={PRIMARY_COLOR} />,
-    },
-    {
-      value: "24/7",
-      unit: "Global Support Coverage",
-      icon: <FaDocker size={50} color={SECONDARY_COLOR} />,
-    },
-  ];
-
-  // Animation variants
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+  const fadeLeft = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
+  };
+  const fadeRight = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.7 } },
+  };
+  const scaleIn = {
+    hidden: { opacity: 0, scale: 0.85 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
   };
 
   return (
-    <div className="w-full font-sans text-[#0A0A0A] overflow-x-hidden">
+    <div className="w-full font-sans bg-[#030712] text-white overflow-x-hidden selection:bg-cyan-500/30">
       <Helmet>
-        <title>Software Services & Development | Traincape Technology</title>
-        <meta name="description" content="Custom software development that helps you grow, optimize, and maintain your competitive edge in the digital age by fusing innovation with technology." />
-        <meta name="keywords" content="Software Services & Development, Software Development, Software Development Services, Software Development Company, Traincape Technology, Custom Software Development, E-commerce Software Development, CMS Development, CRM Development" />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.traincapetech.in/services/software-services" />
-      </Helmet>
-      {/* ========================================
-        HERO SECTION: Fixed Color Interpolation
-        ========================================
-      */}
-      <section
-        className="relative text-white py-32 px-6 md:px-16 flex flex-col md:flex-row items-center justify-between overflow-hidden min-h-[70vh]"
-        style={{
-          backgroundImage: `url(${banner})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          alt: "Software Services & Development banner",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#020b18]/95 via-[#081a30]/85 to-black/90"></div>
-
-        {/* Animated Glow Effect */}
-        <motion.div
-          className="absolute w-[150%] h-[150%] top-[-25%] left-[-25%] blur-3xl"
-          style={{ backgroundImage: `radial-gradient(circle, ${PRIMARY_COLOR}1A, transparent)` }} // FIX
-          animate={{ rotate: [0, 360] }}
-          transition={{ repeat: Infinity, duration: 60, ease: "linear" }}
+        <title>
+          IT Services — SaaS CRM, Telemedicine Apps, SEO & Web Development |
+          Traincape Technology
+        </title>
+        <meta
+          name="description"
+          content="We build SaaS-level CRM, telemedicine mobile apps, high-performance websites, and implement full-proof SEO strategies. Enterprise software development by Traincape Technology."
         />
+        <meta
+          name="keywords"
+          content="SaaS CRM Development, Telemedicine App, Mobile App Development, Full SEO, Custom Website, Software Services, Traincape Technology"
+        />
+        <meta name="robots" content="index, follow" />
+        <link
+          rel="canonical"
+          href="https://www.traincapetech.in/services/software-services"
+        />
+      </Helmet>
 
-        <div className="relative z-10 max-w-2xl mb-12 md:mb-0">
-          <motion.p
-            className="text-sm font-semibold uppercase tracking-widest"
-            style={{ color: SECONDARY_COLOR }} // FIX
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-          >
-            End-to-End Development Solutions
-          </motion.p>
-          <motion.h1
-            className="text-4xl md:text-6xl font-extrabold leading-tight mt-3"
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.2 }}
-          >
-            Crafting Scalable, <br />
-            <span style={{ color: PRIMARY_COLOR }}>
-              Future-Ready Software
-            </span> {/* FIX */}
-          </motion.h1>
-          <motion.p
-            className="mt-6 max-w-xl text-gray-300 text-base md:text-lg leading-relaxed"
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.4 }}
-          >
-            We design, develop, and deploy high-performance, secure software
-            that drives innovation and empowers your digital transformation.
-          </motion.p>
-          <motion.button
-            className="mt-10 text-white font-bold py-4 px-10 rounded-xl transition-all duration-300 shadow-xl text-lg"
-            style={{ backgroundColor: SECONDARY_COLOR }} // FIX
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 10px 20px rgba(255, 165, 0, 0.4)",
+      {/* ════════════════════════════════════════════════════════
+          HERO SECTION — Animated Gradient Mesh + 3D Stats Card
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Animated gradient mesh background */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[#030712]" />
+          <motion.div
+            className="absolute top-[-40%] left-[-20%] w-[80%] h-[120%] rounded-full blur-[120px] opacity-30"
+            style={{
+              background: "radial-gradient(circle, #06b6d4, transparent)",
             }}
-            variants={fadeIn}
-            initial="initial"
-            animate="animate"
-            transition={{ delay: 0.6 }}
-            onClick={() => navigate("/contact-us")}
-          >
-            Start Your Project Today 🚀
-          </motion.button>
+            animate={{ x: [0, 80, 0], y: [0, -40, 0], scale: [1, 1.2, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute bottom-[-30%] right-[-20%] w-[70%] h-[100%] rounded-full blur-[120px] opacity-25"
+            style={{
+              background: "radial-gradient(circle, #8b5cf6, transparent)",
+            }}
+            animate={{ x: [0, -60, 0], y: [0, 50, 0], scale: [1, 1.15, 1] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute top-[20%] right-[10%] w-[40%] h-[60%] rounded-full blur-[100px] opacity-20"
+            style={{
+              background: "radial-gradient(circle, #ec4899, transparent)",
+            }}
+            animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          />
+          {/* Grid pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
         </div>
 
+        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-32 flex flex-col lg:flex-row items-center gap-16 w-full">
+          {/* Left: Text */}
+          <motion.div
+            className="flex-1 max-w-2xl"
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+          >
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 bg-white/5 border border-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-6"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-xs font-medium text-slate-300 tracking-wider uppercase">
+                We Build Things That Matter
+              </span>
+            </motion.div>
+
+            <motion.h1
+              variants={fadeUp}
+              className="text-4xl sm:text-5xl md:text-7xl font-black leading-[1.1] mb-6"
+            >
+              <span className="block text-white">We Craft</span>
+              <span className="block bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                Digital Empires
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeUp}
+              className="text-lg md:text-xl text-slate-400 leading-relaxed mb-8 max-w-lg"
+            >
+              SaaS-level CRMs. Telemedicine platforms. High-performance
+              websites. Full-proof SEO. We don't just build software — we
+              engineer
+              <span className="text-cyan-400 font-semibold">
+                {" "}
+                competitive advantages
+              </span>
+              .
+            </motion.p>
+
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
+              <motion.button
+                onClick={() => navigate("/contact-us")}
+                className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl font-bold text-lg shadow-2xl shadow-cyan-500/25 overflow-hidden"
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(6,182,212,0.4)",
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  Start Your Project{" "}
+                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-violet-500 to-fuchsia-500"
+                  initial={{ x: "100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <motion.button
+                onClick={() => navigate("/our-services")}
+                className="px-8 py-4 border border-white/20 rounded-xl font-semibold text-slate-300 hover:bg-white/5 hover:border-white/40 transition-all"
+                whileHover={{ scale: 1.03 }}
+              >
+                Explore Services
+              </motion.button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right: 3D Stats Card */}
+          <motion.div
+            className="flex-1 max-w-md w-full"
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{
+              delay: 0.6,
+              duration: 1,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
+          >
+            <TiltCard className="perspective-1000">
+              <div className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl">
+                {/* Glow border */}
+                <div className="absolute -inset-[1px] bg-gradient-to-br from-cyan-500/30 via-transparent to-violet-500/30 rounded-3xl -z-10 blur-sm" />
+
+                <h3 className="text-xl font-bold mb-6 text-white flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center text-sm">
+                    ⚡
+                  </span>
+                  Impact Metrics
+                </h3>
+
+                <div className="grid grid-cols-2 gap-4">
+                  {stats.map((stat, i) => (
+                    <StatCard key={i} stat={stat} />
+                  ))}
+                </div>
+
+                <div className="mt-6 pt-5 border-t border-white/5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex -space-x-2">
+                      {[
+                        "bg-cyan-500",
+                        "bg-violet-500",
+                        "bg-fuchsia-500",
+                        "bg-emerald-500",
+                      ].map((c, i) => (
+                        <div
+                          key={i}
+                          className={`w-8 h-8 rounded-full ${c} border-2 border-[#030712] flex items-center justify-center text-[10px] font-bold`}
+                        >
+                          {["R", "P", "M", "A"][i]}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-slate-500">
+                      Trusted by 200+ companies worldwide
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </TiltCard>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
         <motion.div
-          className="relative z-10 w-full md:w-5/12 flex justify-center"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.8, duration: 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ opacity: heroOpacity }}
         >
-          <DotLottieReact
-            src="https://lottie.host/e257c706-e7e3-477d-8f35-b2861e68c460/Jk99120H9g.lottie"
-            autoplay
-            loop
-            style={{ width: "100%", maxWidth: "450px" }}
-            alt="Software Services & Development Lottie Animation"
-          />
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center pt-2">
+            <motion.div
+              className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </div>
         </motion.div>
       </section>
 
-
-      {/* ========================================
-        CORE SERVICES / SOLUTIONS
-        ========================================
-      */}
-      <section className="bg-[#0A0A0A] py-20 px-6 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <p
-            className="text-sm font-semibold uppercase tracking-widest text-center mb-3"
-            style={{ color: SECONDARY_COLOR }} // FIX
+      {/* ════════════════════════════════════════════════════════
+          SERVICES — Bento Grid with Glassmorphism Cards
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
           >
-            What We Build
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center mb-12">
-            Our Specialized Software Solutions & Services
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {solutions.map((service, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-[#111827] rounded-xl p-8 shadow-2xl transition-all duration-300 border-l-4 border-l-transparent"
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 10px 30px rgba(0, 174, 239, 0.2)",
-                  borderColor: PRIMARY_COLOR, // FIX dynamic style
-                }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: idx * 0.1 }}
-                alt={`${service.title} service`}
-              >
-                <div
-                  className="w-12 h-12 flex items-center justify-center rounded-full mb-4"
-                  style={{ backgroundColor: PRIMARY_COLOR }} // FIX
-                >
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {service.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================
-        NEW SECTION: CORE DEVELOPMENT FOCUS
-        ========================================
-      */}
-      <section className="bg-white py-20 px-6 md:px-16 text-[#0A0A0A]">
-        <div className="max-w-6xl mx-auto text-center">
-          <p
-            className="text-sm font-semibold uppercase tracking-widest mb-3"
-            style={{ color: SECONDARY_COLOR }}
-          >
-            Our Development DNA
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-12">
-            Engineering Excellence for Tomorrow's Challenges
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {developmentFocus.map((focus, idx) => (
-              <motion.div
-                key={idx}
-                className="p-8 border-t-4 rounded-xl shadow-lg bg-gray-50 transition-all duration-300 hover:shadow-xl"
-                style={{ borderColor: focus.icon.props.color }} // Use icon color for border
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: idx * 0.15 }}
-                alt={`${focus.title} focus`}
-              >
-                <div className="flex justify-center mb-4">{focus.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{focus.title}</h3>
-                <p className="text-gray-600 text-sm">{focus.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* ========================================
-        DEVELOPMENT PROCESS: Fixed Color Interpolation
-        ========================================
-      */}
-      <section className="bg-[#F4F9FF] py-20 px-6 md:px-16">
-        <div className="max-w-6xl mx-auto">
-          <p
-            className="text-sm font-semibold uppercase tracking-widest text-center mb-3"
-            style={{ color: SECONDARY_COLOR }} // FIX
-          >
-            Our Methodology
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#0A0A0A] text-center mb-12">
-            A Transparent, Agile Development Lifecycle
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
-            {processSteps.map((item, idx) => (
-              <motion.div
-                key={idx}
-                className="relative p-6 bg-white rounded-xl shadow-lg border-t-4 border-t-transparent transition-all duration-300"
-                whileHover={{ y: -5, borderColor: PRIMARY_COLOR }} // FIX dynamic style
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ delay: idx * 0.1 }}
-                alt={`${item.title} step`}
-              >
-                <div
-                  className="absolute -top-6 left-6 w-12 h-12 flex items-center justify-center rounded-full text-white text-xl font-bold shadow-xl"
-                  style={{ backgroundColor: PRIMARY_COLOR }} // FIX
-                >
-                  {item.step}
-                </div>
-                <h4 className="text-lg font-bold mt-2 mb-2 text-[#0A0A0A]">
-                  {item.title}
-                </h4>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {item.desc}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================
-        TESTIMONIALS (Minor refinement)
-        ========================================
-      */}
-      <section className="bg-[#0A0A0A] text-white py-20 px-6 md:px-16 text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-12">
-          What Our Clients Say
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {testimonials.map((item, idx) => (
-            <motion.div
-              key={idx}
-              className="bg-[#111827] rounded-xl shadow-2xl p-8 border border-[#1E293B] transition-all duration-300"
-              whileHover={{ y: -5, borderColor: PRIMARY_COLOR }} // FIX dynamic style
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ delay: idx * 0.15 }}
-              alt={`${item.name} testimonial`}
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan-400 mb-3"
             >
-              <p className="text-gray-300 mb-6 italic leading-relaxed">
-                "{item.text}"
-              </p>
-              <h4 className="font-bold text-lg" style={{ color: PRIMARY_COLOR }}>
-                — {item.name}
-              </h4> {/* FIX */}
-            </motion.div>
-          ))}
+              What We Build
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-black mb-4"
+            >
+              Solutions That{" "}
+              <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
+                Dominate
+              </span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-slate-500 max-w-2xl mx-auto text-lg"
+            >
+              From SaaS CRM platforms to HIPAA-compliant telemedicine apps — we
+              deliver production-grade software with bulletproof SEO baked in.
+            </motion.p>
+          </motion.div>
+
+          {/* Bento Grid */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-[minmax(220px,auto)]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={stagger}
+          >
+            {services.map((s, i) => {
+              const spanClass =
+                s.size === "lg"
+                  ? "lg:col-span-2"
+                  : s.size === "md"
+                    ? "lg:col-span-2"
+                    : "";
+              return (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className={`group relative bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-2xl p-7 overflow-hidden hover:border-white/20 transition-all duration-500 ${spanClass}`}
+                  whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                >
+                  {/* Gradient glow on hover */}
+                  <div
+                    className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${s.gradient} rounded-full blur-[80px] opacity-0 group-hover:opacity-20 transition-opacity duration-700`}
+                  />
+
+                  <div
+                    className={`w-12 h-12 rounded-xl bg-gradient-to-br ${s.gradient} flex items-center justify-center text-white mb-5 shadow-lg`}
+                  >
+                    {s.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {s.desc}
+                  </p>
+
+                  {/* Bottom gradient line on hover */}
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r ${s.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}
+                  />
+                </motion.div>
+              );
+            })}
+          </motion.div>
         </div>
       </section>
 
-      {/* ========================================
-        CALL TO ACTION (Final Polish)
-        ========================================
-      */}
-      <section className="bg-gradient-to-r from-[#020b18] via-[#081a30] to-[#020b18] text-white py-24 px-6 md:px-16 text-center">
-        <motion.h2
-          className="text-3xl md:text-5xl font-extrabold mb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-        >
-          Ready to Build Your Digital Future?
-        </motion.h2>
-        <motion.p
-          className="max-w-3xl mx-auto text-gray-300 text-lg mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          Let's discuss your project and create intelligent, scalable software
-          that gives you a competitive edge.
-        </motion.p>
-        <motion.button
-          className="text-white font-bold py-4 px-12 rounded-xl text-xl shadow-2xl transition-all duration-300"
+      {/* ════════════════════════════════════════════════════════
+          INDUSTRIES WE SERVE — Scrolling Showcase
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-24 px-6 md:px-12 overflow-hidden">
+        {/* Background accent */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-500/5 blur-[100px]" />
 
-          style={{ backgroundColor: SECONDARY_COLOR }} // FIX
-          whileHover={{
-            scale: 1.05,
-            boxShadow: "0 10px 30px rgba(255, 165, 0, 0.6)",
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-semibold uppercase tracking-[0.2em] text-violet-400 mb-3"
+            >
+              Industries We Transform
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-black mb-4"
+            >
+              Expertise Across{" "}
+              <span className="bg-gradient-to-r from-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+                Verticals
+              </span>
+            </motion.h2>
+          </motion.div>
 
-          }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => navigate("/contact-us")}
+          <motion.div
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={stagger}
+          >
+            {industries.map((ind, i) => (
+              <motion.div
+                key={i}
+                variants={scaleIn}
+                className="group relative bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-center hover:border-white/20 transition-all duration-500 cursor-default"
+                whileHover={{ y: -6, scale: 1.03 }}
+              >
+                <div
+                  className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${ind.color} flex items-center justify-center text-white mb-4 shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300`}
+                >
+                  {ind.icon}
+                </div>
+                <p className="text-sm font-semibold text-slate-400 group-hover:text-white transition-colors">
+                  {ind.name}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          DEVELOPMENT PROCESS — Vertical Timeline
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 px-6 md:px-12">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            className="text-center mb-20"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400 mb-3"
+            >
+              Our Methodology
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-black mb-4"
+            >
+              Engineering{" "}
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                Excellence
+              </span>
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="text-slate-500 max-w-xl mx-auto text-lg"
+            >
+              A transparent, agile lifecycle from concept to scale.
+            </motion.p>
+          </motion.div>
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical line */}
+            <div className="absolute left-[28px] md:left-1/2 md:-translate-x-[1px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-cyan-500 via-violet-500 to-fuchsia-500 opacity-20" />
+
+            {process.map((p, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <motion.div
+                  key={i}
+                  className={`relative flex items-start mb-14 last:mb-0 ${isLeft ? "md:flex-row" : "md:flex-row-reverse"}`}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={isLeft ? fadeLeft : fadeRight}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-[20px] md:left-1/2 md:-translate-x-1/2 z-10">
+                    <motion.div
+                      className="w-[18px] h-[18px] rounded-full bg-gradient-to-br from-cyan-400 to-violet-400 border-4 border-[#030712] shadow-lg shadow-cyan-500/20"
+                      whileInView={{ scale: [0, 1.3, 1] }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    />
+                  </div>
+
+                  {/* Content card */}
+                  <div
+                    className={`ml-16 md:ml-0 md:w-[calc(50%-40px)] ${isLeft ? "md:pr-0" : "md:pl-0"}`}
+                  >
+                    <div className="group bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:border-white/15 transition-all duration-500 hover:bg-white/[0.04]">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-3xl font-black bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
+                          {p.step}
+                        </span>
+                        <div className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center text-cyan-400 text-sm">
+                          {p.icon}
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2">
+                        {p.title}
+                      </h3>
+                      <p className="text-sm text-slate-500 leading-relaxed">
+                        {p.desc}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          WHY CHOOSE US — Feature Highlights
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-24 px-6 md:px-12">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/[0.02] to-transparent" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-semibold uppercase tracking-[0.2em] text-fuchsia-400 mb-3"
+            >
+              Why Traincape
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-black mb-4"
+            >
+              Built Different,{" "}
+              <span className="bg-gradient-to-r from-fuchsia-400 to-cyan-400 bg-clip-text text-transparent">
+                By Design
+              </span>
+            </motion.h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={stagger}
+          >
+            {[
+              {
+                icon: <FaCode size={22} />,
+                title: "Clean Code Architecture",
+                desc: "Microservices, SOLID principles, and test-driven development for maintainable, scalable codebases.",
+                color: "cyan",
+              },
+              {
+                icon: <MdSpeed size={22} />,
+                title: "Performance Obsessed",
+                desc: "Sub-second load times, optimized queries, CDN distribution, and lazy loading for peak performance.",
+                color: "violet",
+              },
+              {
+                icon: <FaShieldAlt size={22} />,
+                title: "Security First",
+                desc: "OWASP compliance, data encryption at rest and transit, regular penetration testing, and audit trails.",
+                color: "emerald",
+              },
+              {
+                icon: <FaSearch size={22} />,
+                title: "SEO-Driven Development",
+                desc: "Schema markup, SSR/SSG, Core Web Vitals optimization, and technical SEO built into every project.",
+                color: "amber",
+              },
+              {
+                icon: <FaTabletAlt size={22} />,
+                title: "Mobile-First Thinking",
+                desc: "Responsive design, PWA capabilities, and native mobile development for seamless cross-device experience.",
+                color: "fuchsia",
+              },
+              {
+                icon: <MdCloudQueue size={22} />,
+                title: "Cloud-Native Deployment",
+                desc: "Containerized microservices, Kubernetes, CI/CD pipelines, and infrastructure-as-code from day one.",
+                color: "sky",
+              },
+            ].map((f, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="group flex items-start gap-4 bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 hover:border-white/15 transition-all duration-300"
+                whileHover={{ x: 4 }}
+              >
+                <div
+                  className={`w-11 h-11 rounded-xl bg-${f.color}-500/10 flex items-center justify-center text-${f.color}-400 flex-shrink-0 group-hover:bg-${f.color}-500/20 transition-colors`}
+                >
+                  {f.icon}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-white mb-1">
+                    {f.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed">
+                    {f.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          TESTIMONIALS — Auto-play Carousel
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-28 px-6 md:px-12 overflow-hidden">
+        <div className="absolute top-0 left-0 w-[400px] h-[400px] rounded-full bg-fuchsia-500/5 blur-[100px]" />
+
+        <div className="max-w-4xl mx-auto relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={stagger}
+          >
+            <motion.p
+              variants={fadeUp}
+              className="text-sm font-semibold uppercase tracking-[0.2em] text-amber-400 mb-3"
+            >
+              Client Stories
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="text-4xl md:text-5xl font-black"
+            >
+              Voices of{" "}
+              <span className="bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">
+                Trust
+              </span>
+            </motion.h2>
+          </motion.div>
+
+          {/* Carousel */}
+          <div className="relative min-h-[220px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTestimonial}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -30 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white/[0.02] border border-white/[0.08] rounded-3xl p-8 md:p-12 text-center backdrop-blur-sm"
+              >
+                <FaQuoteLeft className="text-3xl text-cyan-500/30 mx-auto mb-6" />
+                <p className="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 italic">
+                  "{testimonials[activeTestimonial].text}"
+                </p>
+                <div>
+                  <p className="font-bold text-white text-lg">
+                    {testimonials[activeTestimonial].name}
+                  </p>
+                  <p className="text-sm text-cyan-400">
+                    {testimonials[activeTestimonial].role}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveTestimonial(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${i === activeTestimonial ? "w-8 bg-gradient-to-r from-cyan-400 to-violet-400" : "w-2 bg-white/20 hover:bg-white/40"}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════
+          CTA — Full-width Gradient with Floating Shapes
+          ════════════════════════════════════════════════════════ */}
+      <section className="relative py-32 px-6 md:px-12 overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/10 via-violet-600/10 to-fuchsia-600/10" />
+
+        {/* Floating shapes */}
+        <motion.div
+          className="absolute top-10 left-[10%] w-20 h-20 rounded-full border border-cyan-500/20"
+          animate={{ y: [-10, 10, -10], rotate: [0, 180, 360] }}
+          transition={{ duration: 12, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-[15%] w-14 h-14 rounded-xl border border-violet-500/20"
+          animate={{ y: [10, -10, 10], rotate: [0, -180, -360] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-[5%] w-8 h-8 rounded-full bg-fuchsia-500/10"
+          animate={{ y: [-20, 20, -20] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+
+        <motion.div
+          className="max-w-4xl mx-auto text-center relative z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={stagger}
         >
-          Schedule a Free Consultation 💬
-        </motion.button>
+          <motion.h2
+            variants={fadeUp}
+            className="text-4xl md:text-6xl font-black mb-6"
+          >
+            Ready to Build
+            <br />
+            <span className="bg-gradient-to-r from-cyan-400 via-violet-400 to-fuchsia-400 bg-clip-text text-transparent">
+              Something Extraordinary?
+            </span>
+          </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            className="text-xl text-slate-400 max-w-2xl mx-auto mb-10"
+          >
+            Let's architect your next digital product — from CRM platforms and
+            telemedicine apps to SEO-optimized web experiences.
+          </motion.p>
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap justify-center gap-5"
+          >
+            <motion.button
+              onClick={() => navigate("/contact-us")}
+              className="group relative px-10 py-5 bg-gradient-to-r from-cyan-500 via-violet-500 to-fuchsia-500 rounded-2xl font-bold text-lg shadow-2xl shadow-violet-500/25 overflow-hidden"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 50px rgba(139,92,246,0.5)",
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                Schedule Free Consultation{" "}
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </span>
+            </motion.button>
+            <motion.button
+              onClick={() => navigate("/our-services")}
+              className="px-10 py-5 border border-white/20 rounded-2xl font-semibold text-slate-300 hover:bg-white/5 hover:border-white/40 transition-all"
+              whileHover={{ scale: 1.03 }}
+            >
+              View All Services
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </section>
     </div>
   );

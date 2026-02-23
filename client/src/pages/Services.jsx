@@ -1,29 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  motion,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import SEOHead from "../components/SEOHead";
+import AdvisorModal from "../components/AdvisorModal";
 
 import cloud from "../assets/Cloud-services.svg";
-import UI from "../assets/UI-development.svg";
 import Digital from "../assets/Digital marketing.svg";
 import Web from "../assets/Web development.svg";
 import Software from "../assets/software-services.svg";
-import softwareDevelopment from "../assets/Software-development-Learnings.svg";
 
 import CloudImg from "../assets/cloud.jpg";
-import UiUx from "../assets/uiux.jpg";
 import DigitalImg from "../assets/digital.jpg";
 import Saas from "../assets/saas.jpg";
 import SoftwareImg from "../assets/software.jpeg";
 import webImg from "../assets/web.png";
-import AdvisorModal from "../components/AdvisorModal";
-
-import { Link } from "react-router-dom";
-
-
 
 import {
   FaReact,
@@ -35,10 +26,14 @@ import {
   FaCloud,
   FaTabletAlt,
   FaBrain,
-  FaCode, // New Icon for Development Focus
-  FaShieldAlt, // New Icon for Security
+  FaCode,
+  FaShieldAlt,
   FaGlobe,
   FaHandshake,
+  FaRocket,
+  FaCogs,
+  FaChartLine,
+  FaArrowRight,
 } from "react-icons/fa";
 import {
   SiMongodb,
@@ -49,617 +44,346 @@ import {
   SiRedux,
   SiGraphql,
 } from "react-icons/si";
-
 import {
   MdOutlineSecurity,
   MdDeveloperMode,
   MdCloudQueue,
-  MdSpeed, // New Icon for Performance
+  MdSpeed,
 } from "react-icons/md";
 import { AiOutlineDeploymentUnit } from "react-icons/ai";
 
 const PRIMARY_COLOR = "#00AEEF"; // Cyan/Blue
 const SECONDARY_COLOR = "#FFA500"; // Orange
 
-// import cloudService from "./CloudServices"; // unused - service route loads CloudServices lazily
-
-/* ---------------------- DATA ---------------------- */
 const servicesData = [
   {
     title: "Cloud Services",
     description:
-      "Cloud services provide computing resources over the internet, allowing users to access and use them on-demand without maintaining the underlying infrastructure. These services offer benefits such as cost optimization, scalability, accessibility, reliability, and innovation.",
+      "Enterprise-grade cloud infrastructure design and deployment. We specialize in AWS, Azure, and Google Cloud to ensure your data stays secure and scalable.",
     image: cloud,
     banner: CloudImg,
   },
-
   {
     title: "Digital Marketing",
     description:
-      "Digital marketing uses online strategies and channels to promote products and services, connecting businesses with customers. Techniques include SEO, PPC, social media, content marketing, and leveraging offline media.",
+      "Data-driven marketing strategies that amplify your brand. From SEO optimization to high-conversion PPC campaigns, we drive measurable growth.",
     image: Digital,
     banner: DigitalImg,
   },
   {
     title: "Web Development",
     description:
-      "Web development involves creating and maintaining websites and web applications. It includes frontend development, backend development, and full-stack development.",
+      "State-of-the-art web applications built for performance. We leverage modern frameworks like React and Next.js to deliver seamless user experiences.",
     image: Web,
     banner: webImg,
   },
   {
-    title: "AI & ML Development",
+    title: "AI & ML Solutions",
     description:
-      "Utilize advanced AI and powerful machine learning solutions to transform operations and deliver real-time insights. Our AI and ML experts leverage cutting-edge technologies to solve complex problems, optimize processes, and drive innovation.",
+      "Intelligent automation and predictive analytics. Harness the power of machine learning to transform raw data into actionable business intelligence.",
     image: Software,
     banner: Saas,
   },
   {
-    title: "Software Services and Development",
+    title: "Software Development",
     description:
-      "Software services include custom software development, web development, mobile app development, cloud computing, quality assurance, software maintenance, and consulting.",
+      "Custom software solutions engineered for complexity. We build robust systems that integrate perfectly with your existing enterprise architecture.",
     image: Software,
     banner: SoftwareImg,
   },
 ];
 
-/* ---------------------- COMPONENT ---------------------- */
+const solutions = [
+  {
+    icon: <MdDeveloperMode size={28} />,
+    title: "Enterprise Web Platforms",
+    desc: "Bespoke SaaS and high-traffic web applications architected for scalability and extreme reliability.",
+  },
+  {
+    icon: <FaTabletAlt size={28} />,
+    title: "Mobile Ecosystems",
+    desc: "Seamless iOS and Android experiences that connect customers with your brand on every device.",
+  },
+  {
+    icon: <MdCloudQueue size={28} />,
+    title: "Cloud Native Systems",
+    desc: "Migrate and modernize with confidence. We build serverless and microservices-based architectures.",
+  },
+  {
+    icon: <FaBrain size={28} />,
+    title: "Integrative AI Implementation",
+    desc: "Bringing generative AI and traditional ML into your products to automate tasks and delight users.",
+  },
+  {
+    icon: <AiOutlineDeploymentUnit size={28} />,
+    title: "Infrastructure as Code",
+    desc: "Deterministic, automated, and secure infrastructure deployment using Terraform and Ansible.",
+  },
+  {
+    icon: <MdOutlineSecurity size={28} />,
+    title: "Modern Security Audits",
+    desc: "Zero-trust architecture and comprehensive penetration testing to harden your digital perimeter.",
+  },
+];
+
 const Services = () => {
   const navigate = useNavigate();
-
   const [advisorOpen, setAdvisorOpen] = useState(false);
-  const servicesSectionRef = useRef(null);
-
-  // ---------- ADD: mobile detection (responsive) ----------
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768); // adjust breakpoint if you prefer
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
-  }, []);
-  // ------------------------------------------------------
-
-
+  const { scrollYProgress } = useScroll();
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const handleClick = (service) => {
-    const slug = service.title.toLowerCase().replace(/\s*&\s*/g, "-and-").replace(/\s+/g, "-");
-    navigate(`/service-detail/${slug}`); // ✅ must be ${slug}
-  };
-  const handleExploreClick = () => {
-    servicesSectionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
+    const slug = service.title
+      .toLowerCase()
+      .replace(/\s*&\s*/g, "-and-")
+      .replace(/\s+/g, "-");
+    navigate(`/service-detail/${slug}`);
   };
 
-  const techs = [
-    { icon: <FaReact size={40} color="#61DBFB" />, name: "React.js" },
-    { icon: <SiNextdotjs size={40} color="#ffffff" />, name: "Next.js" },
-    { icon: <FaNodeJs size={40} color="#8CC84A" />, name: "Node.js" },
-    { icon: <FaPython size={40} color="#FFD43B" />, name: "Python" },
-    { icon: <FaJava size={40} color="#f89820" />, name: "Java" },
-    { icon: <SiTypescript size={40} color="#3178C6" />, name: "TypeScript" },
-    { icon: <SiRedux size={40} color="#764ABC" />, name: "Redux" },
-    { icon: <SiGraphql size={40} color="#E10098" />, name: "GraphQL" },
-    { icon: <SiMongodb size={40} color="#4DB33D" />, name: "MongoDB" },
-    { icon: <SiPostgresql size={40} color="#336791" />, name: "PostgreSQL" },
-    { icon: <FaAws size={40} color="#FF9900" />, name: "AWS" },
-    { icon: <FaDocker size={40} color="#0db7ed" />, name: "Docker" },
-    { icon: <SiKubernetes size={40} color="#326ce5" />, name: "Kubernetes" },
-    { icon: <FaCloud size={40} color="#007FFF" />, name: "Azure" },
-  ];
-
-  const metrics = [
-    {
-      value: "500+",
-      unit: "Projects Completed",
-      icon: <MdDeveloperMode size={50} color={PRIMARY_COLOR} />,
-    },
-    {
-      value: "98%",
-      unit: "Client Retention Rate",
-      icon: <FaHandshake size={50} color={SECONDARY_COLOR} />,
-    },
-    {
-      value: "5+",
-      unit: "Years in the Industry",
-      icon: <SiMongodb size={50} color={PRIMARY_COLOR} />,
-    },
-    {
-      value: "24/7",
-      unit: "Global Support Coverage",
-      icon: <FaGlobe size={50} color={SECONDARY_COLOR} />,
-    },
-  ];
-
-  // Renamed to 'solutions' for a broader 'Service' feel
-  const solutions = [
-    {
-      icon: <MdDeveloperMode size={30} className="text-white" />,
-      title: "Custom Web Application Development", // More specific
-      desc: "Building complex, feature-rich web platforms and SaaS solutions from the ground up using modern frameworks.",
-    },
-    {
-      icon: <FaTabletAlt size={30} className="text-white" />,
-      title: "Cross-Platform Mobile App Services",
-      desc: "Native and cross-platform mobile solutions for iOS and Android, focusing on performance, speed, and UX.",
-    },
-    {
-      icon: <MdCloudQueue size={30} className="text-white" />,
-      title: "Cloud & DevOps Infrastructure",
-      desc: "Expertise in AWS, Azure, and Google Cloud, ensuring seamless deployment, scaling, and infrastructure as code.",
-    },
-    {
-      icon: <FaBrain size={30} className="text-white" />,
-      title: "AI/ML & Data Integration Services",
-      desc: "Embedding intelligent features like recommendation engines, data analysis, and predictive modeling for business intelligence.",
-    },
-    {
-      icon: <AiOutlineDeploymentUnit size={30} className="text-white" />,
-      title: "Enterprise System Integration",
-      desc: "Developing robust, secure, and integrated systems for large-scale business operations (ERP, CRM) and connecting disparate systems.",
-    },
-    {
-      icon: <MdOutlineSecurity size={30} className="text-white" />,
-      title: "Software Modernization & Audit",
-      desc: "Migrating legacy systems to modern, scalable architectures like microservices and serverless, and performing security audits.",
-    },
-  ];
+  const fadeInUp = {
+    initial: { opacity: 0, y: 30 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6 },
+  };
 
   return (
-    <>
+    <div className="bg-[#020617] text-slate-200 min-h-screen font-['Inter'] selection:bg-cyan-500/30">
       <SEOHead
-        title="IT Services | Web, Cloud, CRM & Mobile | Traincape Technology"
-        description="End-to-end IT services: web development, maintenance, CRM development, mobile apps, and cloud services. Build faster with a reliable engineering partner."
+        title="Enterprise IT Services | Traincape Technology"
+        description="Scalable web development, cloud migration, and AI solutions for modern enterprises. Build faster with a reliable engineering partner."
         canonical="https://www.traincapetech.in/our-services"
         ogType="website"
       />
 
-      <div className="bg-gray-50">
-        {/* HERO SECTION */}
-        <section
-          ref={servicesSectionRef}
-          className="bg-[#020911] text-white py-20 px-4 sm:px-6 md:px-12 lg:px-16"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="text-[#00AEEF] font-semibold tracking-wider uppercase text-sm">
-                What We Offer
-              </span>
-              <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-6">
-                Our Services
-              </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Comprehensive technology solutions tailored to drive your business growth.
-              </p>
-            </div>
+      {/* HERO SECTION - REFINED GLASSMORPHISM */}
+      <section className="relative pt-32 pb-24 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-cyan-600/10 rounded-full blur-[120px]" />
+          <div className="absolute bottom-[20%] right-[-5%] w-[35%] h-[35%] bg-blue-600/10 rounded-full blur-[100px]" />
+        </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {servicesData.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AEEF] transition-all duration-300 group flex flex-col"
-                >
-                  <div className="h-56 overflow-hidden relative bg-[#0a1120]">
-                    <img
-                      src={service.banner}
-                      alt={service.title}
-                      className="w-full h-full object-contain p-2 transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-60"></div>
-                  </div>
-
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00AEEF] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                      {service.description}
-                    </p>
-                    <button
-                      onClick={() => handleClick(service)}
-                      className="inline-flex items-center text-[#00AEEF] font-semibold hover:text-[#33c9ff] transition-colors mt-auto"
-                    >
-                      Learn More <span className="ml-2">→</span>
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-        {/* <div className="relative w-full h-[80vh]">
-          <div className="absolute inset-0 bg-black/50 z-10"></div>
-          <video
-            className="h-full w-full object-cover"
-            src="https://videos.pexels.com/video-files/9667569/9667569-hd_1920_1080_25fps.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-          ></video>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-20">
-            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
-              Our IT Services
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block py-1 px-4 rounded-full bg-cyan-400/10 border border-cyan-400/20 text-cyan-400 text-sm font-semibold tracking-wide uppercase mb-6">
+              Engineering Excellence
+            </span>
+            <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
+              Future-Proofing Your <br className="hidden md:block" /> Digital
+              Infrastructure
             </h1>
-            <p className="text-white text-lg md:text-xl max-w-3xl drop-shadow-md">
-              Web & app development, cloud enablement, and CRM solutions designed to help your business scale securely.
+            <p className="max-w-3xl mx-auto text-xl text-slate-400 leading-relaxed mb-10">
+              We bridge the gap between complex engineering challenges and
+              seamless digital experiences, delivering scalable architecture
+              that drives enterprise growth.
             </p>
-            <div className="w-full flex items-center justify-center gap-10 mt-6">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
-                onClick={handleExploreClick}
-                variant="outlined"
-                sx={{
-                  backgroundColor: "white",
-                  color: "black",
-                  borderColor: "white",
-                  fontSize: "1.1rem",
-                  padding: "7px 20px",
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  "&:hover": {
-                    backgroundColor: "#f1f1f1",
-                    borderColor: "#f1f1f1",
-                  },
-                }}
+                onClick={() => navigate("/contact-us")}
+                variant="contained"
+                className="w-full sm:w-auto !bg-cyan-500 hover:!bg-cyan-400 !text-slate-900 !px-8 !py-4 !rounded-xl !text-lg !font-bold !normal-case !shadow-lg !shadow-cyan-500/20"
               >
-                Explore
+                Inquire Solutions
               </Button>
               <Button
-                onClick={() => navigate("/training")}
+                onClick={() => setAdvisorOpen(true)}
                 variant="outlined"
-                sx={{
-                  color: "white",
-                  borderColor: "white",
-                  fontSize: "1.1rem",
-                  padding: "7px 20px",
-                  textTransform: "none",
-                  borderRadius: "8px",
-                  "&:hover": {
-                    backgroundColor: "rgba(255,255,255,0.12)",
-                    borderColor: "white",
-                  },
-                }}
+                className="w-full sm:w-auto !border-slate-700 !text-white hover:!bg-white/5 !px-8 !py-4 !rounded-xl !text-lg !font-bold !normal-case"
               >
-                Explore Training
+                Scientific Advisor
               </Button>
             </div>
-          </div>
-        </div> */}
-
-        {/* TRAINING SERVICES OVERVIEW */}
-        <section className="max-w-7xl mx-auto px-4 md:px-10 py-16">
-          <div className="text-center mb-10">
-            <p className="text-sm font-semibold uppercase tracking-widest text-gray-500">
-              IT Training
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-              Upskill with Job‑Ready Training Programs
-            </h2>
-            <p className="mt-3 text-gray-600 max-w-3xl mx-auto">
-              From certification prep to skill-based programs, we help individuals and teams build practical capability with
-              expert-led sessions and hands-on projects.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                title: "Certification Training",
-                desc: "Structured programs aligned to leading certification paths with exam guidance.",
-              },
-              {
-                title: "Skill-Based Learning",
-                desc: "Hands-on training for real-world outcomes in cloud, security, and development.",
-              },
-              {
-                title: "Corporate Training",
-                desc: "Customized training plans for teams with measurable skill progression and support.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-                <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
-                <p className="mt-2 text-gray-600">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-            <Button
-              onClick={() => navigate("/training")}
-              variant="contained"
-              sx={{
-                backgroundColor: PRIMARY_COLOR,
-                textTransform: "none",
-                borderRadius: "10px",
-                "&:hover": { backgroundColor: "#0099d4" },
-              }}
-            >
-              Browse Training
-            </Button>
-            <Button
-              onClick={() => setAdvisorOpen(true)}
-              variant="outlined"
-              sx={{
-                textTransform: "none",
-                borderRadius: "10px",
-              }}
-            >
-              Talk to an Expert
-            </Button>
-          </div>
-        </section>
-
-        {/* ========================================
-        METRICS / ACHIEVEMENTS (Enhanced)
-        ========================================
-      */}
-        <section className="bg-[#020911] py-20 px-6 md:px-16 text-center pt-20 mt-12 mb-12 ml-4 mr-4 rounded-3xl">
-          <div className="max-w-6xl mx-auto">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#FFA500] mb-3">
-              Our Track Record
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-white">
-              Results That Speak Volumes
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-8">
-              {metrics.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  className="flex flex-col items-center bg-[#111827] p-8 rounded-2xl shadow-xl border-b-4 border-b-transparent transition-all duration-300 transform group"
-                  whileHover={{
-                    y: -8,
-                    scale: 1.05,
-                    borderColor: PRIMARY_COLOR,
-                  }} // FIX dynamic style
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <div className="w-16 h-16 flex items-center justify-center mb-4 text-[#00AEEF] transition-all duration-300 group-hover:scale-110">
-                    {item.icon}
-                  </div>
-                  <p className="mt-4 text-4xl md:text-5xl font-extrabold text-[#FFA500]">
-                    {item.value}
-                  </p>
-                  <p className="mt-1 text-sm text-gray-400 font-medium uppercase tracking-wide">
-                    {item.unit}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ========================================
-                TECHNOLOGIES CAROUSEL (Two Rows, Different Icons)
-              ======================================== */}
-        <section className="bg-[#020911] text-white py-20 px-6 md:px-16 overflow-hidden relative mb-20 pt-20 mt-18">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-10">
-            Technologies We Excel In
-          </h2>
-
-          {/* Top Row: Right to Left */}
-          <motion.div
-            className="flex gap-8 w-max mb-8"
-            style={{ width: "max-content" }}
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
-          >
-            {[...techs, ...techs].map((tech, idx) => (
-              <div
-                key={idx}
-                className="bg-[#111827] py-6 px-8 rounded-xl border border-[#1E293B] flex flex-col items-center min-w-[100px]"
-              >
-                {tech.icon}
-                <p className="text-xs mt-2">{tech.name}</p>
-              </div>
-            ))}
           </motion.div>
+        </div>
+      </section>
 
-          {/* Bottom Row: Left to Right */}
-          <motion.div
-            className="flex gap-8 w-max"
-            style={{ width: "max-content" }}
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
-          >
-            {[
-              { icon: <FaCode size={40} color="#00AEEF" />, name: "DevOps" },
-              {
-                icon: <FaShieldAlt size={40} color="#FFA500" />,
-                name: "Security",
-              },
-              {
-                icon: <MdSpeed size={40} color="#00AEEF" />,
-                name: "Performance",
-              },
-              { icon: <FaBrain size={40} color="#FF6F61" />, name: "AI/ML" },
-              {
-                icon: <FaTabletAlt size={40} color="#007FFF" />,
-                name: "Mobile",
-              },
-              { icon: <FaAws size={40} color="#FF9900" />, name: "AWS Cloud" },
-              {
-                icon: <SiKubernetes size={40} color="#326ce5" />,
-                name: "Kubernetes",
-              },
-              {
-                icon: <SiPostgresql size={40} color="#336791" />,
-                name: "PostgreSQL",
-              },
-              {
-                icon: <SiGraphql size={40} color="#E10098" />,
-                name: "GraphQL",
-              },
-              {
-                icon: <SiMongodb size={40} color="#4DB33D" />,
-                name: "MongoDB",
-              },
-            ].map((tech, idx) => (
-              <div
-                key={idx}
-                className="bg-[#111827] py-6 px-8 rounded-xl border border-[#1E293B] flex flex-col items-center min-w-[100px]"
-              >
-                {tech.icon}
-                <p className="text-xs mt-2">{tech.name}</p>
-              </div>
-            ))}
-          </motion.div>
-        </section>
-
-        {/* CARDS */}
-        {/* ScrollStack Component */}
-        {/* OUR SERVICES - GRID LAYOUT */}
-        {/* <section
-          ref={servicesSectionRef}
-          className="bg-[#020911] text-white py-20 px-4 sm:px-6 md:px-12 lg:px-16"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <span className="text-[#00AEEF] font-semibold tracking-wider uppercase text-sm">
-                What We Offer
-              </span>
-              <h2 className="text-3xl md:text-5xl font-bold mt-2 mb-6">
-                Our Services
+      {/* CORE SERVICES GRID */}
+      <section className="py-24 px-6 bg-slate-900/40 backdrop-blur-sm border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+            <div className="max-w-2xl">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+                Service Verticals
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-                Comprehensive technology solutions tailored to drive your business growth.
+              <p className="text-slate-400 text-lg italic border-l-4 border-cyan-500 pl-6">
+                Specialized divisions focused on delivering high-impact
+                technological interventions.
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {servicesData.map((service, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AEEF] transition-all duration-300 group flex flex-col"
-                >
-                  <div className="h-48 overflow-hidden relative">
-                    <img
-                      src={service.banner}
-                      alt={service.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-60"></div>
-                  </div>
-
-                  <div className="p-6 flex flex-col flex-grow">
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00AEEF] transition-colors">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
-                      {service.description}
-                    </p>
-                    <button
-                      onClick={() => handleClick(service)}
-                      className="inline-flex items-center text-[#00AEEF] font-semibold hover:text-[#33c9ff] transition-colors mt-auto"
-                    >
-                      Learn More <span className="ml-2">→</span>
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section> */}
-
-        {/* ========================================
-                CORE SERVICES / SOLUTIONS
-                ========================================
-              */}
-        <section className="bg-[#0A0A0A] py-20 px-6 md:px-16  mb-24">
-          <div className="max-w-6xl mx-auto">
-            <p
-              className="text-sm font-semibold uppercase tracking-widest text-center mb-3"
-              style={{ color: SECONDARY_COLOR }} // FIX
+            <motion.div
+              whileHover={{ x: 5 }}
+              className="hidden md:flex items-center gap-2 text-cyan-400 font-semibold cursor-pointer"
             >
-              What We Build
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white text-center mb-12">
-              Our Specialized Software Solutions & Services
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {solutions.map((service, idx) => (
-                <motion.div
-                  key={idx}
-                  className="bg-[#111827] rounded-xl p-8 shadow-2xl transition-all duration-300 border-l-4 border-l-transparent"
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 10px 30px rgba(0, 174, 239, 0.2)",
-                    borderColor: PRIMARY_COLOR, // FIX dynamic style
-                  }}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ delay: idx * 0.1 }}
-                >
-                  <div
-                    className="w-12 h-12 flex items-center justify-center rounded-full mb-4"
-                    style={{ backgroundColor: PRIMARY_COLOR }} // FIX
-                  >
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    {service.desc}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
+              View Case Studies <FaArrowRight size={14} />
+            </motion.div>
           </div>
-        </section>
 
-        <section className="bg-gradient-to-r from-[#020b18] via-[#081a30] to-[#020b18] text-white py-24 px-6 md:px-16 text-center  mb-20">
-          <motion.h2
-            className="text-3xl md:text-5xl font-extrabold mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-          >
-            Ready to Build Your Digital Future?
-          </motion.h2>
-          <motion.p
-            className="max-w-3xl mx-auto text-gray-300 text-lg mb-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
-            Let's discuss your project and create intelligent, scalable software
-            that gives you a competitive edge.
-          </motion.p>
-          <motion.button
-            className="text-white font-bold py-4 px-12 rounded-xl text-xl shadow-2xl transition-all duration-300"
-            onClick={() => navigate("/contact-us")}
-            style={{ backgroundColor: SECONDARY_COLOR }} // FIX
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 10px 30px rgba(255, 165, 0, 0.6)",
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Schedule a Free Consultation 💬
-          </motion.button>
-        </section>
-      </div>
-      <AdvisorModal isOpen={advisorOpen} onClose={() => setAdvisorOpen(false)} />
-    </>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {servicesData.map((service, index) => (
+              <motion.div
+                key={index}
+                {...fadeInUp}
+                transition={{ delay: index * 0.1 }}
+                onClick={() => handleClick(service)}
+                className="group relative bg-slate-800/20 hover:bg-slate-800/40 border border-white/5 hover:border-cyan-500/30 rounded-3xl p-8 cursor-pointer transition-all duration-500 overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0 duration-300">
+                  <FaRocket className="text-cyan-500/50" size={40} />
+                </div>
+
+                <div className="mb-8 w-16 h-16 rounded-2xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-500">
+                  <img
+                    src={service.image}
+                    alt=""
+                    className="w-10 h-10 opacity-80"
+                  />
+                </div>
+
+                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-slate-400 leading-relaxed mb-8 group-hover:text-slate-200 transition-colors">
+                  {service.description}
+                </p>
+
+                <div className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase text-cyan-500/80">
+                  Documentation{" "}
+                  <FaArrowRight
+                    size={12}
+                    className="opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* METRICS - ENTERPRISE STRIP */}
+      <section className="py-20 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+            {[
+              {
+                value: "500+",
+                label: "Successful Deployments",
+                icon: <FaRocket size={24} />,
+              },
+              {
+                value: "98%",
+                label: "SLA Retention",
+                icon: <FaCogs size={24} />,
+              },
+              {
+                value: "15M+",
+                label: "End-Users Served",
+                icon: <FaGlobe size={24} />,
+              },
+              {
+                value: "24/7",
+                label: "Incident Support",
+                icon: <FaShieldAlt size={24} />,
+              },
+            ].map((metric, i) => (
+              <motion.div
+                key={i}
+                {...fadeInUp}
+                transition={{ delay: i * 0.1 }}
+                className="flex flex-col items-center"
+              >
+                <div className="text-cyan-500/30 mb-4">{metric.icon}</div>
+                <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">
+                  {metric.value}
+                </div>
+                <div className="text-slate-500 font-medium uppercase tracking-widest text-xs">
+                  {metric.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SOLUTIONS SECTION */}
+      <section className="py-32 bg-slate-900 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              High-Performance Solutions
+            </h2>
+            <div className="w-20 h-1.5 bg-cyan-500 mx-auto rounded-full mb-8" />
+            <p className="max-w-2xl mx-auto text-slate-400 text-lg">
+              Beyond standard services, we provide foundational technology
+              solutions that solve the industry's most complex challenges.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            {solutions.map((sol, i) => (
+              <motion.div
+                key={i}
+                {...fadeInUp}
+                transition={{ delay: i * 0.1 }}
+                className="flex gap-6 group"
+              >
+                <div className="flex-shrink-0 w-14 h-14 rounded-xl bg-slate-800 text-cyan-400 flex items-center justify-center group-hover:bg-cyan-500 group-hover:text-slate-900 transition-all duration-300">
+                  {sol.icon}
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                    {sol.title}
+                  </h4>
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {sol.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CALL TO ACTION - STUNNING ENDING */}
+      <section className="py-32 px-6 relative overflow-hidden bg-[#020617]">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[50%] -left-[20%] w-[100%] h-[150%] bg-cyan-700/10 rotate-12 blur-[150px]" />
+        </div>
+
+        <div className="max-w-5xl mx-auto relative z-10">
+          <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-md border border-white/10 p-12 md:p-24 rounded-[4rem] text-center shadow-2xl">
+            <h2 className="text-4xl md:text-6xl font-black text-white mb-8">
+              Let's Architect <br /> Your Next Era
+            </h2>
+            <p className="text-slate-300 text-xl max-w-2xl mx-auto mb-12">
+              Join elite enterprises that trust Traincape Technology for
+              mission-critical software and high-performance infrastructure.
+            </p>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                onClick={() => navigate("/contact-us")}
+                variant="contained"
+                className="!bg-white !text-slate-900 !px-12 !py-5 !rounded-2xl !text-xl !font-black !normal-case !shadow-2xl !shadow-white/10"
+              >
+                Start Technical Consultation
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <AdvisorModal
+        isOpen={advisorOpen}
+        onClose={() => setAdvisorOpen(false)}
+      />
+    </div>
   );
 };
 

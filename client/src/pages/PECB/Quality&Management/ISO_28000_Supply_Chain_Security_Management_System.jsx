@@ -169,10 +169,6 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/quality/iso-28000-supply-chain-security-management-system"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         {/* Twitter Meta */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -183,10 +179,6 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
         <meta
           name="twitter:description"
           content="Secure your global supply chain operations with PECB ISO 28000 Certification. Master supply chain risk assessment, security controls, and business continuity planning. Contact us now!"
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

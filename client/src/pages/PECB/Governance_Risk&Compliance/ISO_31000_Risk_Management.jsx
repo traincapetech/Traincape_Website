@@ -357,10 +357,6 @@ const ISO31000RiskManagement = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/governance/iso-31000-training"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -370,10 +366,6 @@ const ISO31000RiskManagement = () => {
         <meta
           name="twitter:description"
           content="Enhance your career with Traincape Technology’s ISO 31000:2018 Certification Course."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </Helmet>

@@ -118,15 +118,6 @@ userRouter.post("/login", async (req, res) => {
 });
 
 userRouter.post("/sendOTPToEmail", async (req, res) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.hostinger.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
   const { email } = req.body;
   try {
     const user = await UserModel.findOne({ email });
@@ -139,13 +130,16 @@ userRouter.post("/sendOTPToEmail", async (req, res) => {
     user.verifyOtp = otp;
     user.verifyOtpExpireAt = Date.now() + 24 * 60 * 60 * 1000;
     await user.save();
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      // to: email,
-      subject: "Password Reset OTP",
-      html: `
-      <!-- Updated HTML template with image -->
+
+    const brevoApiKey = process.env.BREVO_API_KEY;
+    if (!brevoApiKey) {
+      console.error("BREVO_API_KEY not configured");
+      return res
+        .status(500)
+        .json({ success: false, message: "Email service not configured" });
+    }
+
+    const htmlContent = `
 <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px; background-color: #f4f4f4;">
   <div style="max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #ddd;">
       <h2 style="color: #333;">OTP Verification</h2>
@@ -153,24 +147,37 @@ userRouter.post("/sendOTPToEmail", async (req, res) => {
       <div style="font-size: 24px; font-weight: bold; color: #333; padding: 10px 20px; background: #f8f8f8; border: 1px dashed #333; display: inline-block; margin: 10px 0;">
           ${otp}
       </div>
-      <p style="color: #777; font-size: 14px;">This OTP is valid for only 10 minutes. Do not share it with anyone.</p>
+      <p style="color: #777; font-size: 14px;">This OTP is valid for only 24 hours. Do not share it with anyone.</p>
       <p style="color: #777; font-size: 14px;">If you did not request this, please ignore this email.</p>
       <div style="font-size: 12px; color: #aaa; margin-top: 20px;">© 2025 TrainCape Industries</div>
   </div>
 </div>
-`,
-    };
+`;
 
-    // Use Promise for better async handling
-    transporter
-      .sendMail(mailOptions)
-      .then(() => {
-        return res.json({ success: true, message: "OTP sent successfully" });
-      })
-      .catch((error) => {
-        console.error(error);
-        return res.status(500).json({ message: "Error sending email" });
-      });
+    const brevoResponse = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "api-key": brevoApiKey,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "Traincape Technology", email: "hr@traincapetech.in" },
+        to: [{ email: email }],
+        subject: "Password Reset OTP",
+        htmlContent: htmlContent,
+      }),
+    });
+
+    if (!brevoResponse.ok) {
+      const errorData = await brevoResponse.json();
+      console.error("Brevo API error:", errorData);
+      return res
+        .status(500)
+        .json({ success: false, message: "Error sending email via Brevo" });
+    }
+
+    return res.json({ success: true, message: "OTP sent successfully" });
   } catch (error) {
     console.error(error);
     res.json({ success: false, message: "Internal Server Error" });

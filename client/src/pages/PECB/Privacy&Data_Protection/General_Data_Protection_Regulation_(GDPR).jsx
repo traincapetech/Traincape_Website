@@ -180,10 +180,6 @@ const GeneralDataProtectionRegulationGDPR = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/privacy/gdpr-training"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         {/* Twitter Meta */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -194,10 +190,6 @@ const GeneralDataProtectionRegulationGDPR = () => {
         <meta
           name="twitter:description"
           content="Advance your career with GDPR certification from Traincape Technology and gain expertise in data protection, privacy, and compliance frameworks."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

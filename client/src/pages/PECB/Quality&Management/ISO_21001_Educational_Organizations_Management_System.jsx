@@ -171,10 +171,6 @@ const ISO21001EducationalOrganizationsManagementSystem = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/quality/iso-21001-certification"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -185,10 +181,6 @@ const ISO21001EducationalOrganizationsManagementSystem = () => {
         <meta
           name="twitter:description"
           content="Advance your career with PECB ISO 21001 Certification for Educational Organizations. Learn EOMS implementation, auditing, and compliance best practices."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

@@ -75,10 +75,6 @@ const ISO37000CorporateGovernance = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/governance/iso-37000-certification"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta
@@ -88,10 +84,6 @@ const ISO37000CorporateGovernance = () => {
         <meta
           name="twitter:description"
           content="Learn effective governance principles and practices through Traincape Technology’s PECB ISO 37000 certification."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
         />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}

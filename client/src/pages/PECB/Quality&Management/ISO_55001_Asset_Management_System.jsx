@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaCogs, FaAward } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaClock,
+  FaBook,
+  FaCertificate,
+  FaUserTie,
+  FaChartLine,
+  FaCogs,
+  FaAward,
+} from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 const ISO55001AssetManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -14,7 +23,7 @@ const ISO55001AssetManagementSystem = () => {
 
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
 
   const courseDetails = {
@@ -23,26 +32,26 @@ const ISO55001AssetManagementSystem = () => {
     level: "Lead Auditor/Implementer",
     prerequisites: "Understanding of asset management concepts",
     examDuration: "3 hours",
-    certificationBody: "PECB"
+    certificationBody: "PECB",
   };
   // ✅ JSON-LD structured data
   const structuredData = {
     "@context": "https://schema.org/",
     "@type": "Course",
-    "name": "ISO 55001 Asset Management System Certification",
-    "description":
+    name: "ISO 55001 Asset Management System Certification",
+    description:
       "Optimize your asset performance and value with PECB ISO 55001 Certification. Learn to manage assets systematically, reduce costs, and create long-term value. Contact us now!",
-    "provider": {
+    provider: {
       "@type": "Organization",
-      "name": "Traincape Technology",
-      "url": "https://traincapetech.in",
+      name: "Traincape Technology",
+      url: "https://traincapetech.in",
     },
-    "hasCourseInstance": {
+    hasCourseInstance: {
       "@type": "CourseInstance",
-      "courseMode": "Online / Offline",
-      "instructor": {
+      courseMode: "Online / Offline",
+      instructor: {
         "@type": "Person",
-        "name": "Certified PECB Trainer",
+        name: "Certified PECB Trainer",
       },
     },
   };
@@ -54,8 +63,8 @@ const ISO55001AssetManagementSystem = () => {
         "Asset creation and acquisition",
         "Operation and maintenance",
         "Asset performance monitoring",
-        "Disposal and decommissioning"
-      ]
+        "Disposal and decommissioning",
+      ],
     },
     {
       icon: <FaChartLine />,
@@ -64,8 +73,8 @@ const ISO55001AssetManagementSystem = () => {
         "Asset performance indicators",
         "Reliability and availability",
         "Asset utilization analysis",
-        "Cost-benefit optimization"
-      ]
+        "Cost-benefit optimization",
+      ],
     },
     {
       icon: <FaAward />,
@@ -74,8 +83,8 @@ const ISO55001AssetManagementSystem = () => {
         "Asset risk assessment",
         "Failure mode analysis",
         "Risk mitigation strategies",
-        "Asset criticality analysis"
-      ]
+        "Asset criticality analysis",
+      ],
     },
     {
       icon: <MdBusiness />,
@@ -84,32 +93,32 @@ const ISO55001AssetManagementSystem = () => {
         "Strategic asset planning",
         "Value realization",
         "Stakeholder engagement",
-        "Long-term sustainability"
-      ]
-    }
+        "Long-term sustainability",
+      ],
+    },
   ];
 
   const skills = [
     {
       icon: <FaCogs />,
       title: "Asset Leadership",
-      desc: "Lead asset management system implementation"
+      desc: "Lead asset management system implementation",
     },
     {
       icon: <FaChartLine />,
       title: "Performance Analysis",
-      desc: "Optimize asset performance and value"
+      desc: "Optimize asset performance and value",
     },
     {
       icon: <FaAward />,
       title: "Audit Expertise",
-      desc: "Conduct comprehensive asset management audits"
+      desc: "Conduct comprehensive asset management audits",
     },
     {
       icon: <BsGraphUp />,
       title: "Career Growth",
-      desc: "Qualify for senior asset management roles"
-    }
+      desc: "Qualify for senior asset management roles",
+    },
   ];
 
   const careerPaths = [
@@ -118,7 +127,7 @@ const ISO55001AssetManagementSystem = () => {
     "Asset Management Consultant",
     "Facilities Manager",
     "Maintenance Manager",
-    "Infrastructure Asset Manager"
+    "Infrastructure Asset Manager",
   ];
 
   const trainingOutline = [
@@ -126,7 +135,7 @@ const ISO55001AssetManagementSystem = () => {
     "Day 2: Strategic planning and asset management system requirements",
     "Day 3: Asset lifecycle, risk management, and performance evaluation",
     "Day 4: Audit planning, execution, and reporting",
-    "Day 5: Certification exam and practical case studies"
+    "Day 5: Certification exam and practical case studies",
   ];
 
   const benefits = [
@@ -135,13 +144,15 @@ const ISO55001AssetManagementSystem = () => {
     "Better risk management",
     "Enhanced asset performance",
     "Increased stakeholder value",
-    "Regulatory compliance"
+    "Regulatory compliance",
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-yellow-50 to-orange-50">
       <Helmet>
-        <title>PECB ISO 55001 Certification – Asset Management System | IT Trainings</title>
+        <title>
+          PECB ISO 55001 Certification – Asset Management System | IT Trainings
+        </title>
         <meta
           name="description"
           content="Achieve ISO 55001 certification to optimize asset management, improve performance, and promote sustainability. It offers a framework for effective asset management and helps organizations maintain assets efficiently. Contact us for IT Training & Certifications."
@@ -168,10 +179,6 @@ const ISO55001AssetManagementSystem = () => {
           property="og:url"
           content="https://traincapetech.in/pecb/quality/iso-55001-asset-management-system"
         />
-        <meta
-          property="og:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
-        />
         <meta property="og:type" content="website" />
         {/* Twitter Meta */}
         <meta name="twitter:card" content="summary_large_image" />
@@ -183,15 +190,12 @@ const ISO55001AssetManagementSystem = () => {
           name="twitter:description"
           content="Optimize your asset performance and value with PECB ISO 55001 Certification. Learn to manage assets systematically, reduce costs, and create long-term value. Contact us now!"
         />
-        <meta
-          name="twitter:image"
-          content="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr" />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>
       </Helmet>
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
@@ -201,15 +205,17 @@ const ISO55001AssetManagementSystem = () => {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
                 className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-4"
               >
-                <span className="text-sm font-semibold">PECB CERTIFICATION</span>
+                <span className="text-sm font-semibold">
+                  PECB CERTIFICATION
+                </span>
               </motion.div>
-              <motion.h1 
+              <motion.h1
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -217,7 +223,7 @@ const ISO55001AssetManagementSystem = () => {
               >
                 ISO 55001 Asset Management System Certification
               </motion.h1>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
@@ -225,41 +231,51 @@ const ISO55001AssetManagementSystem = () => {
               >
                 Optimize Asset Performance & Value
               </motion.p>
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.5 }}
                 className="text-lg mb-8 max-w-2xl"
               >
-                ISO 55001 is the international standard for Asset Management Systems. Learn to optimize asset performance, reduce costs, and create long-term value through systematic asset management.
+                ISO 55001 is the international standard for Asset Management
+                Systems. Learn to optimize asset performance, reduce costs, and
+                create long-term value through systematic asset management.
               </motion.p>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 className="flex flex-wrap gap-4"
               >
-                <button 
+                <button
                   onClick={() => navigate("/contact-us")}
                   className="bg-white text-orange-700 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Enroll Now
                 </button>
-                <button 
+                <button
                   onClick={() => navigate("/PECB")}
                   className="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-bold hover:bg-white hover:text-orange-700 transition"
                 >
                   View All PECB Certs
                 </button>
-                <button 
-                  onClick={() => navigate("/test", { state: { course: "PECB", subTopic: "ISO55001AssetManagement", level: "easy" } })}
+                <button
+                  onClick={() =>
+                    navigate("/test", {
+                      state: {
+                        course: "PECB",
+                        subTopic: "ISO55001AssetManagement",
+                        level: "easy",
+                      },
+                    })
+                  }
                   className="bg-green-500 text-white px-8 py-3 rounded-lg font-bold hover:bg-green-600 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                 >
                   Take Test
                 </button>
               </motion.div>
             </div>
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.4 }}
@@ -306,8 +322,12 @@ const ISO55001AssetManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">What You'll Learn</h2>
-            <p className="text-xl text-gray-600">Comprehensive asset management training across 4 key areas</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              What You'll Learn
+            </h2>
+            <p className="text-xl text-gray-600">
+              Comprehensive asset management training across 4 key areas
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -323,7 +343,9 @@ const ISO55001AssetManagementSystem = () => {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="text-4xl text-orange-600">{domain.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-800">{domain.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-800">
+                    {domain.title}
+                  </h3>
                 </div>
                 <ul className="space-y-3">
                   {domain.topics.map((topic, topicIdx) => (
@@ -349,8 +371,12 @@ const ISO55001AssetManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Asset Management Benefits</h2>
-            <p className="text-xl text-gray-600">Transform your organization's asset performance</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Asset Management Benefits
+            </h2>
+            <p className="text-xl text-gray-600">
+              Transform your organization's asset performance
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -382,8 +408,12 @@ const ISO55001AssetManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">5-Day Training Outline</h2>
-            <p className="text-xl text-gray-600">Structured learning path to asset management certification</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              5-Day Training Outline
+            </h2>
+            <p className="text-xl text-gray-600">
+              Structured learning path to asset management certification
+            </p>
           </motion.div>
 
           <div className="grid gap-4 max-w-4xl mx-auto">
@@ -419,8 +449,12 @@ const ISO55001AssetManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Skills You'll Gain</h2>
-            <p className="text-xl text-gray-600">Professional asset management competencies</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Skills You'll Gain
+            </h2>
+            <p className="text-xl text-gray-600">
+              Professional asset management competencies
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -434,8 +468,12 @@ const ISO55001AssetManagementSystem = () => {
                 transition={{ delay: idx * 0.1 }}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all hover:-translate-y-2"
               >
-                <div className="text-4xl text-orange-600 mb-4">{skill.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{skill.title}</h3>
+                <div className="text-4xl text-orange-600 mb-4">
+                  {skill.icon}
+                </div>
+                <h3 className="text-xl font-bold text-gray-800 mb-2">
+                  {skill.title}
+                </h3>
                 <p className="text-gray-600">{skill.desc}</p>
               </motion.div>
             ))}
@@ -453,8 +491,12 @@ const ISO55001AssetManagementSystem = () => {
             variants={fadeInUp}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-800 mb-4">Career Opportunities</h2>
-            <p className="text-xl text-gray-600">Asset management leadership roles</p>
+            <h2 className="text-4xl font-bold text-gray-800 mb-4">
+              Career Opportunities
+            </h2>
+            <p className="text-xl text-gray-600">
+              Asset management leadership roles
+            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -483,7 +525,9 @@ const ISO55001AssetManagementSystem = () => {
           >
             <h3 className="text-2xl font-bold mb-3">Average Salary Range</h3>
             <p className="text-4xl font-bold">$80,000 - $130,000</p>
-            <p className="mt-2 text-orange-100">Senior asset management positions</p>
+            <p className="mt-2 text-orange-100">
+              Senior asset management positions
+            </p>
           </motion.div>
         </div>
       </section>
@@ -497,27 +541,39 @@ const ISO55001AssetManagementSystem = () => {
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <h2 className="text-4xl font-bold mb-4">Master Asset Management Excellence</h2>
-            <p className="text-xl mb-8">Start your journey to becoming an ISO 55001 expert</p>
+            <h2 className="text-4xl font-bold mb-4">
+              Master Asset Management Excellence
+            </h2>
+            <p className="text-xl mb-8">
+              Start your journey to becoming an ISO 55001 expert
+            </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => navigate("/contact-us")}
                 className="bg-white text-orange-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg text-lg"
               >
                 Enroll Now
               </button>
-              <button 
+              <button
                 onClick={() => navigate("/frequently-asked-questions")}
                 className="bg-transparent border-2 border-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:text-orange-700 transition text-lg"
               >
                 Learn More
               </button>
-            <button 
-              onClick={() => navigate("/test", { state: { course: "PECB", subTopic: "ISO55001AssetManagement", level: "easy" } })}
-              className="bg-green-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition shadow-lg text-lg"
-            >
-              Take Test
-            </button>
+              <button
+                onClick={() =>
+                  navigate("/test", {
+                    state: {
+                      course: "PECB",
+                      subTopic: "ISO55001AssetManagement",
+                      level: "easy",
+                    },
+                  })
+                }
+                className="bg-green-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-green-600 transition shadow-lg text-lg"
+              >
+                Take Test
+              </button>
             </div>
           </motion.div>
         </div>
@@ -527,4 +583,3 @@ const ISO55001AssetManagementSystem = () => {
 };
 
 export default ISO55001AssetManagementSystem;
-

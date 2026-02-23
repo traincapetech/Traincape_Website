@@ -1,28 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 const WebsiteCounter = () => {
-  useEffect(() => {
-    // Add the counter script to the DOM
-    const img = new Image();
-    img.src =
-      "https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr";
-    document.body.appendChild(img);
-
-    // Clean up the script when the component is unmounted
-    return () => {
-      document.body.removeChild(img);
-    };
-  }, []);
-
   return (
-    <a
-      href="https://www.coolseotools.com/website-visitor-counter"
-      target="_blank"
-      rel="noopener noreferrer"
-      title="Web Counter"
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 0.6, y: 0 }}
+      viewport={{ once: false, amount: 0.5 }}
+      transition={{ duration: 0.5 }}
+      className="inline-block hover:opacity-100 transition-opacity grayscale hover:grayscale-0"
     >
-      {/* <img src="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr" title="Web Counter" alt="AtoZSEOTools Web Counter" /> */}
-    </a>
+      <a
+        href="https://www.coolseotools.com/website-visitor-counter"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Web Counter"
+        className="block"
+      >
+        <img
+          src="https://www.coolseotools.com/website-visitor-counter/count/&style=style1&show=u&num=9&uid=Dr"
+          title="Web Counter"
+          alt="AtoZSEOTools Web Counter"
+          className="h-5 w-auto"
+        />
+      </a>
+    </motion.div>
   );
 };
 
