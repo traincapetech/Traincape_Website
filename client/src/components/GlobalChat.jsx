@@ -35,55 +35,78 @@ const GlobalChat = () => {
                 title: flowData.title,
                 options: [
                     ...flowData.options,
-                    // Ensure Human Expert option is always present
                     ...(flowData.options.some(o => o.action === 'handover')
                         ? []
                         : [{ label: "Talk to Human Expert", action: "handover" }])
                 ]
             });
 
-            // Optional: Update greeting if chat is already open
             if (isOpen && !token) {
                 const greeting = flowData.welcome || `Welcome to ${flowData.title}. How can I assist you?`;
                 setMessages([{ sender: 'System', text: greeting, isGreeting: true }]);
             }
-
         } else {
-            // FALLBACK: Try to find a flow based on the URL last segment (slug)
-            const pathSegments = location.pathname.split('/').filter(Boolean);
-            const potentialSlug = pathSegments[pathSegments.length - 1]; // e.g., "web-development" or "certified-security-pro"
+            // FALLBACK logic
+            const currentPath = location.pathname;
 
-            // Check if we have a flow matching the slug directly (e.g. "web-development")
-            // OR check if we have a flow matching "course_" + slug (e.g. "course_iso9001") if that was the convention
-            let dynamicFlowId = null;
+            // 1. Check if it's a certification page
+            if (currentPath.includes('/certifications/')) {
+                const pathSegments = currentPath.split('/').filter(Boolean);
+                const slug = pathSegments[pathSegments.length - 1];
 
-            if (chatbotData.flows[potentialSlug]) {
-                dynamicFlowId = potentialSlug;
-            } else if (chatbotData.flows[`course_${potentialSlug}`]) {
-                dynamicFlowId = `course_${potentialSlug}`;
-            }
+                // Format slug to Title Case for better display
+                const courseName = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 
-            if (dynamicFlowId) {
-                const flowData = chatbotData.flows[dynamicFlowId];
+                const template = chatbotData.flows.generic_course_template;
+
+                // Replace {COURSE_NAME} placeholder in title and welcome
+                const dynamicTitle = template.title.replace(/{COURSE_NAME}/g, courseName);
+                const dynamicWelcome = template.welcome.replace(/{COURSE_NAME}/g, courseName);
+
+                // Create dynamic options
+                const dynamicOptions = template.options.map(opt => ({
+                    ...opt,
+                    // We don't replace placeholders in the 'answer' yet, we'll do it on click
+                }));
+
                 setCurrentFlow({
-                    title: flowData.title,
-                    options: [
-                        ...flowData.options,
-                        // Ensure Human Expert option is always present
-                        ...(flowData.options.some(o => o.action === 'handover')
-                            ? []
-                            : [{ label: "Talk to Human Expert", action: "handover" }])
-                    ]
+                    title: dynamicTitle,
+                    options: dynamicOptions
                 });
-                // Optional: Update greeting even for dynamic flows
+
                 if (isOpen && !token) {
-                    const greeting = flowData.welcome || `Welcome to ${flowData.title}. How can I assist you?`;
-                    // Avoid duplicated greetings if the user just switched pages but chat was open
-                    // For now, we update it to reflect new context
-                    setMessages([{ sender: 'System', text: greeting, isGreeting: true }]);
+                    setMessages([{ sender: 'System', text: dynamicWelcome, isGreeting: true }]);
                 }
             } else {
-                setGenericFlow();
+                // FALLBACK: Try to find a flow based on the URL last segment (slug)
+                const pathSegments = location.pathname.split('/').filter(Boolean);
+                const potentialSlug = pathSegments[pathSegments.length - 1];
+
+                let dynamicFlowId = null;
+                if (chatbotData.flows[potentialSlug]) {
+                    dynamicFlowId = potentialSlug;
+                } else if (chatbotData.flows[`course_${potentialSlug}`]) {
+                    dynamicFlowId = `course_${potentialSlug}`;
+                }
+
+                if (dynamicFlowId) {
+                    const flowData = chatbotData.flows[dynamicFlowId];
+                    setCurrentFlow({
+                        title: flowData.title,
+                        options: [
+                            ...flowData.options,
+                            ...(flowData.options.some(o => o.action === 'handover')
+                                ? []
+                                : [{ label: "Talk to Human Expert", action: "handover" }])
+                        ]
+                    });
+                    if (isOpen && !token) {
+                        const greeting = flowData.welcome || `Welcome to ${flowData.title}. How can I assist you?`;
+                        setMessages([{ sender: 'System', text: greeting, isGreeting: true }]);
+                    }
+                } else {
+                    setGenericFlow();
+                }
             }
         }
     }, [location.pathname, token, isOpen]); // Re-run when URL changes
@@ -124,9 +147,41 @@ const GlobalChat = () => {
         if (option.action === 'handover') {
             startHandover();
         } else {
+            // Remove the clicked question from the options list
+            setCurrentFlow(prevFlow => ({
+                ...prevFlow,
+                options: prevFlow.options.filter(opt => opt.label !== option.label)
+            }));
+
             setIsTyping(true);
             setTimeout(() => {
-                setMessages(prev => [...prev, { sender: 'System', text: option.answer }]);
+                let answer = option.answer;
+
+                // 1. Scraping Logic for Dynamic Placeholders
+                if (answer.includes('{COURSE_OUTCOMES}')) {
+                    const outcomesEl = document.getElementById('course-learning-outcomes');
+                    const outcomes = outcomesEl ? outcomesEl.innerText : "Visit the course page to see specific learning outcomes.";
+                    answer = answer.replace('{COURSE_OUTCOMES}', outcomes);
+                }
+
+                if (answer.includes('{COURSE_DURATION}')) {
+                    const durationEl = document.getElementById('course-duration');
+                    const duration = durationEl ? durationEl.innerText : "specified on the program details.";
+                    answer = answer.replace('{COURSE_DURATION}', duration);
+                }
+
+                if (answer.includes('{COURSE_DELIVERY}')) {
+                    const deliveryEl = document.getElementById('course-delivery');
+                    const delivery = deliveryEl ? deliveryEl.innerText : "our standard training modes.";
+                    answer = answer.replace('{COURSE_DELIVERY}', delivery);
+                }
+
+                // Replace course name if current flow title is available
+                if (answer.includes('{COURSE_NAME}')) {
+                    answer = answer.replace(/{COURSE_NAME}/g, currentFlow.title);
+                }
+
+                setMessages(prev => [...prev, { sender: 'System', text: answer }]);
                 setIsTyping(false);
             }, 600);
         }

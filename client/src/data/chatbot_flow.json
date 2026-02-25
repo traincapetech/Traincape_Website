@@ -774,6 +774,40 @@
                     "action": "handover"
                 }
             ]
+        },
+        "generic_course_template": {
+            "title": "{COURSE_NAME}",
+            "welcome": "Welcome! You are viewing the {COURSE_NAME} certification. What would you like to know?",
+            "options": [
+                {
+                    "label": "What are the learning outcomes?",
+                    "answer": "For {COURSE_NAME}, the key learning outcomes are:\n{COURSE_OUTCOMES}"
+                },
+                {
+                    "label": "How long is this course?",
+                    "answer": "The duration for {COURSE_NAME} is {COURSE_DURATION}."
+                },
+                {
+                    "label": "What is the delivery mode?",
+                    "answer": "This course is delivered via {COURSE_DELIVERY}."
+                },
+                {
+                    "label": "Is this certification globally recognized?",
+                    "answer": "Yes, all our certifications are globally accredited by GIPMC, ensuring industry-wide recognition."
+                },
+                {
+                    "label": "Are there any prerequisites?",
+                    "answer": "While some advanced courses recommend prior experience, many foundational courses are open to beginners. Check the \"Who Should Enroll\" section on the page for specifics."
+                },
+                {
+                    "label": "How do I take the exam?",
+                    "answer": "Exams are conducted online through our secure portal after you complete the training modules."
+                },
+                {
+                    "label": "Talk to Human Expert",
+                    "action": "handover"
+                }
+            ]
         }
     }
 }

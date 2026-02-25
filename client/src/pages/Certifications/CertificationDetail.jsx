@@ -16,18 +16,18 @@ export default function CertificationDetail() {
 
   const structuredData = cert
     ? {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: cert.title,
-        description: cert.shortDescription,
-        provider: {
-          "@type": "Organization",
-          name: "Traincape Technology",
-          url: "https://www.traincapetech.in",
-        },
-        url: canonical,
-        educationalCredentialAwarded: cert.title,
-      }
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: cert.title,
+      description: cert.shortDescription,
+      provider: {
+        "@type": "Organization",
+        name: "Traincape Technology",
+        url: "https://www.traincapetech.in",
+      },
+      url: canonical,
+      educationalCredentialAwarded: cert.title,
+    }
     : undefined;
 
   return (
@@ -90,7 +90,7 @@ export default function CertificationDetail() {
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="bg-white border border-gray-200 rounded-2xl p-6">
                     <h2 className="text-xl font-bold text-gray-900">Key Learning Outcomes</h2>
-                    <ul className="mt-3 space-y-2 text-gray-700 list-disc list-inside">
+                    <ul id="course-learning-outcomes" className="mt-3 space-y-2 text-gray-700 list-disc list-inside">
                       {cert.learningOutcomes.map((x) => (
                         <li key={x}>{x}</li>
                       ))}
@@ -123,11 +123,11 @@ export default function CertificationDetail() {
                   <div className="mt-4 space-y-3 text-sm text-gray-700">
                     <div className="flex items-start justify-between gap-4">
                       <span className="font-semibold text-gray-900">Duration</span>
-                      <span className="text-right">{cert.duration}</span>
+                      <span id="course-duration" className="text-right">{cert.duration}</span>
                     </div>
                     <div className="flex items-start justify-between gap-4">
                       <span className="font-semibold text-gray-900">Delivery</span>
-                      <span className="text-right">{cert.deliveryMode}</span>
+                      <span id="course-delivery" className="text-right">{cert.deliveryMode}</span>
                     </div>
                     <div className="flex items-start justify-between gap-4">
                       <span className="font-semibold text-gray-900">Domain</span>
