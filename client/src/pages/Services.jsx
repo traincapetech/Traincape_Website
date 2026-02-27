@@ -250,11 +250,11 @@ const Services = () => {
                   transition={{ delay: index * 0.1 }}
                   className="bg-[#111827] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#00AEEF] transition-all duration-300 group flex flex-col"
                 >
-                  <div className="h-48 overflow-hidden relative">
+                  <div className="h-56 overflow-hidden relative bg-[#0a1120]">
                     <img
                       src={service.banner}
                       alt={service.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                      className="w-full h-full object-contain p-2 transform group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#111827] to-transparent opacity-60"></div>
                   </div>

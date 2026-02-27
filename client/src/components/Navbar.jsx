@@ -33,7 +33,7 @@ const Navbar = () => {
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 });
   const token = localStorage.getItem("token");
   const dropdownRef = useRef(null);
-  const payNowButtonRef = useRef(null); 
+  const payNowButtonRef = useRef(null);
   const mobileDropdownRef = useRef(null);
   const mobilePayNowButtonRef = useRef(null);
 
@@ -58,9 +58,9 @@ const Navbar = () => {
     if (payNowButtonRef.current) {
       const rect = payNowButtonRef.current.getBoundingClientRect();
       setDropdownPosition({
-        top: rect.bottom + window.scrollY + 8, 
-        left: rect.right + window.scrollX - 192, 
-        width: 192 
+        top: rect.bottom + window.scrollY + 8,
+        left: rect.right + window.scrollX - 192,
+        width: 192
       });
     }
   };
@@ -68,28 +68,28 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      
+
       // 1. If the desktop dropdown is open:
       if (showDropdown) {
-          // Check if the click is on the desktop button, mobile button, or any of the dropdowns.
-          const isClickInside = 
-              (payNowButtonRef.current && payNowButtonRef.current.contains(event.target)) ||
-              (mobilePayNowButtonRef.current && mobilePayNowButtonRef.current.contains(event.target)) ||
-              (dropdownRef.current && dropdownRef.current.contains(event.target)) ||
-              (mobileDropdownRef.current && mobileDropdownRef.current.contains(event.target));
-          
-          if (!isClickInside) {
-              // If it's outside all related elements, close the dropdown
-              setShowDropdown(false);
-          }
+        // Check if the click is on the desktop button, mobile button, or any of the dropdowns.
+        const isClickInside =
+          (payNowButtonRef.current && payNowButtonRef.current.contains(event.target)) ||
+          (mobilePayNowButtonRef.current && mobilePayNowButtonRef.current.contains(event.target)) ||
+          (dropdownRef.current && dropdownRef.current.contains(event.target)) ||
+          (mobileDropdownRef.current && mobileDropdownRef.current.contains(event.target));
+
+        if (!isClickInside) {
+          // If it's outside all related elements, close the dropdown
+          setShowDropdown(false);
+        }
       }
-      
+
       // 2. Handle closing the mobile menu with an outside click
       // We must make sure the click wasn't on the hamburger button itself
-      if(isMenuOpen && !event.target.closest('.lg\\:hidden > button[aria-label]')) {
-         if (!document.querySelector('.mobile-menu').contains(event.target)) {
-            setMenuOpen(false);
-         }
+      if (isMenuOpen && !event.target.closest('.lg\\:hidden > button[aria-label]')) {
+        if (!document.querySelector('.mobile-menu').contains(event.target)) {
+          setMenuOpen(false);
+        }
       }
     };
 
@@ -124,15 +124,15 @@ const Navbar = () => {
   const handlePayNow = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    
+
     // Check if we are in desktop mode (menu closed) to set position
     // We only need position for the absolute desktop dropdown
-    if (payNowButtonRef.current && !isMenuOpen) { 
-        updateDropdownPosition();
+    if (payNowButtonRef.current && !isMenuOpen) {
+      updateDropdownPosition();
     }
-    
+
     // This is the core action: toggle the dropdown state
-    setShowDropdown(prev => !prev); 
+    setShowDropdown(prev => !prev);
   };
 
   const handleBankTransfer = (event) => {
@@ -149,7 +149,7 @@ const Navbar = () => {
     const detailsText = Object.entries(bankDetails)
       .map(([key, value]) => `${key}: ${value}`)
       .join('\n');
-    
+
     navigator.clipboard.writeText(detailsText).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -174,8 +174,8 @@ const Navbar = () => {
 
   const renderDropdown = () => {
     // Only render the absolute dropdown for desktop view
-    if (!showDropdown || !payNowButtonRef.current || isMenuOpen) return null; 
-    
+    if (!showDropdown || !payNowButtonRef.current || isMenuOpen) return null;
+
     const dropdownContent = (
       <div
         ref={dropdownRef}
@@ -184,7 +184,7 @@ const Navbar = () => {
           top: `${dropdownPosition.top}px`,
           left: `${dropdownPosition.left}px`,
           zIndex: 9999,
-          width: '12rem' 
+          width: '12rem'
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -210,7 +210,7 @@ const Navbar = () => {
         </div>
       </div>
     );
-    
+
     return ReactDOM.createPortal(
       dropdownContent,
       document.body
@@ -252,7 +252,7 @@ const Navbar = () => {
               />
             </div>
           </div>
-          
+
           {/* Desktop Navigation (LG and up) */}
           <div className="hidden lg:flex justify-between w-full items-center text-white">
             <div className="flex space-x-8 mx-auto font-medium text-lg">
@@ -265,11 +265,8 @@ const Navbar = () => {
               <Link to="/our-services" className={isActive("/our-services")}>
                 IT Services
               </Link>
-              <Link to="/training" className={isActive("/training")}>
-                Training
-              </Link>
               <Link to="/certifications" className={isActive("/certifications")}>
-                Certifications
+                Certifications & Professional Training
               </Link>
               <Link to="/review-page" className={isActive("/review-page")}>
                 Reviews
@@ -282,11 +279,11 @@ const Navbar = () => {
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <GradientButton
-                  ref={payNowButtonRef} 
+                  ref={payNowButtonRef}
                   onClick={handlePayNow}
                   aria-expanded={showDropdown}
                   aria-haspopup="true"
-                  className="!p-0.5" 
+                  className="!p-0.5"
                 >
                   Pay Now
                 </GradientButton>
@@ -308,7 +305,7 @@ const Navbar = () => {
               )}
             </div>
           </div>
-          
+
           {/* Mobile Hamburger/Cross Icon */}
           <div className="lg:hidden" onClick={(e) => {
             e.stopPropagation();
@@ -326,16 +323,15 @@ const Navbar = () => {
 
         {/* Mobile Sidebar Menu */}
         <div
-          className={`mobile-menu fixed top-0 right-0 w-64 h-full bg-gray-900 text-white transition-transform transform ${
-            isMenuOpen ? "translate-x-0" : "translate-x-full"
-          } z-50 p-6 shadow-2xl shadow-black/70`}
+          className={`mobile-menu fixed top-0 right-0 w-64 h-full bg-gray-900 text-white transition-transform transform ${isMenuOpen ? "translate-x-0" : "translate-x-full"
+            } z-50 p-6 shadow-2xl shadow-black/70`}
           aria-modal="true"
           role="dialog"
           aria-hidden={!isMenuOpen}
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex justify-end mb-8">
-            <button 
+            <button
               aria-label="Close menu"
               onClick={() => setMenuOpen(false)}
               className="text-gray-400 hover:text-white transition duration-200 p-1"
@@ -367,18 +363,11 @@ const Navbar = () => {
               IT Services
             </Link>
             <Link
-              to="/training"
-              className={`${isActive("/training")} py-2`}
-              onClick={() => setMenuOpen(false)}
-            >
-              Training
-            </Link>
-            <Link
               to="/certifications"
               className={`${isActive("/certifications")} py-2`}
               onClick={() => setMenuOpen(false)}
             >
-              Certifications
+              Certifications & Professional Training
             </Link>
             <Link
               to="/review-page"
@@ -397,16 +386,16 @@ const Navbar = () => {
 
             <div className="relative mt-4 pt-4 border-t border-gray-700">
               <GradientButton
-                ref={mobilePayNowButtonRef} 
+                ref={mobilePayNowButtonRef}
                 onClick={handlePayNow}
                 className="w-full !p-0.5"
               >
                 Pay Now
               </GradientButton>
-              
+
               {/* Mobile dropdown logic is inside the mobile menu structure */}
               {showDropdown && (
-                <div 
+                <div
                   ref={mobileDropdownRef}
                   className="mt-3 bg-gray-800 text-white shadow-xl w-full rounded-lg overflow-hidden border border-teal-500/50 transform origin-top transition-all duration-300 ease-out animate-dropdown-in"
                   onClick={(e) => e.stopPropagation()}
@@ -465,14 +454,14 @@ const Navbar = () => {
 
       {/* Bank Details Modal */}
       {showBankDetails && (
-        <div 
+        <div
           className="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex justify-center items-center z-[10000] p-4 transition-opacity duration-300 ease-out"
           onClick={() => setShowBankDetails(false)}
           aria-modal="true"
           role="dialog"
           aria-label="Bank Account Details Modal"
         >
-          <div 
+          <div
             className="bg-gray-800 rounded-xl p-8 max-w-lg w-full shadow-2xl border border-teal-400/50 transform transition-transform duration-300 scale-95 opacity-0 animate-modal-in"
             onClick={(e) => e.stopPropagation()}
           >
@@ -487,7 +476,7 @@ const Navbar = () => {
                   <ImCross className="text-xl" />
                 </button>
               </div>
-              
+
               <div className="space-y-4 mb-6">
                 {Object.entries(bankDetails).map(([key, value]) => (
                   <div key={key} className="flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 bg-gray-700 rounded-lg">
@@ -496,15 +485,14 @@ const Navbar = () => {
                   </div>
                 ))}
               </div>
-              
+
               <div className="flex justify-end">
                 <button
                   onClick={copyToClipboard}
-                  className={`flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg ${
-                    copied 
-                      ? "bg-green-500 hover:bg-green-600 text-white" 
+                  className={`flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg ${copied
+                      ? "bg-green-500 hover:bg-green-600 text-white"
                       : "bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white"
-                  }`}
+                    }`}
                 >
                   {copied ? (
                     <>

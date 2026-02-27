@@ -5,6 +5,82 @@ import CertificationCard from "../../components/CertificationCard";
 import AdvisorModal from "../../components/AdvisorModal";
 import { getCertificationsCatalog, TOP_CATEGORIES } from "../../data/certificationsCatalog";
 
+import AWS from "../../assets/aws-kartikey.png";
+import Cisco from "../../assets/Cisco/CiscoIcon.png";
+import comptia from "../../assets/comptia-2.webp";
+import microsoft from "../../assets/microsoft-kartikey.png";
+import PECB from "../../assets/PECB1.png";
+
+const TRAINING_TRACKS = [
+  {
+    title: "Certification Training",
+    desc: "Structured learning paths aligned to certification objectives — with exam guidance and practice support.",
+  },
+  {
+    title: "Skill-Based Training",
+    desc: "Hands-on programs focused on real projects, job outcomes, and practical tooling.",
+  },
+  {
+    title: "Corporate Training",
+    desc: "Customized training for teams with measurable skill progression and delivery support.",
+  },
+];
+
+const VENDORS = [
+  {
+    title: "CompTIA",
+    desc: "A+, Network+, Security+ and more — foundational to advanced IT career tracks.",
+    image: comptia,
+    href: "/comptia",
+  },
+  {
+    title: "Microsoft",
+    desc: "Azure, security, and productivity certifications for modern IT and cloud roles.",
+    image: microsoft,
+    href: "/training/microsoft",
+  },
+  {
+    title: "Cisco",
+    desc: "Networking and security pathways for enterprise infrastructure roles.",
+    image: Cisco,
+    href: "/training/cisco",
+  },
+  {
+    title: "AWS",
+    desc: "Cloud foundations to architect-level paths for building and scaling on AWS.",
+    image: AWS,
+    href: "/training/aws",
+  },
+  {
+    title: "PECB",
+    desc: "ISO and governance-focused training (internal audit, risk, compliance).",
+    image: PECB,
+    href: "/pecb",
+  },
+];
+
+function VendorCard({ vendor, onClick }) {
+  return (
+    <button
+      onClick={onClick}
+      className="text-left bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all"
+    >
+      <div className="h-14 flex items-center gap-4">
+        <img
+          src={vendor.image}
+          alt={`${vendor.title} training`}
+          className="h-12 w-12 object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="text-lg font-extrabold text-gray-900">{vendor.title}</div>
+      </div>
+      <p className="mt-3 text-sm text-gray-600">{vendor.desc}</p>
+      <div className="mt-4 text-sm font-semibold text-blue-700">Browse programs</div>
+    </button>
+  );
+}
+
 export default function CertificationsIndex() {
   const navigate = useNavigate();
   const { categories, allCourses } = useMemo(() => getCertificationsCatalog(), []);
@@ -61,6 +137,37 @@ export default function CertificationsIndex() {
           <div className="mt-6 text-sm text-white/70">
             Showing <span className="font-semibold text-white">{filtered.length}</span> certifications
           </div>
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-6 py-12">
+        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Training Tracks</h2>
+        <p className="mt-2 text-gray-600 max-w-3xl">
+          Pick a track based on your role, background, and timeline. We’ll tailor recommendations accordingly.
+        </p>
+        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+          {TRAINING_TRACKS.map((t) => (
+            <div key={t.title} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+              <h3 className="text-xl font-bold text-gray-900">{t.title}</h3>
+              <p className="mt-2 text-gray-600">{t.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-6 pb-12">
+        <div className="flex items-end justify-between flex-wrap gap-6">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Popular Training Vendors</h2>
+            <p className="mt-2 text-gray-600">
+              Explore training providers and catalogs.
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {VENDORS.map((v) => (
+            <VendorCard key={v.title} vendor={v} onClick={() => navigate(v.href)} />
+          ))}
         </div>
       </section>
 

@@ -248,8 +248,8 @@ const AllRoute = () => {
         <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
         <Route path="/partners" element={<PartnerPage />} />
         <Route path="/courses" element={<Courses />} />
-        <Route path="/training" element={<Training />} />
-        <Route path="/training/:vendorSlug" element={<TrainingVendor />} />
+        <Route path="/training" element={<Navigate to="/certifications" replace />} />
+        <Route path="/training/:vendorSlug" element={<Navigate to="/certifications" replace />} />
 
         <Route path="/frequently-asked-questions" element={<FAQ />} />
         <Route path="/our-services" element={<Services />} />
