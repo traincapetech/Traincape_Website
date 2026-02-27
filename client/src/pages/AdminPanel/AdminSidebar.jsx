@@ -71,6 +71,13 @@ const Sidebar = ({ role, selectedOption, onSelectOption }) => {
       roles: ["Admin"],
     },
     {
+      id: "internManagement",
+      icon: Users,
+      label: "Intern Management",
+      category: "Users",
+      roles: ["Admin"],
+    },
+    {
       id: "clientProfiles",
       icon: BookOpen,
       label: "Client Profiles",
@@ -96,7 +103,7 @@ const Sidebar = ({ role, selectedOption, onSelectOption }) => {
   ];
 
   // Filter menu items based on user role
-  const filteredMenuItems = menuItems.filter(item => 
+  const filteredMenuItems = menuItems.filter(item =>
     item.roles.includes(role)
   );
 
@@ -140,9 +147,8 @@ const Sidebar = ({ role, selectedOption, onSelectOption }) => {
                 return (
                   <li
                     key={item.id}
-                    className={`py-2 px-2 md:px-4 rounded-md cursor-pointer hover:bg-gray-700 flex items-center space-x-2 transition-colors ${
-                      selectedOption === item.id ? "bg-gray-700 border-l-4 border-blue-500" : ""
-                    }`}
+                    className={`py-2 px-2 md:px-4 rounded-md cursor-pointer hover:bg-gray-700 flex items-center space-x-2 transition-colors ${selectedOption === item.id ? "bg-gray-700 border-l-4 border-blue-500" : ""
+                      }`}
                     onClick={() => onSelectOption(item.id)}
                   >
                     <Icon size={20} className="w-4 h-4 sm:w-5 sm:h-5" />

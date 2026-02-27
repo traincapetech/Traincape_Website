@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, X, Send } from 'lucide-react';
 import { socket } from '../socket';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import chatbotData from '../data/chatbot_flow.json';
 import API_BASE_URL from '../config/api';
 
@@ -14,6 +15,8 @@ const GlobalChat = () => {
     const [isTyping, setIsTyping] = useState(false);
 
     const location = useLocation();
+    const navigate = useNavigate();
+    const { user } = useSelector((state) => state.user);
     const [currentFlow, setCurrentFlow] = useState({ title: "Support", options: [] });
 
     // ---------------------------------------------------------
@@ -225,10 +228,27 @@ const GlobalChat = () => {
     };
 
     const startHandover = async () => {
+        const tokenStr = localStorage.getItem("token");
+        if (!user || !tokenStr) {
+            setMessages(prev => [...prev, {
+                sender: 'System',
+                text: "Please sign in to talk to our human experts. Redirecting to login..."
+            }]);
+            setTimeout(() => {
+                setIsOpen(false);
+                navigate('/login');
+            }, 2500);
+            return;
+        }
+
         setLoading(true);
         setMessages(prev => [...prev, { sender: 'System', text: "Requesting a human expert..." }]);
         try {
-            const res = await fetch(`${API_BASE_URL}/chat/request-human`, { method: 'POST' }); // Ensure port is correct, usually 3001 or 8080 depending on setup
+            const res = await fetch(`${API_BASE_URL}/chat/request-human`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ clientName: user.username })
+            });
             const data = await res.json();
 
             if (data.success) {
@@ -371,32 +391,30 @@ const GlobalChat = () => {
 
                         {/* Feedback Buttons - After consultant ends session */}
                         {showFeedback && (
-                            <div style={{ display: 'flex', gap: '10px', marginTop: '10px', justifyContent: 'center' }}>
+                            <div style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                                 <button
                                     onClick={() => handleFeedback(true)}
                                     style={{
-                                        background: '#28a745', border: 'none', color: 'white',
-                                        padding: '10px 24px', borderRadius: '20px', cursor: 'pointer',
-                                        fontSize: '13px', fontWeight: '600', transition: 'all 0.2s',
-                                        boxShadow: '0 2px 6px rgba(40,167,69,0.3)'
+                                        flex: 1, backgroundColor: 'white', border: '1px solid #3a23bdff', color: 'black',
+                                        padding: '10px', borderRadius: '20px', cursor: 'pointer',
+                                        fontSize: '13px', transition: 'all 0.2s', textAlign: 'center'
                                     }}
-                                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
-                                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                                    onMouseEnter={e => { e.target.style.backgroundColor = '#007bff'; e.target.style.color = 'white' }}
+                                    onMouseLeave={e => { e.target.style.backgroundColor = '#f3f4f6'; e.target.style.color = 'black' }}
                                 >
-                                    ✅ Yes, Resolved!
+                                    Yes, it's resolved
                                 </button>
                                 <button
                                     onClick={() => handleFeedback(false)}
                                     style={{
-                                        background: '#dc3545', border: 'none', color: 'white',
-                                        padding: '10px 24px', borderRadius: '20px', cursor: 'pointer',
-                                        fontSize: '13px', fontWeight: '600', transition: 'all 0.2s',
-                                        boxShadow: '0 2px 6px rgba(220,53,69,0.3)'
+                                        flex: 1, backgroundColor: 'white', border: '1px solid #3a23bdff', color: 'black',
+                                        padding: '10px', borderRadius: '20px', cursor: 'pointer',
+                                        fontSize: '13px', transition: 'all 0.2s', textAlign: 'center'
                                     }}
-                                    onMouseEnter={e => e.target.style.transform = 'scale(1.05)'}
-                                    onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                                    onMouseEnter={e => { e.target.style.backgroundColor = '#007bff'; e.target.style.color = 'white' }}
+                                    onMouseLeave={e => { e.target.style.backgroundColor = '#f3f4f6'; e.target.style.color = 'black' }}
                                 >
-                                    ❌ No, Need Help
+                                    No, I need more help
                                 </button>
                             </div>
                         )}

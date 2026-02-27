@@ -326,7 +326,9 @@ const ConsultantChat = () => {
                         <div key={session.token} className="p-4 border border-gray-100 rounded-xl bg-white hover:shadow-md transition-shadow group">
                             <div className="flex justify-between items-start mb-3">
                                 <div>
-                                    <div className="font-semibold text-gray-800 text-sm">Client #{(session.token || "").slice(-4)}</div>
+                                    <div className="font-semibold text-gray-800 text-sm">
+                                        {session.clientName || 'Client'} #{(session.token || "").slice(-4)}
+                                    </div>
                                     <div className="text-xs text-blue-500 mt-0.5">Looking for help</div>
                                 </div>
                                 <span className="text-[10px] font-medium text-gray-400 bg-gray-50 px-1.5 py-0.5 rounded">
@@ -349,7 +351,9 @@ const ConsultantChat = () => {
                                     C
                                 </div>
                                 <div>
-                                    <div className="font-semibold text-gray-800 text-sm">Client #{(activeSession.token || "").slice(-4)}</div>
+                                    <div className="font-semibold text-gray-800 text-sm">
+                                        {activeSession.clientName || 'Client'} #{(activeSession.token || "").slice(-4)}
+                                    </div>
                                     <div className="text-xs text-green-600 flex items-center gap-1">
                                         <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span> Active Now
                                     </div>
@@ -484,7 +488,7 @@ const ConsultantChat = () => {
                                     #{activeSession?.token.slice(-4)}
                                 </div>
                                 <div>
-                                    <h3 className="font-bold text-gray-800 text-sm">Client Consultation</h3>
+                                    <h3 className="font-bold text-gray-800 text-sm">{activeSession?.clientName || 'Client'} Consultation</h3>
                                     <p className="text-xs text-gray-500">Session ID: {activeSession?.token}</p>
                                 </div>
                             </div>
@@ -509,7 +513,7 @@ const ConsultantChat = () => {
                                     <div className={`flex max-w-[70%] ${m.sender === 'Consultant' ? 'flex-row-reverse' : 'flex-row'} items-end gap-2`}>
                                         <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold 
                                             ${m.sender === 'Consultant' ? 'bg-blue-100 text-blue-600' : 'bg-gray-200 text-gray-600'}`}>
-                                            {m.sender === 'Consultant' ? 'You' : 'Cli'}
+                                            {m.sender === 'Consultant' ? 'You' : (activeSession?.clientName?.[0]?.toUpperCase() || 'C')}
                                         </div>
                                         <div className={`px-5 py-3 shadow-sm text-sm leading-relaxed 
                                             ${m.sender === 'Consultant'

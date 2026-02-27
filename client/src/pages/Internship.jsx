@@ -1,27 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../css/internshipModule.css";
-import Tripti from "../assets/Tripti.jpeg";
-import vanshika from "../assets/vanshika.jpeg";
-import Akansha from "../assets/Akansha.jpeg";
 import Purpose from "../assets/purpose.jpg";
 import learning from "../assets/learning.jpg";
 import support from "../assets/support.jpg";
 import progress from "../assets/progress.jpg";
 import career from "../pages/Career/Career.module.css";
-import love from "../assets/Love (1).jpg";
-import Akshay from "../assets/Akshay (1).jpg";
-import Ritik from "../assets/Ritik (1).jpg";
 import hand from '../assets/hand.jpg';
-import one from '../assets/1.png';
-import two from '../assets/2.png';
-import three from '../assets/3.png';
-import four from '../assets/4.png';
-import vikas from "../assets/vikas.jpg";
-import kartikey from "../assets/kartikey.jpg";
-// import shubh from "../assets/shubh.jpg";
-import harshda from "../assets/harshda.jpg";
-import ashu from "../assets/ashu.jpg";
 import toast from "react-hot-toast";
+import axios from "axios";
+import API_BASE_URL from "../config/api";
+
 import { submitLead } from "../utils/submitLead";
 
 export default function Internship() {
@@ -35,12 +23,25 @@ export default function Internship() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [interns, setInterns] = useState([]);
+  const [loadingInterns, setLoadingInterns] = useState(true);
 
-  const images = [
-    vikas, kartikey,harshda, ashu,
-    vanshika, Tripti, love, Akansha, Akshay, Ritik, one, two, three, four
-  ];
+  useEffect(() => {
+    const fetchInterns = async () => {
+      try {
+        const baseUrl = API_BASE_URL || "http://localhost:3001";
+        const { data } = await axios.get(`${baseUrl}/interns`);
+        if (data.success) {
+          setInterns(data.interns);
+        }
+      } catch (err) {
+        console.error("Failed to fetch interns", err);
+      } finally {
+        setLoadingInterns(false);
+      }
+    };
+    fetchInterns();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -101,40 +102,89 @@ export default function Internship() {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3000); // Change slide every 3 seconds
 
-    return () => clearInterval(interval);
-  }, [images.length]);
 
   return (
     <>
-      
+
+      <div className="relative w-full">
         <div className="internship-banner"></div>
         <div className="banner-text">
           <h1>Kickstart Your Career with Our Internship Program!</h1>
           <h3>Gain hands-on experience, learn from industry experts, and work on real projects that make an impact. Join us and take the first step toward a successful career!</h3>
-          <h5>Unlock opportunities, develop new skills, grow your professional network.</h5> 
+          <h5>Unlock opportunities, develop new skills, grow your professional network.</h5>
         </div>
-      
+      </div>
 
-      <div className="intern">
-        <div className="carousel-container">
-          <div className="carousel-slides" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-            {images.map((img, index) => (
-              <div key={index} className="carousel-slide">
-                <img src={img} alt={`Slide ${index + 1}`} />
-              </div>
-            ))}
+      <div className="bg-slate-50 border-t border-slate-200">
+        <div className="py-20 px-4 max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-[#102842] mb-6">Our Brilliant Interns</h1>
+            <h2 className="text-lg md:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+              #TraincapeInterns play vital roles across our diverse teams, including software development, product management, user experience, and more. Join us in shaping the future of technology for everyone.
+            </h2>
           </div>
-        </div>
-        <div className="our-intern"> 
-          <h1>Our Interns</h1>
-          <h2>
-            #TraincapeInterns play vital roles across our diverse teams, including software development, product management, user experience, and more. Join us in shaping the future of technology for everyone.
-          </h2>
+
+          {loadingInterns ? (
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#102842]"></div>
+            </div>
+          ) : interns.length === 0 ? (
+            <div className="text-center text-gray-500 py-10">No interns found.</div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+              {interns.map((intern) => (
+                <div key={intern._id} className="bg-white rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgb(16,40,66,0.15)] transition-all duration-300 group hover:-translate-y-2 border border-slate-100 flex flex-col h-full">
+                  <div className="h-64 overflow-hidden relative bg-slate-100">
+                    <img
+                      src={`${API_BASE_URL || 'http://localhost:3001'}/interns/${intern._id}/photo`}
+                      alt={intern.fullName}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      onError={(e) => { e.target.src = "https://via.placeholder.com/400x400?text=Traincape+Intern"; }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div className="p-6 flex flex-col flex-grow relative bg-white">
+                    {/* Decorative element */}
+                    <div className="absolute -top-6 right-6 bg-[#102842] text-white p-2.5 rounded-xl shadow-lg transform rotate-3 hidden group-hover:block transition-all">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">{intern.fullName}</h3>
+                    <div className="space-y-3 mt-auto">
+                      <div className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" /></svg>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Institution</p>
+                          <p className="text-sm font-medium text-gray-700">{intern.college}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Education</p>
+                          <p className="text-sm font-medium text-gray-700">{intern.degree}</p>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-3 pt-2 border-t border-gray-100">
+                        <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-700">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider">Tech Stack</p>
+                          <p className="text-sm font-bold text-[#102842] leading-tight">{intern.techStack}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

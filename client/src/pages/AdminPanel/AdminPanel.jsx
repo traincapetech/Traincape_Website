@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import CourseAnalytics from "./CourseAnalytics/CourseAnalytics";
 import EmployeeManagement from "./EmployeeManagement/EmployeeManagement";
+import InternManagement from "./InternManagement/InternManagement";
 import Results from "./Results";
 
 const AdminPanel = () => {
@@ -159,6 +160,8 @@ const AdminPanel = () => {
         return <CourseAnalytics role={role} selectedCourse={selectedCourse} />;
       case "employeeManagement":
         return <EmployeeManagement role={role} selectedCourse={selectedCourse} />;
+      case "internManagement":
+        return <InternManagement />;
       case "clientProfiles":
         return <CertificateForm />;
       case "voucherManagement":
