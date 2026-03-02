@@ -5,8 +5,8 @@ export const addIntern = async (req, res) => {
     try {
         const { fullName, college, degree, techStack } = req.body;
 
-        if (!fullName || !college || !degree || !techStack) {
-            return res.status(400).json({ success: false, message: "All fields are required" });
+        if (!fullName || !degree || !techStack) {
+            return res.status(400).json({ success: false, message: "Full Name, Degree, and Tech Stack are required" });
         }
 
         const internData = { fullName, college, degree, techStack };

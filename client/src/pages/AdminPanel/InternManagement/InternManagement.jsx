@@ -16,6 +16,7 @@ const InternManagement = () => {
     const [formData, setFormData] = useState({
         fullName: "",
         college: "",
+        location: "",
         degree: "",
         techStack: "",
         photo: null,
@@ -65,8 +66,8 @@ const InternManagement = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.fullName || !formData.college || !formData.degree || !formData.techStack) {
-            return toast.error("All text fields are required.");
+        if (!formData.fullName || !formData.techStack) {
+            return toast.error("Full Name, Degree, and Tech Stack are required.");
         }
         if (!isEditing && !formData.photo) {
             return toast.error("Photo is required for new interns.");
@@ -78,6 +79,7 @@ const InternManagement = () => {
             const submitData = new FormData();
             submitData.append("fullName", formData.fullName);
             submitData.append("college", formData.college);
+            submitData.append("location", formData.location);
             submitData.append("degree", formData.degree);
             submitData.append("techStack", formData.techStack);
             if (formData.photo) {
@@ -122,7 +124,7 @@ const InternManagement = () => {
     const openAddModal = () => {
         setIsEditing(false);
         setEditingId(null);
-        setFormData({ fullName: "", college: "", degree: "", techStack: "", photo: null });
+        setFormData({ fullName: "", college: "", location: "", degree: "", techStack: "", photo: null });
         setPhotoPreview(null);
         setIsModalOpen(true);
     };
@@ -132,7 +134,8 @@ const InternManagement = () => {
         setEditingId(intern._id);
         setFormData({
             fullName: intern.fullName,
-            college: intern.college,
+            college: intern.college || "",
+            location: intern.location || "",
             degree: intern.degree,
             techStack: intern.techStack,
             photo: null,
@@ -145,7 +148,7 @@ const InternManagement = () => {
     const closeModal = () => {
         setIsModalOpen(false);
         setTimeout(() => {
-            setFormData({ fullName: "", college: "", degree: "", techStack: "", photo: null });
+            setFormData({ fullName: "", college: "", location: "", degree: "", techStack: "", photo: null });
             setPhotoPreview(null);
         }, 300);
     };
@@ -153,7 +156,7 @@ const InternManagement = () => {
     const filteredInterns = interns.filter((i) =>
         i.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         i.techStack.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        i.college.toLowerCase().includes(searchTerm.toLowerCase())
+        (i.college || "").toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -305,7 +308,7 @@ const InternManagement = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">College/University</label>
+                                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">College/University <span className="text-gray-400 normal-case font-normal">(optional)</span></label>
                                     <input
                                         type="text"
                                         name="college"
@@ -313,7 +316,17 @@ const InternManagement = () => {
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 transition-all bg-slate-50 focus:bg-white"
                                         placeholder="e.g., MIT, Stanford"
-                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1.5 ml-1">Location <span className="text-gray-400 normal-case font-normal">(optional)</span></label>
+                                    <input
+                                        type="text"
+                                        name="location"
+                                        value={formData.location}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2.5 rounded-xl border border-slate-200 outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-50 transition-all bg-slate-50 focus:bg-white"
+                                        placeholder="e.g., New Delhi, India"
                                     />
                                 </div>
                                 <div>

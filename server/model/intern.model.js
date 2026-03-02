@@ -7,7 +7,11 @@ const internSchema = new mongoose.Schema({
     },
     college: {
         type: String,
-        required: true
+        required: false
+    },
+    location: {
+        type: String,
+        required: false
     },
     degree: {
         type: String,
