@@ -99,7 +99,7 @@ export default function CertificationsIndex() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-50">
       <SEOHead
-        title="Certifications & Professional Training | Traincape Technology"
+        title="Certifications| Traincape Technology"
         description="Explore certification and professional training programs across project management, agile, cybersecurity, cloud, AI, testing, business, and digital marketing. Browse categories and view course details."
         canonical="https://www.traincapetech.in/certifications"
         ogType="website"
@@ -110,7 +110,7 @@ export default function CertificationsIndex() {
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,#60a5fa,transparent_40%),radial-gradient(circle_at_80%_20%,#22c55e,transparent_35%),radial-gradient(circle_at_50%_80%,#a855f7,transparent_35%)]" />
         <div className="relative max-w-7xl mx-auto px-6 py-16 text-white">
           <p className="text-sm font-semibold tracking-widest uppercase text-cyan-200">
-            Certifications & Professional Training
+            Certifications
           </p>
           <h1 className="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">
             Find the right certification path — and move faster in your career

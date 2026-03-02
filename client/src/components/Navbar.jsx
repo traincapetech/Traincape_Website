@@ -266,7 +266,7 @@ const Navbar = () => {
                 IT Services
               </Link>
               <Link to="/certifications" className={isActive("/certifications")}>
-                Certifications & Professional Training
+                Certifications
               </Link>
               <Link to="/review-page" className={isActive("/review-page")}>
                 Reviews
@@ -367,7 +367,7 @@ const Navbar = () => {
               className={`${isActive("/certifications")} py-2`}
               onClick={() => setMenuOpen(false)}
             >
-              Certifications & Professional Training
+              Certifications
             </Link>
             <Link
               to="/review-page"
@@ -490,8 +490,8 @@ const Navbar = () => {
                 <button
                   onClick={copyToClipboard}
                   className={`flex items-center px-6 py-3 rounded-xl font-bold transition-all duration-300 shadow-lg ${copied
-                      ? "bg-green-500 hover:bg-green-600 text-white"
-                      : "bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white"
+                    ? "bg-green-500 hover:bg-green-600 text-white"
+                    : "bg-gradient-to-r from-teal-500 to-purple-600 hover:from-teal-600 hover:to-purple-700 text-white"
                     }`}
                 >
                   {copied ? (
