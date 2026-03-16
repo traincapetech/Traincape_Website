@@ -21,6 +21,11 @@ const App = () => {
   const location = useLocation();
   const isConsultantPage = location.pathname.startsWith('/consultant');
 
+  // Scroll to top on every route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [location.pathname]);
+
   useEffect(() => {
     // AOS is initialized via npm bundle (not via CDN) to keep react-snap stable.
     // Skip during react-snap prerender.
