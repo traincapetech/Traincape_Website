@@ -9,24 +9,7 @@ import training from "../assets/training.jpg";
 import unitybanner from "../assets/unitybanner.jpg";
 import tallybanner from "../assets/tallybanner.jpg";
 import microsoft from "../assets/microsoft.jpg";
-import Diwali1 from "../assets/Gallery/Diwali1.jpeg";
-import Diwali2 from "../assets/Gallery/Diwali2.jpeg";
-import GP1 from "../assets/Gallery/GP1.jpeg";
-import GP2 from "../assets/Gallery/GP2.jpeg";
-import GP3 from "../assets/Gallery/GP3.jpeg";
-import GP4 from "../assets/Gallery/GP4.jpeg";
-import GP5 from "../assets/Gallery/GP5.jpeg";
-import GP6 from "../assets/Gallery/GP6.jpeg";
-import GP7 from "../assets/Gallery/GP7.jpeg";
-import GP8 from "../assets/Gallery/GP8.jpeg";
-import GP9 from "../assets/Gallery/GP9.jpeg";
-import GP10 from "../assets/Gallery/GP10.jpeg";
-import GP11 from "../assets/Gallery/GP11.jpeg";
-import GP12 from "../assets/Gallery/GP12.jpeg";
-import GP13 from "../assets/Gallery/GP13.jpeg";
-import GP14 from "../assets/Gallery/GP14.jpeg";
-import GP15 from "../assets/Gallery/GP15.jpeg";
-import GP16 from "../assets/Gallery/GP16.jpeg";
+
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -35,29 +18,7 @@ const Gallery = () => {
 
   // Gallery image data with subcategories
   const galleryImages = [
-    // Campus images
-    // {
-    //   id: 1,
-    //   src: workingBoy,
-    //   alt: "Student Working",
-    //   category: "campus",
-    //   subCategory: "classrooms",
-    // },
-    // {
-    //   id: 2,
-    //   src: workingBoy,
-    //   alt: "Modern Lab Space",
-    //   category: "campus",
-    //   subCategory: "labs",
-    // },
-    // {
-    //   id: 3,
-    //   src: workingBoy,
-    //   alt: "Entrance Hall",
-    //   category: "campus",
-    //   subCategory: "facilities",
-    // },
-
+   
     // Team images
     {
       id: 4,
@@ -73,16 +34,6 @@ const Gallery = () => {
       category: "team",
       subCategory: "developers",
     },
-    { id: 6, src: GP1, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 7, src: GP2, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 8, src: GP3, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 9, src: GP4, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 10, src: GP5, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 11, src: GP6, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 12, src: GP7, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 13, src: GP8, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-    { id: 14, src: GP9, alt: "Team Collaboration", category: "team", subCategory: "Collaboration" },
-   
     
 
     // Training images
@@ -124,21 +75,6 @@ const Gallery = () => {
       subCategory: "microsoft",
     },
 
-    // Events images
-    {
-      id: 22,
-      src: Diwali1,
-      alt: "Diwali",
-      category: "events",
-      subCategory: "Diwali",
-    },
-    {
-      id: 23,
-      src: Diwali2,
-      alt: "Diwali",
-      category: "events",
-      subCategory: "Diwali",
-    },
   ];
 
   // Calculate counts for each category
