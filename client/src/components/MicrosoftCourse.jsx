@@ -1,21 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import VoucherButton from './VoucherButton';
+import React from "react";
+import { Link } from "react-router-dom";
+import VoucherButton from "./VoucherButton";
 
 const MicrosoftCourse = ({ title, url, image, course, subCourse }) => {
   return (
     <div className="flex flex-col items-center bg-white shadow-lg p-6 rounded-lg border border-[#212146] hover:shadow-xl transition-shadow">
       {/* Image */}
-      <img className="w-full h-20 md:w-full md:h-28 mb-4 object-cover" src={image} alt={title} />
+      <img
+        className="w-full h-20 md:w-full md:h-28 mb-4 object-cover"
+        src={image}
+        alt={title}
+      />
 
       {/* Title */}
-      <h3 className="text-lg md:text-xl font-bold text-blue-800 mb-4 text-center">{title}</h3>
+      <h3 className="text-lg md:text-xl font-bold text-blue-800 mb-4 text-center">
+        {title}
+      </h3>
 
       {/* Voucher Button */}
       {course && subCourse && (
         <div className="w-full mb-3">
-          <VoucherButton 
-            course={course} 
+          <VoucherButton
+            course={course}
             subCourse={subCourse}
             className="w-full justify-center"
           />

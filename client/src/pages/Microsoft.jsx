@@ -32,7 +32,7 @@ const Microsoft = () => {
             animationData={comptia}
             className="w-full md:w-1/2"
             onError={(error) => {
-              console.warn('Lottie animation error:', error);
+              console.warn("Lottie animation error:", error);
             }}
           />
           <div className="text w-full md:w-1/2">

@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import SEOHead from "../../components/SEOHead";
 import CertificationCard from "../../components/CertificationCard";
 import AdvisorModal from "../../components/AdvisorModal";
-import { getCertificationsCatalog, TOP_CATEGORIES } from "../../data/certificationsCatalog";
+import {
+  getCertificationsCatalog,
+  TOP_CATEGORIES,
+} from "../../data/certificationsCatalog";
 
 import AWS from "../../assets/aws-kartikey.png";
 import Cisco from "../../assets/Cisco/CiscoIcon.png";
@@ -73,17 +76,24 @@ function VendorCard({ vendor, onClick }) {
           loading="lazy"
           decoding="async"
         />
-        <div className="text-lg font-extrabold text-gray-900">{vendor.title}</div>
+        <div className="text-lg font-extrabold text-gray-900">
+          {vendor.title}
+        </div>
       </div>
       <p className="mt-3 text-sm text-gray-600">{vendor.desc}</p>
-      <div className="mt-4 text-sm font-semibold text-blue-700">Browse programs</div>
+      <div className="mt-4 text-sm font-semibold text-blue-700">
+        Browse programs
+      </div>
     </button>
   );
 }
 
 export default function CertificationsIndex() {
   const navigate = useNavigate();
-  const { categories, allCourses } = useMemo(() => getCertificationsCatalog(), []);
+  const { categories, allCourses } = useMemo(
+    () => getCertificationsCatalog(),
+    [],
+  );
   const [query, setQuery] = useState("");
   const [advisorOpen, setAdvisorOpen] = useState(false);
 
@@ -91,7 +101,8 @@ export default function CertificationsIndex() {
     const q = query.trim().toLowerCase();
     if (!q) return allCourses;
     return allCourses.filter((c) => {
-      const hay = `${c.title} ${c.categoryTitle} ${c.groupTitle} ${c.domainTitle}`.toLowerCase();
+      const hay =
+        `${c.title} ${c.categoryTitle} ${c.groupTitle} ${c.domainTitle}`.toLowerCase();
       return hay.includes(q);
     });
   }, [allCourses, query]);
@@ -116,7 +127,8 @@ export default function CertificationsIndex() {
             Find the right certification path — and move faster in your career
           </h1>
           <p className="mt-4 max-w-3xl text-white/85 text-lg">
-            Browse category-based certifications with detailed outcomes, who-it’s-for, and clear next steps.
+            Browse category-based certifications with detailed outcomes,
+            who-it’s-for, and clear next steps.
           </p>
 
           <div className="mt-8 flex flex-col md:flex-row gap-3 max-w-3xl">
@@ -135,19 +147,27 @@ export default function CertificationsIndex() {
           </div>
 
           <div className="mt-6 text-sm text-white/70">
-            Showing <span className="font-semibold text-white">{filtered.length}</span> certifications
+            Showing{" "}
+            <span className="font-semibold text-white">{filtered.length}</span>{" "}
+            certifications
           </div>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-6 py-12">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Training Tracks</h2>
+        <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+          Training Tracks
+        </h2>
         <p className="mt-2 text-gray-600 max-w-3xl">
-          Pick a track based on your role, background, and timeline. We’ll tailor recommendations accordingly.
+          Pick a track based on your role, background, and timeline. We’ll
+          tailor recommendations accordingly.
         </p>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
           {TRAINING_TRACKS.map((t) => (
-            <div key={t.title} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+            <div
+              key={t.title}
+              className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm"
+            >
               <h3 className="text-xl font-bold text-gray-900">{t.title}</h3>
               <p className="mt-2 text-gray-600">{t.desc}</p>
             </div>
@@ -158,7 +178,9 @@ export default function CertificationsIndex() {
       <section className="max-w-7xl mx-auto px-6 pb-12">
         <div className="flex items-end justify-between flex-wrap gap-6">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Popular Training Vendors</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+              Popular Training Vendors
+            </h2>
             <p className="mt-2 text-gray-600">
               Explore training providers and catalogs.
             </p>
@@ -166,7 +188,11 @@ export default function CertificationsIndex() {
         </div>
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {VENDORS.map((v) => (
-            <VendorCard key={v.title} vendor={v} onClick={() => navigate(v.href)} />
+            <VendorCard
+              key={v.title}
+              vendor={v}
+              onClick={() => navigate(v.href)}
+            />
           ))}
         </div>
       </section>
@@ -174,9 +200,12 @@ export default function CertificationsIndex() {
       <section className="max-w-7xl mx-auto px-6 py-12">
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">Browse by Category</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+              Browse by Category
+            </h2>
             <p className="mt-2 text-gray-600">
-              Clear separation across services and training paths — optimized for fast exploration.
+              Clear separation across services and training paths — optimized
+              for fast exploration.
             </p>
           </div>
         </div>
@@ -184,7 +213,9 @@ export default function CertificationsIndex() {
         <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {TOP_CATEGORIES.map((cat) => {
             const match = categories.find((c) => c.slug === cat.slug);
-            const count = match ? match.groups.reduce((a, g) => a + g.courses.length, 0) : 0;
+            const count = match
+              ? match.groups.reduce((a, g) => a + g.courses.length, 0)
+              : 0;
             return (
               <button
                 key={cat.slug}
@@ -194,7 +225,9 @@ export default function CertificationsIndex() {
                 <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
                   Category
                 </div>
-                <div className="mt-2 text-lg font-bold text-gray-900">{cat.title}</div>
+                <div className="mt-2 text-lg font-bold text-gray-900">
+                  {cat.title}
+                </div>
                 <div className="mt-3 inline-flex items-center text-sm font-semibold text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">
                   {count} programs
                 </div>
@@ -207,9 +240,12 @@ export default function CertificationsIndex() {
       <section className="max-w-7xl mx-auto px-6 pb-16">
         <div className="flex items-end justify-between gap-6 flex-wrap">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">All Certifications</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900">
+              All Certifications
+            </h2>
             <p className="mt-2 text-gray-600">
-              Click a program to view outcomes, benefits, and enrollment options.
+              Click a program to view outcomes, benefits, and enrollment
+              options.
             </p>
           </div>
         </div>
@@ -222,7 +258,8 @@ export default function CertificationsIndex() {
 
         {filtered.length > 60 && (
           <div className="mt-10 text-center text-gray-600">
-            Showing 60 of {filtered.length}. Use search or open a category to see everything.
+            Showing 60 of {filtered.length}. Use search or open a category to
+            see everything.
           </div>
         )}
       </section>
@@ -235,4 +272,3 @@ export default function CertificationsIndex() {
     </div>
   );
 }
-

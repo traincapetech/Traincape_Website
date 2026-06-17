@@ -1,32 +1,30 @@
-import React, { useEffect } from 'react'
-import comptia from '../assets/comptia.json';
-import Lottie from 'lottie-react'; 
-import CiscoCourse from '../components/CiscoCourse.jsx';
-import CiscoCCST from '../assets/Cisco/Cisco-ccst.png';
-import CiscoCCT from '../assets/Cisco/CCT.png';
-import CCSTsc from '../assets/Cisco/CCSTcybersecurity.png';
-import CCTRS from '../assets/Cisco/CCT-RS.jpg'
-import CCTDC from '../assets/Cisco/cct-data-center.png'
-import CCNA from '../assets/Cisco/CCNA.png'
-import CCCA from '../assets/Cisco/CCCA.png'
-import CCNPEnterprise from '../assets/Cisco/ccnpEnterprise.png'
-import CCNPSecurity from '../assets/Cisco/ccnpSecurity.png'
-import CCNPDatacenter from '../assets/Cisco/ccnpDatacenter.png'
-import CCNPServiceprovider from '../assets/Cisco/ccnpServiceprovider.png'
-import CCNPCollaboration from '../assets/Cisco/ccnpCollaboration.png'
-import CCNPDevnet from '../assets/Cisco/CCNPDevNet.png'
-import CCIEenterpriseinfa from '../assets/Cisco/CCIEEnterpriseInfastructure.png'
-import CCIEenterpriseWireless from '../assets/Cisco/CCIEWireless.png'
-import CCIESecurity from '../assets/Cisco/CCIESecurity.png'
-import CCIEDatacenter from '../assets/Cisco/CCIEdatacenter.png' 
-import CCIEServiceprovider from '../assets/Cisco/CCIEserviceprovider.png'
-import CCIECollabration from '../assets/Cisco/CCIECollabration.png'
-import AddToCartButton from '../components/AddToCartButton.jsx';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from "react";
+import comptia from "../assets/comptia.json";
+import Lottie from "lottie-react";
+import CiscoCourse from "../components/CiscoCourse.jsx";
+import CiscoCCST from "../assets/Cisco/Cisco-ccst.png";
+import CiscoCCT from "../assets/Cisco/CCT.png";
+import CCSTsc from "../assets/Cisco/CCSTcybersecurity.png";
+import CCTRS from "../assets/Cisco/CCT-RS.jpg";
+import CCTDC from "../assets/Cisco/cct-data-center.png";
+import CCNA from "../assets/Cisco/CCNA.png";
+import CCCA from "../assets/Cisco/CCCA.png";
+import CCNPEnterprise from "../assets/Cisco/ccnpEnterprise.png";
+import CCNPSecurity from "../assets/Cisco/ccnpSecurity.png";
+import CCNPDatacenter from "../assets/Cisco/ccnpDatacenter.png";
+import CCNPServiceprovider from "../assets/Cisco/ccnpServiceprovider.png";
+import CCNPCollaboration from "../assets/Cisco/ccnpCollaboration.png";
+import CCNPDevnet from "../assets/Cisco/CCNPDevNet.png";
+import CCIEenterpriseinfa from "../assets/Cisco/CCIEEnterpriseInfastructure.png";
+import CCIEenterpriseWireless from "../assets/Cisco/CCIEWireless.png";
+import CCIESecurity from "../assets/Cisco/CCIESecurity.png";
+import CCIEDatacenter from "../assets/Cisco/CCIEdatacenter.png";
+import CCIEServiceprovider from "../assets/Cisco/CCIEserviceprovider.png";
+import CCIECollabration from "../assets/Cisco/CCIECollabration.png";
+import AddToCartButton from "../components/AddToCartButton.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Cisco = () => {
-
-    
   const courseData = [
     {
       image: CCSTsc,
@@ -34,7 +32,7 @@ const Cisco = () => {
       description: "Learn to secure and protect systems like a pro.",
       url: "/CCSTcybersecurity",
       course: "Cisco",
-      subCourse: "CCSTcybersecurity"
+      subCourse: "CCSTcybersecurity",
     },
     {
       image: CiscoCCST,
@@ -42,39 +40,37 @@ const Cisco = () => {
       description: "Networking fundamentals aligned with Cisco CCST.",
       url: "/CCSTNetworking",
       course: "Cisco",
-      subCourse: "CCSTNetworking"
-    }
+      subCourse: "CCSTNetworking",
+    },
   ];
-  const navigate=useNavigate();
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       window.scrollTo(0, 0);
     }, 0);
-  
+
     return () => clearTimeout(timeout);
   }, []);
 
+  return (
+    <>
+      <AddToCartButton />
 
-    return (
-        <>
-                          <AddToCartButton />
-        
-            <div className="course-detail text-center bg-blue-100 py-10">
+      <div className="course-detail text-center bg-blue-100 py-10">
         <div className="info flex flex-col md:flex-row gap-6 items-center px-5">
-          <Lottie 
-            animationData={comptia} 
-            className="w-full md:w-1/2" 
+          <Lottie
+            animationData={comptia}
+            className="w-full md:w-1/2"
             onError={(error) => {
-              console.warn('Lottie animation error:', error);
+              console.warn("Lottie animation error:", error);
             }}
           />
           <div className="text w-full md:w-1/2">
             <h2 className="text-3xl md:text-5xl font-bold mb-7 text-cyan-900">
-              <a 
-                href="https://www.cisco.com/" 
-                target="_blank" 
+              <a
+                href="https://www.cisco.com/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-600 transition-colors cursor-pointer"
                 title="Visit Cisco Official Website"
@@ -83,7 +79,15 @@ const Cisco = () => {
               </a>
             </h2>
             <p className="text-base md:text-lg text-gray-700">
-            A Cisco CCNA (Cisco Certified Network Associate) course is an entry-level IT certification offered by Cisco that provides foundational knowledge in networking fundamentals, covering topics like network access, IP connectivity, routing, switching, security basics, and more, essentially preparing individuals to install, configure, operate, and troubleshoot basic network devices like routers and switches within a Cisco environment; it's widely recognized as a stepping stone for careers in network administration and IT support roles. 
+              A Cisco CCNA (Cisco Certified Network Associate) course is an
+              entry-level IT certification offered by Cisco that provides
+              foundational knowledge in networking fundamentals, covering topics
+              like network access, IP connectivity, routing, switching, security
+              basics, and more, essentially preparing individuals to install,
+              configure, operate, and troubleshoot basic network devices like
+              routers and switches within a Cisco environment; it's widely
+              recognized as a stepping stone for careers in network
+              administration and IT support roles.
             </p>
           </div>
         </div>
@@ -125,8 +129,8 @@ const Cisco = () => {
           />
         ))}
       </div>
-        </>
-    )
-}
+    </>
+  );
+};
 
-export default Cisco
+export default Cisco;
