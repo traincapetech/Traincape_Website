@@ -33,9 +33,16 @@
     <link rel="preload" href="/styles.css" as="style" />
     <link rel="stylesheet" href="/styles.css" />
 
-    <!-- DNS Prefetch and Preconnect (limited to 2 preconnect to stay under 4 total) -->
-    <link rel="dns-prefetch" href="https://traincape-backend-1.onrender.com">
-    <link rel="preconnect" href="https://traincape-backend-1.onrender.com" crossorigin>
+    <!-- DNS Prefetch and Preconnect -->
+    <link rel="dns-prefetch" href="https://traincape-backend-uwoa.onrender.com">
+    <link rel="preconnect" href="https://traincape-backend-uwoa.onrender.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Preload Google Fonts stylesheet and LCP Image -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="preload" href="/img-1.jpg" as="image" fetchpriority="high">
     <!-- Avoid preconnecting to third-party analytics for prerender stability -->
 
     <!-- Preload key scripts -->

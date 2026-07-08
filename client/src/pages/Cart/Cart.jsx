@@ -73,7 +73,7 @@ Email: ${accountDetails.email}
 
       const paymentResponse = await axios({
         method: "post",
-        url: `https://traincape-backend-1.onrender.com/payments/stripe`,
+        url: `https://traincape-backend-uwoa.onrender.com/payments/stripe`,
         data: {
           lineItems,
           success_url: `${window.location.origin}/success`,

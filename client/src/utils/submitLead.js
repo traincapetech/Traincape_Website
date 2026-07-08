@@ -3,7 +3,7 @@ export async function submitLead(lead) {
     process.env.REACT_APP_API_BASE_URL ||
     (typeof window !== "undefined" && window.location.hostname === "localhost"
       ? "http://localhost:8080"
-      : "https://traincape-backend-1.onrender.com");
+      : "https://traincape-backend-uwoa.onrender.com");
 
   const resp = await fetch(`${apiBase}/contact/lead`, {
     method: "POST",

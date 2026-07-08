@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import API_BASE_URL from "../../../../config/api";
 
 import {
   EducationInformation,
@@ -34,7 +35,7 @@ const UserPage = () => {
 
         // Update with your actual API endpoint
         const response = await axios.get(
-          `http://localhost:8080/employees/getEmployee/${employeeId}`
+          `${API_BASE_URL}/employees/getEmployee/${employeeId}`
         );
 
         console.log("RESPONSE IS--->", response);

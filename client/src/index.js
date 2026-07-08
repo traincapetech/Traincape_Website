@@ -53,19 +53,7 @@ if (isProduction) {
   reportWebVitals();
 }
 
-// Preconnect to domains we'll need resources from (limit to 2 to stay under 4 total)
-// Only the most critical domains - fonts are already in index.html
-const preconnectDomains = [
-  'https://fonts.googleapis.com',
-  'https://fonts.gstatic.com'
-];
-
-preconnectDomains.forEach(domain => {
-  const link = document.createElement('link');
-  link.rel = 'preconnect';
-  link.href = domain;
-  document.head.appendChild(link);
-});
+// Preconnect domains are now managed natively in public/index.html to start TLS handshakes earlier.
 
 // Add resource hints for critical resources
 if (isProduction) {
@@ -83,7 +71,7 @@ if (isProduction) {
 }
 
 // Configure axios defaults to optimize API calls
-axios.defaults.baseURL = 'https://traincape-backend-1.onrender.com';
+axios.defaults.baseURL = 'https://traincape-backend-uwoa.onrender.com';
 axios.defaults.timeout = 10000; // 10 seconds timeout
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 

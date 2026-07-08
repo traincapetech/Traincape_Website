@@ -29,6 +29,7 @@ import CourseAnalytics from "./CourseAnalytics/CourseAnalytics";
 import EmployeeManagement from "./EmployeeManagement/EmployeeManagement";
 import InternManagement from "./InternManagement/InternManagement";
 import Results from "./Results";
+import VideoCourseManagement from "./VideoCourseManagement/VideoCourseManagement";
 
 const AdminPanel = () => {
   const [selectedOption, setSelectedOption] = useState("roleSelection");
@@ -166,6 +167,8 @@ const AdminPanel = () => {
         return <CertificateForm />;
       case "voucherManagement":
         return <VoucherManagement />;
+      case "videoCourseManagement":
+        return <VideoCourseManagement />;
       // case "pecbBrochures":
       //   return <PECBBrochures />;
       case "results":

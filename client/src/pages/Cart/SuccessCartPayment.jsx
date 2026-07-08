@@ -33,7 +33,7 @@ const SuccessCartPayment = () => {
         }
 
         const response = await axios.get(
-          `https://traincape-backend-1.onrender.com/payments/stripe-success`,
+          `https://traincape-backend-uwoa.onrender.com/payments/stripe-success`,
           {
             params: {
               session_id: sessionId,

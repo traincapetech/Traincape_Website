@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { X, Save, CheckCircle } from "lucide-react";
 import axios from "axios";
 import EditEmployeeModal from "./section/EditEmployeeModal";
+import API_BASE_URL from "../../../../config/api";
 
 export default function EditEmployee({ employeeId, onClose }) {
 
@@ -40,7 +41,7 @@ export default function EditEmployee({ employeeId, onClose }) {
     const fetchData = async () => {
       // Simulate API call delay
       const response = await axios.get(
-        `http://localhost:8080/employees/getEmployee/${employeeId}`
+        `${API_BASE_URL}/employees/getEmployee/${employeeId}`
       );
       console.log("Data from backend is--->", response.data);
       const fetchedData = response.data.data;
@@ -159,7 +160,7 @@ export default function EditEmployee({ employeeId, onClose }) {
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/employees/updateEmployee/${employeeId}`,
+        `${API_BASE_URL}/employees/updateEmployee/${employeeId}`,
         sendingData, // Missing data parameter for what needs to be updated,
         {
           headers: {

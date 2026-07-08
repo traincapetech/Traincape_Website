@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { useEffect } from "react";
 import EditEmployee from "./editEmployee/EditEmployee";
+import API_BASE_URL from "../../../config/api";
 import {
   EducationalInfoSection,
   EmploymentSpecificInfoSection,
@@ -57,7 +58,7 @@ const EmployeeManagement = () => {
       setLoading(true);
       // Replace with your actual API endpoint
       const response = await axios.get(
-        "http://localhost:8080/employees/getEmployees"
+        `${API_BASE_URL}/employees/getEmployees`
       );
       console.log(response.data.employees);
       setEmployees(response.data.employees);
@@ -182,7 +183,7 @@ const EmployeeManagement = () => {
         }
         // Post the data to the backend
         await axios.post(
-          "http://localhost:8080/employees/addEmployee",
+          `${API_BASE_URL}/employees/addEmployee`,
           formData,
           {
             headers: {
@@ -252,7 +253,7 @@ const EmployeeManagement = () => {
       setLoading(true);
       // Replace with your actual API endpoint
       const response = await axios.delete(
-        `http://localhost:8080/employees/deleteEmployee/${id}`
+        `${API_BASE_URL}/employees/deleteEmployee/${id}`
       );
       alert("Employee deleted successfully");
       fetchEmployees();

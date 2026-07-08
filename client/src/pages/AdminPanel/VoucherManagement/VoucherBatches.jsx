@@ -20,7 +20,7 @@ const VoucherBatches = ({ batches, loading, onRefresh, onBatchUpdated }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.put(
-        'https://traincape-backend-1.onrender.com/vouchers/batches/price',
+        'https://traincape-backend-uwoa.onrender.com/vouchers/batches/price',
         {
           batchId,
           price: parseFloat(newPrice)

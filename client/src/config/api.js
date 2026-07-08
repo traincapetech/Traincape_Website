@@ -1,6 +1,6 @@
 // API Configuration for different environments
 const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://traincape-backend-1.onrender.com'  // Production URL
+  ? 'https://traincape-backend-uwoa.onrender.com'  // Production URL
   : 'http://localhost:8080';  // Development URL
 
 export const API_ENDPOINTS = {

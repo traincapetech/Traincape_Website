@@ -4,7 +4,7 @@
   "private": true,
   "main": "src/index.js",
   "homepage": "/",
-  "proxy": "https://traincape-backend.onrender.com",
+  "proxy": "https://traincape-backend-uwoa.onrender.com",
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.8.2",
@@ -92,7 +92,10 @@
     "concurrency": 1,
     "puppeteerArgs": [
       "--no-sandbox",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-gpu",
+      "--single-process"
     ],
     "include": [
       "/",
@@ -111,14 +114,37 @@
       "/training/aws",
       "/training/cisco",
       "/training/microsoft",
-      "/services/cloud-services",
+      "/services",
+      "/services/custom-software-development",
+      "/services/crm-development",
       "/services/web-development",
+      "/services/mobile-app-development",
+      "/services/ui-ux-design",
+      "/services/cloud-services",
+      "/services/ai-solutions",
+      "/services/maintenance-support",
       "/contact-us",
       "/frequently-asked-questions",
       "/review-page",
       "/partner-page",
       "/PECB",
-      "/pecb"
+      "/pecb",
+      "/portfolio",
+      "/portfolio/nk-luxe",
+      "/portfolio/verda-exports",
+      "/portfolio/crm",
+      "/portfolio/traincape",
+      "/portfolio/bold-india-group",
+      "/case-studies",
+      "/case-studies/nk-luxe",
+      "/case-studies/crm",
+      "/case-studies/verda",
+      "/case-studies/dating-app",
+      "/case-studies/traincape",
+      "/products",
+      "/products/crm",
+      "/products/hrms",
+      "/products/payroll"
     ]
   },
   "eslintConfig": {

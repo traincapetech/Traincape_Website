@@ -262,8 +262,14 @@ const Navbar = () => {
               <Link to="/about-us" className={isActive("/about-us")}>
                 About
               </Link>
-              <Link to="services/software-services" className={isActive("services/software-services")}>
-                IT Services
+              <Link to="/services" className={isActive("/services")}>
+                Services
+              </Link>
+              <Link to="/products" className={isActive("/products")}>
+                Products
+              </Link>
+              <Link to="/portfolio" className={isActive("/portfolio")}>
+                Portfolio
               </Link>
               <Link to="/certifications" className={isActive("/certifications")}>
                 Certifications
@@ -356,11 +362,25 @@ const Navbar = () => {
               About
             </Link>
             <Link
-              to="/our-services"
-              className={`${isActive("/our-services")} py-2`}
+              to="/services"
+              className={`${isActive("/services")} py-2`}
               onClick={() => setMenuOpen(false)}
             >
-              IT Services
+              Services
+            </Link>
+            <Link
+              to="/products"
+              className={`${isActive("/products")} py-2`}
+              onClick={() => setMenuOpen(false)}
+            >
+              Products
+            </Link>
+            <Link
+              to="/portfolio"
+              className={`${isActive("/portfolio")} py-2`}
+              onClick={() => setMenuOpen(false)}
+            >
+              Portfolio
             </Link>
             <Link
               to="/certifications"

@@ -94,6 +94,13 @@ const Sidebar = ({ role, selectedOption, onSelectOption }) => {
       roles: ["Admin"],
     },
     {
+      id: "videoCourseManagement",
+      icon: Video,
+      label: "Video Course Management",
+      category: "Business",
+      roles: ["Admin"],
+    },
+    {
       id: "pecbBrochures",
       icon: FileText,
       label: "PECB Brochures",

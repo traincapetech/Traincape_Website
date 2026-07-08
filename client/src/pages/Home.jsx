@@ -9,7 +9,6 @@ import Typewriter from "typewriter-effect"
 import SEOHead from "../components/SEOHead"
 
 // Banner images
-import img1 from "../assets/img-1.jpg"
 import img2 from "../assets/img-2.jpg"
 import img3 from "../assets/img-3.jpg"
 import img4 from "../assets/img4.jpg"
@@ -52,6 +51,8 @@ import PECB from "../assets/PECB1.png"
 import AWS from "../assets/aws-kartikey.png"
 import Cisco from "../assets/Cisco/CiscoIcon.png"
 
+const img1 = "/img-1.jpg";
+
 // Video URL (loaded only in real browsers; disabled for react-snap prerender stability)
 const trainingVideo = "https://videos.pexels.com/video-files/3209828/3209828-hd_1280_720_25fps.mp4";
 
@@ -90,6 +91,22 @@ const serviceCards = [
     route: "/services/software-services"
   },
 ]
+
+const serviceImageDimensions = {
+  "Cloud Services": { width: 626, height: 345 },
+  "UI Design": { width: 626, height: 379 },
+  "Web Development": { width: 626, height: 417 },
+  "Software Services": { width: 736, height: 490 },
+  "Software Development": { width: 626, height: 415 }
+};
+
+const partnerLogoDimensions = {
+  "SBS": { width: 2133, height: 593 },
+  "ThreatMatrix": { width: 15857, height: 2685 },
+  "Gruslabs": { width: 150, height: 50 },
+  "MSA Software": { width: 93, height: 54 },
+  "Spectre": { width: 300, height: 150 }
+};
 
 const images = [img1, img2, img3, img4]
 
@@ -204,16 +221,101 @@ const Home = () => {
         canonical="https://www.traincapetech.in/"
         structuredData={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Traincape Technology - IT Training & Certification",
-          "description": "IT services and job-ready IT training for professionals and teams",
+          "@type": "ProfessionalService",
+          "name": "Traincape Technology",
+          "alternateName": "Traincape Tech",
+          "description": "Traincape Technology is a premier IT services provider specializing in custom web development, mobile apps, SaaS CRMs, telemedicine platforms, and certified IT training based in New Delhi, India.",
           "url": "https://www.traincapetech.in/",
-          "mainEntity": {
-            "@type": "Organization",
-            "name": "Traincape Technology",
-            "url": "https://www.traincapetech.in",
-            "logo": "https://www.traincapetech.in/android-chrome-512x512.png",
-            "description": "Premier IT Training and Certification provider"
+          "logo": "https://www.traincapetech.in/android-chrome-512x512.png",
+          "image": "https://www.traincapetech.in/android-chrome-512x512.png",
+          "telephone": "+91-6280281505",
+          "email": "sales@traincapetech.in",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Khandolia Plaza, 118\\C, Dabri - Palam Rd, Vaishali Colony, Dashrath Puri",
+            "addressLocality": "New Delhi",
+            "addressRegion": "Delhi",
+            "postalCode": "110045",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "28.6019",
+            "longitude": "77.0863"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "11:00",
+            "closes": "19:00"
+          },
+          "areaServed": [
+            {
+              "@type": "AdministrativeArea",
+              "name": "Delhi"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Delhi NCR"
+            },
+            {
+              "@type": "Country",
+              "name": "India"
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "IT & Software Development Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Web Development",
+                  "description": "High-performance React & Next.js web application and website development company in Delhi NCR."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Mobile App Development",
+                  "description": "Android and iOS mobile application development for enterprise, fintech, and startups."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "SaaS CRM Development",
+                  "description": "Custom CRM software development with sales pipelines, workflows, and dashboard reporting."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Telemedicine & Healthcare Apps",
+                  "description": "HIPAA-compliant telemedicine application development with live video consultation and EHR integration."
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Service",
+                  "name": "Search Engine Optimization (SEO) & AIO",
+                  "description": "Full-proof technical and local SEO strategies to rank on Google search and Google AI Overviews."
+                }
+              }
+            ]
           }
         }}
       />
@@ -227,6 +329,9 @@ const Home = () => {
             className="absolute inset-0 w-full h-full object-cover"
             loading="eager"
             decoding="async"
+            width="1536"
+            height="1024"
+            fetchpriority="high"
           />
         ) : (
           <video
@@ -237,6 +342,8 @@ const Home = () => {
             preload="metadata"
             poster={img1}
             className="absolute inset-0 w-full h-full object-cover"
+            width="1536"
+            height="1024"
           >
             <source src={trainingVideo} type="video/mp4" />
             Your browser does not support the video tag.
@@ -373,6 +480,9 @@ const Home = () => {
                       src={vendor.logo || "/placeholder.svg"}
                       alt={vendor.name}
                       className="object-contain max-h-16 max-w-[80%] mx-auto mb-4 cursor-pointer hover:opacity-80 transition-opacity"
+                      width={vendor.name === 'CompTIA' ? 866 : 225}
+                      height={vendor.name === 'CompTIA' ? 650 : 225}
+                      loading="lazy"
                       onError={(e) => {
                         e.target.onerror = null
                         e.target.src = "https://via.placeholder.com/150x50?text=Logo"
@@ -386,6 +496,9 @@ const Home = () => {
                       src={vendor.logo || "/placeholder.svg"}
                       alt={vendor.name}
                       className="object-contain max-h-16 max-w-[80%] mx-auto mb-4"
+                      width={vendor.name === 'CompTIA' ? 866 : 225}
+                      height={vendor.name === 'CompTIA' ? 650 : 225}
+                      loading="lazy"
                       onError={(e) => {
                         e.target.onerror = null
                         e.target.src = "https://via.placeholder.com/150x50?text=Logo"
@@ -402,7 +515,7 @@ const Home = () => {
           </motion.div>
         </div>
       </motion.div>
-
+ 
       {/* Job-Ready Courses Carousel Section */}
       <section className="py-16 bg-white">
         <h2 className="text-center font-extrabold text-4xl md:text-5xl text-[#1F3C88] mb-10 tracking-tight">
@@ -421,6 +534,9 @@ const Home = () => {
                       src={course.image || "/placeholder.svg"}
                       alt={course.title}
                       className="h-28 w-28 object-contain rounded-xl mb-4 bg-white"
+                      width={course.title === 'COMPTIA' ? 866 : course.title.includes('Forensics') ? 267 : 225}
+                      height={course.title === 'COMPTIA' ? 650 : course.title.includes('Forensics') ? 189 : 225}
+                      loading="lazy"
                     />
                     <h3 className="text-xl font-bold text-gray-800 mb-2 text-center">{course.title}</h3>
                     <p className="text-gray-700 text-center mb-4 text-base">{course.description}</p>
@@ -503,6 +619,9 @@ const Home = () => {
                 // alt for SEO 
                 alt="Team of Traincape Technology providing IT Training and Certifications"
                 className="relative z-10 rounded-xl shadow-2xl w-full object-cover h-64 md:h-[400px]"
+                width="1280"
+                height="853"
+                loading="lazy"
               />
             </div>
             <div className="md:w-1/2">
@@ -533,7 +652,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
+ 
       {/* Services Section with Professional Styling */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -559,6 +678,9 @@ const Home = () => {
                     src={service.image || "/placeholder.svg"}
                     alt={service.title}
                     className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                    width={serviceImageDimensions[service.title]?.width || 626}
+                    height={serviceImageDimensions[service.title]?.height || 417}
+                    loading="lazy"
                   />
                 </div>
                 <div className="p-6">
@@ -713,6 +835,9 @@ const Home = () => {
                     src={partner.logo || "/placeholder.svg"}
                     alt={partner.name || "Partner Logo"}
                     className="max-h-16 max-w-[80%] object-contain grayscale hover:grayscale-0 transition-all duration-300 mb-3"
+                    width={partnerLogoDimensions[partner.name]?.width || 150}
+                    height={partnerLogoDimensions[partner.name]?.height || 50}
+                    loading="lazy"
                   />
                   <p className="text-white font-semibold text-sm text-center truncate max-w-full">
                     {partner.name || partner.url.replace(/(https?:\/\/)?(www\.)?/i, "").split("/")[0]}

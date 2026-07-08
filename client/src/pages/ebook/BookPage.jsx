@@ -14,7 +14,7 @@ const BookPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const res = await axios.get(`https://traincape-backend-1.onrender.com/books/get-books?page=1&limit=18`);
+      const res = await axios.get(`https://traincape-backend-uwoa.onrender.com/books/get-books?page=1&limit=18`);
       setBooks(res.data);
     } catch (err) {
       setError("Failed to load books. Please try again.");

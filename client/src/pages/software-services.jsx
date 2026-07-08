@@ -9,7 +9,7 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import SEOHead from "../components/SEOHead";
 import {
   FaTabletAlt,
   FaBrain,
@@ -312,25 +312,120 @@ const SoftwareDevelopment = () => {
 
   return (
     <div className="w-full font-sans bg-[#030712] text-white overflow-x-hidden selection:bg-cyan-500/30">
-      <Helmet>
-        <title>
-          IT Services — SaaS CRM, Telemedicine Apps, SEO & Web Development |
-          Traincape Technology
-        </title>
-        <meta
-          name="description"
-          content="We build SaaS-level CRM, telemedicine mobile apps, high-performance websites, and implement full-proof SEO strategies. Enterprise software development by Traincape Technology."
-        />
-        <meta
-          name="keywords"
-          content="SaaS CRM Development, Telemedicine App, Mobile App Development, Full SEO, Custom Website, Software Services, Traincape Technology"
-        />
-        <meta name="robots" content="index, follow" />
-        <link
-          rel="canonical"
-          href="https://www.traincapetech.in/services/software-services"
-        />
-      </Helmet>
+      <SEOHead
+        title="IT Services — SaaS CRM, Telemedicine Apps, Real Estate Websites, SEO & Web Development | Traincape Technology"
+        description="We build SaaS-level CRM, telemedicine mobile apps, high-performance websites, and implement full-proof SEO strategies. Enterprise software development by Traincape Technology in Delhi."
+        canonical="https://www.traincapetech.in/services/software-services"
+        structuredData={{
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "ProfessionalService",
+              "@id": "https://www.traincapetech.in/services/software-services#service",
+              "name": "Traincape Technology - Software & Web Development",
+              "url": "https://www.traincapetech.in/services/software-services",
+              "telephone": "+91-6280281505",
+              "email": "sales@traincapetech.in",
+              "image": "https://www.traincapetech.in/android-chrome-512x512.png",
+              "priceRange": "$$",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Khandolia Plaza, 118\\C, Dabri - Palam Rd, Vaishali Colony, Dashrath Puri",
+                "addressLocality": "New Delhi",
+                "addressRegion": "Delhi",
+                "postalCode": "110045",
+                "addressCountry": "IN"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "28.6019",
+                "longitude": "77.0863"
+              },
+              "areaServed": [
+                { "@type": "AdministrativeArea", "name": "Delhi" },
+                { "@type": "AdministrativeArea", "name": "Delhi NCR" },
+                { "@type": "Country", "name": "India" }
+              ],
+              "hasOfferCatalog": {
+                "@type": "OfferCatalog",
+                "name": "Software Development Services",
+                "itemListElement": [
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Custom Web Development",
+                      "description": "High-performance React & Next.js websites and web applications built for speed and scalability."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "SaaS CRM Development",
+                      "description": "Enterprise CRM platforms with automated workflows, real-time analytics, and lead scoring."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Telemedicine & Healthcare Apps",
+                      "description": "HIPAA-compliant mobile platforms with video consultations and EHR integration."
+                    }
+                  },
+                  {
+                    "@type": "Offer",
+                    "itemOffered": {
+                      "@type": "Service",
+                      "name": "Search Engine Optimization (SEO)",
+                      "description": "Technical SEO, Core Web Vitals optimization, and local SEO to drive organic rankings."
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://www.traincapetech.in/services/software-services#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Which is the best web and app development company in Delhi near me?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Traincape Technology is a leading web and app development company located in Vaishali Colony, Dashrath Puri, New Delhi, Delhi. We deliver premium, custom software solutions including responsive React/Next.js websites, mobile ecosystems, enterprise CRMs, and telemedicine apps."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Does Traincape Technology build custom CRM software?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, Traincape Technology specializes in SaaS-level custom CRM development. We architect CRMs with real-time sales analytics, automated workflows, lead scoring, and third-party integrations to maximize business efficiency."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What telemedicine app development services do you provide in Delhi NCR?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We develop HIPAA-compliant telemedicine and healthcare applications equipped with secure video consultations, digital prescriptions, patient record portals, and seamless EHR integrations for clinics and healthcare providers."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How does Traincape Technology implement SEO for business websites?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our full-proof SEO and Generative Engine Optimization (GEO) implementation focuses on technical structure, schema markup, Core Web Vitals optimization, and high-quality local keyword targeting to ensure your website ranks first on Google Search and AI Overviews."
+                  }
+                }
+              ]
+            }
+          ]
+        }}
+      />
 
       {/* ════════════════════════════════════════════════════════
           HERO SECTION — Animated Gradient Mesh + 3D Stats Card
@@ -418,7 +513,7 @@ const SoftwareDevelopment = () => {
 
             <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
               <motion.button
-                onClick={() => navigate("/contact-us")}
+                onClick={() => navigate("/requirement-wizard")}
                 className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl font-bold text-lg shadow-2xl shadow-cyan-500/25 overflow-hidden"
                 whileHover={{
                   scale: 1.05,

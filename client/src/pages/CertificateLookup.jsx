@@ -25,7 +25,7 @@ const CertificateLookup = () => {
 
     try {
       const res = await axios.get(
-        `https://traincape-backend-1.onrender.com/certificates/${certificateId}`
+        `https://traincape-backend-uwoa.onrender.com/certificates/${certificateId}`
       );
       if (res.data && res.data.success) {
         setCertificate(res.data.data);

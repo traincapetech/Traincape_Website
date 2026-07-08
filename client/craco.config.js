@@ -13,18 +13,18 @@ module.exports = {
           ...webpackConfig.optimization,
           splitChunks: {
             chunks: 'all',
+            maxInitialRequests: 25,
+            minSize: 20000,
             cacheGroups: {
-              vendor: {
+              defaultVendors: {
                 test: /[\\/]node_modules[\\/]/,
-                name: 'vendors',
-                chunks: 'all',
-                priority: 10,
+                priority: -10,
+                reuseExistingChunk: true,
               },
               common: {
-                name: 'common',
                 minChunks: 2,
                 chunks: 'all',
-                priority: 5,
+                priority: -20,
                 reuseExistingChunk: true,
               },
             },

@@ -4,7 +4,7 @@ module.exports = function(app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: 'https://traincape-backend.onrender.com',
+      target: 'https://traincape-backend-uwoa.onrender.com',
       changeOrigin: true,
       secure: false,
       logLevel: 'debug',

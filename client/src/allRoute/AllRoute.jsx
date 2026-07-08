@@ -26,17 +26,17 @@ const LoadingComponent = () => (
 );
 
 // Lazy load high-level pages for better performance
-const CloudService = lazyWithRetry(() => import("../pages/CloudServices"));
+const ClientRequirementWizard = lazyWithRetry(() => import("../pages/ClientRequirementWizard"));
 const ConsultantChat = lazyWithRetry(() => import("../pages/ConsultantChat")); // Added ConsultantChat import
 const Home = lazyWithRetry(() => import("../pages/Home"));
 // const UserPage = lazy(() => import("../pages/userPage/UserPage"));
 const Login = lazyWithRetry(() => import("../pages/Login"));
-const AboutUS = lazyWithRetry(() => import("../pages/AboutUS"));
+const AboutUS = lazyWithRetry(() => import("../pages/AboutUs/AboutUS"));
 // Removed ConsultantLogin and ConsultantSignup imports as they are now part of AdminPanel
 const ContactUs = lazyWithRetry(() => import("../pages/ContactUs"));
 const Signup = lazyWithRetry(() => import("../pages/Signup"));
 const FAQ = lazyWithRetry(() => import("../pages/FAQ"));
-const Services = lazyWithRetry(() => import("../pages/Services"));
+const Services = lazyWithRetry(() => import("../pages/Services/Services"));
 const TermsAndCondition = lazyWithRetry(
   () => import("../pages/TermsAndCondition"),
 );
@@ -74,8 +74,23 @@ const CertificateTemplate = lazyWithRetry(
   () => import("../pages/Test/CertificateTemplate"),
 );
 
+const VideoCoursesPage = lazyWithRetry(() => import("../pages/VideoCourses/VideoCoursesPage"));
+const VideoCourseDetailPage = lazyWithRetry(() => import("../pages/VideoCourses/VideoCourseDetailPage"));
+const VideoCourseSuccess = lazyWithRetry(() => import("../pages/VideoCourses/VideoCourseSuccess"));
+
+// Portfolio pages
+const Portfolio = lazyWithRetry(() => import("../pages/Portfolio/Portfolio"));
+const ProjectDetail = lazyWithRetry(() => import("../pages/Portfolio/ProjectDetail"));
+
+// Case Studies pages
+const CaseStudies = lazyWithRetry(() => import("../pages/CaseStudies/CaseStudies"));
+const CaseStudyDetails = lazyWithRetry(() => import("../pages/CaseStudies/CaseStudyDetails"));
+
+// Products Showcase pages
+const Products = lazyWithRetry(() => import("../pages/products/Products"));
+const ProductDetail = lazyWithRetry(() => import("../pages/products/ProductDetail"));
+
 // Other pages
-const ServiceDetail = lazyWithRetry(() => import("../pages/ServiceDetail"));
 const PartnerPage = lazyWithRetry(() => import("../pages/PartnerPage"));
 const CertificationsIndex = lazyWithRetry(
   () => import("../pages/Certifications/CertificationsIndex"),
@@ -87,14 +102,8 @@ const CertificationDetail = lazyWithRetry(
   () => import("../pages/Certifications/CertificationDetail"),
 );
 
-// Service Pages
-const DigitalMarketing = lazyWithRetry(
-  () => import("../pages/digital-marketing"),
-);
-const WebDevelopment = lazyWithRetry(() => import("../pages/WebDevelopment"));
-const SoftwareServices = lazyWithRetry(
-  () => import("../pages/software-services"),
-);
+// B2B Services System
+const ServiceDetail = lazyWithRetry(() => import("../pages/Services/ServiceDetail"));
 
 // CompTIA Certification Pages
 // Main CompTIA pages
@@ -419,6 +428,7 @@ const AllRoute = () => {
         /> */}
         <Route path="/about-us" element={<AboutUS />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/requirement-wizard" element={<ClientRequirementWizard />} />
         {/* Removed Consultant Login/Signup routes */}
         <Route path="/consultant" element={<ConsultantChat />} />{" "}
         {/* Added Consultant Route */}
@@ -429,26 +439,26 @@ const AllRoute = () => {
         <Route path="/career" element={<Career />} />
         <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
         <Route path="/partners" element={<PartnerPage />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/portfolio/:slug" element={<ProjectDetail />} />
+        <Route path="/case-studies" element={<CaseStudies />} />
+        <Route path="/case-studies/:slug" element={<CaseStudyDetails />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:slug" element={<ProductDetail />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/video-courses" element={<VideoCoursesPage />} />
+        <Route path="/video-courses/:id" element={<VideoCourseDetailPage />} />
+        <Route path="/video-courses/payment-success" element={<VideoCourseSuccess />} />
         <Route
           path="/training"
           element={<Navigate to="/certifications" replace />}
         />
         <Route path="/training/:vendorSlug" element={<TrainingVendor />} />
         <Route path="/frequently-asked-questions" element={<FAQ />} />
-        <Route path="/our-services" element={<Services />} />
-        <Route path="/service-detail/:slug" element={<ServiceDetail />} />
-        {/* Service Routes */}
-        <Route path="/services/cloud-services" element={<CloudService />} />
-        <Route
-          path="/services/digital-marketing"
-          element={<DigitalMarketing />}
-        />
-        <Route path="/services/web-development" element={<WebDevelopment />} />
-        <Route
-          path="/services/software-services"
-          element={<SoftwareServices />}
-        />
+        <Route path="/services" element={<Services />} />
+        <Route path="/services/:slug" element={<ServiceDetail />} />
+        <Route path="/our-services" element={<Navigate to="/services" replace />} />
+        <Route path="/service-detail/:slug" element={<Navigate to="/services" replace />} />
         <Route path="/Terms-and-Conditions" element={<TermsAndCondition />} />
         <Route path="/CertificateLookup" element={<CertificateLookup />} />
         <Route path="/verifyCertificate" element={<VerifyCertificate />} />

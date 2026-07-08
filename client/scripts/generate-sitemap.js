@@ -103,6 +103,14 @@ function buildUrls() {
   const trainingVendors = ["aws", "cisco", "microsoft"];
   for (const v of trainingVendors) base.add(`/training/${v}`);
 
+  // Product showcase pages
+  const products = ["crm", "hrms", "payroll"];
+  for (const p of products) base.add(`/products/${p}`);
+
+  // Case Studies pages
+  const caseStudies = ["nk-luxe", "crm", "verda", "dating-app", "traincape"];
+  for (const c of caseStudies) base.add(`/case-studies/${c}`);
+
   // Certifications category pages (fixed IA)
   const certCategories = [
     "project-program-management",
@@ -144,10 +152,14 @@ function buildUrls() {
   // NOTE: /service-detail/:slug exists, but current site also has canonical /services/... pages.
   // We include only those canonical service URLs for sitemap.
   const servicePages = [
-    "/services/cloud-services",
+    "/services/custom-software-development",
+    "/services/crm-development",
     "/services/web-development",
-    "/services/digital-marketing",
-    "/services/software-services",
+    "/services/mobile-app-development",
+    "/services/ui-ux-design",
+    "/services/cloud-services",
+    "/services/ai-solutions",
+    "/services/maintenance-support",
   ];
   for (const s of servicePages) base.add(s);
 

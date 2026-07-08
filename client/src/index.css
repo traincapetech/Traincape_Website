@@ -1,16 +1,107 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
-
 @tailwind components;
 @tailwind utilities;
 
-body {
-  /* border: 3px dashed black; */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  overflow-x: hidden;
-  margin: 0px;
-  padding: 0px;
+@layer base {
+  :root {
+    /* LIGHT MODE TOKENS */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    
+    --primary: 221.2 83.2% 53.3%;
+    --primary-hover: 221.2 83.2% 45%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-hover: 210 40% 90%;
+    --secondary-foreground: 224 71% 4%;
+    
+    --accent: 262.1 83.3% 57.8%;
+    --accent-hover: 262.1 83.3% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    
+    --success: 142.1 76.2% 36.3%;
+    --warning: 38 92% 50%;
+    --danger: 346.8 77.2% 49.8%;
+    --info: 199 89% 48%;
+    
+    --disabled: 210 40% 94%;
+    --disabled-foreground: 215.4 16.3% 65%;
+  }
+
+  .dark {
+    /* ULTRA-PREMIUM NEUTRAL DARK MODE TOKENS (OBSIDIAN/CHARCOAL) */
+    --background: 240 10% 3.9%;
+    --foreground: 210 20% 98%;
+    --card: 240 10% 5.9%;
+    --card-foreground: 210 20% 98%;
+    
+    --primary: 217.2 91.2% 59.8%;
+    --primary-hover: 217.2 91.2% 68%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 3.7% 15.9%;
+    --secondary-hover: 240 3.7% 22%;
+    --secondary-foreground: 210 20% 98%;
+    
+    --accent: 263.4 70% 50.4%;
+    --accent-hover: 263.4 70% 60%;
+    --accent-foreground: 210 20% 98%;
+    
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    
+    --border: 240 5.9% 15%;
+    --input: 240 5.9% 15%;
+    
+    --success: 142.1 70.6% 45.3%;
+    --warning: 47.9 95.8% 53.1%;
+    --danger: 346.8 87.2% 56.5%;
+    --info: 199 89% 58%;
+    
+    --disabled: 240 5.9% 10%;
+    --disabled-foreground: 240 5% 40%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+@layer components {
+  /* Reusable class utilities for design system */
+  .btn-primary {
+    @apply px-5 py-2.5 bg-primary text-primary-foreground font-semibold rounded shadow-elevation-sm hover:bg-primary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-hover-duration ease-hover-curve disabled:bg-disabled disabled:text-disabled-foreground disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply px-5 py-2.5 bg-secondary text-secondary-foreground font-semibold rounded shadow-elevation-xs hover:bg-secondary-hover focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary focus-visible:outline-none transition-all duration-hover-duration ease-hover-curve disabled:bg-disabled disabled:text-disabled-foreground disabled:cursor-not-allowed;
+  }
+  
+  .btn-outline {
+    @apply px-5 py-2.5 bg-transparent border border-input text-foreground font-semibold rounded hover:bg-muted focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary focus-visible:outline-none transition-all duration-hover-duration ease-hover-curve disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .card-premium {
+    @apply bg-card text-card-foreground rounded-xl border border-border p-6 shadow-elevation-xs hover:shadow-elevation-lg transition-all duration-300 transform hover:-translate-y-1 relative overflow-hidden;
+  }
+  
+  .input-premium {
+    @apply h-11 px-4 border border-input rounded bg-transparent text-foreground placeholder-slate-500 focus:ring-2 focus:ring-primary/40 focus:border-primary focus:outline-none transition-all duration-200 disabled:bg-disabled disabled:text-disabled-foreground disabled:cursor-not-allowed;
+  }
 }
 
 code {
@@ -144,8 +235,6 @@ code {
   bottom: 20%; 
   right: 20%; 
 }
-
-
 
 .scroll-stack-card {
   will-change: transform;
