@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaBalanceScale, FaShieldAlt, FaChartLine, FaUserTie, FaGavel, FaCheckCircle } from "react-icons/fa";
 import { MdSecurity, MdBusiness } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -109,7 +109,7 @@ const GovernanceRiskCompliance = () => {
               name="description"
               content="Enhance your expertise with PECB’s globally recognized Governance, Risk, and Compliance (GRC) training and certifications. Learn ISO standards, master risk management, and boost your IT career with our training & certifications."
             />
-            <link rel="canonical" href="https://traincapetech.in/pecb/governance" />
+            <link rel="canonical" href="https://www.traincapetech.in/pecb/governance" />
           </Helmet>
 
 

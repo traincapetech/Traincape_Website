@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const IEC20000ITServiceManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const IEC20000ITServiceManagementSystem = () => {
     provider: {
       "@type": "Organization",
       name: "Traincape Technology",
-      url: "https://traincapetech.in",
+      url: "https://www.traincapetech.in",
     },
     hasCourseInstance: {
       "@type": "CourseInstance",
@@ -73,7 +73,7 @@ const IEC20000ITServiceManagementSystem = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/quality/iso-iec-20000-it-service-management-system"
+          href="https://www.traincapetech.in/pecb/quality/iso-iec-20000-it-service-management-system"
         />
         {/* Open Graph Tags */}
         <meta

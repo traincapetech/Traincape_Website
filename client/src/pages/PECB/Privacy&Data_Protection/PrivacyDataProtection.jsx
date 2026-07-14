@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaUserShield, FaChartLine } from "react-icons/fa";
 import { MdPrivacyTip } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyDataProtection = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const PrivacyDataProtection = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/privacy"
+          href="https://www.traincapetech.in/pecb/privacy"
         />
       </Helmet>
 

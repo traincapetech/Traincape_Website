@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaCloud, FaShieldAlt } from "react-icons/fa";
 import { BsCloudCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity } from "react-icons/md";
-import { Helmet } from "react-helmet";  
+import { Helmet } from "react-helmet-async";  
 const ComptiaSecureCloud = () => {
   const navigate = useNavigate();
 
@@ -141,7 +141,7 @@ const ComptiaSecureCloud = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/comptia/professional/secure-cloud-professional-certification"
+          href="https://www.traincapetech.in/comptia/professional/secure-cloud-professional-certification"
         />
 
         {/* ✅ Open Graph */}

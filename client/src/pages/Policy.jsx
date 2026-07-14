@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import policypage from "../css/Policy.module.css";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Policy = () => {
   useEffect(() => {
@@ -20,7 +20,7 @@ const Policy = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/Our-Policies"
+          href="https://www.traincapetech.in/Our-Policies"
         />
       </Helmet> 
 

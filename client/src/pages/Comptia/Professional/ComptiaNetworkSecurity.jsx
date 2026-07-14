@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaNetworkWired, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ComptiaNetworkSecurity = () => {
   const navigate = useNavigate();
 
@@ -143,7 +143,7 @@ const ComptiaNetworkSecurity = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/comptia/professional/network-security-professional-certification"
+          href="https://www.traincapetech.in/comptia/professional/network-security-professional-certification"
         />
 
         {/* ✅ Open Graph */}

@@ -191,14 +191,14 @@ const Services = () => {
                 variant="contained"
                 className="w-full sm:w-auto !bg-cyan-500 hover:!bg-cyan-400 !text-slate-900 !px-8 !py-4 !rounded-xl !text-lg !font-bold !normal-case !shadow-lg !shadow-cyan-500/20"
               >
-                Inquire Solutions
+                Request Solutions Roadmap
               </Button>
               <Button
                 onClick={() => setAdvisorOpen(true)}
                 variant="outlined"
                 className="w-full sm:w-auto !border-slate-700 !text-white hover:!bg-white/5 !px-8 !py-4 !rounded-xl !text-lg !font-bold !normal-case"
               >
-                Scientific Advisor
+                Consult Tech Architect
               </Button>
             </div>
           </motion.div>

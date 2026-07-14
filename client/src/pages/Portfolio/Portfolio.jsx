@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef } from "react";
-import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import SEOHead from "../../components/SEOHead";
 import { Shield, Sparkles, Code2, Layers, Cpu, Database, Settings } from "lucide-react";
 
 // Components
@@ -76,46 +75,12 @@ export default function Portfolio() {
   ];
 
   return (
-    <div className="bg-[#09090b] min-h-screen text-slate-300 overflow-hidden font-sans">
-      {/* SEO Optimization */}
-      <Helmet>
-        <title>Portfolio of Custom Software &amp; Enterprise Solutions | Traincape Technology</title>
-        <meta
-          name="description"
-          content="Explore our case studies of bespoke CRM software, luxury e-commerce platforms, React Native mobile apps, and cloud setups developed for global enterprises."
-        />
-        <meta name="keywords" content="Traincape Technology portfolio, custom software development, case studies, React web app, enterprise software" />
-        <link rel="canonical" href="https://traincapetech.in/portfolio" />
-        <meta property="og:title" content="Portfolio of Custom Software &amp; Enterprise Solutions | Traincape Technology" />
-        <meta property="og:description" content="Explore our case studies of bespoke CRM software, luxury e-commerce platforms, React Native mobile apps, and cloud setups." />
-        <meta property="og:url" content="https://traincapetech.in/portfolio" />
-        <meta property="og:type" content="website" />
-        {/* Structured Data: Organization Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "http://schema.org",
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "item": {
-                  "@id": "https://traincapetech.in",
-                  "name": "Home"
-                }
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "item": {
-                  "@id": "https://traincapetech.in/portfolio",
-                  "name": "Portfolio"
-                }
-              }
-            ]
-          })}
-        </script>
-      </Helmet>
+    <div className="bg-white min-h-screen text-slate-650 overflow-hidden font-sans">
+      <SEOHead
+        title="Portfolio of Custom Software & Enterprise Solutions | Traincape Technology"
+        description="Explore our case studies of bespoke CRM software, luxury e-commerce platforms, React Native mobile apps, and cloud setups developed for global enterprises."
+        canonical="https://www.traincapetech.in/portfolio"
+      />
 
       {/* Hero */}
       <PortfolioHero onExploreClick={scrollToGrid} />
@@ -127,10 +92,10 @@ export default function Portfolio() {
       <FeaturedProjects projects={featuredProjects} />
 
       {/* Grid Filter Search Section */}
-      <section ref={gridSectionRef} className="py-20 border-t border-slate-800/60 bg-[#030303]">
+      <section ref={gridSectionRef} className="py-20 border-t border-slate-100 bg-slate-50/80">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-10">
           <div className="text-center space-y-3">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white font-display">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 font-display">
               Browse Client Projects
             </h2>
             <p className="text-slate-500 text-sm max-w-lg mx-auto">
@@ -160,10 +125,10 @@ export default function Portfolio() {
       </section>
 
       {/* Technology Section */}
-      <section className="py-20 bg-[#09090b] border-t border-slate-800/60">
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-12">
           <div className="text-center space-y-3">
-            <h2 className="text-2xl md:text-3.5xl font-extrabold text-white font-display">
+            <h2 className="text-2xl md:text-3.5xl font-extrabold text-slate-900 font-display">
               Our Core Technology Standards
             </h2>
             <p className="text-slate-500 text-sm max-w-lg mx-auto">
@@ -177,12 +142,12 @@ export default function Portfolio() {
               return (
                 <div
                   key={idx}
-                  className="bg-slate-900/20 border border-slate-800/80 rounded-xl p-6 space-y-3 hover:border-blue-500/20 hover:bg-slate-900/40 transition-all duration-300"
+                  className="bg-slate-50 border border-slate-200 rounded-xl p-6 space-y-3 hover:border-blue-500/20 hover:bg-white transition-all duration-300 shadow-sm"
                 >
-                  <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 inline-block">
+                  <div className="p-2 rounded-lg bg-blue-500/5 text-blue-600 inline-block">
                     <TechIcon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-white text-base">
+                  <h3 className="font-bold text-slate-900 text-base">
                     {tech.name}
                   </h3>
                   <p className="text-slate-500 text-xs md:text-sm leading-relaxed">
@@ -196,16 +161,16 @@ export default function Portfolio() {
       </section>
 
       {/* Industries Served */}
-      <section className="py-20 bg-[#030303] border-t border-slate-800/60">
+      <section className="py-20 bg-slate-50/80 border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 space-y-5">
-            <h2 className="text-3xl font-extrabold text-white font-display leading-tight">
+            <h2 className="text-3xl font-extrabold text-slate-900 font-display leading-tight">
               Enterprise Domains &amp; Industries Served
             </h2>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-600 text-sm leading-relaxed">
               We design specialized workflows matching the security guidelines, compliance thresholds, and operational patterns of diverse commercial domains.
             </p>
-            <div className="flex items-center gap-2 text-xs text-slate-500 bg-slate-900/45 px-3 py-1 rounded-full border border-slate-800 inline-block">
+            <div className="flex items-center gap-2 text-xs text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200 inline-block shadow-sm">
               <Shield className="w-3.5 h-3.5 text-blue-500" />
               <span>Full compliance &amp; ISO standards alignment</span>
             </div>
@@ -214,9 +179,9 @@ export default function Portfolio() {
             {servedIndustries.map((ind, idx) => (
               <div
                 key={idx}
-                className="bg-slate-900/35 border border-slate-800/80 rounded-xl p-4 flex items-center justify-between hover:bg-slate-900/60 hover:border-slate-700 transition-all cursor-default"
+                className="bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between hover:bg-slate-50 hover:border-blue-500/20 transition-all cursor-default shadow-sm"
               >
-                <span className="font-semibold text-slate-200 text-xs md:text-sm">
+                <span className="font-semibold text-slate-800 text-xs md:text-sm">
                   {ind}
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
@@ -227,10 +192,10 @@ export default function Portfolio() {
       </section>
 
       {/* Development Process */}
-      <section className="py-20 bg-[#09090b] border-t border-slate-800/60">
+      <section className="py-20 bg-white border-t border-slate-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 space-y-12">
           <div className="text-center space-y-3">
-            <h2 className="text-2xl md:text-3.5xl font-extrabold text-white font-display">
+            <h2 className="text-2xl md:text-3.5xl font-extrabold text-slate-900 font-display">
               Our Professional Engineering Process
             </h2>
             <p className="text-slate-500 text-sm max-w-lg mx-auto">
@@ -242,7 +207,7 @@ export default function Portfolio() {
             {processSteps.map((step, idx) => (
               <div
                 key={idx}
-                className="relative bg-slate-900/25 border border-slate-800/60 rounded-xl p-5 space-y-4 hover:border-slate-700 transition-all group"
+                className="relative bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-4 hover:border-blue-500/20 transition-all group shadow-sm"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-lg font-extrabold text-slate-700 group-hover:text-blue-500 transition-colors">
@@ -250,7 +215,7 @@ export default function Portfolio() {
                   </span>
                   <Settings className="w-4 h-4 text-slate-700 group-hover:animate-spin" />
                 </div>
-                <h3 className="font-bold text-white text-sm">
+                <h3 className="font-bold text-slate-900 text-sm">
                   {step.title}
                 </h3>
                 <p className="text-slate-500 text-xs leading-relaxed">

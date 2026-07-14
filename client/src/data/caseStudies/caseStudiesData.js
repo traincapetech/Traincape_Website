@@ -1,7 +1,7 @@
 // Asset imports
 import nkLuxeDesktop from "../../assets/caseStudies/nk-luxe/desktop.png";
 import nkLuxeMobile from "../../assets/caseStudies/nk-luxe/mobile.png";
-import nkLuxeLogo from "../../assets/caseStudies/nk-luxe/logo.png";
+import nkLuxeLogo from "../../assets/caseStudies/nk-luxe/logo.jpg";
 
 import crmDashboard from "../../assets/caseStudies/crm/dashboard.png";
 import crmLeads from "../../assets/caseStudies/crm/leads.png";
@@ -11,8 +11,8 @@ import verdaDesktop from "../../assets/caseStudies/verda/desktop.png";
 import verdaMobile from "../../assets/caseStudies/verda/mobile.png";
 import verdaLogo from "../../assets/caseStudies/verda/logo.png";
 
-import datingAppLogin from "../../assets/caseStudies/dating-app/login.png";
-import datingAppDashboard from "../../assets/caseStudies/dating-app/dashboard.png";
+import datingAppLogin from "../../assets/caseStudies/dating-app/dashboard.png";
+import datingAppDashboard from "../../assets/caseStudies/dating-app/mobile.jpeg";
 import datingAppLogo from "../../assets/caseStudies/dating-app/logo.png";
 
 import traincapeDesktop from "../../assets/caseStudies/traincape/desktop.png";

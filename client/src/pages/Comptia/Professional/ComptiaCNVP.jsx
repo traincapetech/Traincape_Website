@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaNetworkWired, FaCloud } from "react-icons/fa";
 import { BsCloudFill, BsGraphUp } from "react-icons/bs";
 import { MdStorage } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ComptiaCNVP = () => {
   const navigate = useNavigate();
 
@@ -145,7 +145,7 @@ const ComptiaCNVP = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/comptia/professional/cnvp-certification"
+          href="https://www.traincapetech.in/comptia/professional/cnvp-certification"
         />
 
         {/* ✅ Open Graph */}

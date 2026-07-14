@@ -96,9 +96,9 @@ export default function AdvisorModal({ isOpen, onClose, prefillCourse = "" }) {
         <div className="p-6 md:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-extrabold text-gray-900">Talk to an Advisor</h2>
-              <p className="mt-1 text-gray-600">
-                Share your details and the program you’re interested in. We’ll call/WhatsApp you shortly.
+              <h2 className="text-2xl font-extrabold text-gray-900 font-display">Consult Tech Architect</h2>
+              <p className="mt-1 text-sm text-gray-600">
+                Speak directly with a technology consultant to map your technical requirements or select the right upskilling track.
               </p>
             </div>
             <button
@@ -193,10 +193,16 @@ export default function AdvisorModal({ isOpen, onClose, prefillCourse = "" }) {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full md:flex-1 px-6 py-3 rounded-xl font-bold bg-blue-700 text-white hover:bg-blue-800 transition disabled:opacity-60"
+                className="w-full md:flex-1 px-6 py-3 rounded-xl font-bold bg-blue-700 hover:bg-blue-800 text-white transition disabled:opacity-60"
               >
-                {submitting ? "Submitting..." : "Request a Call/WhatsApp"}
+                {submitting ? "Submitting..." : "Request Architecture Consultation"}
               </button>
+            </div>
+
+            <div className="md:col-span-2 text-center mt-2">
+              <p className="text-xs text-slate-400 font-medium">
+                🔒 Your details are secure. We guarantee a response within 4 business hours.
+              </p>
             </div>
           </form>
         </div>

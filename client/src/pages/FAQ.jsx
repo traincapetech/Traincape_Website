@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const FAQ = () => {
   const [expandedQuestion, setExpandedQuestion] = useState(null);
@@ -27,7 +27,7 @@ const FAQ = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/frequently-asked-questions"
+          href="https://www.traincapetech.in/frequently-asked-questions"
         />
         <meta name="robots" content="index, follow" />
       </Helmet>

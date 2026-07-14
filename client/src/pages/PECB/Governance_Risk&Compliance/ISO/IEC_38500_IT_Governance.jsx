@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const IEC38500ITGovernance = () => {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const IEC38500ITGovernance = () => {
                   name="description"
                   content="Gain ISO/IEC 38500 IT Governance certification with Traincape Technology. Learn IT governance principles, best practices, and compliance for effective corporate IT management. Grow with Traincape Technology's IT Training in the IT Industry."
                 />
-                <link rel="canonical" href="https://traincapetech.in/pecb/governance/iso-38500" />
+                <link rel="canonical" href="https://www.traincapetech.in/pecb/governance/iso-38500" />
               </Helmet>
 
 

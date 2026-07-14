@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import banner from "../assets/servicesBanner.webp";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const WebDevelopment = () => {
   const navigate = useNavigate(); // ✅ you forgot this line
 

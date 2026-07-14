@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { useNavigate } from "react-router-dom";
 
 // Use React.memo for component-level performance optimization
@@ -37,7 +37,7 @@ const ReviewPage = () => {
           name="description"
           content="Discover what our clients say about us. Read how we help our clients achieve their goals with our expert IT Certifications."
         />
-        <link rel="canonical" href="https://traincapetech.in/review-page" />
+        <link rel="canonical" href="https://www.traincapetech.in/review-page" />
       </Helmet>
 
       {/* Main Container: Added max-w-7xl for better structure on large screens */}

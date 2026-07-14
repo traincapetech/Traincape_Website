@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const IncidentResponse = () => {
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const IncidentResponse = () => {
         <meta name="description" content="Become a certified Incident Response Professional with comprehensive training in incident detection, containment, eradication, recovery, and post-incident analysis with the international standard for cybersecurity management and controls." />
         <meta name="keywords" content="Training and Certifications, PECB, Incident Response, Incident Response, Incident Response, Traincape Technology, Incident Response Certifications, Incident Detection, Incident Containment, Incident Eradication, Incident Recovery, Incident Post-Incident Analysis" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/technical-cybersecurity/incident-response" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/technical-cybersecurity/incident-response" />
       </Helmet>
       <motion.section 
         initial="hidden"

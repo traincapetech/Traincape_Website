@@ -116,17 +116,20 @@ export default function CertificationsIndex() {
         ogType="website"
       />
 
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900 via-slate-900 to-purple-900" />
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,#60a5fa,transparent_40%),radial-gradient(circle_at_80%_20%,#22c55e,transparent_35%),radial-gradient(circle_at_50%_80%,#a855f7,transparent_35%)]" />
-        <div className="relative max-w-7xl mx-auto px-6 py-16 text-white">
-          <p className="text-sm font-semibold tracking-widest uppercase text-cyan-200">
+      <section className="relative overflow-hidden py-24 md:py-32 bg-white border-b border-slate-100">
+        {/* Subtle grid and gradient overlays */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none z-[1]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-[1]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-[1]"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 z-10 text-slate-900">
+          <p className="text-sm font-semibold tracking-widest uppercase text-blue-600">
             Certifications
           </p>
-          <h1 className="mt-3 text-4xl md:text-5xl font-extrabold leading-tight">
+          <h1 className="mt-3 text-4xl md:text-5xl font-extrabold leading-tight text-slate-900 font-display">
             Find the right certification path — and move faster in your career
           </h1>
-          <p className="mt-4 max-w-3xl text-white/85 text-lg">
+          <p className="mt-4 max-w-3xl text-slate-600 text-lg">
             Browse category-based certifications with detailed outcomes,
             who-it’s-for, and clear next steps.
           </p>
@@ -136,19 +139,19 @@ export default function CertificationsIndex() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search certifications (e.g., Agile, ISO, DevOps, Cybersecurity)…"
-              className="w-full px-4 py-3 rounded-xl text-gray-900 placeholder-gray-500 outline-none focus:ring-2 focus:ring-cyan-300"
+              className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-sm"
             />
             <button
               onClick={() => setAdvisorOpen(true)}
-              className="px-5 py-3 rounded-xl font-bold bg-cyan-400 text-slate-900 hover:bg-cyan-300 transition"
+              className="px-5 py-3 rounded-xl font-bold bg-blue-600 text-white hover:bg-blue-500 transition shadow-lg shadow-blue-500/10 whitespace-nowrap"
             >
               Talk to Advisor
             </button>
           </div>
 
-          <div className="mt-6 text-sm text-white/70">
+          <div className="mt-6 text-sm text-slate-500">
             Showing{" "}
-            <span className="font-semibold text-white">{filtered.length}</span>{" "}
+            <span className="font-semibold text-slate-800">{filtered.length}</span>{" "}
             certifications
           </div>
         </div>

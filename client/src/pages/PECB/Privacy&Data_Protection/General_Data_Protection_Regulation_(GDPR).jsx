@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaLock, FaEye } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdPrivacyTip } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const GeneralDataProtectionRegulationGDPR = () => {
   const navigate = useNavigate();
 
@@ -165,7 +165,7 @@ const GeneralDataProtectionRegulationGDPR = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/privacy/gdpr-training"
+          href="https://www.traincapetech.in/pecb/privacy/gdpr-training"
         />
         {/* Open Graph */}
         <meta

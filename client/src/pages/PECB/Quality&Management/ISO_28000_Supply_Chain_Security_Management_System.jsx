@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaTruck, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp, MdSecurity } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ISO28000SupplyChainSecurityManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -154,7 +154,7 @@ const ISO28000SupplyChainSecurityManagementSystem = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/quality/iso-28000-supply-chain-security-management-system"
+          href="https://www.traincapetech.in/pecb/quality/iso-28000-supply-chain-security-management-system"
         />
         {/* Open Graph Tags */}
         <meta

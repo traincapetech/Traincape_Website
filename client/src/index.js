@@ -55,21 +55,6 @@ if (isProduction) {
 
 // Preconnect domains are now managed natively in public/index.html to start TLS handshakes earlier.
 
-// Add resource hints for critical resources
-if (isProduction) {
-  const prefetchAssets = [
-    '/static/media/logo.png', // Add your critical assets here
-    '/static/css/main.chunk.css'
-  ];
-  
-  prefetchAssets.forEach(asset => {
-    const link = document.createElement('link');
-    link.rel = 'prefetch';
-    link.href = asset;
-    document.head.appendChild(link);
-  });
-}
-
 // Configure axios defaults to optimize API calls
 axios.defaults.baseURL = 'https://traincape-backend-uwoa.onrender.com';
 axios.defaults.timeout = 10000; // 10 seconds timeout

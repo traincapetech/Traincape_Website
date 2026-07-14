@@ -219,6 +219,7 @@ const Home = () => {
         title="Traincape Technology | IT Services & IT Training"
         description="Traincape Technology delivers IT services (web, mobile, CRM, cloud) and job-ready IT training (certification & skill-based). Build, scale, and upskill with expert-led support."
         canonical="https://www.traincapetech.in/"
+        preloads={[{ href: "/img-1.jpg", as: "image", fetchpriority: "high" }]}
         structuredData={{
           "@context": "https://schema.org",
           "@type": "ProfessionalService",
@@ -395,25 +396,33 @@ const Home = () => {
                     .start();
                 }}
               />
-            </div>
+            </div>                                                                                                                                                                                                                                                
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/contact-us"
-                className="inline-flex items-center justify-center px-6 py-3 bg-white text-[#152B54] font-semibold rounded-lg shadow hover:bg-opacity-95 transition w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-6 py-3 bg-white text-[#152B54] font-bold rounded-lg shadow hover:bg-opacity-95 transition w-full sm:w-auto"
               >
-                Get a Quote
+                Request Consultation
               </Link>
               <Link
                 to="/our-services"
                 className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/70 text-white font-semibold rounded-lg hover:bg-white/10 transition w-full sm:w-auto"
               >
-                Explore IT Services
+                Explore Our Solutions
               </Link>
               <Link
                 to="/training"
                 className="inline-flex items-center justify-center px-6 py-3 bg-transparent border border-white/70 text-white font-semibold rounded-lg hover:bg-white/10 transition w-full sm:w-auto"
               >
                 Browse Training
+              </Link>
+            </div>
+            <div className="w-full text-center mt-4">
+              <Link
+                to="/requirement-wizard"
+                className="text-xs text-white/80 hover:text-white underline transition-all font-semibold inline-flex items-center justify-center gap-1 hover:scale-102"
+              >
+                Prefer self-service scoping? Start the Project Scoping Wizard
               </Link>
             </div>
             <div className="mt-6">
@@ -757,7 +766,7 @@ const Home = () => {
                 onClick={() => navigate("/contact-us")}
                 className="inline-block px-8 py-4 bg-white text-[#152B54] font-bold rounded-lg hover:bg-opacity-90 transition duration-300"
               >
-                Contact Us Now
+                Request Consultation Slot
               </button>
             </div>
             <div className="lg:w-1/2">
@@ -935,10 +944,13 @@ const Home = () => {
           <button
             onClick={() => navigate("/contact-us")}
             className="inline-block px-12 py-4 bg-[#1e90ff] hover:bg-[#0f67d1] text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition duration-300 transform hover:-translate-y-0.5"
-            aria-label="Get started today"
+            aria-label="Request Free Consultation Session"
           >
-            Get Started Today
+            Request Free Consultation Session
           </button>
+          <p className="text-xs text-blue-300/70 mt-3 font-medium">
+            No obligation scoping. We guarantee a response within 4 hours.
+          </p>
         </div>
       </section>
 

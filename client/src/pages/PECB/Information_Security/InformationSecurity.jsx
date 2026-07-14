@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaShieldAlt, FaLock, FaEye, FaExclamationTriangle, FaUserTie, FaChartLine } from "react-icons/fa";
 import { MdSecurity, MdBusiness } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const InformationSecurity = () => {
   const navigate = useNavigate();
 
@@ -103,7 +103,7 @@ const InformationSecurity = () => {
         <meta name="description" content="Explore risk management strategies such as ARM, COSO, GRC, Coupa risk assess, digital, HR, hedge fund, compliance, and active risk management." />
         <meta name="keywords" content="Training and Certifications, PECB, Information Security, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/information-security" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/information-security" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

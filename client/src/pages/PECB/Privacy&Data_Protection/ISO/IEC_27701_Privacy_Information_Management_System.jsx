@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const IEC27701PrivacyInformationManagementSystem = () => {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const IEC27701PrivacyInformationManagementSystem = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/privacy/iso-27701"
+          href="https://www.traincapetech.in/pecb/privacy/iso-27701"
         />
       </Helmet>
 

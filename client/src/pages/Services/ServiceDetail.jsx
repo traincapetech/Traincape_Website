@@ -16,6 +16,7 @@ import ServiceTechnologies from "../../components/services/ServiceTechnologies";
 import ServicePortfolio from "../../components/services/ServicePortfolio";
 import ServiceCaseStudies from "../../components/services/ServiceCaseStudies";
 import ServiceCTA from "../../components/services/ServiceCTA";
+import StickyCTA from "../../components/StickyCTA";
 
 export default function ServiceDetail() {
   const { slug } = useParams();
@@ -135,6 +136,10 @@ export default function ServiceDetail() {
           <ServiceCTA serviceName={service.title} />
         </div>
       </div>
+      <StickyCTA
+        primaryLabel="Request Consult"
+        whatsappPrefill={`Hi Traincape Team, I'm viewing your "${service.title}" service page and I'd like to discuss how we can partner on this.`}
+      />
     </div>
   );
 }

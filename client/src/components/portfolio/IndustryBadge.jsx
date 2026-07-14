@@ -1,9 +1,23 @@
 import React from "react";
-import { ShieldCheck, GraduationCap, Factory, ShoppingCart, Truck, Landmark, Home, Compass } from "lucide-react";
+import { 
+  ShieldCheck, 
+  GraduationCap, 
+  Factory, 
+  ShoppingCart, 
+  Landmark, 
+  Home, 
+  Compass, 
+  createLucideIcon 
+} from "lucide-react"; 
+import { mortarPestle } from '@lucide/lab';
+
+// Convert the lab node into a valid, props-aware React Component
+const MortarPestleIcon = createLucideIcon('MortarPestle', mortarPestle);
 
 export default function IndustryBadge({ industry }) {
   const getIndustryDetails = (name) => {
     const cleanName = name ? name.toLowerCase() : "";
+    
     if (cleanName.includes("healthcare")) {
       return { icon: ShieldCheck, label: "Healthcare", bg: "bg-emerald-500/10", border: "border-emerald-500/20", color: "text-emerald-400" };
     }
@@ -17,7 +31,7 @@ export default function IndustryBadge({ industry }) {
       return { icon: ShoppingCart, label: "Retail & E-commerce", bg: "bg-pink-500/10", border: "border-pink-500/20", color: "text-pink-400" };
     }
     if (cleanName.includes("logistics") || cleanName.includes("supply")) {
-      return { icon: Truck, label: "Logistics", bg: "bg-purple-500/10", border: "border-purple-500/20", color: "text-purple-400" };
+      return { icon: MortarPestleIcon, label: "Spices", bg: "bg-purple-500/10", border: "border-purple-500/20", color: "text-purple-400" };
     }
     if (cleanName.includes("finance") || cleanName.includes("fintech")) {
       return { icon: Landmark, label: "Finance & Fintech", bg: "bg-cyan-500/10", border: "border-cyan-500/20", color: "text-cyan-400" };

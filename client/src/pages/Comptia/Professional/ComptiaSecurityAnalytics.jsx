@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaCertificate, FaChartLine, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdAnalytics } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ComptiaSecurityAnalytics = () => {
   const navigate = useNavigate();
 
@@ -141,7 +141,7 @@ const ComptiaSecurityAnalytics = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/comptia/professional/security-analytics-professional-certification"
+          href="https://www.traincapetech.in/comptia/professional/security-analytics-professional-certification"
         />
 
         {/* ✅ Open Graph */}

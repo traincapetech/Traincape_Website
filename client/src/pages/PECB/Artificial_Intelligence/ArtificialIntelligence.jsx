@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaBrain, FaRobot, FaShieldAlt, FaChartLine, FaUserTie } from "react-icons/fa";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ArtificialIntelligence = () => {
   const navigate = useNavigate();
 
@@ -58,7 +58,7 @@ const ArtificialIntelligence = () => {
         <meta name="description" content="With training in machine learning, risk management, and security compliance for modern professionals, you can chnage your AI abilities.." />
         <meta name="keywords" content="Training and Certifications, PECB, Artificial Intelligence, Artificial Intelligence, Artificial Intelligence, Traincape Technology, AI Certifications, AI Technologies, AI Risk Management, AI Ethics, AI Governance, AI Implementation" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/artificial-intelligence" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/artificial-intelligence" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

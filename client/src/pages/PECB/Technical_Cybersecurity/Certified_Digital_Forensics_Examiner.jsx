@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const CertifiedDigitalForensicsExaminer = () => {
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const CertifiedDigitalForensicsExaminer = () => {
         <meta name="description" content="Become a certified Digital Forensics Examiner with comprehensive training in digital forensics investigation, evidence collection, analysis, and reporting with the international standard for digital forensics management and controls." />
         <meta name="keywords" content="Training and Certifications, PECB, Certified Digital Forensics Examiner, Certified Digital Forensics Examiner, Certified Digital Forensics Examiner, Traincape Technology, Digital Forensics Certifications, Digital Forensics Investigation, Digital Forensics Analysis, Digital Forensics Preservation, Digital Forensics Reporting" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/technical-cybersecurity/certified-digital-forensics-examiner" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/technical-cybersecurity/certified-digital-forensics-examiner" />
       </Helmet>
       <motion.section 
         initial="hidden"

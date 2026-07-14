@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaHeartbeat, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const ISO13485MedicalDevicesQualityManagementSystem = () => {
   const navigate = useNavigate();
@@ -133,7 +133,7 @@ const ISO13485MedicalDevicesQualityManagementSystem = () => {
               />
               <link
                 rel="canonical"
-                href="https://traincapetech.in/pecb/quality/iso-13485"
+                href="https://www.traincapetech.in/pecb/quality/iso-13485"
               />
             </Helmet>
 

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaCogs, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const ISO9001QualityManagementSystem = () => {
   const navigate = useNavigate();
@@ -132,7 +132,7 @@ const ISO9001QualityManagementSystem = () => {
               />
               <link
                 rel="canonical"
-                href="https://traincapetech.in/pecb/quality/iso-9001"
+                href="https://www.traincapetech.in/pecb/quality/iso-9001"
               />
             </Helmet>
 

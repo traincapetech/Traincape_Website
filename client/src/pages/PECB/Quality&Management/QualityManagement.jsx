@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowRight, FaCogs, FaAward, FaChartLine, FaUserTie, FaShieldAlt, FaGraduationCap, FaFlask } from "react-icons/fa";
 import { MdBusiness, MdSchool } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 
 const QualityManagement = () => {
@@ -134,7 +134,7 @@ const QualityManagement = () => {
               />
               <link
                 rel="canonical"
-                href="https://traincapetech.in/pecb/quality"
+                href="https://www.traincapetech.in/pecb/quality"
               />
             </Helmet>
       

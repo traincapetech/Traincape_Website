@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaExclamationTriangle, FaChartLine, FaShieldAlt } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdAssessment } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 // Memoized components to prevent unnecessary re-renders
 const DomainCard = memo(({ domain, idx }) => {
@@ -346,7 +346,7 @@ const ISO31000RiskManagement = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/governance/iso-31000-training"
+          href="https://www.traincapetech.in/pecb/governance/iso-31000-training"
         />
         <meta property="og:title" content="ISO 31000:2018 Risk Management Training" />
         <meta

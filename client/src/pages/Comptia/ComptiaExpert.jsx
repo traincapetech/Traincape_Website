@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaArrowLeft, FaCheckCircle, FaCertificate, FaCrown } from "react-icons/fa";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ComptiaExpert = () => {
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const ComptiaExpert = () => {
         <meta name="description" content="Become a CompTIA-certified expert with Traincape Technology. Advanced-level certification programs designed for senior IT and cybersecurity roles. Traincape Technology delivers CompTIA Expert-Level Certification courses to grow in the IT Industry." />
         <meta name="keywords" content="CompTIA Expert Level Certifications, CompTIA CASP+, CompTIA CSAE, CompTIA, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/comptia/expert" />
+        <link rel="canonical" href="https://www.traincapetech.in/comptia/expert" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

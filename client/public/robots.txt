@@ -6,5 +6,47 @@ Disallow: /admin/
 Disallow: /admin-panel/
 Disallow: /private/
 Disallow: /api/
+Disallow: /login
+Disallow: /signup
+Disallow: /forgot-password
+Disallow: /test
+Disallow: /verifyCertificate
+Disallow: /internal-exams
+
+# Explicitly optimize and allow AI Search engine crawlers (GEO)
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /private/
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /private/
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /private/
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /private/
+Disallow: /api/
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /admin-panel/
+Disallow: /private/
+Disallow: /api/
 
 Sitemap: https://www.traincapetech.in/sitemap.xml

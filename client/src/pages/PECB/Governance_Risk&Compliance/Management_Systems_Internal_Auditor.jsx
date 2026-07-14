@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const ManagementSystemsInternalAuditor = () => {
   const navigate = useNavigate();
@@ -74,7 +74,7 @@ const ManagementSystemsInternalAuditor = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/governance/internal-auditor"
+          href="https://www.traincapetech.in/pecb/governance/internal-auditor"
         />
         <meta
           property="og:title"

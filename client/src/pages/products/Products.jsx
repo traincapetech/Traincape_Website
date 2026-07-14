@@ -15,7 +15,7 @@ export default function Products() {
           content="Discover our custom enterprise software products: Traincape CRM, HRMS system, and Automated Payroll suite built for zero per-user licensing overhead."
         />
         <meta name="keywords" content="Traincape software products, custom CRM, HRMS suite, automated payroll, SaaS showcase" />
-        <link rel="canonical" href="https://traincapetech.in/products" />
+        <link rel="canonical" href="https://www.traincapetech.in/products" />
         <meta property="og:title" content="Enterprise SaaS &amp; Custom Software Products | Traincape Technology" />
         <meta property="og:description" content="Discover our custom enterprise software products: Traincape CRM, HRMS system, and Automated Payroll suite." />
         <meta property="og:url" content="https://traincapetech.in/products" />
@@ -47,25 +47,40 @@ export default function Products() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 md:py-32 bg-white border-b border-slate-100">
-        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+      <section className="relative overflow-hidden py-28 md:py-36 bg-white border-b border-slate-100">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={require("../../assets/products-hero-bg.png")}
+            alt=""
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
+          {/* White overlay for readability */}
+          <div className="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div>
+        </div>
+
+        {/* Ambient glow effects */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none z-[1]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-[1]"></div>
+
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f020_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f020_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-[1]"></div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/10 bg-blue-500/5 text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/15 bg-white/80 backdrop-blur-sm text-xs text-blue-600 font-semibold tracking-wide uppercase shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
             Software Showcase
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 font-display max-w-4xl mx-auto leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 font-display max-w-4xl mx-auto leading-tight drop-shadow-sm">
             Our Custom{"  "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-650 to-purple-600">
               Enterprise Products
             </span>
           </h1>
 
-          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-700 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Blistering fast SaaS engines engineered with custom design system tokens, database ownership, and no user-based licensing markup.
           </p>
         </div>
@@ -124,7 +139,7 @@ export default function Products() {
                     to={`/products/${prod.slug}`}
                     className="inline-flex items-center gap-1.5 font-bold text-blue-600 group-hover:text-blue-750 transition-colors"
                   >
-                    <span>Explore Product</span>
+                    <span>Request Sandbox Demo</span>
                     <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform" />
                   </Link>
                 </div>

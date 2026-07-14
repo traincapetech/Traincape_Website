@@ -25,6 +25,7 @@ import Timeline from "../../components/caseStudy/Timeline";
 import Testimonial from "../../components/caseStudy/Testimonial";
 import RelatedProjects from "../../components/caseStudy/RelatedProjects";
 import CTA from "../../components/caseStudy/CTA";
+import StickyCTA from "../../components/StickyCTA";
 
 export default function CaseStudyDetails() {
   const { slug } = useParams();
@@ -147,6 +148,10 @@ export default function CaseStudyDetails() {
           <CTA client={study.client} />
         </div>
       </div>
+      <StickyCTA
+        primaryLabel="Request Consult"
+        whatsappPrefill={`Hi Traincape Team, I read your case study for "${study.client}" and I'd like to discuss similar custom solutions.`}
+      />
     </div>
   );
 }

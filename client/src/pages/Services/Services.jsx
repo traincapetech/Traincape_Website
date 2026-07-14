@@ -15,11 +15,12 @@ export default function Services() {
           content="Explore Traincape software engineering services: custom CRM systems, high-speed React storefronts, cross-platform mobile apps, cloud computing, and AI integrations."
         />
         <meta name="keywords" content="custom software development, CRM build, React web design, AWS DevOps, Mobile app build" />
-        <link rel="canonical" href="https://traincapetech.in/services" />
+        <link rel="canonical" href="https://www.traincapetech.in/services" />
         <meta property="og:title" content="B2B IT Solutions &amp; Custom Software Services | Traincape Technology" />
         <meta property="og:description" content="Explore Traincape software engineering services: custom CRM, high-speed React storefronts, cloud databases, and AI solutions." />
         <meta property="og:url" content="https://traincapetech.in/services" />
         <meta property="og:type" content="website" />
+        <link rel="preload" as="image" href={require("../../assets/services-hero-bg.webp")} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "http://schema.org",
@@ -47,25 +48,41 @@ export default function Services() {
       </Helmet>
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 md:py-32 bg-white border-b border-slate-100">
-        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f080_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f080_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none"></div>
+      <section className="relative overflow-hidden py-28 md:py-36 bg-white border-b border-slate-100">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={require("../../assets/services-hero-bg.webp")}
+            alt="Enterprise Services background"
+            width="1920"
+            height="1080"
+            className="w-full h-full object-cover"
+          />
+          {/* White overlay for readability */}
+          <div className="absolute inset-0 bg-white/85"></div>
+        </div>
+
+        {/* Ambient glow effects */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none z-[1]"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/5 rounded-full blur-[140px] pointer-events-none z-[1]"></div>
+
+        {/* Subtle grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f020_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f020_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-[1]"></div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/10 bg-blue-500/5 text-xs text-blue-600 font-semibold tracking-wide uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-blue-500/15 bg-white/80 backdrop-blur-sm text-xs text-blue-600 font-semibold tracking-wide uppercase shadow-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse"></span>
             IT Solutions Suite
           </div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 font-display max-w-4xl mx-auto leading-tight">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 font-display max-w-4xl mx-auto leading-tight drop-shadow-sm">
             Our Enterprise{"  "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-650 to-purple-600">
               Software Services
             </span>
           </h1>
 
-          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-700 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Consolidate your operations, automate user lifecycles, and optimize database layers under custom SLA support frameworks.
           </p>
         </div>

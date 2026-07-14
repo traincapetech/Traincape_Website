@@ -114,18 +114,18 @@ export default function CertificationsCategory() {
       </section>
 
       <section className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="bg-gradient-to-r from-blue-900 via-slate-900 to-purple-900 rounded-3xl p-8 md:p-10 text-white overflow-hidden relative">
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_20%_20%,#60a5fa,transparent_40%),radial-gradient(circle_at_80%_20%,#22c55e,transparent_35%),radial-gradient(circle_at_50%_80%,#a855f7,transparent_35%)]" />
+        <div className="bg-slate-50 border border-slate-200 rounded-3xl p-8 md:p-10 text-slate-855 overflow-hidden relative shadow-sm">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"></div>
           <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold">Need help choosing the right certification?</h2>
-              <p className="mt-2 text-white/85 max-w-2xl">
+              <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">Need help choosing the right certification?</h2>
+              <p className="mt-2 text-slate-655 max-w-2xl">
                 Share your goals and background — we’ll recommend the best path and a practical training plan.
               </p>
             </div>
             <button
               onClick={() => setAdvisorOpen(true)}
-              className="px-6 py-3 rounded-xl font-bold bg-cyan-400 text-slate-900 hover:bg-cyan-300 transition"
+              className="px-6 py-3 rounded-xl font-bold bg-blue-600 text-white hover:bg-blue-500 transition shadow-lg shadow-blue-500/10 whitespace-nowrap"
             >
               Talk to Advisor
             </button>

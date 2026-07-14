@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaAward, FaCogs } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const SixSigma = () => {
   const navigate = useNavigate();
@@ -134,7 +134,7 @@ const SixSigma = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/quality/six-sigma"
+          href="https://www.traincapetech.in/pecb/quality/six-sigma"
         />
       </Helmet>
 

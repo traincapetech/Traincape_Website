@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaChartLine, FaCrown } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdBusiness } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const PECBChiefInformationSecurityOfficer = () => {
   const navigate = useNavigate();
 
@@ -127,7 +127,7 @@ const PECBChiefInformationSecurityOfficer = () => {
         <meta name="description" content="Become a certified Chief Information Security Officer with comprehensive training in strategic leadership, risk governance, and executive-level security management with the international standard for information security leadership and management." />
         <meta name="keywords" content="Training and Certifications, PECB, PECB Chief Information Security Officer, Information Security Officer, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Chief Information Security Officer, Traincape Technology, PECB Chief Information Security Officer, Information Security Officer, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Chief Information Security Officer, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/pecb_chief_information_security_officer" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/information-security/pecb_chief_information_security_officer" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

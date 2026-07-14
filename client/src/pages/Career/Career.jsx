@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./Career.module.css";
 import banner from "../../assets/CareerBannerIMG.svg";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import { submitCareerApplication } from "../../utils/submitCareerApplication";
 import {

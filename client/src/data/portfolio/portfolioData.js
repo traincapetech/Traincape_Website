@@ -91,7 +91,7 @@ export const portfolioData = [
     },
     logo: verdaExportsLogo,
     website: "https://verdaexports.com",
-    projectType: "Cloud Services",
+    projectType: "B2B Export Business Website",
     featured: true,
     seo: {
       title: "Verda Exports B2B Logistics Portal | Custom Software Development Case Study",

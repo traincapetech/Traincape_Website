@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaShieldAlt, FaAward } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ISO37301ComplianceManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -62,7 +62,7 @@ const ISO37301ComplianceManagementSystem = () => {
         {/* Canonical URL */}
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/governance/iso-37301-training"
+          href="https://www.traincapetech.in/pecb/governance/iso-37301-training"
         />
 
         {/* Keywords (Optional but useful for niche SEO) */}

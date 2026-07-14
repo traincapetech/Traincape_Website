@@ -14,13 +14,13 @@ export default function CTA({ client }) {
       <div className="flex flex-wrap items-center justify-center gap-4">
         <Link
           to="/contact-us"
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded font-semibold text-xs md:text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 shadow-lg hover:shadow-blue-900/10"
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded font-bold text-xs md:text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 shadow-lg hover:shadow-blue-900/10"
         >
-          <span>Discuss Project with Us</span>
+          <span>Request Architecture Session</span>
           <ArrowRight className="w-4 h-4" />
         </Link>
         <a
-          href="https://wa.me/919911910793"
+          href={`https://wa.me/919911910793?text=${encodeURIComponent("Hi Traincape Team, I read your case study for " + (client || "your B2B projects") + " and I would like to discuss similar custom solutions for my company.")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-2 bg-white border border-slate-250 text-slate-700 hover:text-slate-900 px-4 py-2.5 rounded text-xs md:text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 shadow-sm"

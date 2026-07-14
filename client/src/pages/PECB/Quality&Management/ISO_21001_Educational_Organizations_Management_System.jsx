@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaChartLine, FaGraduationCap, FaAward } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp, MdSchool } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ISO21001EducationalOrganizationsManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -156,7 +156,7 @@ const ISO21001EducationalOrganizationsManagementSystem = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/quality/iso-21001-certification"
+          href="https://www.traincapetech.in/pecb/quality/iso-21001-certification"
         />
         {/* OpenGraph / Facebook */}
         <meta

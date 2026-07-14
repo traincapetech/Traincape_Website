@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdBusiness, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ISO55001AssetManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const ISO55001AssetManagementSystem = () => {
     provider: {
       "@type": "Organization",
       name: "Traincape Technology",
-      url: "https://traincapetech.in",
+      url: "https://www.traincapetech.in",
     },
     hasCourseInstance: {
       "@type": "CourseInstance",
@@ -164,7 +164,7 @@ const ISO55001AssetManagementSystem = () => {
         <meta name="robots" content="index, follow" />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/quality/iso-55001-asset-management-system"
+          href="https://www.traincapetech.in/pecb/quality/iso-55001-asset-management-system"
         />
         {/* Open Graph Tags */}
         <meta

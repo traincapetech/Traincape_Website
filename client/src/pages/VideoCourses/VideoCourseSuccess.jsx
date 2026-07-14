@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { CheckCircle, AlertCircle, Loader } from "lucide-react";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import toast from "react-hot-toast";
 import API_BASE_URL from "../../config/api";
 

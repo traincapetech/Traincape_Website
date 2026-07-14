@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaShieldAlt, FaUserTie } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp, BsBriefcaseFill } from "react-icons/bs";
 import { MdSecurity, MdPolicy, MdArchitecture } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const CASPPlus = () => {
   const navigate = useNavigate();
 
@@ -142,7 +142,7 @@ const CASPPlus = () => {
         <meta name="description" content="Master advanced enterprise security with our CompTIA CASP+ expert-level training. Prepare for CompTIA CASP+ certification with expert guidance from Traincape Technology. Join our CompTIA CASP+ certification program and take your cybersecurity career to the next level. " />
         <meta name="keywords" content="CompTIA CASP+, CompTIA, CASP, CompTIA Certification, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/comptia/expert/casp-plus" />
+        <link rel="canonical" href="https://www.traincapetech.in/comptia/expert/casp-plus" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

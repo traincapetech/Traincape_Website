@@ -17,12 +17,12 @@ export default function SearchBar({ query, onSearchChange, onClear }) {
           value={query}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search by project, technology, or industry..."
-          className="w-full h-12 pl-12 pr-10 bg-slate-900/40 border border-slate-800 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+          className="w-full h-12 pl-12 pr-10 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all shadow-sm"
         />
         {query && (
           <button
             onClick={onClear}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-500 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 rounded-lg"
+            className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-900 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-500 rounded-lg"
             aria-label="Clear search input"
           >
             <X className="w-5 h-5" />

@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Paths
-const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
+const sitemapPath = path.join(__dirname, '../public/sitemap-certifications.xml');
 const menuPath = path.join(__dirname, '../src/data/gipmc-certifications-menu.json');
 
 // 1. Slugify Helper

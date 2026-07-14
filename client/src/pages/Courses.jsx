@@ -12,7 +12,7 @@ import review3 from "../assets/review4.jpeg";
 import review4 from "../assets/review6.png";
 import gif from "../assets/student-mgmt.gif";
 import mircro from "../assets/Microsoft-Emblem.jpg";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 
 // Import Logos
@@ -97,7 +97,7 @@ const Courses = () => {
           name="description"
           content="Explore our IT Certifications and get in touch with us for Certifications like CompTIA, AWS, PMI, Microsoft, Cisco and many more us. | Grow with us"
         />
-       <link rel="canonical" href="https://traincapetech.in/Courses-details" />
+       <link rel="canonical" href="https://www.traincapetech.in/Courses-details" />
       </Helmet>
 
 

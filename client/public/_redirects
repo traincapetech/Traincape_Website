@@ -79,6 +79,11 @@ http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
 /training/microsoft /training/microsoft/index.html 200
 /about-us /about-us/index.html 200
 /our-services /our-services/index.html 200
+/services /services/index.html 200
+/portfolio /portfolio/index.html 200
+/case-studies /case-studies/index.html 200
+/products /products/index.html 200
+/blogs /blogs/index.html 200
 /services/cloud-services /services/cloud-services/index.html 200
 /services/web-development /services/web-development/index.html 200
 /contact-us /contact-us/index.html 200

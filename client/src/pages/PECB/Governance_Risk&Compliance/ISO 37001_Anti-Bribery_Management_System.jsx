@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdTrendingUp } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const ISO37001AntiBriberyManagementSystem = () => {
   const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const ISO37001AntiBriberyManagementSystem = () => {
         {/* Canonical URL */}
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/governance/iso-37001-training"
+          href="https://www.traincapetech.in/pecb/governance/iso-37001-training"
         />
 
         {/* Keywords (Optional but useful for niche SEO) */}

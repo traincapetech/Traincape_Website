@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaBug, FaShieldAlt, FaNetworkWired } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdComputer } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const EthicalHacking = () => {
   const navigate = useNavigate();
 
@@ -130,7 +130,7 @@ const EthicalHacking = () => {
         <meta name="description" content="Become a certified Ethical Hacking Professional with PECB. Learn cybersecurity, penetration testing, and security testing skills.." />
         <meta name="keywords" content="Training and Certifications, PECB, Ethical Hacking, Ethical Hacking, Ethical Hacking, Traincape Technology, Ethical Hacking Certifications, Ethical Hacking, Ethical Hacking, Ethical Hacking, Ethical Hacking, Ethical Hacking, Ethical Hacking" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/technical-cybersecurity/ethical-hacking" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/technical-cybersecurity/ethical-hacking" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

@@ -2,12 +2,10 @@
 import React, { Suspense } from "react";
 import { lazyWithRetry } from "../utils/lazyWithRetry";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-import ForgotPassword from "../pages/ForgotPassword";
-import NotFound from "../pages/NotFound";
-import Gallery from "../pages/Gallery";
-import CertificateLookup from "../pages/CertificateLookup";
-// Preload BS icons to avoid chunk loading errors
-import * as BsIcons from "react-icons/bs";
+const ForgotPassword = lazyWithRetry(() => import("../pages/ForgotPassword"));
+const NotFound = lazyWithRetry(() => import("../pages/NotFound"));
+const Gallery = lazyWithRetry(() => import("../pages/Gallery"));
+const CertificateLookup = lazyWithRetry(() => import("../pages/CertificateLookup"));
 
 // Loading component
 const LoadingComponent = () => (

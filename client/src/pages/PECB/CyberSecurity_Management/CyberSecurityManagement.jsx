@@ -11,7 +11,7 @@ import {
   FaCogs
 } from "react-icons/fa";
 import { MdSecurity, MdComputer } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const CyberSecurityManagement = () => {
   const navigate = useNavigate();
@@ -139,7 +139,7 @@ const CyberSecurityManagement = () => {
         />
         <link
           rel="canonical"
-          href="https://traincapetech.in/pecb/cybersecurity-management"
+          href="https://www.traincapetech.in/pecb/cybersecurity-management"
         />
         <meta name="robots" content="index, follow" />
       </Helmet>

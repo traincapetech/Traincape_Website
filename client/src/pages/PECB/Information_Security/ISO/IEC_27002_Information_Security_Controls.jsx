@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaShieldAlt, FaLock, FaEye } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdComputer } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const IEC27002InformationSecurityControls = () => {
   const navigate = useNavigate();
 
@@ -131,7 +131,7 @@ const IEC27002InformationSecurityControls = () => {
         <meta name="description" content="Learn to implement and manage information security controls across 14 categories with the international standard for information security controls implementation and auditing." />
         <meta name="keywords" content="Training and Certifications, PECB, ISO/IEC 27002 Information Security Controls, Information Security Controls, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Controls, Traincape Technology, ISO/IEC 27002 Information Security Controls, Information Security Controls, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Controls, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/iso/iec_27002_information_security_controls" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/information-security/iso/iec_27002_information_security_controls" />
       </Helmet>
       {/* Hero Section */}
       <motion.section 

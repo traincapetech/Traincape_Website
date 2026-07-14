@@ -12,7 +12,6 @@ const VerifyCertificate = () => {
   const [verificationResult, setVerificationResult] = useState(null);
 
   const location = useLocation();
-  const navigate = useNavigate();
   const certificateRef = useRef();
 
   // Auto-verify if ID is in URL
@@ -40,7 +39,7 @@ const VerifyCertificate = () => {
       setError(null);
 
       const response = await axios.get(
-        `${API_BASE_URL}/results/verifyCertificate?certificateId=${id.trim()}`
+        `${API_BASE_URL}/results/verifyCertificate?certificateId=${encodeURIComponent(id.trim())}`
       );
 
       if (response.data.success) {
@@ -162,11 +161,11 @@ const VerifyCertificate = () => {
                     width: "100%",
                     aspectRatio: "1.414 / 1",
                     background: "linear-gradient(135deg, #fdfcfb 0%, #f9f7f4 100%)",
-                    border: "8px solid #1a1a5e",
+                    border: "3px solid #c9a84c",
                     borderRadius: "4px",
                     position: "relative",
                     overflow: "hidden",
-                    padding: "5% 8%",
+                    padding: "4% 6%",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -174,99 +173,123 @@ const VerifyCertificate = () => {
                     boxSizing: "border-box",
                   }}
                 >
-                  {/* Gold inner border */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      left: "12px",
-                      right: "12px",
-                      bottom: "12px",
-                      border: "2px solid #c9a84c",
-                      borderRadius: "2px",
-                      pointerEvents: "none",
-                    }}
-                  />
+                  {/* Gold ornamental corner decorations */}
+                  {/* Top-left */}
+                  <svg style={{ position: "absolute", top: "0", left: "0", width: "100px", height: "100px" }} viewBox="0 0 100 100" fill="none">
+                    <path d="M0,0 C0,0 30,5 50,25 C30,30 10,20 0,0Z" fill="#c9a84c" opacity="0.3"/>
+                    <path d="M0,0 C5,15 15,30 35,40 C15,35 5,20 0,0Z" fill="#c9a84c" opacity="0.5"/>
+                    <path d="M0,5 Q20,20 40,25 Q20,30 5,15Z" fill="#c9a84c" opacity="0.2"/>
+                    <circle cx="20" cy="20" r="3" fill="#c9a84c" opacity="0.6"/>
+                    <circle cx="35" cy="35" r="2" fill="#c9a84c" opacity="0.4"/>
+                  </svg>
+                  {/* Top-right */}
+                  <svg style={{ position: "absolute", top: "0", right: "0", width: "100px", height: "100px", transform: "scaleX(-1)" }} viewBox="0 0 100 100" fill="none">
+                    <path d="M0,0 C0,0 30,5 50,25 C30,30 10,20 0,0Z" fill="#c9a84c" opacity="0.3"/>
+                    <path d="M0,0 C5,15 15,30 35,40 C15,35 5,20 0,0Z" fill="#c9a84c" opacity="0.5"/>
+                    <path d="M0,5 Q20,20 40,25 Q20,30 5,15Z" fill="#c9a84c" opacity="0.2"/>
+                    <circle cx="20" cy="20" r="3" fill="#c9a84c" opacity="0.6"/>
+                    <circle cx="35" cy="35" r="2" fill="#c9a84c" opacity="0.4"/>
+                  </svg>
+                  {/* Bottom-left */}
+                  <svg style={{ position: "absolute", bottom: "0", left: "0", width: "100px", height: "100px", transform: "scaleY(-1)" }} viewBox="0 0 100 100" fill="none">
+                    <path d="M0,0 C0,0 30,5 50,25 C30,30 10,20 0,0Z" fill="#c9a84c" opacity="0.3"/>
+                    <path d="M0,0 C5,15 15,30 35,40 C15,35 5,20 0,0Z" fill="#c9a84c" opacity="0.5"/>
+                    <path d="M0,5 Q20,20 40,25 Q20,30 5,15Z" fill="#c9a84c" opacity="0.2"/>
+                    <circle cx="20" cy="20" r="3" fill="#c9a84c" opacity="0.6"/>
+                    <circle cx="35" cy="35" r="2" fill="#c9a84c" opacity="0.4"/>
+                  </svg>
+                  {/* Bottom-right */}
+                  <svg style={{ position: "absolute", bottom: "0", right: "0", width: "100px", height: "100px", transform: "scale(-1,-1)" }} viewBox="0 0 100 100" fill="none">
+                    <path d="M0,0 C0,0 30,5 50,25 C30,30 10,20 0,0Z" fill="#c9a84c" opacity="0.3"/>
+                    <path d="M0,0 C5,15 15,30 35,40 C15,35 5,20 0,0Z" fill="#c9a84c" opacity="0.5"/>
+                    <path d="M0,5 Q20,20 40,25 Q20,30 5,15Z" fill="#c9a84c" opacity="0.2"/>
+                    <circle cx="20" cy="20" r="3" fill="#c9a84c" opacity="0.6"/>
+                    <circle cx="35" cy="35" r="2" fill="#c9a84c" opacity="0.4"/>
+                  </svg>
 
-                  {/* Corner decorations */}
-                  <div style={{ position: "absolute", top: "8px", left: "8px", width: "60px", height: "60px", borderTop: "4px solid #c9a84c", borderLeft: "4px solid #c9a84c" }} />
-                  <div style={{ position: "absolute", top: "8px", right: "8px", width: "60px", height: "60px", borderTop: "4px solid #c9a84c", borderRight: "4px solid #c9a84c" }} />
-                  <div style={{ position: "absolute", bottom: "8px", left: "8px", width: "60px", height: "60px", borderBottom: "4px solid #c9a84c", borderLeft: "4px solid #c9a84c" }} />
-                  <div style={{ position: "absolute", bottom: "8px", right: "8px", width: "60px", height: "60px", borderBottom: "4px solid #c9a84c", borderRight: "4px solid #c9a84c" }} />
-
-                  {/* TOP: Logo */}
-                  <div style={{ textAlign: "center", zIndex: 1 }}>
-                    <img src={Logo} alt="Traincape" style={{ height: "50px", marginBottom: "4px" }} />
-                    <p style={{ fontSize: "10px", color: "#666", letterSpacing: "2px", textTransform: "uppercase" }}>
-                      ISO/IEC 27001:2022
-                    </p>
+                  {/* TOP: Logo + Title */}
+                  <div style={{ display: "flex", alignItems: "center", gap: "16px", zIndex: 1 }}>
+                    <div style={{ 
+                      width: "70px", height: "70px", 
+                      background: "#1a1a5e", 
+                      borderRadius: "8px", 
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      padding: "8px"
+                    }}>
+                      <img src={Logo} alt="Traincape" style={{ width: "100%", filter: "brightness(0) invert(1)" }} />
+                    </div>
+                    <div>
+                      <h1
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: "clamp(24px, 3.5vw, 48px)",
+                          fontWeight: "700",
+                          color: "#1a1a5e",
+                          margin: "0",
+                          letterSpacing: "3px",
+                          textTransform: "uppercase",
+                          lineHeight: "1.1",
+                        }}
+                      >
+                        Certificate
+                      </h1>
+                      <p
+                        style={{
+                          fontFamily: "'Playfair Display', serif",
+                          fontSize: "clamp(12px, 1.8vw, 20px)",
+                          fontWeight: "400",
+                          color: "#c9a84c",
+                          margin: "2px 0 0",
+                          letterSpacing: "4px",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {verificationResult.isAdminCert ? "of Completion" : "of Achievement"}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* TITLE */}
-                  <div style={{ textAlign: "center", zIndex: 1, marginTop: "-8px" }}>
-                    <h1
+                  {/* AWARDED TO */}
+                  <div style={{ textAlign: "center", zIndex: 1, width: "100%" }}>
+                    <p
                       style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(28px, 4vw, 52px)",
-                        fontWeight: "700",
+                        fontSize: "clamp(11px, 1.4vw, 16px)",
                         color: "#1a1a5e",
-                        margin: "0",
-                        letterSpacing: "3px",
                         textTransform: "uppercase",
-                      }}
-                    >
-                      Certificate
-                    </h1>
-                    <p
-                      style={{
-                        fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(14px, 2vw, 22px)",
-                        fontWeight: "400",
-                        color: "#333",
-                        margin: "4px 0 0",
                         letterSpacing: "4px",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      of Achievement
-                    </p>
-                  </div>
-
-                  {/* PRESENTED TO */}
-                  <div style={{ textAlign: "center", zIndex: 1, marginTop: "-8px" }}>
-                    <p
-                      style={{
-                        fontSize: "clamp(10px, 1.2vw, 14px)",
-                        color: "#c9a84c",
-                        textTransform: "uppercase",
-                        letterSpacing: "3px",
+                        fontWeight: "700",
                         marginBottom: "8px",
                       }}
                     >
-                      This Certificate is Presented to
+                      This Certificate is Awarded to
                     </p>
 
-                    {/* NAME BLOCK */}
+                    {/* NAME BLOCK — cursive */}
                     <div
                       style={{
-                        borderBottom: "2px solid #c9a84c",
-                        paddingBottom: "8px",
                         display: "inline-block",
                         minWidth: "300px",
+                        maxWidth: "80%",
                       }}
                     >
                       <h2
                         style={{
-                          fontFamily: "'Playfair Display', serif",
-                          fontSize: "clamp(24px, 3.5vw, 44px)",
-                          fontWeight: "600",
+                          fontFamily: "'Great Vibes', cursive",
+                          fontSize: "clamp(28px, 4.5vw, 56px)",
+                          fontWeight: "400",
                           color: "#1a1a2e",
                           margin: "0",
-                          letterSpacing: "1px",
+                          lineHeight: "1.2",
                         }}
                       >
                         {verificationResult.name}
                       </h2>
+                      <div style={{ 
+                        height: "2px", 
+                        background: "linear-gradient(90deg, transparent, #c9a84c, transparent)", 
+                        margin: "4px auto 0",
+                        width: "80%",
+                      }} />
                     </div>
                   </div>
 
@@ -275,21 +298,33 @@ const VerifyCertificate = () => {
                     <p
                       style={{
                         fontFamily: "'Playfair Display', serif",
-                        fontSize: "clamp(10px, 1.3vw, 15px)",
+                        fontSize: "clamp(9px, 1.2vw, 14px)",
                         color: "#444",
-                        lineHeight: "1.6",
+                        lineHeight: "1.7",
                         margin: "0",
                       }}
                     >
-                      For successfully completing the{" "}
-                      <strong style={{ color: "#1a1a5e" }}>{verificationResult.subTopic}</strong>{" "}
-                      assessment under{" "}
-                      <strong style={{ color: "#1a1a5e" }}>{verificationResult.course}</strong>{" "}
-                      from Traincape Technology.
+                      {verificationResult.isAdminCert ? (
+                        <>
+                          for successfully completing the{" "}
+                          <strong style={{ color: "#1a1a5e" }}>{verificationResult.course}</strong>{" "}
+                          Training Program. Through commitment and active participation,{" "}
+                          has demonstrated proficiency in the relevant concepts, governance practices,{" "}
+                          and professional fundamentals.
+                        </>
+                      ) : (
+                        <>
+                          For successfully completing the{" "}
+                          <strong style={{ color: "#1a1a5e" }}>{verificationResult.subTopic}</strong>{" "}
+                          assessment under{" "}
+                          <strong style={{ color: "#1a1a5e" }}>{verificationResult.course}</strong>{" "}
+                          from Traincape Technology.
+                        </>
+                      )}
                     </p>
                   </div>
 
-                  {/* BOTTOM: Date + Seal + Signature */}
+                  {/* BOTTOM: Certificate ID + Verification URL + Signature */}
                   <div
                     style={{
                       display: "flex",
@@ -297,83 +332,86 @@ const VerifyCertificate = () => {
                       alignItems: "flex-end",
                       width: "100%",
                       zIndex: 1,
-                      marginTop: "-4px",
-                      position: "relative",
+                      marginTop: "auto",
                     }}
                   >
-                    {/* Date (left) */}
-                    <div style={{ textAlign: "center", flex: "0 0 160px" }}>
-                      <p style={{ fontSize: "12px", color: "#666", borderTop: "1px solid #999", paddingTop: "4px", minWidth: "120px", margin: "0" }}>
-                        {today}
+                    {/* Certificate ID & Date (left) */}
+                    <div style={{ textAlign: "left", flex: "0 0 200px" }}>
+                      <p style={{ fontSize: "10px", fontFamily: "monospace", color: "#666", margin: "0 0 4px" }}>
+                        Certificate ID: {certificateId}
                       </p>
-                      <p style={{ fontSize: "10px", color: "#999", margin: "2px 0 0" }}>Date</p>
+                      <p style={{ fontSize: "10px", color: "#999", margin: "0" }}>
+                        {verificationResult.issueDate 
+                          ? new Date(verificationResult.issueDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }) 
+                          : today}
+                      </p>
                     </div>
 
-                    {/* Spacer for seal */}
-                    <div style={{ flex: "1" }} />
+                    {/* Verification URL + Seal (center) */}
+                    <div style={{ textAlign: "center", flex: "1" }}>
+                      {/* Seal */}
+                      <div
+                        style={{
+                          width: "56px",
+                          height: "56px",
+                          borderRadius: "50%",
+                          border: "3px solid #c9a84c",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          background: "linear-gradient(135deg, #fdf6d8 0%, #c9a84c 100%)",
+                          boxShadow: "0 2px 8px rgba(201,168,76,0.4)",
+                          margin: "0 auto 4px",
+                        }}
+                      >
+                        <div style={{ textAlign: "center" }}>
+                          <span style={{ fontSize: "6px", fontWeight: "bold", color: "#1a1a5e", letterSpacing: "1px", display: "block" }}>
+                            ★ TRAINCAPE ★
+                          </span>
+                          <span style={{ fontSize: "8px", fontWeight: "900", color: "#1a1a5e", display: "block", margin: "1px 0" }}>
+                            VERIFIED
+                          </span>
+                          <span style={{ fontSize: "5px", color: "#1a1a5e", display: "block", letterSpacing: "0.5px" }}>
+                            TECHNOLOGY
+                          </span>
+                        </div>
+                      </div>
+                      <p style={{ fontSize: "8px", color: "#888", margin: "0", letterSpacing: "0.5px" }}>
+                        www.traincapetech.in/verify-certificate
+                      </p>
+                    </div>
 
-                    {/* Director + Signature (right) */}
-                    <div style={{ textAlign: "center", flex: "0 0 160px" }}>
+                    {/* Signature (right) */}
+                    <div style={{ textAlign: "center", flex: "0 0 180px" }}>
+                      {/* Logo small */}
+                      <p style={{ 
+                        fontSize: "9px", fontWeight: "800", color: "#1a1a5e", 
+                        textTransform: "uppercase", letterSpacing: "1px", margin: "0 0 2px",
+                        lineHeight: "1.2",
+                      }}>
+                        Traincape<br/>Technology
+                      </p>
                       {/* Cursive signature */}
                       <p
                         style={{
                           fontFamily: "'Great Vibes', cursive",
-                          fontSize: "clamp(22px, 2.5vw, 32px)",
+                          fontSize: "clamp(18px, 2vw, 26px)",
                           color: "#1a1a2e",
-                          margin: "0 0 2px",
+                          margin: "4px 0 2px",
                           lineHeight: "1",
                         }}
                       >
-                        Parichay Singh
+                        Parichay Singh Rana
                       </p>
-                      <p style={{ fontSize: "12px", color: "#333", fontWeight: "600", borderTop: "1px solid #999", paddingTop: "4px", minWidth: "120px", margin: "0" }}>
-                        Parichay Singh
-                      </p>
-                      <p style={{ fontSize: "10px", color: "#999", margin: "2px 0 0" }}>Director</p>
-                    </div>
-                  </div>
-
-                  {/* Seal / Stamp */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      bottom: "30px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      zIndex: 2,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "72px",
-                        height: "72px",
-                        borderRadius: "50%",
-                        border: "3px solid #c9a84c",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        background: "linear-gradient(135deg, #fdf6d8 0%, #c9a84c 100%)",
-                        boxShadow: "0 2px 8px rgba(201,168,76,0.4)",
-                      }}
-                    >
-                      <div style={{ textAlign: "center" }}>
-                        <span style={{ fontSize: "7px", fontWeight: "bold", color: "#1a1a5e", letterSpacing: "1px", display: "block" }}>
-                          ★ TRAINCAPE ★
-                        </span>
-                        <span style={{ fontSize: "9px", fontWeight: "900", color: "#1a1a5e", display: "block", margin: "1px 0" }}>
-                          VERIFIED
-                        </span>
-                        <span style={{ fontSize: "6px", color: "#1a1a5e", display: "block", letterSpacing: "0.5px" }}>
-                          TECHNOLOGY
-                        </span>
+                      <div style={{ borderTop: "1px solid #999", paddingTop: "4px", display: "inline-block", minWidth: "120px" }}>
+                        <p style={{ fontSize: "11px", color: "#333", fontWeight: "600", margin: "0" }}>
+                          Parichay Singh Rana
+                        </p>
+                        <p style={{ fontSize: "9px", color: "#888", margin: "2px 0 0" }}>Founder & CEO</p>
                       </div>
                     </div>
                   </div>
 
-                  {/* Certificate ID */}
-                  <p style={{ fontSize: "8px", color: "#aaa", position: "absolute", bottom: "16px", right: "20px", fontFamily: "monospace" }}>
-                    ID: {certificateId}
-                  </p>
                 </div>
                 {/* ===== END CERTIFICATE ===== */}
               </div>
@@ -404,9 +442,18 @@ const VerifyCertificate = () => {
                 <h2 className="text-sm font-bold text-gray-500 uppercase mb-3">
                   Course Details
                 </h2>
-                <p className="text-sm font-semibold mb-1">{verificationResult.subTopic}</p>
-                <p className="text-sm text-gray-600">Course: {verificationResult.course}</p>
-                <p className="text-sm text-gray-600">Verified On: {today}</p>
+                <p className="text-sm font-semibold mb-1">{verificationResult.course}</p>
+                {!verificationResult.isAdminCert && verificationResult.subTopic !== verificationResult.course && (
+                  <p className="text-sm text-gray-600">Topic: {verificationResult.subTopic}</p>
+                )}
+                {verificationResult.isAdminCert && verificationResult.issuedBy && (
+                  <p className="text-sm text-gray-600">Issued By: {verificationResult.issuedBy}</p>
+                )}
+                <p className="text-sm text-gray-600">
+                  {verificationResult.issueDate 
+                    ? `Issued: ${new Date(verificationResult.issueDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}` 
+                    : `Verified On: ${today}`}
+                </p>
                 <p className="text-xs font-mono mt-2 text-gray-500 truncate" title={certificateId}>
                   ID: {certificateId}
                 </p>
@@ -421,7 +468,7 @@ const VerifyCertificate = () => {
                 </button>
                 <button
                   onClick={() => {
-                    const url = `${window.location.origin}/verify-certificate?id=${certificateId}`;
+                    const url = `${window.location.origin}/verify-certificate?id=${encodeURIComponent(certificateId)}`;
                     navigator.clipboard.writeText(url);
                     alert("Certificate link copied to clipboard!");
                   }}

@@ -16,6 +16,7 @@ import ProductIntegrations from "../../components/products/ProductIntegrations";
 import ProductBenefits from "../../components/products/ProductBenefits";
 import ProductFAQs from "../../components/products/ProductFAQs";
 import ProductCTA from "../../components/products/ProductCTA";
+import StickyCTA from "../../components/StickyCTA";
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -110,6 +111,10 @@ export default function ProductDetail() {
       <ProductBenefits benefits={product.benefits} />
       <ProductFAQs faqs={product.faqs} />
       <ProductCTA productName={product.name} />
+      <StickyCTA
+        primaryLabel="Request Demo"
+        whatsappPrefill={`Hi Traincape Team, I'm interested in requesting a sandbox demo for your "${product.name}" product.`}
+      />
     </div>
   );
 }

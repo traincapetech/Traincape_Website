@@ -28,7 +28,7 @@ export default function AboutUS() {
           content="Traincape Technology is an enterprise software developer and professional upskilling partner. Learn our story, vision, core values, and engineering philosophies."
         />
         <meta name="keywords" content="Traincape Technology story, custom software development company, professional upskilling, Parichay Rana CEO" />
-        <link rel="canonical" href="https://traincapetech.in/about-us" />
+        <link rel="canonical" href="https://www.traincapetech.in/about-us" />
         <meta property="og:title" content="Our Story &amp; Tech Philosophy | Traincape Technology" />
         <meta property="og:description" content="Traincape Technology is an enterprise software developer and professional upskilling partner. Learn our story, vision, core values, and engineering philosophies." />
         <meta property="og:url" content="https://traincapetech.in/about-us" />

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaCheckCircle, FaClock, FaBook, FaCertificate, FaUserTie, FaExclamationTriangle, FaChartLine, FaShieldAlt } from "react-icons/fa";
 import { BsShieldCheck, BsGraphUp } from "react-icons/bs";
 import { MdSecurity, MdAssessment } from "react-icons/md";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 const IEC27005InformationSecurityRiskManagement = () => {
   const navigate = useNavigate();
 
@@ -134,7 +134,7 @@ const IEC27005InformationSecurityRiskManagement = () => {
         <meta name="description" content="Learn to manage information security risks with the international standard for information security risk management." />
         <meta name="keywords" content="Training and Certifications, PECB, ISO/IEC 27005 Information Security Risk Management, Information Security Risk Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Risk Management, Traincape Technology, ISO/IEC 27005 Information Security Risk Management, Information Security Risk Management, Information Security Management, Information Security Management System, ISO 27001, ISO 27002, ISO 27005, ISO 27034, ISO 27035, PECB Information Security Risk Management, Traincape Technology" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://traincapetech.in/pecb/information-security/iso/iec_27005_information_security_risk_management" />
+        <link rel="canonical" href="https://www.traincapetech.in/pecb/information-security/iso/iec_27005_information_security_risk_management" />
       </Helmet>
         {/* Hero Section */}
       <motion.section 

@@ -107,6 +107,10 @@ function buildUrls() {
   const products = ["crm", "hrms", "payroll"];
   for (const p of products) base.add(`/products/${p}`);
 
+  // Portfolio pages
+  const portfolio = ["nk-luxe", "verda-exports", "crm", "traincape", "bold-india-group"];
+  for (const p of portfolio) base.add(`/portfolio/${p}`);
+
   // Case Studies pages
   const caseStudies = ["nk-luxe", "crm", "verda", "dating-app", "traincape"];
   for (const c of caseStudies) base.add(`/case-studies/${c}`);
@@ -293,11 +297,89 @@ function toXml(urls) {
     `</urlset>\n`;
 }
 
+function toSitemapIndex(sitemapNames) {
+  const today = new Date().toISOString().slice(0, 10);
+  const items = sitemapNames
+    .map((name) => {
+      return [
+        "  <sitemap>",
+        `    <loc>${BASE_URL}/${name}</loc>`,
+        `    <lastmod>${today}</lastmod>`,
+        "  </sitemap>",
+      ].join("\n");
+    })
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `${items}\n` +
+    `</sitemapindex>\n`;
+}
+
 function main() {
   const urls = buildUrls();
-  const xml = toXml(urls);
-  fs.writeFileSync(OUT_FILE, xml);
-  console.log(`[generate-sitemap] Wrote ${urls.length} URLs -> ${OUT_FILE}`);
+
+  // Categorize URLs
+  const servicesUrls = [];
+  const productsUrls = [];
+  const portfolioUrls = [];
+  const caseStudiesUrls = [];
+  const trainingUrls = [];
+  const certificationsUrls = [];
+  const blogsUrls = [];
+  const staticUrls = [];
+
+  urls.forEach((url) => {
+    if (url.startsWith("/services")) {
+      servicesUrls.push(url);
+    } else if (url.startsWith("/products")) {
+      productsUrls.push(url);
+    } else if (url.startsWith("/portfolio")) {
+      portfolioUrls.push(url);
+    } else if (url.startsWith("/case-studies")) {
+      caseStudiesUrls.push(url);
+    } else if (url.startsWith("/blogs")) {
+      blogsUrls.push(url);
+    } else if (
+      url.startsWith("/training") || 
+      url.startsWith("/comptia") || 
+      url.startsWith("/pecb") || 
+      url === "/PECB"
+    ) {
+      trainingUrls.push(url);
+    } else if (url.startsWith("/certifications")) {
+      certificationsUrls.push(url);
+    } else {
+      staticUrls.push(url);
+    }
+  });
+
+  const sitemaps = [
+    { name: "sitemap-static.xml", urls: staticUrls },
+    { name: "sitemap-services.xml", urls: servicesUrls },
+    { name: "sitemap-products.xml", urls: productsUrls },
+    { name: "sitemap-portfolio.xml", urls: portfolioUrls },
+    { name: "sitemap-case-studies.xml", urls: caseStudiesUrls },
+    { name: "sitemap-training.xml", urls: trainingUrls },
+    { name: "sitemap-certifications.xml", urls: certificationsUrls },
+    { name: "sitemap-blogs.xml", urls: blogsUrls }
+  ];
+
+  // Write each sub-sitemap if it has URLs
+  const activeSitemaps = [];
+  sitemaps.forEach((sm) => {
+    if (sm.urls.length > 0) {
+      const filePath = path.join(__dirname, "..", "public", sm.name);
+      fs.writeFileSync(filePath, toXml(sm.urls));
+      console.log(`[generate-sitemap] Wrote ${sm.urls.length} URLs -> ${filePath}`);
+      activeSitemaps.push(sm.name);
+    }
+  });
+
+  // Write Master Sitemap Index
+  const indexXml = toSitemapIndex(activeSitemaps);
+  fs.writeFileSync(OUT_FILE, indexXml);
+  console.log(`[generate-sitemap] Wrote Sitemap Index with ${activeSitemaps.length} sitemaps -> ${OUT_FILE}`);
 }
 
 main();

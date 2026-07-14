@@ -5,9 +5,9 @@ import { ArrowRight, HelpCircle } from "lucide-react";
 
 export default function PortfolioCTA() {
   return (
-    <section className="py-20 md:py-24 bg-[#09090b] relative overflow-hidden border-t border-slate-800/80">
+    <section className="py-20 md:py-24 bg-slate-50 relative overflow-hidden border-t border-slate-100">
       {/* Background ambient glowing shapes */}
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-900/5 rounded-full blur-[140px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none"></div>
 
       <div className="max-w-4xl mx-auto px-6 text-center space-y-8 relative z-10">
         <motion.h2
@@ -15,7 +15,7 @@ export default function PortfolioCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-5xl font-extrabold tracking-tight text-white font-display"
+          className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 font-display"
         >
           Have a Project in Mind?
         </motion.h2>
@@ -25,7 +25,7 @@ export default function PortfolioCTA() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-slate-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
+          className="text-slate-600 text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
         >
           Partner with our team of expert developers, product designers, and solution architects to construct custom, secure, and highly scalable software solutions.
         </motion.p>

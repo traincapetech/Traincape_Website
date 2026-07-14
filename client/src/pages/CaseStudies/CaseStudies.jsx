@@ -26,7 +26,7 @@ export default function CaseStudies() {
           content="Explore our corporate case studies of enterprise CRM software, agricultural logistics databases, React Native startups apps, and headless luxury storefronts."
         />
         <meta name="keywords" content="Traincape Technology case studies, software development, CRM custom, ERP systems, B2B logistics, react native mobile apps" />
-        <link rel="canonical" href="https://traincapetech.in/case-studies" />
+        <link rel="canonical" href="https://www.traincapetech.in/case-studies" />
         <meta property="og:title" content="Client Case Studies &amp; Software Solutions | Traincape Technology" />
         <meta property="og:description" content="Explore our corporate case studies of enterprise CRM software, agricultural logistics databases, React Native startups apps, and headless luxury storefronts." />
         <meta property="og:url" content="https://traincapetech.in/case-studies" />

@@ -18,14 +18,14 @@ export default function ProductCTA({ productName }) {
         <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
           <a
             href="/contact-us"
-            className="btn-primary flex items-center gap-2 group focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="btn-primary flex items-center gap-2 group focus-visible:ring-2 focus-visible:ring-blue-500 font-bold"
           >
-            <span>Request dedicated sandbox instance</span>
+            <span>Request Dedicated Sandbox Setup</span>
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </a>
           
           <a
-            href="https://wa.me/919911910793"
+            href={`https://wa.me/919911910793?text=${encodeURIComponent("Hi Traincape Team, I would like to schedule a demo for the " + (productName || "enterprise CRM/SaaS") + " product and discuss hosting requirements.")}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-slate-50 border border-slate-200 text-slate-700 hover:text-slate-900 px-4 py-2.5 rounded text-xs md:text-sm font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 shadow-sm"

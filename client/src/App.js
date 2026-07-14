@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 import { Toaster, toast } from "react-hot-toast";
 import AllRoute from "./allRoute/AllRoute";
 import axios from "axios";
@@ -46,6 +46,9 @@ const App = () => {
   return (
     <ChunkErrorBoundary>
       <HelmetProvider>
+        <Helmet>
+          <link rel="canonical" href={`https://www.traincapetech.in${location.pathname.endsWith('/') && location.pathname !== '/' ? location.pathname.slice(0, -1) : location.pathname}`} />
+        </Helmet>
         <LanguageProvider>
           <ErrorBoundary>
             <Toaster position="top-center" reverseOrder={false} />

@@ -1,5 +1,6 @@
 import express from "express";
 import { ResultModel } from "../model/result.model.js";
+import { Certificate } from "../model/certificate.model.js";
 import { v4 as uuidv4 } from "uuid";
 
 const resultRouter = express.Router();
@@ -105,12 +106,37 @@ resultRouter.get('/verifyCertificate', async (req, res) => {
       return res.status(400).json({ success: false, message: 'Certificate ID is required' });
     }
 
+    // 1. First check the exam results collection
     const result = await ResultModel.findOne({ certificateId });
-    if (!result) {
-      return res.status(404).json({ success: false, message: 'Certificate not found' });
+    if (result) {
+      return res.status(200).json({ success: true, result });
     }
 
-    res.status(200).json({ success: true, result });
+    // 2. Fallback: check the admin-issued Certificate collection
+    const cert = await Certificate.findOne({ certificateId });
+    if (cert) {
+      // Normalize admin certificate fields to match the shape the frontend expects
+      return res.status(200).json({
+        success: true,
+        result: {
+          name: cert.fullName,
+          course: cert.courseName,
+          subTopic: cert.courseName,
+          certificateId: cert.certificateId,
+          certificate: true,
+          createdAt: cert.issueDate,
+          issueDate: cert.issueDate,
+          issuedBy: cert.issuedBy || 'Traincape Technology',
+          certificateURL: cert.certificateURL || '',
+          score: null,
+          totalQuestions: null,
+          level: 'Professional',
+          isAdminCert: true,
+        },
+      });
+    }
+
+    return res.status(404).json({ success: false, message: 'Certificate not found' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

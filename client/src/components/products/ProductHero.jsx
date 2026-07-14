@@ -60,7 +60,7 @@ export default function ProductHero({ product }) {
             </a>
             
             <a
-              href="https://wa.me/919911910793"
+              href="https://wa.me/+441253928501"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-outline flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-slate-500"

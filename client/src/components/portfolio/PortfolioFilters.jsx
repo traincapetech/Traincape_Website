@@ -17,8 +17,8 @@ export default function PortfolioFilters({ categories, selectedCategory, onSelec
               onClick={() => onSelectCategory(category.id)}
               className={`relative px-4 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${
                 isActive
-                  ? "text-blue-400 bg-blue-500/10 border border-blue-500/30"
-                  : "text-slate-400 hover:text-white bg-slate-900/40 hover:bg-slate-900/80 border border-slate-800/80"
+                  ? "text-blue-600 bg-blue-500/5 border border-blue-500/15 shadow-sm"
+                  : "text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200"
               }`}
             >
               <span className="relative z-10">{category.label}</span>

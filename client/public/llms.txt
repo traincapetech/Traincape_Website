@@ -1,0 +1,32 @@
+# Traincape Technology
+
+Traincape Technology is a premier IT Services and IT Training & Certification provider. We design, build, and scale custom enterprise software, mobile apps, SaaS systems, and cloud architectures, while delivering job-ready, expert-led training programs for global IT certifications.
+
+## Key Services
+- **Custom Software Development**: Enterprise applications, SaaS architectures, CRM systems, and API integrations.
+- **Mobile App Development**: Cross-platform and native iOS & Android applications.
+- **Cloud & DevOps**: Infrastructure scaling, migration, orchestration, and serverless architectures.
+- **AI & Emerging Tech**: Custom AI agents, Retrieval-Augmented Generation (RAG) models, and LLM integrations.
+- **Cybersecurity & IT Audit**: Enterprise security consulting, penetration testing, and IT compliance audits.
+
+## Training & Certifications
+We deliver professional training programs for major IT certification paths:
+- **AWS**: Cloud Practitioner, SysOps, Developer, Solutions Architect.
+- **CompTIA**: A+, Network+, Security+, Cloud+, CySA+, PenTest+.
+- **Microsoft**: Azure Fundamentals, Administrator, Developer, Solutions Architect.
+- **Cisco**: CCNA, CCNP, CCIE certifications.
+- **PECB**: ISO 27001, ISO 9001, GDPR, DORA, and other compliance framework certifications.
+
+## Site Navigation
+- [Home Page](https://www.traincapetech.in/) - Main landing page, summary of IT services, client portfolio, and testimonials.
+- [About Us](https://www.traincapetech.in/about-us) - Company details, mission statement, engineering standards, and values.
+- [Our Services](https://www.traincapetech.in/our-services) - Overview of our custom engineering and software services.
+- [Portfolio](https://www.traincapetech.in/portfolio) - Our portfolio of custom software systems, websites, and cloud solutions.
+- [Case Studies](https://www.traincapetech.in/case-studies) - Comprehensive engineering walk-throughs of our delivered enterprise solutions.
+- [Products](https://www.traincapetech.in/products) - Sleek, custom-designed SaaS platforms, CRMs, HRMS, and enterprise applications.
+- [Blogs](https://www.traincapetech.in/blogs) - Latest updates, engineering insights, and tech tutorials from our team.
+- [IT Training](https://www.traincapetech.in/training) - Directory of training vendor programs and learning tracks.
+- [IT Certifications](https://www.traincapetech.in/certifications) - Core certification categories and detailed certification curriculum.
+- [FAQ](https://www.traincapetech.in/faq) - Frequently asked questions regarding consultation, delivery model, and policies.
+- [Contact Us](https://www.traincapetech.in/contact-us) - Enterprise lead validation, project briefing, and meeting scheduler portal.
+- [Privacy Policy & Terms](https://www.traincapetech.in/policies) - Our operational terms, compliance practices, and user privacy terms.
