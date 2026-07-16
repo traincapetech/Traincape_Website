@@ -84,6 +84,12 @@ http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
 /case-studies /case-studies/index.html 200
 /products /products/index.html 200
 /blogs /blogs/index.html 200
+/Our-Blogs /blogs/index.html 200
+/blogs/future-of-mern-stack-development-2026 /blogs/future-of-mern-stack-development-2026/index.html 200
+/blogs/securing-enterprise-node-apis-best-practices /blogs/securing-enterprise-node-apis-best-practices/index.html 200
+/blogs/iso-27001-compliance-guide-information-security /blogs/iso-27001-compliance-guide-information-security/index.html 200
+/blogs/advance-digital-marketing-paid-course-download /blogs/advance-digital-marketing-paid-course-download/index.html 200
+/blogs/complete-wordpress-website-course-files /blogs/complete-wordpress-website-course-files/index.html 200
 /services/cloud-services /services/cloud-services/index.html 200
 /services/web-development /services/web-development/index.html 200
 /contact-us /contact-us/index.html 200
@@ -91,6 +97,7 @@ http://traincapetech.in/* https://www.traincapetech.in/:splat 301!
 /review-page /review-page/index.html 200
 /partner-page /partner-page/index.html 200
 /pecb /pecb/index.html 200
+/internship /internship/index.html 200
 
 # Handle client-side routing - serve index.html for all routes
 /* /index.html 200
