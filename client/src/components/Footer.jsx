@@ -61,6 +61,7 @@ export default function Footer() {
         { label: t.aboutUs || "About Us", path: "/about-us" },
         { label: t.ourStory || "Our Story", path: "/about-us#our-story" },
         { label: t.career || "Careers", path: "/Career-details" },
+        { label: t.internship || "Internship", path: "/internship" },
         { label: t.contactUs || "Contact Us", path: "/contact-us" },
         { label: t.resources || "Blogs", path: "/Our-Blogs" },
         { label: t.news || "News", path: "/Our-Blogs" },
@@ -114,7 +115,7 @@ export default function Footer() {
         { label: "Project Scoping Wizard", path: "/requirement-wizard" },
         { label: t.policy || "Privacy Policy", path: "/Our-Policies" },
         { label: "Terms & Conditions", path: "/Terms-and-Conditions" },
-        { label: "Sitemap", path: "/sitemap" },
+       
       ],
     },
     technologies: {

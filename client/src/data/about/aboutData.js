@@ -109,10 +109,10 @@ export const aboutData = {
     message: "At Traincape, we focus on delivering reliable custom software and industry-aligned upskilling. Technology should solve problems without licensing markup headaches. We are dedicated to building capability and driving digital progress with clarity and transparency."
   },
   team: [
-    { name: "Saurav K.", role: "Lead Systems Developer" },
-    { name: "Madhulika D.", role: "UX / Brand Architect" },
-    { name: "Ritik S.", role: "Backend Engineer" },
-    { name: "Vikas M.", role: "Frontend Lead" }
+    { name: "Saurav Kumar", role: "Lead Systems Developer" },
+    { name: "Gaurav Joshi", role: "UX / Brand Architect" },
+    { name: "Ankur Deep", role: "Backend Engineer" },
+    { name: "Krish Mishra", role: "Frontend Lead" }
   ],
   globalReach: {
     countries: ["India", "United Kingdom", "United States", "Netherlands", "France"],
