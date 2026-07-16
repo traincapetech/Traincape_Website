@@ -64,13 +64,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "node init && craco start",
     "prebuild": "node scripts/prepare-build.js && node scripts/generate-sitemap.js",
-    "build": "craco build",
+    "build": "node init && craco build",
     "postbuild": "react-snap",
     "scrape:gipmc": "node scripts/scrape-gipmc-certifications.js",
-    "build:production": "node scripts/build-production.js",
-    "build:analyze": "npm run build && npm run analyze",
+    "build:production": "node init && node scripts/build-production.js",
+    "build:analyze": "node init && npm run build && npm run analyze",
     "optimize-build": "gzip-size build/static/js/*.js && gzip-size build/static/css/*.css",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "test": "craco test",
@@ -140,7 +140,15 @@
       "/products",
       "/products/crm",
       "/products/hrms",
-      "/products/payroll"
+      "/products/payroll",
+      "/internship",
+      "/blogs",
+      "/Our-Blogs",
+      "/blogs/future-of-mern-stack-development-2026",
+      "/blogs/securing-enterprise-node-apis-best-practices",
+      "/blogs/iso-27001-compliance-guide-information-security",
+      "/blogs/advance-digital-marketing-paid-course-download",
+      "/blogs/complete-wordpress-website-course-files"
     ]
   },
   "eslintConfig": {
