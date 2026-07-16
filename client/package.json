@@ -140,7 +140,15 @@
       "/products",
       "/products/crm",
       "/products/hrms",
-      "/products/payroll"
+      "/products/payroll",
+      "/internship",
+      "/blogs",
+      "/Our-Blogs",
+      "/blogs/future-of-mern-stack-development-2026",
+      "/blogs/securing-enterprise-node-apis-best-practices",
+      "/blogs/iso-27001-compliance-guide-information-security",
+      "/blogs/advance-digital-marketing-paid-course-download",
+      "/blogs/complete-wordpress-website-course-files"
     ]
   },
   "eslintConfig": {
