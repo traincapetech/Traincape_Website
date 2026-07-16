@@ -433,6 +433,7 @@ const AllRoute = () => {
         {/* Clean URL aliases */}
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blogs" element={<Blogs />} />
+        <Route path="/blogs/:slug" element={<Blogs />} />
         <Route path="/policies" element={<Policy />} />
         <Route path="/career" element={<Career />} />
         <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
@@ -465,6 +466,7 @@ const AllRoute = () => {
         <Route path="/Career-details" element={<Career />} />
         <Route path="/Our-Policies" element={<Policy />} />
         <Route path="/Our-Blogs" element={<Blogs />} />
+        <Route path="/Our-Blogs/:slug" element={<Blogs />} />
         <Route path="/CompTIA-single-page" element={<CompTIAsinglePage />} />
         {/* CompTIA Certification Routes */}
         {/* Main CompTIA Navigation */}

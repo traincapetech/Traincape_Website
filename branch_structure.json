@@ -1,0 +1,30 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "Mohit",
+    "Rahul",
+    "anant",
+    "jaspreet",
+    "main",
+    "shruti",
+    "sourav"
+  ],
+  "parent": {
+    "Mohit": "main",
+    "Rahul": "main",
+    "anant": "main",
+    "jaspreet": "main",
+    "main": null,
+    "shruti": "main",
+    "sourav": "main"
+  },
+  "order": [
+    "main",
+    "Mohit",
+    "Rahul",
+    "anant",
+    "jaspreet",
+    "shruti",
+    "sourav"
+  ]
+}
